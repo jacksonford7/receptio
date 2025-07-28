@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeloReceptioStoreContainer" CdmEntityContainer="ModeloReceptioContainer">
+    <EntitySetMapping Name="PRE_GATES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.PRE_GATE)">
+        <MappingFragment StoreEntitySet="PRE_GATES">
+          <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_ID" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="DRIVER_ID" ColumnName="DRIVER_ID" />
+          <ScalarProperty Name="TRUCK_LICENCE" ColumnName="TRUCK_LICENCE" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CONCURRENCY" ColumnName="CONCURRENCY" />
+          <ScalarProperty Name="PRE_GATE_ID_REF" ColumnName="PRE_GATE_ID_REF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTAINERS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.CONTAINER)">
+        <MappingFragment StoreEntitySet="CONTAINERS">
+          <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
+          <ScalarProperty Name="NUMBER" ColumnName="NUMBER" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="PRE_GATE_DETAIL_ID" ColumnName="PRE_GATE_DETAIL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SEALS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.SEAL)">
+        <MappingFragment StoreEntitySet="SEALS">
+          <ScalarProperty Name="SEAL_ID" ColumnName="SEAL_ID" />
+          <ScalarProperty Name="CAPTION" ColumnName="CAPTION" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KIOSK_TRANSACTIONS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.KIOSK_TRANSACTION)">
+        <MappingFragment StoreEntitySet="KIOSK_TRANSACTIONS">
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+          <ScalarProperty Name="IS_OK" ColumnName="IS_OK" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="KIOSK_ID" ColumnName="KIOSK_ID" />
+          <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROCESSES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.PROCESS)">
+        <MappingFragment StoreEntitySet="PROCESSES">
+          <ScalarProperty Name="PROCESS_ID" ColumnName="PROCESS_ID" />
+          <ScalarProperty Name="STEP" ColumnName="STEP" />
+          <ScalarProperty Name="STEP_DATE" ColumnName="STEP_DATE" />
+          <ScalarProperty Name="IS_OK" ColumnName="IS_OK" />
+          <ScalarProperty Name="RESPONSE" ColumnName="RESPONSE" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZONES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.ZONE)">
+        <MappingFragment StoreEntitySet="ZONES">
+          <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KIOSKS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.KIOSK)">
+        <MappingFragment StoreEntitySet="KIOSKS">
+          <ScalarProperty Name="KIOSK_ID" ColumnName="KIOSK_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+          <ScalarProperty Name="IS_IN" ColumnName="IS_IN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TROUBLE_TICKETS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.TROUBLE_TICKET)">
+        <MappingFragment StoreEntitySet="TROUBLE_TICKETS">
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ACCEPTANCE_DATE" ColumnName="ACCEPTANCE_DATE" />
+          <ScalarProperty Name="FINISH_DATE" ColumnName="FINISH_DATE" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="IS_CANCEL" ColumnName="IS_CANCEL" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="ASSIGNMENT_DATE" ColumnName="ASSIGNMENT_DATE" />
+          <ScalarProperty Name="CANCEL_USER" ColumnName="CANCEL_USER" />
+          <ScalarProperty Name="CANCEL_DATE" ColumnName="CANCEL_DATE" />
+          <ScalarProperty Name="SUBMOTIVE_ID" ColumnName="SUBMOTIVE_ID" />
+          <ScalarProperty Name="MOTIVE_ID" ColumnName="MOTIVE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.AUTO_TROUBLE_TICKET)">
+        <MappingFragment StoreEntitySet="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET">
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="REASON_ID" ColumnName="REASON_ID" />
+          <ScalarProperty Name="USER_SESSION_ID" ColumnName="USER_SESSION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.PROCESS_TROUBLE_TICKET)">
+        <MappingFragment StoreEntitySet="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="USER_SESSION_ID" ColumnName="USER_SESSION_ID" />
+          <ScalarProperty Name="IS_SUSPENDED" ColumnName="IS_SUSPENDED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.MOBILE_TROUBLE_TICKET)">
+        <MappingFragment StoreEntitySet="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="USER_SESSION_ID" ColumnName="USER_SESSION_ID" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+          <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.CLIENT_APP_TRANSACTION_TROUBLE_TICKET)">
+        <MappingFragment StoreEntitySet="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+          <ScalarProperty Name="USER_SESSION_ID" ColumnName="USER_SESSION_ID" />
+          <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TROUBLE_DESK_USERS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.TROUBLE_DESK_USER)">
+        <MappingFragment StoreEntitySet="TROUBLE_DESK_USERS">
+          <ScalarProperty Name="TTU_ID" ColumnName="TTU_ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="IS_TD" ColumnName="IS_TD" />
+          <ScalarProperty Name="IS_SUPERVISOR" ColumnName="IS_SUPERVISOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEVICES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.DEVICE)">
+        <MappingFragment StoreEntitySet="DEVICES">
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="ZONE_ID" ColumnName="ZONE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_SESSIONS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.USER_SESSION)">
+        <MappingFragment StoreEntitySet="USER_SESSIONS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="START_SESSION__DATE" ColumnName="START_SESSION__DATE" />
+          <ScalarProperty Name="FINISH_SESSION_DATE" ColumnName="FINISH_SESSION_DATE" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="TTU_ID" ColumnName="TTU_ID" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BREAKS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.BREAK)">
+        <MappingFragment StoreEntitySet="BREAKS">
+          <ScalarProperty Name="BREAK_ID" ColumnName="BREAK_ID" />
+          <ScalarProperty Name="START_BREAK_DATE" ColumnName="START_BREAK_DATE" />
+          <ScalarProperty Name="FINISH_BREAK_DATE" ColumnName="FINISH_BREAK_DATE" />
+          <ScalarProperty Name="BREAK_TYPE_ID" ColumnName="BREAK_TYPE_ID" />
+          <ScalarProperty Name="USER_SESSION_ID" ColumnName="USER_SESSION_ID" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BREAK_TYPES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.BREAK_TYPE)">
+        <MappingFragment StoreEntitySet="BREAK_TYPES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REASSIGNMENTS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.REASSIGNMENT)">
+        <MappingFragment StoreEntitySet="REASSIGNMENTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="USER_SESSION_ID" ColumnName="USER_SESSION_ID" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="MOTIVE_ID" ColumnName="MOTIVE_ID" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MESSAGES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.MESSAGE)">
+        <MappingFragment StoreEntitySet="MESSAGES">
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="USER_MESSAGE" ColumnName="USER_MESSAGE" />
+          <ScalarProperty Name="TROUBLE_DESK_MESSAGE" ColumnName="TROUBLE_DESK_MESSAGE" />
+          <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ATTEMPTS" ColumnName="ATTEMPTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REASSIGNMENT_MOTIVES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.REASSIGNMENT_MOTIVE)">
+        <MappingFragment StoreEntitySet="REASSIGNMENT_MOTIVES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CAPTION" ColumnName="CAPTION" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AUTO_TROUBLE_REASONS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.AUTO_TROUBLE_REASON)">
+        <MappingFragment StoreEntitySet="AUTO_TROUBLE_REASONS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CAPTION" ColumnName="CAPTION" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ERRORS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.ERROR)">
+        <MappingFragment StoreEntitySet="ERRORS">
+          <ScalarProperty Name="ERROR_ID" ColumnName="ERROR_ID" />
+          <ScalarProperty Name="THROW_ON" ColumnName="THROW_ON" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+          <ScalarProperty Name="APPLICATION_ID" ColumnName="APPLICATION_ID" />
+          <ScalarProperty Name="TYPE_ERROR_ID" ColumnName="TYPE_ERROR_ID" />
+          <ScalarProperty Name="IP_SOURCE" ColumnName="IP_SOURCE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APPLICATIONS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.APPLICATION)">
+        <MappingFragment StoreEntitySet="APPLICATIONS">
+          <ScalarProperty Name="APPLICATION_ID" ColumnName="APPLICATION_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="PATH" ColumnName="PATH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TYPE_ERRORS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.TYPE_ERROR)">
+        <MappingFragment StoreEntitySet="TYPE_ERRORS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRE_GATE_DETAILS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.PRE_GATE_DETAIL)">
+        <MappingFragment StoreEntitySet="PRE_GATE_DETAILS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TRANSACTION_NUMBER" ColumnName="TRANSACTION_NUMBER" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="TRANSACTION_TYPE_ID" ColumnName="TRANSACTION_TYPE_ID" />
+          <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_ID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="DOCUMENT_ID" ColumnName="DOCUMENT_ID" />
+          <ScalarProperty Name="REFERENCE_ID" ColumnName="REFERENCE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DAMAGES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.DAMAGE)">
+        <MappingFragment StoreEntitySet="DAMAGES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DAMAGE_TYPE" ColumnName="DAMAGE_TYPE" />
+          <ScalarProperty Name="COMPONENT" ColumnName="COMPONENT" />
+          <ScalarProperty Name="SEVERITY" ColumnName="SEVERITY" />
+          <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="CONTAINER_ID" ColumnName="CONTAINER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACTION_TYPES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.TRANSACTION_TYPE)">
+        <MappingFragment StoreEntitySet="TRANSACTION_TYPES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ACTIONS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.ACTION)">
+        <MappingFragment StoreEntitySet="ACTIONS">
+          <ScalarProperty Name="ACTION_ID" ColumnName="ACTION_ID" />
+          <ScalarProperty Name="ACTION_NAME" ColumnName="ACTION_NAME" />
+          <ScalarProperty Name="ACTION_DATE" ColumnName="ACTION_DATE" />
+          <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOS_PROCCESSES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.TOS_PROCCESS)">
+        <MappingFragment StoreEntitySet="TOS_PROCCESSES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STEP" ColumnName="STEP" />
+          <ScalarProperty Name="STEP_DATE" ColumnName="STEP_DATE" />
+          <ScalarProperty Name="IS_OK" ColumnName="IS_OK" />
+          <ScalarProperty Name="RESPONSE" ColumnName="RESPONSE" />
+          <ScalarProperty Name="IS_RECYCLED" ColumnName="IS_RECYCLED" />
+          <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SENSORS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.SENSOR)">
+        <MappingFragment StoreEntitySet="SENSORS">
+          <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SENSOR_KIOSK_TRANSACTIONS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.SENSOR_KIOSK_TRANSACTION)">
+        <MappingFragment StoreEntitySet="SENSOR_KIOSK_TRANSACTIONS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+          <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIFT_UP_BARRIERS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.LIFT_UP_BARRIER)">
+        <MappingFragment StoreEntitySet="LIFT_UP_BARRIERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="REASON" ColumnName="REASON" />
+          <ScalarProperty Name="KIOSK_ID" ColumnName="KIOSK_ID" />
+          <ScalarProperty Name="TTU_ID" ColumnName="TTU_ID" />
+          <ScalarProperty Name="PREGATE_ID" ColumnName="PREGATE_ID" />
+          <ScalarProperty Name="MOTIVE_ID" ColumnName="MOTIVE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REPRINTS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.REPRINT)">
+        <MappingFragment StoreEntitySet="REPRINTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="TTU_ID" ColumnName="TTU_ID" />
+          <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_ID" />
+          <ScalarProperty Name="KIOSK_ID" ColumnName="KIOSK_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BY_PASSES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.BY_PASS)">
+        <MappingFragment StoreEntitySet="BY_PASSES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="REASON" ColumnName="REASON" />
+          <ScalarProperty Name="IS_ENABLED" ColumnName="IS_ENABLED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BY_PASS_AUDITS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.BY_PASS_AUDIT)">
+        <MappingFragment StoreEntitySet="BY_PASS_AUDITS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="FIELD" ColumnName="FIELD" />
+          <ScalarProperty Name="OLD_VALUE" ColumnName="OLD_VALUE" />
+          <ScalarProperty Name="NEW_VALUE" ColumnName="NEW_VALUE" />
+          <ScalarProperty Name="TTU_ID" ColumnName="TTU_ID" />
+          <ScalarProperty Name="BY_PASS_ID" ColumnName="BY_PASS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPOT">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.DEPOT)">
+        <MappingFragment StoreEntitySet="DEPOT">
+          <ScalarProperty Name="ID_DEPOT" ColumnName="ID_DEPOT" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="AUXILIAR_STOCK" ColumnName="AUXILIAR_STOCK" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LINE">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.LINE)">
+        <MappingFragment StoreEntitySet="LINE">
+          <ScalarProperty Name="ID_LINE" ColumnName="ID_LINE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MAIL_STOCK" ColumnName="MAIL_STOCK" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LINE_DEPOTS">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.LINE_DEPOTS)">
+        <MappingFragment StoreEntitySet="LINE_DEPOTS">
+          <ScalarProperty Name="ID_LINE" ColumnName="ID_LINE" />
+          <ScalarProperty Name="ID_DEPOT" ColumnName="ID_DEPOT" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="ID_LINE_DEPO" ColumnName="ID_LINE_DEPO" />
+          <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="MOD_DATE" ColumnName="MOD_DATE" />
+          <ScalarProperty Name="MOD_USER" ColumnName="MOD_USER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STOCK_OPERATION">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.STOCK_OPERATION)">
+        <MappingFragment StoreEntitySet="STOCK_OPERATION">
+          <ScalarProperty Name="ID_OPERATION" ColumnName="ID_OPERATION" />
+          <ScalarProperty Name="OPERATION" ColumnName="OPERATION" />
+          <ScalarProperty Name="MULTIPLIER" ColumnName="MULTIPLIER" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="MOD_DATE" ColumnName="MOD_DATE" />
+          <ScalarProperty Name="MOD_USER" ColumnName="MOD_USER" />
+          <ScalarProperty Name="SCREEN" ColumnName="SCREEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STOCK_REGISTER">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.STOCK_REGISTER)">
+        <MappingFragment StoreEntitySet="STOCK_REGISTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_LINE" ColumnName="ID_LINE" />
+          <ScalarProperty Name="ID_DEPOT" ColumnName="ID_DEPOT" />
+          <ScalarProperty Name="ID_OPERATION" ColumnName="ID_OPERATION" />
+          <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_ID" />
+          <ScalarProperty Name="PRE_GATE_DETAILS_ID" ColumnName="PRE_GATE_DETAILS_ID" />
+          <ScalarProperty Name="OPERATION_USER" ColumnName="OPERATION_USER" />
+          <ScalarProperty Name="OPERATION_OBJETC" ColumnName="OPERATION_OBJETC" />
+          <ScalarProperty Name="OPERATION_NOTES" ColumnName="OPERATION_NOTES" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="MULTIPLIER" ColumnName="MULTIPLIER" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="CREATE_YEAR" ColumnName="CREATE_YEAR" />
+          <ScalarProperty Name="CREATE_MONTH" ColumnName="CREATE_MONTH" />
+          <ScalarProperty Name="CREATE_WEEK" ColumnName="CREATE_WEEK" />
+          <ScalarProperty Name="REGISTER_DATE" ColumnName="REGISTER_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOTIVES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.MOTIVE)">
+        <MappingFragment StoreEntitySet="MOTIVES">
+          <ScalarProperty Name="MOTIVE_ID" ColumnName="MOTIVE_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUB_MOTIVES">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloReceptio.SUB_MOTIVE)">
+        <MappingFragment StoreEntitySet="SUB_MOTIVES">
+          <ScalarProperty Name="SUB_MOTIVE_ID" ColumnName="SUB_MOTIVE_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="MOTIVES_ID" ColumnName="MOTIVES_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PROCESSPROCESS_TROUBLE_TICKET" TypeName="ModeloReceptio.PROCESSPROCESS_TROUBLE_TICKET" StoreEntitySet="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+      <EndProperty Name="PROCESS">
+        <ScalarProperty Name="PROCESS_ID" ColumnName="PROCESS_PROCESS_ID" />
+      </EndProperty>
+      <EndProperty Name="PROCESS_TROUBLE_TICKET">
+        <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET" TypeName="ModeloReceptio.ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET" StoreEntitySet="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+      <EndProperty Name="ERROR">
+        <ScalarProperty Name="ERROR_ID" ColumnName="ERROR_ERROR_ID" />
+      </EndProperty>
+      <EndProperty Name="CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+        <ScalarProperty Name="TT_ID" ColumnName="TT_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ZONETRANSACTION_TYPE" TypeName="ModeloReceptio.ZONETRANSACTION_TYPE" StoreEntitySet="ZONETRANSACTION_TYPE">
+      <EndProperty Name="ZONE">
+        <ScalarProperty Name="ZONE_ID" ColumnName="ZONES_ZONE_ID" />
+      </EndProperty>
+      <EndProperty Name="TRANSACTION_TYPE">
+        <ScalarProperty Name="ID" ColumnName="TRANSACTION_TYPES_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MOBILE_TROUBLE_TICKETTOS_PROCCESS" TypeName="ModeloReceptio.MOBILE_TROUBLE_TICKETTOS_PROCCESS" StoreEntitySet="TOS_PROCCESSES">
+      <EndProperty Name="MOBILE_TROUBLE_TICKET">
+        <ScalarProperty Name="TT_ID" ColumnName="MOBILE_TROUBLE_TICKET_TT_ID" />
+      </EndProperty>
+      <EndProperty Name="TOS_PROCCESS">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+      <Condition ColumnName="MOBILE_TROUBLE_TICKET_TT_ID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PRE_GATEBY_PASS" TypeName="ModeloReceptio.PRE_GATEBY_PASS" StoreEntitySet="BY_PASSES">
+      <EndProperty Name="PRE_GATE">
+        <ScalarProperty Name="PRE_GATE_ID" ColumnName="PRE_GATE_PRE_GATE_ID" />
+      </EndProperty>
+      <EndProperty Name="BY_PASS">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="mb_add_ecuapass_transaccion" FunctionName="ModeloReceptio.Store.mb_add_ecuapass_transaccion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloReceptio.mb_add_ecuapass_transaccion_Result">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="message" ColumnName="message" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="mb_get_ecuapass_message_pass" FunctionName="ModeloReceptio.Store.mb_get_ecuapass_message_pass">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloReceptio.mb_get_ecuapass_message_pass_Result">
+          <ScalarProperty Name="CODIGO_TRANSACCION" ColumnName="CODIGO_TRANSACCION" />
+          <ScalarProperty Name="CODIGO_SOLICITUD_TRANSACCION" ColumnName="CODIGO_SOLICITUD_TRANSACCION" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="mb_get_gkey_cont" FunctionName="ModeloReceptio.Store.mb_get_gkey_cont" />
+    <FunctionImportMapping FunctionImportName="mb_get_gkey_cont_mty" FunctionName="ModeloReceptio.Store.mb_get_gkey_cont_mty" />
+    <FunctionImportMapping FunctionImportName="mb_get_gkey_cont_yard" FunctionName="ModeloReceptio.Store.mb_get_gkey_cont_yard" />
+    <FunctionImportMapping FunctionImportName="mb_get_status_n4" FunctionName="ModeloReceptio.Store.mb_get_status_n4" />
+    <FunctionImportMapping FunctionImportName="mb_get_status_n4_placa" FunctionName="ModeloReceptio.Store.mb_get_status_n4_placa" />
+    <FunctionImportMapping FunctionImportName="mb_get_valida_smdt" FunctionName="ModeloReceptio.Store.mb_get_valida_smdt">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloReceptio.mb_get_valida_smdt_Result">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="message" ColumnName="message" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="mb_get_validaciones" FunctionName="ModeloReceptio.Store.mb_get_validaciones" />
+    <FunctionImportMapping FunctionImportName="mb_secuencia" FunctionName="ModeloReceptio.Store.mb_secuencia" />
+    <FunctionImportMapping FunctionImportName="mb_set_estate_smdt_transaccion" FunctionName="ModeloReceptio.Store.mb_set_estate_smdt_transaccion" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="327149b6-b5a1-440d-9a50-2a724ff8bf66" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Service11.disco" MetadataType="Disco" ID="9d39d125-4301-4cf2-afef-a7479c1c340c" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?disco" />
+    <MetadataFile FileName="Service33.xsd" MetadataType="Schema" ID="8137dd3a-b470-4b29-b9b0-7cf7274f4997" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service34.xsd" MetadataType="Schema" ID="2647c813-5b9f-4864-ad4c-cfb907f752fa" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service35.xsd" MetadataType="Schema" ID="a261b834-36b8-4e65-9113-9b965fa4d00b" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?xsd=xsd1" />
+    <MetadataFile FileName="ValidationService11.wsdl" MetadataType="Wsdl" ID="43214a33-c5a0-424b-ae5d-28cfbc03857f" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

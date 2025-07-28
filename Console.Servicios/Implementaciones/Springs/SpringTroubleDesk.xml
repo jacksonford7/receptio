@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+        type="RECEPTIO.CapaServiciosDistribuidos.Console.Servicios.Aspectos.ThrowsException, RECEPTIO.CapaServiciosDistribuidos.Console.Servicios">
+  </object>
+
+  <object id="AdministradorTroubleDesk" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaDominio.Console.ServiciosDominio.ServicioTroubleDesk, RECEPTIO.CapaDominio.Console.ServiciosDominio">
+        <constructor-arg ref="RepositorioUserSession"/>
+        <constructor-arg ref="RepositorioKioskTransaction"/>
+        <constructor-arg ref="RepositorioTroubleTicket"/>
+        <constructor-arg ref="RepositorioAutoTroubleReason"/>
+        <constructor-arg ref="RepositorioAction"/>
+        <constructor-arg ref="RepositorioAduana"/>
+        <constructor-arg ref="RepositorioBreakType"/>
+        <constructor-arg ref="RepositorioBreak"/>
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+
+  <object name ="RepositorioUserSession" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioUserSession, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioKioskTransaction" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioKioskTransaction, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioTroubleTicket" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioTroubleTicket, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioAutoTroubleReason" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioAutoTroubleReason, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioAction" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioAction, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioAduana" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioAduana, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioBreakType" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioBreakType, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioBreak" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioBreak, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+</objects>

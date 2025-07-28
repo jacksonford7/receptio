@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="doorpass_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="driver_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="driver_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="expiration_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gkey_pase" type="xs:decimal" />
+      <xs:element minOccurs="0" name="id_book" type="xs:long" />
+      <xs:element minOccurs="0" name="id_charge" type="xs:decimal" />
+      <xs:element minOccurs="0" name="id_company" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="n4_pass_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pass_id" type="xs:decimal" />
+      <xs:element minOccurs="0" name="quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tipe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="truck_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="turno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="unit_id" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="doorpass_item" nillable="true" type="tns:doorpass_item" />
+  <xs:complexType name="unit_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="consignee_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="consignee_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="container_id" type="xs:long" />
+      <xs:element minOccurs="0" name="hsn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="keyid" type="xs:decimal" />
+      <xs:element minOccurs="0" name="line_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="line_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mrn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="msn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nbr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tipe" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="unit_item" nillable="true" type="tns:unit_item" />
+  <xs:complexType name="container_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actual_weight" type="xs:double" />
+      <xs:element minOccurs="0" name="aforo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="baplie_weight" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bl_nbr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cgsa_seal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="codigo_traslado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dai" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="freight_kind" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gkey" type="xs:decimal" />
+      <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="iso_group" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="line" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mrn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="region" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="size" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tare_weight" type="xs:double" />
+      <xs:element minOccurs="0" name="transit_state" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="type_cntr" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="container_item" nillable="true" type="tns:container_item" />
+  <xs:complexType name="aisv_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="agency_cod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="agency_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cargo_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="comodity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="container" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="creation_date" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="creator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="customs_doc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="customs_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="driver_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="driver_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="invoice_doc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mtop_cert" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="multiple" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="packing" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="packs" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="reference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sealer_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sealer_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="shipper_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="shipper_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tare" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="temp" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="truck_company_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="truck_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="type_load" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="type_mov" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="weight" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="aisv_item" nillable="true" type="tns:aisv_item" />
+  <xs:complexType name="seal_setter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="seal_cgsa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal_color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal_ip_address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seal_mail" type="xs:boolean" />
+      <xs:element minOccurs="0" name="seal_user" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="seal_setter" nillable="true" type="tns:seal_setter" />
+  <xs:complexType name="ArrayOfedo_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="edo_item" nillable="true" type="tns:edo_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfedo_item" nillable="true" type="tns:ArrayOfedo_item" />
+  <xs:complexType name="edo_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="eq_tipe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="op_line" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tipe" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="edo_item" nillable="true" type="tns:edo_item" />
+  <xs:complexType name="ArrayOfcombo_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="combo_item" nillable="true" type="tns:combo_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfcombo_item" nillable="true" type="tns:ArrayOfcombo_item" />
+  <xs:complexType name="combo_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="item" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="other" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="combo_item" nillable="true" type="tns:combo_item" />
+  <xs:complexType name="pre_gate_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="device_id" type="xs:int" />
+      <xs:element minOccurs="0" name="driver_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pre_gate_details" nillable="true" type="tns:ArrayOfpre_gate_details_item" />
+      <xs:element minOccurs="0" name="pre_gate_id" type="xs:long" />
+      <xs:element minOccurs="0" name="truck_licence" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="pre_gate_item" nillable="true" type="tns:pre_gate_item" />
+  <xs:complexType name="ArrayOfpre_gate_details_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="pre_gate_details_item" nillable="true" type="tns:pre_gate_details_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfpre_gate_details_item" nillable="true" type="tns:ArrayOfpre_gate_details_item" />
+  <xs:complexType name="pre_gate_details_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="container" nillable="true" type="tns:pre_gate_detail_container_item" />
+      <xs:element minOccurs="0" name="document_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="pre_gate_id" type="xs:long" />
+      <xs:element minOccurs="0" name="reference_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_type_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="pre_gate_details_item" nillable="true" type="tns:pre_gate_details_item" />
+  <xs:complexType name="pre_gate_detail_container_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="container_id" type="xs:int" />
+      <xs:element minOccurs="0" name="damages" nillable="true" type="tns:ArrayOfpre_gate_detail_damage_item" />
+      <xs:element minOccurs="0" name="number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pre_gate_detail_id" type="xs:long" />
+      <xs:element minOccurs="0" name="seals" nillable="true" type="tns:ArrayOfpre_gate_container_seal_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="pre_gate_detail_container_item" nillable="true" type="tns:pre_gate_detail_container_item" />
+  <xs:complexType name="ArrayOfpre_gate_detail_damage_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="pre_gate_detail_damage_item" nillable="true" type="tns:pre_gate_detail_damage_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfpre_gate_detail_damage_item" nillable="true" type="tns:ArrayOfpre_gate_detail_damage_item" />
+  <xs:complexType name="pre_gate_detail_damage_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="component" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="container_id" type="xs:int" />
+      <xs:element minOccurs="0" name="damage_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="severity" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="pre_gate_detail_damage_item" nillable="true" type="tns:pre_gate_detail_damage_item" />
+  <xs:complexType name="ArrayOfpre_gate_container_seal_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="pre_gate_container_seal_item" nillable="true" type="tns:pre_gate_container_seal_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfpre_gate_container_seal_item" nillable="true" type="tns:ArrayOfpre_gate_container_seal_item" />
+  <xs:complexType name="pre_gate_container_seal_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="container_id" type="xs:int" />
+      <xs:element minOccurs="0" name="seal_id" type="xs:int" />
+      <xs:element minOccurs="0" name="value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="pre_gate_container_seal_item" nillable="true" type="tns:pre_gate_container_seal_item" />
+  <xs:complexType name="ArrayOfedo_control_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="edo_control_item" nillable="true" type="tns:edo_control_item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfedo_control_item" nillable="true" type="tns:ArrayOfedo_control_item" />
+  <xs:complexType name="edo_control_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="group" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="iso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="line" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="qty" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="edo_control_item" nillable="true" type="tns:edo_control_item" />
+  <xs:complexType name="door_pass_vip_item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="end_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="pass_id" type="xs:decimal" />
+      <xs:element minOccurs="0" name="start_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="truck_id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user_01" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user_02" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user_03" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user_04" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="user_05" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="door_pass_vip_item" nillable="true" type="tns:door_pass_vip_item" />
+</xs:schema>

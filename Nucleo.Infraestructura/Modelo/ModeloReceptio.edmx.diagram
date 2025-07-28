@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="84472a160008486dacb029c6ba484a9c" Name="Diagram1" ZoomLevel="67" >
+        <EntityTypeShape EntityType="ModeloReceptio.PRE_GATE" Width="2.125" PointX="0.625" PointY="0.875" />
+        <EntityTypeShape EntityType="ModeloReceptio.CONTAINER" Width="1.75" PointX="7.75" PointY="0.875" />
+        <EntityTypeShape EntityType="ModeloReceptio.SEAL" Width="1.75" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="ModeloReceptio.CONTAINERSEAL" />
+        <EntityTypeShape EntityType="ModeloReceptio.KIOSK_TRANSACTION" Width="2.625" PointX="2.25" PointY="5.625" />
+        <EntityTypeShape EntityType="ModeloReceptio.PROCESS" Width="2.25" PointX="5.875" PointY="4.125" />
+        <AssociationConnector Association="ModeloReceptio.KIOSK_TRANSACTIONPROCESS" />
+        <EntityTypeShape EntityType="ModeloReceptio.ZONE" Width="2.25" PointX="5.375" PointY="9" />
+        <EntityTypeShape EntityType="ModeloReceptio.KIOSK" Width="2" PointX="2.375" PointY="9.75" />
+        <AssociationConnector Association="ModeloReceptio.KIOSKZONE" />
+        <AssociationConnector Association="ModeloReceptio.KIOSK_TRANSACTIONKIOSK" />
+        <EntityTypeShape EntityType="ModeloReceptio.TROUBLE_TICKET" Width="1.625" PointX="12.5" PointY="6.875" />
+        <EntityTypeShape EntityType="ModeloReceptio.TROUBLE_DESK_USER" Width="2" PointX="8.875" PointY="9.75" />
+        <EntityTypeShape EntityType="ModeloReceptio.DEVICE" Width="1.5" PointX="5.5" PointY="12.625" />
+        <AssociationConnector Association="ModeloReceptio.DEVICEZONE" />
+        <EntityTypeShape EntityType="ModeloReceptio.USER_SESSION" Width="2.125" PointX="8" PointY="13.25" />
+        <AssociationConnector Association="ModeloReceptio.DEVICEUSER_SESSION" />
+        <AssociationConnector Association="ModeloReceptio.TROUBLE_DESK_USERUSER_SESSION" />
+        <EntityTypeShape EntityType="ModeloReceptio.BREAK" Width="1.75" PointX="11.625" PointY="13.75" />
+        <EntityTypeShape EntityType="ModeloReceptio.BREAK_TYPE" Width="1.5" PointX="14.125" PointY="14.125" />
+        <AssociationConnector Association="ModeloReceptio.BREAK_TYPEBREAK" />
+        <AssociationConnector Association="ModeloReceptio.USER_SESSIONBREAK" />
+        <EntityTypeShape EntityType="ModeloReceptio.REASSIGNMENT" Width="2.25" PointX="15" PointY="8" />
+        <AssociationConnector Association="ModeloReceptio.REASSIGNMENTUSER_SESSION" />
+        <EntityTypeShape EntityType="ModeloReceptio.MESSAGE" Width="2.125" PointX="10" PointY="4" />
+        <AssociationConnector Association="ModeloReceptio.PROCESSMESSAGE" />
+        <EntityTypeShape EntityType="ModeloReceptio.REASSIGNMENT_MOTIVE" Width="2.125" PointX="15.125" PointY="5.125" />
+        <AssociationConnector Association="ModeloReceptio.REASSIGNMENTREASSIGNMENT_MOTIVE" />
+        <EntityTypeShape EntityType="ModeloReceptio.AUTO_TROUBLE_TICKET" Width="2" PointX="16.75" PointY="11.375" />
+        <EntityTypeShape EntityType="ModeloReceptio.AUTO_TROUBLE_REASON" Width="2.125" PointX="18.875" PointY="8.5" />
+        <AssociationConnector Association="ModeloReceptio.AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.AUTO_TROUBLE_TICKETUSER_SESSION" />
+        <EntityTypeShape EntityType="ModeloReceptio.ERROR" Width="1.875" PointX="15" PointY="1.25" />
+        <EntityTypeShape EntityType="ModeloReceptio.APPLICATION" Width="1.5" PointX="18.125" PointY="1.625" />
+        <AssociationConnector Association="ModeloReceptio.ERRORAPPLICATION" />
+        <EntityTypeShape EntityType="ModeloReceptio.TYPE_ERROR" Width="1.5" PointX="12.5" PointY="1.375" />
+        <AssociationConnector Association="ModeloReceptio.TYPE_ERRORERROR" />
+        <EntityTypeShape EntityType="ModeloReceptio.PRE_GATE_DETAIL" Width="2.125" PointX="4" PointY="0.875" />
+        <EntityTypeShape EntityType="ModeloReceptio.DAMAGE" Width="1.5" PointX="8.875" PointY="6.5" />
+        <AssociationConnector Association="ModeloReceptio.CONTAINERDAMAGE" />
+        <EntityTypeShape EntityType="ModeloReceptio.PROCESS_TROUBLE_TICKET" Width="2.375" PointX="11.875" PointY="11" />
+        <InheritanceConnector EntityType="ModeloReceptio.PROCESS_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.PROCESSPROCESS_TROUBLE_TICKET" ManuallyRouted="true" >
+          <ConnectorPoint PointX="8.125" PointY="5.6920475260416659" />
+          <ConnectorPoint PointX="8.394198398690591" PointY="5.6920475260416659" />
+          <ConnectorPoint PointX="8.394198398690591" PointY="9.5820365214829764" />
+          <ConnectorPoint PointX="11.541825504310411" PointY="9.3874166652372484" />
+          <ConnectorPoint PointX="11.708174495689589" PointY="9.377131197580983" />
+          <ConnectorPoint PointX="11.916825504310411" PointY="9.3642301683482589" />
+          <ConnectorPoint PointX="12.083174495689589" PointY="9.3539447006919936" />
+          <ConnectorPoint PointX="12.4375" PointY="9.3320365214829764" />
+          <ConnectorPoint PointX="12.4375" PointY="10.90625" />
+          <ConnectorPoint PointX="13.0625" PointY="10.90625" />
+          <ConnectorPoint PointX="13.0625" PointY="11" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModeloReceptio.USER_SESSIONPROCESS_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.PROCESS_TROUBLE_TICKETREASSIGNMENT" />
+        <InheritanceConnector EntityType="ModeloReceptio.AUTO_TROUBLE_TICKET" />
+        <EntityTypeShape EntityType="ModeloReceptio.MOBILE_TROUBLE_TICKET" Width="2.25" PointX="15.25" PointY="18.875" />
+        <InheritanceConnector EntityType="ModeloReceptio.MOBILE_TROUBLE_TICKET" ManuallyRouted="true" >
+          <ConnectorPoint PointX="13.3125" PointY="10.201396484374998" />
+          <ConnectorPoint PointX="13.3125" PointY="10.693697916666668" />
+          <ConnectorPoint PointX="14.604166666666666" PointY="10.693697916666668" />
+          <ConnectorPoint PointX="14.770833333333334" PointY="10.693697916666668" />
+          <ConnectorPoint PointX="14.8" PointY="10.693697916666668" />
+          <ConnectorPoint PointX="14.8" PointY="12.713908594404671" />
+          <ConnectorPoint PointX="15.947916666666666" PointY="12.713908594404671" />
+          <ConnectorPoint PointX="16.114583333333332" PointY="12.713908594404671" />
+          <ConnectorPoint PointX="16.375" PointY="12.713908594404671" />
+          <ConnectorPoint PointX="16.375" PointY="18.875" />
+        </InheritanceConnector>
+        <AssociationConnector Association="ModeloReceptio.USER_SESSIONMOBILE_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.PRE_GATE_DETAILCONTAINER" />
+        <EntityTypeShape EntityType="ModeloReceptio.TRANSACTION_TYPE" Width="2" PointX="12.5" PointY="3.5" />
+        <AssociationConnector Association="ModeloReceptio.TRANSACTION_TYPEPRE_GATE_DETAIL" />
+        <AssociationConnector Association="ModeloReceptio.PRE_GATEDEVICE" />
+        <AssociationConnector Association="ModeloReceptio.PRE_GATEPRE_GATE_DETAIL" />
+        <EntityTypeShape EntityType="ModeloReceptio.CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Width="3.125" PointX="10.625" PointY="17.875" />
+        <InheritanceConnector EntityType="ModeloReceptio.CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.ZONETRANSACTION_TYPE" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.625" PointY="10.444613138345655" />
+          <ConnectorPoint PointX="8.625" PointY="9.75" />
+          <ConnectorPoint PointX="8.625" PointY="9.5" />
+          <ConnectorPoint PointX="11.541666666666666" PointY="9.5" />
+          <ConnectorPoint PointX="11.708333333333334" PointY="9.5" />
+          <ConnectorPoint PointX="12" PointY="9.5" />
+          <ConnectorPoint PointX="12" PointY="6.75" />
+          <ConnectorPoint PointX="13.5" PointY="6.75" />
+          <ConnectorPoint PointX="13.5" PointY="5.4802864583333326" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModeloReceptio.PRE_GATEKIOSK_TRANSACTION" />
+        <EntityTypeShape EntityType="ModeloReceptio.ACTION" Width="2.375" PointX="17.75" PointY="13.75" />
+        <AssociationConnector Association="ModeloReceptio.ACTIONPROCESS_TROUBLE_TICKET" />
+        <AssociationConnector Association="ModeloReceptio.ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+        <EntityTypeShape EntityType="ModeloReceptio.TOS_PROCCESS" Width="2.25" PointX="1" PointY="13.75" />
+        <AssociationConnector Association="ModeloReceptio.TOS_PROCCESSPRE_GATE" />
+        <AssociationConnector Association="ModeloReceptio.MOBILE_TROUBLE_TICKETTOS_PROCCESS" />
+        <EntityTypeShape EntityType="ModeloReceptio.SENSOR" Width="2.5" PointX="4.125" PointY="18.375" />
+        <EntityTypeShape EntityType="ModeloReceptio.SENSOR_KIOSK_TRANSACTION" Width="2.5" PointX="4.25" PointY="15.625" />
+        <AssociationConnector Association="ModeloReceptio.SENSORSENSOR_KIOSK_TRANSACTION" />
+        <AssociationConnector Association="ModeloReceptio.KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION" />
+        <EntityTypeShape EntityType="ModeloReceptio.LIFT_UP_BARRIER" Width="2.25" PointX="3" PointY="20.75" />
+        <AssociationConnector Association="ModeloReceptio.KIOSKLIFT_UP_BARRIER" />
+        <AssociationConnector Association="ModeloReceptio.TROUBLE_DESK_USERLIFT_UP_BARRIER" />
+        <AssociationConnector Association="ModeloReceptio.MOBILE_TROUBLE_TICKETZONE" />
+        <AssociationConnector Association="ModeloReceptio.FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" />
+        <EntityTypeShape EntityType="ModeloReceptio.REPRINT" Width="2.25" PointX="7.25" PointY="22.5" />
+        <AssociationConnector Association="ModeloReceptio.REPRINTTROUBLE_DESK_USER" />
+        <AssociationConnector Association="ModeloReceptio.REPRINTPRE_GATE" />
+        <AssociationConnector Association="ModeloReceptio.REPRINTKIOSK" />
+        <EntityTypeShape EntityType="ModeloReceptio.BY_PASS" Width="1.5" PointX="20.75" PointY="1.25" />
+        <EntityTypeShape EntityType="ModeloReceptio.BY_PASS_AUDIT" Width="2" PointX="23.625" PointY="1.25" />
+        <AssociationConnector Association="ModeloReceptio.TROUBLE_DESK_USERBY_PASS_AUDIT" ManuallyRouted="true" >
+          <ConnectorPoint PointX="10.875" PointY="11.938197742187501" />
+          <ConnectorPoint PointX="11.291666666666666" PointY="11.938197742187501" />
+          <ConnectorPoint PointX="11.458333333333334" PointY="11.938197742187501" />
+          <ConnectorPoint PointX="11.625" PointY="11.938197742187501" />
+          <ConnectorPoint PointX="11.625" PointY="6.5352560149494572" />
+          <ConnectorPoint PointX="13.416666666666666" PointY="6.5352560149494563" />
+          <ConnectorPoint PointX="13.583333333333334" PointY="6.5352560149494572" />
+          <ConnectorPoint PointX="14.625" PointY="6.5352560149494572" />
+          <ConnectorPoint PointX="14.625" PointY="7.75" />
+          <ConnectorPoint PointX="16.104166666666668" PointY="7.7499999999999991" />
+          <ConnectorPoint PointX="16.270833333333332" PointY="7.75" />
+          <ConnectorPoint PointX="24.625" PointY="7.75" />
+          <ConnectorPoint PointX="24.625" PointY="3.9994921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModeloReceptio.BY_PASSBY_PASS_AUDIT" />
+        <AssociationConnector Association="ModeloReceptio.PRE_GATEBY_PASS" />
+        <EntityTypeShape EntityType="ModeloReceptio.DEPOT" Width="1.5" PointX="18.375" PointY="20" />
+        <EntityTypeShape EntityType="ModeloReceptio.LINE" Width="1.5" PointX="18.375" PointY="23.875" />
+        <EntityTypeShape EntityType="ModeloReceptio.LINE_DEPOTS" Width="1.5" PointX="20.625" PointY="19.875" />
+        <EntityTypeShape EntityType="ModeloReceptio.STOCK_OPERATION" Width="1.5" PointX="21.375" PointY="15.875" />
+        <EntityTypeShape EntityType="ModeloReceptio.STOCK_REGISTER" Width="1.5" PointX="23.625" PointY="19.125" />
+        <AssociationConnector Association="ModeloReceptio.FK__LINE_DEPO__ID_DE__6F357288" />
+        <AssociationConnector Association="ModeloReceptio.FK__STOCK_REG__ID_DE__79B300FB" />
+        <AssociationConnector Association="ModeloReceptio.FK__LINE_DEPO__ID_LI__6E414E4F" />
+        <AssociationConnector Association="ModeloReceptio.FK__STOCK_REG__ID_LI__78BEDCC2" />
+        <AssociationConnector Association="ModeloReceptio.FK__STOCK_REG__ID_OP__7AA72534" />
+        <EntityTypeShape EntityType="ModeloReceptio.MOTIVE" Width="1.5" PointX="22.625" PointY="5.375" />
+        <EntityTypeShape EntityType="ModeloReceptio.SUB_MOTIVE" Width="3.125" PointX="17.875" PointY="5" />
+        <AssociationConnector Association="ModeloReceptio.MOTIVESUB_MOTIVE" />
+        <AssociationConnector Association="ModeloReceptio.STOCK_PREGATE_COST" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

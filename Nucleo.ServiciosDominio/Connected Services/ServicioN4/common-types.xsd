@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CountryListType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Countries" type="CountryType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CountryName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="States" type="StateType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StateType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StateName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LanguageListType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Languages" type="LanguageType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LanguageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Language" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryResultType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Result" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StatusDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MessageCollector" type="MessageCollectorType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryResults" type="QueryResultType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageCollectorType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Messages" type="MessageType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Message" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SeverityLevel" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExtendedDetailsType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="ExtendedDetail">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="detailType" type="xs:string" use="required" />
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CredentialType">
+    <xs:sequence>
+      <xs:element name="Prompt" type="xs:string" />
+      <xs:element name="Response" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="credentialType" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="EmptyStringType">
+    <xs:restriction base="xs:string">
+      <xs:length value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AddressesType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Address">
+        <xs:complexType>
+          <xs:complexContent mixed="false">
+            <xs:extension base="AddressType">
+              <xs:attribute name="addressType" type="xs:string" use="required" />
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddressType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StreetAddressLine1" type="xs:string" />
+      <xs:element minOccurs="0" name="StreetAddressLine2" type="xs:string" />
+      <xs:element minOccurs="0" name="City" type="xs:string" />
+      <xs:element minOccurs="0" name="State" type="xs:string" />
+      <xs:element minOccurs="0" name="PostalCode" type="xs:string" />
+      <xs:element minOccurs="0" name="CountryCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PhonesType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Phone">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="addressType" type="xs:string" use="required" />
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

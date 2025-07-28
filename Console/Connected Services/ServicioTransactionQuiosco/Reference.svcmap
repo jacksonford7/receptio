@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="76e45506-1d80-4e23-8599-5bdf595849c3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.2.48:17101/ServicioTransactionQuiosco/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="eb08263f-60a4-4fc9-a746-442328b9baa8" SourceId="1" SourceUrl="http://172.16.2.48:17101/ServicioTransactionQuiosco/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6a3bf543-67ce-4a7d-88d7-a8456f9ded18" SourceId="1" SourceUrl="http://172.16.2.48:17101/ServicioTransactionQuiosco/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d03287dd-7c1c-46e5-9787-8b488c8fb6ff" SourceId="1" SourceUrl="http://172.16.2.48:17101/ServicioTransactionQuiosco/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="53543071-214c-4117-bf66-778b3e062cca" SourceId="1" SourceUrl="http://172.16.2.48:17101/ServicioTransactionQuiosco/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="34a8ea6a-bb3d-4c96-86fe-94b9b18cb793" SourceId="1" SourceUrl="http://172.16.2.48:17101/ServicioTransactionQuiosco/mex" />
+    <MetadataFile FileName="RECEPTIO.CapaDominio.Nucleo.Entidades.xsd" MetadataType="Schema" ID="7a83dfc5-5578-4cc5-ad76-1a240ba0c9e0" SourceId="1" SourceUrl="http://172.16.2.48:17101/ServicioTransactionQuiosco/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

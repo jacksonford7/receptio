@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+        type="RECEPTIO.CapaServiciosDistribuidos.TransactionEmpty.Servicios.Aspectos.ThrowsException, RECEPTIO.CapaServiciosDistribuidos.TransactionEmpty.Servicios">
+  </object>
+
+  <object id="AdministradorGeneral" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaDominio.TransactionEmpty.ServiciosDominio.ServicioGeneral, RECEPTIO.CapaDominio.TransactionEmpty.ServiciosDominio">
+        <constructor-arg ref="RepositorioPreGate"/>
+        <constructor-arg ref="RepositorioTransaccionQuiosco"/>
+        <constructor-arg ref="RepositorioValidaAduana"/>
+        <constructor-arg ref="Conector"/>
+        <constructor-arg ref="RepositorioN4"/>
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+
+  <object name ="Conector" type="RECEPTIO.CapaDominio.Nucleo.ServiciosDominio.N4.AuthenticationWebservice, RECEPTIO.CapaDominio.Nucleo.ServiciosDominio"/>
+  <object name ="RepositorioTransaccionQuiosco" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioTransaccionQuiosco, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioPreGate" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioPreGate, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioValidaAduana" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioValidaAduana, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioN4" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioN4, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+</objects>

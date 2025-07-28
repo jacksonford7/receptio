@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="Console.Vistas.VentanaSupervisor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" FontFamily="Console" 
+    Foreground="#344955" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="White">
+        <StackPanel>
+            <CommandBar Background="#4A6572" Foreground="White">
+                <AppBarButton Foreground="White" Icon="ReShare" Label="Tickets No Asignados" Command="{x:Bind _viewModel.ComandoTicketsNoAsignados}"/>
+                <AppBarButton Foreground="White" Icon="Document" Label="Tickets Suspendidos" Command="{x:Bind _viewModel.ComandoTicketsSuspendidos}"/>
+                <AppBarButton Foreground="White" Icon="Comment" Label="Reporte Transacciones" Command="{x:Bind _viewModel.ComandoReporteTransacciones}"/>
+                <AppBarButton Foreground="White" Icon="ReportHacked" Label="Reporte Tickets" Command="{x:Bind _viewModel.ComandoReporteTickets}"/>
+                <AppBarButton Foreground="White" Icon="XboxOneConsole" Label="Quioscos" Command="{x:Bind _viewModel.ComandoQuioscos}"/>
+                <AppBarButton Foreground="White" Icon="OtherUser" Label="Sesiones Abiertas" Command="{x:Bind _viewModel.ComandoSesionesAbiertas}"/>
+                <AppBarButton Foreground="White" Icon="Print" Label="Reimpresion" Command="{x:Bind _viewModel.ComandoReimpresion}"/>
+                <AppBarButton Foreground="White" Icon="ClosePane" Label="ByPass" Command="{x:Bind _viewModel.ComandoByPass}"/>
+                <AppBarButton Foreground="White" Icon="Cancel" Label="Pre Gate Cancel" Command="{x:Bind _viewModel.ComandoPregateCancel}"/>
+                <AppBarButton Foreground="White" Icon="Permissions" Label="Cerrar Sesión" Command="{x:Bind _viewModel.ComandoCerrarSesion}"/>
+                <CommandBar.Content>
+                    <StackPanel Orientation="Horizontal" Margin="15,0,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="V 1.3.4.0 | Bienvenido" FontSize="18"/>
+                                <TextBlock Text="{x:Bind _viewModel.Usuario,Mode=OneWay}" FontSize="18" Margin="2,0,0,0" Width="250"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="IP:" FontSize="15" VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Bind _viewModel.Ip,Mode=OneWay}" Margin="2,0,0,0" Width="120" FontSize="18"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </CommandBar.Content>
+            </CommandBar>
+        </StackPanel>
+    </Grid>
+</Page>

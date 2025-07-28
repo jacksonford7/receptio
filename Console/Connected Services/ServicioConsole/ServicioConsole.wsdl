@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioConsole" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Contratos" />
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Interfaces" />
+      <xsd:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioConsole_Autenticar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Autenticar" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_Autenticar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AutenticarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CerrarSesion_InputMessage">
+    <wsdl:part name="parameters" element="tns:CerrarSesion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CerrarSesion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CerrarSesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTickets_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTickets" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTickets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerDetallesTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDetallesTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerDetallesTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDetallesTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_AceptarTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:AceptarTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_AceptarTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AceptarTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CerrarTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:CerrarTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CerrarTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CerrarTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMotivosAutoTickets_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMotivosAutoTickets" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMotivosAutoTickets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMotivosAutoTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearAutoTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearAutoTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearAutoTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearAutoTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarAccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarAccion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarAccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMensajesSmdtAduana_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMensajesSmdtAduana" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMensajesSmdtAduana_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMensajesSmdtAduanaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CambiarEstadoSmdt_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarEstadoSmdt" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CambiarEstadoSmdt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarEstadoSmdtResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_AgregarTransaccionManual_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarTransaccionManual" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_AgregarTransaccionManual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarTransaccionManualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_SuspenderTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuspenderTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_SuspenderTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuspenderTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTiposDescansos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTiposDescansos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTiposDescansos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTiposDescansosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarDescanso_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarDescanso" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarDescanso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarDescansoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_FinalizarDescanso_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinalizarDescanso" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_FinalizarDescanso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinalizarDescansoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTicketsNoAsignados_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketsNoAsignados" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTicketsNoAsignados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketsNoAsignadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ReasignarTickets_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReasignarTickets" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ReasignarTickets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasignarTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CancelarTickets_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelarTickets" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CancelarTickets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelarTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTicketsSuspendidos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketsSuspendidos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTicketsSuspendidos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketsSuspendidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ReasignarTicketsSuspendidos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReasignarTicketsSuspendidos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ReasignarTicketsSuspendidos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasignarTicketsSuspendidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ReasignarTicketsSuspendidosEspecifico_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReasignarTicketsSuspendidosEspecifico" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ReasignarTicketsSuspendidosEspecifico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasignarTicketsSuspendidosEspecificoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTicketsParaReporte_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketsParaReporte" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTicketsParaReporte_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketsParaReporteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerAccionesTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAccionesTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerAccionesTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAccionesTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMotivosReasignacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMotivosReasignacion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMotivosReasignacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMotivosReasignacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerKioscosActivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerKioscosActivos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerKioscosActivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerKioscosActivosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarAperturaBarrera_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarAperturaBarrera" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarAperturaBarrera_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarAperturaBarreraResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerSesionesUsuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSesionesUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerSesionesUsuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSesionesUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTransaccionesKiosco_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTransaccionesKiosco" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTransaccionesKiosco_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTransaccionesKioscoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTablets_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTablets" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTablets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTabletsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerZonas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerZonas" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerZonas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerZonasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTiposTransacciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTiposTransacciones" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerTiposTransacciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTiposTransaccionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerInformacionParaReimpresionTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerInformacionParaReimpresionTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerInformacionParaReimpresionTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerInformacionParaReimpresionTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarReimpresion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarReimpresion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_RegistrarReimpresion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarReimpresionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ValidarIdPreGate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarIdPreGate" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ValidarIdPreGate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarIdPreGateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearByPass_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearByPass" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearByPass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearByPassResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerByPass_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerByPass" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerByPass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerByPassResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ActualizarrByPass_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarrByPass" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ActualizarrByPass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarrByPassResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ValidarIdPreGateParaCancelar_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarIdPreGateParaCancelar" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ValidarIdPreGateParaCancelar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarIdPreGateParaCancelarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearByPassCancelPregate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearByPassCancelPregate" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearByPassCancelPregate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearByPassCancelPregateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ActualizarStatusPregate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarStatusPregate" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ActualizarStatusPregate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarStatusPregateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ActualizarStatusStockRegister_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarStatusStockRegister" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ActualizarStatusStockRegister_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarStatusStockRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMotivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMotivos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerMotivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMotivosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerSubMotivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSubMotivos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerSubMotivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSubMotivosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerValidacionesGenerales_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerValidacionesGenerales" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_ObtenerValidacionesGenerales_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerValidacionesGeneralesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearError_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearError" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_CrearError_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_AutenticarAccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AutenticarAccion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioConsole_AutenticarAccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AutenticarAccionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioConsole">
+    <wsdl:operation name="Autenticar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogin/Autenticar" message="tns:IServicioConsole_Autenticar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogin/AutenticarResponse" message="tns:IServicioConsole_Autenticar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CerrarSesion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILogin/CerrarSesion" message="tns:IServicioConsole_CerrarSesion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILogin/CerrarSesionResponse" message="tns:IServicioConsole_CerrarSesion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTickets">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerTickets" message="tns:IServicioConsole_ObtenerTickets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerTicketsResponse" message="tns:IServicioConsole_ObtenerTickets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDetallesTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerDetallesTicket" message="tns:IServicioConsole_ObtenerDetallesTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerDetallesTicketResponse" message="tns:IServicioConsole_ObtenerDetallesTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AceptarTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/AceptarTicket" message="tns:IServicioConsole_AceptarTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/AceptarTicketResponse" message="tns:IServicioConsole_AceptarTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CerrarTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/CerrarTicket" message="tns:IServicioConsole_CerrarTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/CerrarTicketResponse" message="tns:IServicioConsole_CerrarTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMotivosAutoTickets">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerMotivosAutoTickets" message="tns:IServicioConsole_ObtenerMotivosAutoTickets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerMotivosAutoTicketsResponse" message="tns:IServicioConsole_ObtenerMotivosAutoTickets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearAutoTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/CrearAutoTicket" message="tns:IServicioConsole_CrearAutoTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/CrearAutoTicketResponse" message="tns:IServicioConsole_CrearAutoTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarAccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/RegistrarAccion" message="tns:IServicioConsole_RegistrarAccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/RegistrarAccionResponse" message="tns:IServicioConsole_RegistrarAccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMensajesSmdtAduana">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerMensajesSmdtAduana" message="tns:IServicioConsole_ObtenerMensajesSmdtAduana_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerMensajesSmdtAduanaResponse" message="tns:IServicioConsole_ObtenerMensajesSmdtAduana_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarEstadoSmdt">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/CambiarEstadoSmdt" message="tns:IServicioConsole_CambiarEstadoSmdt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/CambiarEstadoSmdtResponse" message="tns:IServicioConsole_CambiarEstadoSmdt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarTransaccionManual">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/AgregarTransaccionManual" message="tns:IServicioConsole_AgregarTransaccionManual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/AgregarTransaccionManualResponse" message="tns:IServicioConsole_AgregarTransaccionManual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuspenderTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/SuspenderTicket" message="tns:IServicioConsole_SuspenderTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/SuspenderTicketResponse" message="tns:IServicioConsole_SuspenderTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTiposDescansos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerTiposDescansos" message="tns:IServicioConsole_ObtenerTiposDescansos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/ObtenerTiposDescansosResponse" message="tns:IServicioConsole_ObtenerTiposDescansos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarDescanso">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/RegistrarDescanso" message="tns:IServicioConsole_RegistrarDescanso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/RegistrarDescansoResponse" message="tns:IServicioConsole_RegistrarDescanso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizarDescanso">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITroubleDesk/FinalizarDescanso" message="tns:IServicioConsole_FinalizarDescanso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITroubleDesk/FinalizarDescansoResponse" message="tns:IServicioConsole_FinalizarDescanso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketsNoAsignados">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTicketsNoAsignados" message="tns:IServicioConsole_ObtenerTicketsNoAsignados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTicketsNoAsignadosResponse" message="tns:IServicioConsole_ObtenerTicketsNoAsignados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReasignarTickets">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ReasignarTickets" message="tns:IServicioConsole_ReasignarTickets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ReasignarTicketsResponse" message="tns:IServicioConsole_ReasignarTickets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelarTickets">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/CancelarTickets" message="tns:IServicioConsole_CancelarTickets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/CancelarTicketsResponse" message="tns:IServicioConsole_CancelarTickets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketsSuspendidos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTicketsSuspendidos" message="tns:IServicioConsole_ObtenerTicketsSuspendidos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTicketsSuspendidosResponse" message="tns:IServicioConsole_ObtenerTicketsSuspendidos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReasignarTicketsSuspendidos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ReasignarTicketsSuspendidos" message="tns:IServicioConsole_ReasignarTicketsSuspendidos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ReasignarTicketsSuspendidosResponse" message="tns:IServicioConsole_ReasignarTicketsSuspendidos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReasignarTicketsSuspendidosEspecifico">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ReasignarTicketsSuspendidosEspecifico" message="tns:IServicioConsole_ReasignarTicketsSuspendidosEspecifico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ReasignarTicketsSuspendidosEspecificoResponse" message="tns:IServicioConsole_ReasignarTicketsSuspendidosEspecifico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketsParaReporte">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTicketsParaReporte" message="tns:IServicioConsole_ObtenerTicketsParaReporte_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTicketsParaReporteResponse" message="tns:IServicioConsole_ObtenerTicketsParaReporte_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAccionesTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerAccionesTicket" message="tns:IServicioConsole_ObtenerAccionesTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerAccionesTicketResponse" message="tns:IServicioConsole_ObtenerAccionesTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMotivosReasignacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerMotivosReasignacion" message="tns:IServicioConsole_ObtenerMotivosReasignacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerMotivosReasignacionResponse" message="tns:IServicioConsole_ObtenerMotivosReasignacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerKioscosActivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerKioscosActivos" message="tns:IServicioConsole_ObtenerKioscosActivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerKioscosActivosResponse" message="tns:IServicioConsole_ObtenerKioscosActivos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarAperturaBarrera">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/RegistrarAperturaBarrera" message="tns:IServicioConsole_RegistrarAperturaBarrera_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/RegistrarAperturaBarreraResponse" message="tns:IServicioConsole_RegistrarAperturaBarrera_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSesionesUsuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerSesionesUsuarios" message="tns:IServicioConsole_ObtenerSesionesUsuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerSesionesUsuariosResponse" message="tns:IServicioConsole_ObtenerSesionesUsuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTransaccionesKiosco">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTransaccionesKiosco" message="tns:IServicioConsole_ObtenerTransaccionesKiosco_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTransaccionesKioscoResponse" message="tns:IServicioConsole_ObtenerTransaccionesKiosco_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTablets">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTablets" message="tns:IServicioConsole_ObtenerTablets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTabletsResponse" message="tns:IServicioConsole_ObtenerTablets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerZonas">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerZonas" message="tns:IServicioConsole_ObtenerZonas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerZonasResponse" message="tns:IServicioConsole_ObtenerZonas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTiposTransacciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTiposTransacciones" message="tns:IServicioConsole_ObtenerTiposTransacciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerTiposTransaccionesResponse" message="tns:IServicioConsole_ObtenerTiposTransacciones_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerInformacionParaReimpresionTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerInformacionParaReimpresionTicket" message="tns:IServicioConsole_ObtenerInformacionParaReimpresionTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerInformacionParaReimpresionTicketResponse" message="tns:IServicioConsole_ObtenerInformacionParaReimpresionTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarReimpresion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/RegistrarReimpresion" message="tns:IServicioConsole_RegistrarReimpresion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/RegistrarReimpresionResponse" message="tns:IServicioConsole_RegistrarReimpresion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarIdPreGate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ValidarIdPreGate" message="tns:IServicioConsole_ValidarIdPreGate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ValidarIdPreGateResponse" message="tns:IServicioConsole_ValidarIdPreGate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearByPass">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/CrearByPass" message="tns:IServicioConsole_CrearByPass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/CrearByPassResponse" message="tns:IServicioConsole_CrearByPass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerByPass">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerByPass" message="tns:IServicioConsole_ObtenerByPass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerByPassResponse" message="tns:IServicioConsole_ObtenerByPass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarrByPass">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ActualizarrByPass" message="tns:IServicioConsole_ActualizarrByPass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ActualizarrByPassResponse" message="tns:IServicioConsole_ActualizarrByPass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarIdPreGateParaCancelar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ValidarIdPreGateParaCancelar" message="tns:IServicioConsole_ValidarIdPreGateParaCancelar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ValidarIdPreGateParaCancelarResponse" message="tns:IServicioConsole_ValidarIdPreGateParaCancelar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearByPassCancelPregate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/CrearByPassCancelPregate" message="tns:IServicioConsole_CrearByPassCancelPregate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/CrearByPassCancelPregateResponse" message="tns:IServicioConsole_CrearByPassCancelPregate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarStatusPregate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ActualizarStatusPregate" message="tns:IServicioConsole_ActualizarStatusPregate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ActualizarStatusPregateResponse" message="tns:IServicioConsole_ActualizarStatusPregate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarStatusStockRegister">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ActualizarStatusStockRegister" message="tns:IServicioConsole_ActualizarStatusStockRegister_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ActualizarStatusStockRegisterResponse" message="tns:IServicioConsole_ActualizarStatusStockRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMotivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerMotivos" message="tns:IServicioConsole_ObtenerMotivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerMotivosResponse" message="tns:IServicioConsole_ObtenerMotivos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSubMotivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerSubMotivos" message="tns:IServicioConsole_ObtenerSubMotivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerSubMotivosResponse" message="tns:IServicioConsole_ObtenerSubMotivos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerValidacionesGenerales">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISupervisor/ObtenerValidacionesGenerales" message="tns:IServicioConsole_ObtenerValidacionesGenerales_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISupervisor/ObtenerValidacionesGeneralesResponse" message="tns:IServicioConsole_ObtenerValidacionesGenerales_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearError">
+      <wsdl:input wsaw:Action="http://tempuri.org/IError/CrearError" message="tns:IServicioConsole_CrearError_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IError/CrearErrorResponse" message="tns:IServicioConsole_CrearError_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AutenticarAccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginBase/AutenticarAccion" message="tns:IServicioConsole_AutenticarAccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginBase/AutenticarAccionResponse" message="tns:IServicioConsole_AutenticarAccion_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioConsole" type="tns:IServicioConsole">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Autenticar">
+      <soap:operation soapAction="http://tempuri.org/ILogin/Autenticar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CerrarSesion">
+      <soap:operation soapAction="http://tempuri.org/ILogin/CerrarSesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTickets">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/ObtenerTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDetallesTicket">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/ObtenerDetallesTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AceptarTicket">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/AceptarTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CerrarTicket">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/CerrarTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMotivosAutoTickets">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/ObtenerMotivosAutoTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearAutoTicket">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/CrearAutoTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarAccion">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/RegistrarAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMensajesSmdtAduana">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/ObtenerMensajesSmdtAduana" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarEstadoSmdt">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/CambiarEstadoSmdt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarTransaccionManual">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/AgregarTransaccionManual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuspenderTicket">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/SuspenderTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTiposDescansos">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/ObtenerTiposDescansos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarDescanso">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/RegistrarDescanso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizarDescanso">
+      <soap:operation soapAction="http://tempuri.org/ITroubleDesk/FinalizarDescanso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketsNoAsignados">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerTicketsNoAsignados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReasignarTickets">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ReasignarTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarTickets">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/CancelarTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketsSuspendidos">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerTicketsSuspendidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReasignarTicketsSuspendidos">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ReasignarTicketsSuspendidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReasignarTicketsSuspendidosEspecifico">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ReasignarTicketsSuspendidosEspecifico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketsParaReporte">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerTicketsParaReporte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAccionesTicket">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerAccionesTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMotivosReasignacion">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerMotivosReasignacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerKioscosActivos">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerKioscosActivos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarAperturaBarrera">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/RegistrarAperturaBarrera" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSesionesUsuarios">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerSesionesUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTransaccionesKiosco">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerTransaccionesKiosco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTablets">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerTablets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerZonas">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerZonas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTiposTransacciones">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerTiposTransacciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerInformacionParaReimpresionTicket">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerInformacionParaReimpresionTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarReimpresion">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/RegistrarReimpresion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarIdPreGate">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ValidarIdPreGate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearByPass">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/CrearByPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerByPass">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerByPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarrByPass">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ActualizarrByPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarIdPreGateParaCancelar">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ValidarIdPreGateParaCancelar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearByPassCancelPregate">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/CrearByPassCancelPregate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarStatusPregate">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ActualizarStatusPregate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarStatusStockRegister">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ActualizarStatusStockRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMotivos">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerMotivos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSubMotivos">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerSubMotivos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerValidacionesGenerales">
+      <soap:operation soapAction="http://tempuri.org/ISupervisor/ObtenerValidacionesGenerales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearError">
+      <soap:operation soapAction="http://tempuri.org/IError/CrearError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutenticarAccion">
+      <soap:operation soapAction="http://tempuri.org/ILoginBase/AutenticarAccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioConsole">
+    <wsdl:port name="BasicHttpBinding_IServicioConsole" binding="tns:BasicHttpBinding_IServicioConsole">
+      <soap:address location="http://cgdes19:1700/Console/ServicioConsole.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

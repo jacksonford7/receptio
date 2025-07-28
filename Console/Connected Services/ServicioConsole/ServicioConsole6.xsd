@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Contratos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Contratos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="DatosLogin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EsLider" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EstaAutenticado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IdSesion" type="xs:long" />
+      <xs:element minOccurs="0" name="IdUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zona" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosLogin" nillable="true" type="tns:DatosLogin" />
+  <xs:complexType name="ArrayOfTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Ticket" nillable="true" type="tns:Ticket" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTicket" nillable="true" type="tns:ArrayOfTicket" />
+  <xs:complexType name="Ticket">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EsEntrada" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EstaSuspendido" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FechaAceptacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaAsignacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaFinalizacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdMotive" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdQuiosco" type="xs:short" />
+      <xs:element minOccurs="0" name="IdSesionUsuario" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="IdSubMotive" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTicket" type="xs:long" />
+      <xs:element minOccurs="0" name="IdTransaccionQuiosco" type="xs:int" />
+      <xs:element minOccurs="0" name="IdZona" type="xs:short" />
+      <xs:element minOccurs="0" name="IpQuiosco" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreProceso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreQuiosco" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notas" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Responsable" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tipo" type="tns:TipoTicket" />
+      <xs:element minOccurs="0" name="TipoTransaccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zona" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ticket" nillable="true" type="tns:Ticket" />
+  <xs:simpleType name="TipoTicket">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Proceso" />
+      <xs:enumeration value="Auto" />
+      <xs:enumeration value="Mobile" />
+      <xs:enumeration value="Tecnico" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TipoTicket" nillable="true" type="tns:TipoTicket" />
+  <xs:complexType name="DetalleTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CedulaChofer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Containers" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contenedores" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlacaCamion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PregateID" type="xs:long" />
+      <xs:element minOccurs="0" name="Procesos" nillable="true" type="tns:ArrayOfProceso" />
+      <xs:element minOccurs="0" name="TipoTransaccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransaccionContenedores" nillable="true" type="tns:ArrayOfTransaccionContenedor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DetalleTicket" nillable="true" type="tns:DetalleTicket" />
+  <xs:complexType name="ArrayOfProceso">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Proceso" nillable="true" type="tns:Proceso" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProceso" nillable="true" type="tns:ArrayOfProceso" />
+  <xs:complexType name="Proceso">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FechaProceso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FueOk" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MensajeEspecifico" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MensajeTecnico" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MensajeUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Paso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Respuesta" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Proceso" nillable="true" type="tns:Proceso" />
+  <xs:complexType name="ArrayOfTransaccionContenedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TransaccionContenedor" nillable="true" type="tns:TransaccionContenedor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTransaccionContenedor" nillable="true" type="tns:ArrayOfTransaccionContenedor" />
+  <xs:complexType name="TransaccionContenedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Contenedor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroTransaccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransaccionContenedor" nillable="true" type="tns:TransaccionContenedor" />
+  <xs:complexType name="DatosTransaccionManual">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comentarios" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contenedor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GKeyUnidad" type="xs:long" />
+      <xs:element minOccurs="0" name="Hsn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mrn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Msn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroEntrega" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ObjetoSolicita" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoCarga" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioSolicita" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosTransaccionManual" nillable="true" type="tns:DatosTransaccionManual" />
+  <xs:complexType name="ArrayOfTicketReporte">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketReporte" nillable="true" type="tns:TicketReporte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTicketReporte" nillable="true" type="tns:ArrayOfTicketReporte" />
+  <xs:complexType name="TicketReporte">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Ticket">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CedulaChofer" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Contenedores" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EstaCancelado" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FechaCancelacion" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IdPreGate" type="xs:long" />
+          <xs:element minOccurs="0" name="MotivoAutoTicket" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PlacaVehiculo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsuarioCancelacion" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TicketReporte" nillable="true" type="tns:TicketReporte" />
+</xs:schema>

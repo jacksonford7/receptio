@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" />
+  <xs:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+  <xs:complexType name="DatosEntradaN4">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CedulaChofer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdPreGate" type="xs:long" />
+      <xs:element minOccurs="0" name="IdTransaccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreQuiosco" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Peso" type="xs:int" />
+      <xs:element minOccurs="0" name="PlacaVehiculo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoTransaccion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosEntradaN4" nillable="true" type="tns:DatosEntradaN4" />
+  <xs:complexType name="DatosN4">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" base="q1:Respuesta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Xml" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosN4" nillable="true" type="tns:DatosN4" />
+  <xs:complexType name="DatosPreGateSalida">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" base="q2:Respuesta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdTransaccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NombreQuiosco" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Peso" type="xs:int" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="PreGate" nillable="true" type="q3:PRE_GATE" />
+          <xs:element minOccurs="0" name="TipoTransaccion" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosPreGateSalida" nillable="true" type="tns:DatosPreGateSalida" />
+  <xs:complexType name="DatosPreGate">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" base="q4:Respuesta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdTransaccion" type="xs:int" />
+          <xs:element minOccurs="0" name="Peso" type="xs:int" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="PreGate" nillable="true" type="q5:PRE_GATE" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosPreGate" nillable="true" type="tns:DatosPreGate" />
+</xs:schema>

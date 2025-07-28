@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" />
+  <xs:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+  <xs:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" />
+  <xs:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:element name="EjecutarProcesosEntrada">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q1:DatosEntradaN4" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosEntradaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosEntradaResult" nillable="true" type="q2:DatosN4" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosSalida">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q3:DatosPreGateSalida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosSalidaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosSalidaResult" nillable="true" type="q4:DatosN4" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CrearError">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="error" nillable="true" type="q5:ERROR" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CrearErrorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CrearErrorResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidarPreGate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cedula" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idQuiosco" type="xs:short" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="valoresSensores" nillable="true" type="q6:ArrayOfKeyValueOfshortboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidarPreGateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" minOccurs="0" name="ValidarPreGateResult" nillable="true" type="q7:DatosPreGate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidarEntradaQuiosco">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idPreGate" type="xs:long" />
+        <xs:element minOccurs="0" name="idQuiosco" type="xs:short" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="valoresSensores" nillable="true" type="q8:ArrayOfKeyValueOfshortboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidarEntradaQuioscoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" minOccurs="0" name="ValidarEntradaQuioscoResult" nillable="true" type="q9:DatosPreGateSalida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerTag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="placa" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerTagResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObtenerTagResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarProceso">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="transaccion" nillable="true" type="q10:KIOSK_TRANSACTION" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarProcesoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" minOccurs="0" name="RegistrarProcesoResult" nillable="true" type="q11:Respuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AutenticarAccion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="contrasena" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AutenticarAccionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="AutenticarAccionResult" nillable="true" type="q12:TupleOfbooleanstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAplicacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idAplicacion" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAplicacionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="ObtenerAplicacionResult" nillable="true" type="q13:APPLICATION" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerMensajesErrores">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerMensajesErroresResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="ObtenerMensajesErroresResult" nillable="true" type="q14:ArrayOfMESSAGE" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerQuiosco">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerQuioscoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="ObtenerQuioscoResult" nillable="true" type="q15:KIOSK" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerDepot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerDepotResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="ObtenerDepotResult" nillable="true" type="q16:DEPOT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

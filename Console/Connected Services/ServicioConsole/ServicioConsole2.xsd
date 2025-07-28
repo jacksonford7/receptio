@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfAUTO_TROUBLE_REASON">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AUTO_TROUBLE_REASON" nillable="true" type="tns:AUTO_TROUBLE_REASON" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAUTO_TROUBLE_REASON" nillable="true" type="tns:ArrayOfAUTO_TROUBLE_REASON" />
+  <xs:complexType name="AUTO_TROUBLE_REASON">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AUTO_TROUBLE_TICKETS" nillable="true" type="tns:ArrayOfAUTO_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="CAPTION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="AUTO_TROUBLE_REASON" nillable="true" type="tns:AUTO_TROUBLE_REASON" />
+  <xs:complexType name="ArrayOfAUTO_TROUBLE_TICKET">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AUTO_TROUBLE_TICKET" nillable="true" type="tns:AUTO_TROUBLE_TICKET" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAUTO_TROUBLE_TICKET" nillable="true" type="tns:ArrayOfAUTO_TROUBLE_TICKET" />
+  <xs:complexType name="AUTO_TROUBLE_TICKET">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TROUBLE_TICKET">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AUTO_TROUBLE_REASON" nillable="true" type="tns:AUTO_TROUBLE_REASON" />
+          <xs:element minOccurs="0" name="REASON_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+          <xs:element minOccurs="0" name="USER_SESSION_ID" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AUTO_TROUBLE_TICKET" nillable="true" type="tns:AUTO_TROUBLE_TICKET" />
+  <xs:complexType name="TROUBLE_TICKET">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACCEPTANCE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ASSIGNMENT_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CANCEL_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CANCEL_USER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CREATION_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FINISH_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IS_CANCEL" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MOTIVE_ID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NOTES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUBMOTIVE_ID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TT_ID" type="xs:long" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TROUBLE_TICKET" nillable="true" type="tns:TROUBLE_TICKET" />
+  <xs:complexType name="USER_SESSION">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AUTO_TROUBLE_TICKETS" nillable="true" type="tns:ArrayOfAUTO_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="BREAKS" nillable="true" type="tns:ArrayOfBREAK" />
+      <xs:element minOccurs="0" name="CLIENT_APP_TRANSACTION_TROUBLE_TICKETS" nillable="true" type="tns:ArrayOfCLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="DEVICE" nillable="true" type="tns:DEVICE" />
+      <xs:element minOccurs="0" name="DEVICE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="FINISH_SESSION_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MOBILE_TROUBLE_TICKETS" nillable="true" type="tns:ArrayOfMOBILE_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="PROCESS_TROUBLE_TICKETS" nillable="true" type="tns:ArrayOfPROCESS_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="REASSIGNMENTS" nillable="true" type="tns:ArrayOfREASSIGNMENT" />
+      <xs:element minOccurs="0" name="START_SESSION__DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TROUBLE_DESK_USER" nillable="true" type="tns:TROUBLE_DESK_USER" />
+      <xs:element minOccurs="0" name="TTU_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+  <xs:complexType name="ArrayOfBREAK">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BREAK" nillable="true" type="tns:BREAK" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBREAK" nillable="true" type="tns:ArrayOfBREAK" />
+  <xs:complexType name="BREAK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BREAK_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="BREAK_TYPE" nillable="true" type="tns:BREAK_TYPE" />
+      <xs:element minOccurs="0" name="BREAK_TYPE_ID" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="FINISH_BREAK_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="START_BREAK_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+      <xs:element minOccurs="0" name="USER_SESSION_ID" type="xs:long" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BREAK" nillable="true" type="tns:BREAK" />
+  <xs:complexType name="BREAK_TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BREAKS" nillable="true" type="tns:ArrayOfBREAK" />
+      <xs:element minOccurs="0" name="ID" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BREAK_TYPE" nillable="true" type="tns:BREAK_TYPE" />
+  <xs:complexType name="ArrayOfCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" nillable="true" type="tns:CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCLIENT_APP_TRANSACTION_TROUBLE_TICKET" nillable="true" type="tns:ArrayOfCLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+  <xs:complexType name="CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TROUBLE_TICKET">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ERROR" nillable="true" type="tns:ERROR" />
+          <xs:element minOccurs="0" name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+          <xs:element minOccurs="0" name="USER_SESSION_ID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="ZONE" nillable="true" type="tns:ZONE" />
+          <xs:element minOccurs="0" name="ZONE_ID" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" nillable="true" type="tns:CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+  <xs:complexType name="ERROR">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="APPLICATION" nillable="true" type="tns:APPLICATION" />
+      <xs:element minOccurs="0" name="APPLICATION_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" nillable="true" type="tns:CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="DETAILS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ERROR_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IP_SOURCE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MESSAGE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="THROW_ON" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TYPE_ERROR" nillable="true" type="tns:TYPE_ERROR" />
+      <xs:element minOccurs="0" name="TYPE_ERROR_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ERROR" nillable="true" type="tns:ERROR" />
+  <xs:complexType name="APPLICATION">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="APPLICATION_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="ERRORS" nillable="true" type="tns:ArrayOfERROR" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PATH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VERSION" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="APPLICATION" nillable="true" type="tns:APPLICATION" />
+  <xs:complexType name="ArrayOfERROR">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ERROR" nillable="true" type="tns:ERROR" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfERROR" nillable="true" type="tns:ArrayOfERROR" />
+  <xs:complexType name="TYPE_ERROR">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ERRORS" nillable="true" type="tns:ArrayOfERROR" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TYPE_ERROR" nillable="true" type="tns:TYPE_ERROR" />
+  <xs:complexType name="ZONE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CLIENT_APP_TRANSACTION_TROUBLE_TICKETS" nillable="true" type="tns:ArrayOfCLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="DEVICES" nillable="true" type="tns:ArrayOfDEVICE" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KIOSKS" nillable="true" type="tns:ArrayOfKIOSK" />
+      <xs:element minOccurs="0" name="MOBILE_TROUBLE_TICKETS" nillable="true" type="tns:ArrayOfMOBILE_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TRANSACTION_TYPES" nillable="true" type="tns:ArrayOfTRANSACTION_TYPE" />
+      <xs:element minOccurs="0" name="ZONE_ID" type="xs:short" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ZONE" nillable="true" type="tns:ZONE" />
+  <xs:complexType name="ArrayOfDEVICE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DEVICE" nillable="true" type="tns:DEVICE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDEVICE" nillable="true" type="tns:ArrayOfDEVICE" />
+  <xs:complexType name="DEVICE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DEVICE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRE_GATES" nillable="true" type="tns:ArrayOfPRE_GATE" />
+      <xs:element minOccurs="0" name="USER_SESSIONS" nillable="true" type="tns:ArrayOfUSER_SESSION" />
+      <xs:element minOccurs="0" name="ZONE" nillable="true" type="tns:ZONE" />
+      <xs:element minOccurs="0" name="ZONE_ID" type="xs:short" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="DEVICE" nillable="true" type="tns:DEVICE" />
+  <xs:complexType name="ArrayOfPRE_GATE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PRE_GATE" nillable="true" type="tns:PRE_GATE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPRE_GATE" nillable="true" type="tns:ArrayOfPRE_GATE" />
+  <xs:complexType name="PRE_GATE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BY_PASS" nillable="true" type="tns:BY_PASS" />
+      <xs:element minOccurs="0" name="CONCURRENCY" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="CREATION_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DEVICE" nillable="true" type="tns:DEVICE" />
+      <xs:element minOccurs="0" name="DEVICE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="DRIVER_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KIOSK_TRANSACTIONS" nillable="true" type="tns:ArrayOfKIOSK_TRANSACTION" />
+      <xs:element minOccurs="0" name="PRE_GATE_DETAILS" nillable="true" type="tns:ArrayOfPRE_GATE_DETAIL" />
+      <xs:element minOccurs="0" name="PRE_GATE_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="PRE_GATE_ID_REF" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="REPRINTS" nillable="true" type="tns:ArrayOfREPRINT" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STOCK_REGISTER" nillable="true" type="tns:ArrayOfSTOCK_REGISTER" />
+      <xs:element minOccurs="0" name="TOS_PROCCESSES" nillable="true" type="tns:ArrayOfTOS_PROCCESS" />
+      <xs:element minOccurs="0" name="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" nillable="true" type="tns:ArrayOfMOBILE_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="TRUCK_LICENCE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="PRE_GATE" nillable="true" type="tns:PRE_GATE" />
+  <xs:complexType name="BY_PASS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BY_PASS_AUDITS" nillable="true" type="tns:ArrayOfBY_PASS_AUDIT" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IS_ENABLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PRE_GATE" nillable="true" type="tns:PRE_GATE" />
+      <xs:element minOccurs="0" name="REASON" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BY_PASS" nillable="true" type="tns:BY_PASS" />
+  <xs:complexType name="ArrayOfBY_PASS_AUDIT">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BY_PASS_AUDIT" nillable="true" type="tns:BY_PASS_AUDIT" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBY_PASS_AUDIT" nillable="true" type="tns:ArrayOfBY_PASS_AUDIT" />
+  <xs:complexType name="BY_PASS_AUDIT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BY_PASS" nillable="true" type="tns:BY_PASS" />
+      <xs:element minOccurs="0" name="BY_PASS_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FIELD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="NEW_VALUE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OLD_VALUE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TROUBLE_DESK_USER" nillable="true" type="tns:TROUBLE_DESK_USER" />
+      <xs:element minOccurs="0" name="TTU_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BY_PASS_AUDIT" nillable="true" type="tns:BY_PASS_AUDIT" />
+  <xs:complexType name="TROUBLE_DESK_USER">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BY_PASS_AUDITS" nillable="true" type="tns:ArrayOfBY_PASS_AUDIT" />
+      <xs:element minOccurs="0" name="EMAIL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FIRST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_SUPERVISOR" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_TD" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LAST_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LIFT_UP_BARRIERS" nillable="true" type="tns:ArrayOfLIFT_UP_BARRIER" />
+      <xs:element minOccurs="0" name="REPRINTS" nillable="true" type="tns:ArrayOfREPRINT" />
+      <xs:element minOccurs="0" name="TTU_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="USER_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER_SESSIONS" nillable="true" type="tns:ArrayOfUSER_SESSION" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TROUBLE_DESK_USER" nillable="true" type="tns:TROUBLE_DESK_USER" />
+  <xs:complexType name="ArrayOfLIFT_UP_BARRIER">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LIFT_UP_BARRIER" nillable="true" type="tns:LIFT_UP_BARRIER" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLIFT_UP_BARRIER" nillable="true" type="tns:ArrayOfLIFT_UP_BARRIER" />
+  <xs:complexType name="LIFT_UP_BARRIER">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="KIOSK" nillable="true" type="tns:KIOSK" />
+      <xs:element minOccurs="0" name="KIOSK_ID" type="xs:short" />
+      <xs:element minOccurs="0" name="MOTIVE_ID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PREGATE_ID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="REASON" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TROUBLE_DESK_USER" nillable="true" type="tns:TROUBLE_DESK_USER" />
+      <xs:element minOccurs="0" name="TTU_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="LIFT_UP_BARRIER" nillable="true" type="tns:LIFT_UP_BARRIER" />
+  <xs:complexType name="KIOSK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_IN" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KIOSK_ID" type="xs:short" />
+      <xs:element minOccurs="0" name="KIOSK_TRANSACTIONS" nillable="true" type="tns:ArrayOfKIOSK_TRANSACTION" />
+      <xs:element minOccurs="0" name="LIFT_UP_BARRIERS" nillable="true" type="tns:ArrayOfLIFT_UP_BARRIER" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REPRINTS" nillable="true" type="tns:ArrayOfREPRINT" />
+      <xs:element minOccurs="0" name="ZONE" nillable="true" type="tns:ZONE" />
+      <xs:element minOccurs="0" name="ZONE_ID" type="xs:short" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="KIOSK" nillable="true" type="tns:KIOSK" />
+  <xs:complexType name="ArrayOfKIOSK_TRANSACTION">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KIOSK_TRANSACTION" nillable="true" type="tns:KIOSK_TRANSACTION" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKIOSK_TRANSACTION" nillable="true" type="tns:ArrayOfKIOSK_TRANSACTION" />
+  <xs:complexType name="KIOSK_TRANSACTION">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="END_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IS_OK" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KIOSK" nillable="true" type="tns:KIOSK" />
+      <xs:element minOccurs="0" name="KIOSK_ID" type="xs:short" />
+      <xs:element minOccurs="0" name="PRE_GATE" nillable="true" type="tns:PRE_GATE" />
+      <xs:element minOccurs="0" name="PRE_GATE_ID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PROCESSES" nillable="true" type="tns:ArrayOfPROCESS" />
+      <xs:element minOccurs="0" name="SENSOR_KIOSK_TRANSACTIONS" nillable="true" type="tns:ArrayOfSENSOR_KIOSK_TRANSACTION" />
+      <xs:element minOccurs="0" name="START_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TRANSACTION_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="KIOSK_TRANSACTION" nillable="true" type="tns:KIOSK_TRANSACTION" />
+  <xs:complexType name="ArrayOfPROCESS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PROCESS" nillable="true" type="tns:PROCESS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPROCESS" nillable="true" type="tns:ArrayOfPROCESS" />
+  <xs:complexType name="PROCESS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IS_OK" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KIOSK_TRANSACTION" nillable="true" type="tns:KIOSK_TRANSACTION" />
+      <xs:element minOccurs="0" name="MESSAGE" nillable="true" type="tns:MESSAGE" />
+      <xs:element minOccurs="0" name="MESSAGE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PROCESS_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="PROCESS_TROUBLE_TICKET" nillable="true" type="tns:PROCESS_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="RESPONSE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STEP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STEP_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TRANSACTION_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="PROCESS" nillable="true" type="tns:PROCESS" />
+  <xs:complexType name="MESSAGE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ATTEMPTS" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="DETAILS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MESSAGE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PROCESSES" nillable="true" type="tns:ArrayOfPROCESS" />
+      <xs:element minOccurs="0" name="TROUBLE_DESK_MESSAGE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER_MESSAGE" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="MESSAGE" nillable="true" type="tns:MESSAGE" />
+  <xs:complexType name="PROCESS_TROUBLE_TICKET">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TROUBLE_TICKET">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACTIONS" nillable="true" type="tns:ArrayOfACTION" />
+          <xs:element minOccurs="0" name="IS_SUSPENDED" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PROCESS" nillable="true" type="tns:PROCESS" />
+          <xs:element minOccurs="0" name="REASSIGNMENTS" nillable="true" type="tns:ArrayOfREASSIGNMENT" />
+          <xs:element minOccurs="0" name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+          <xs:element minOccurs="0" name="USER_SESSION_ID" nillable="true" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PROCESS_TROUBLE_TICKET" nillable="true" type="tns:PROCESS_TROUBLE_TICKET" />
+  <xs:complexType name="ArrayOfACTION">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ACTION" nillable="true" type="tns:ACTION" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfACTION" nillable="true" type="tns:ArrayOfACTION" />
+  <xs:complexType name="ACTION">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTION_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ACTION_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="ACTION_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PROCESS_TROUBLE_TICKET" nillable="true" type="tns:PROCESS_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="TT_ID" type="xs:long" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ACTION" nillable="true" type="tns:ACTION" />
+  <xs:complexType name="ArrayOfREASSIGNMENT">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="REASSIGNMENT" nillable="true" type="tns:REASSIGNMENT" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfREASSIGNMENT" nillable="true" type="tns:ArrayOfREASSIGNMENT" />
+  <xs:complexType name="REASSIGNMENT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MOTIVE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PROCESS_TROUBLE_TICKET" nillable="true" type="tns:PROCESS_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="REASSIGNMENT_MOTIVE" nillable="true" type="tns:REASSIGNMENT_MOTIVE" />
+      <xs:element minOccurs="0" name="TT_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="USER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+      <xs:element minOccurs="0" name="USER_SESSION_ID" type="xs:long" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="REASSIGNMENT" nillable="true" type="tns:REASSIGNMENT" />
+  <xs:complexType name="REASSIGNMENT_MOTIVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CAPTION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IS_ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="REASSIGNMENTS" nillable="true" type="tns:ArrayOfREASSIGNMENT" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="REASSIGNMENT_MOTIVE" nillable="true" type="tns:REASSIGNMENT_MOTIVE" />
+  <xs:complexType name="ArrayOfSENSOR_KIOSK_TRANSACTION">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SENSOR_KIOSK_TRANSACTION" nillable="true" type="tns:SENSOR_KIOSK_TRANSACTION" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSENSOR_KIOSK_TRANSACTION" nillable="true" type="tns:ArrayOfSENSOR_KIOSK_TRANSACTION" />
+  <xs:complexType name="SENSOR_KIOSK_TRANSACTION">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="KIOSK_TRANSACTION" nillable="true" type="tns:KIOSK_TRANSACTION" />
+      <xs:element minOccurs="0" name="SENSOR" nillable="true" type="tns:SENSOR" />
+      <xs:element minOccurs="0" name="SENSOR_ID" type="xs:short" />
+      <xs:element minOccurs="0" name="TRANSACTION_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="VALUE" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SENSOR_KIOSK_TRANSACTION" nillable="true" type="tns:SENSOR_KIOSK_TRANSACTION" />
+  <xs:complexType name="SENSOR">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SENSOR_ID" type="xs:short" />
+      <xs:element minOccurs="0" name="SENSOR_KIOSK_TRANSACTIONS" nillable="true" type="tns:ArrayOfSENSOR_KIOSK_TRANSACTION" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SENSOR" nillable="true" type="tns:SENSOR" />
+  <xs:complexType name="ArrayOfREPRINT">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="REPRINT" nillable="true" type="tns:REPRINT" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfREPRINT" nillable="true" type="tns:ArrayOfREPRINT" />
+  <xs:complexType name="REPRINT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="KIOSK" nillable="true" type="tns:KIOSK" />
+      <xs:element minOccurs="0" name="KIOSK_ID" type="xs:short" />
+      <xs:element minOccurs="0" name="PRE_GATE" nillable="true" type="tns:PRE_GATE" />
+      <xs:element minOccurs="0" name="PRE_GATE_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="TROUBLE_DESK_USER" nillable="true" type="tns:TROUBLE_DESK_USER" />
+      <xs:element minOccurs="0" name="TTU_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="REPRINT" nillable="true" type="tns:REPRINT" />
+  <xs:complexType name="ArrayOfUSER_SESSION">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUSER_SESSION" nillable="true" type="tns:ArrayOfUSER_SESSION" />
+  <xs:complexType name="ArrayOfPRE_GATE_DETAIL">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PRE_GATE_DETAIL" nillable="true" type="tns:PRE_GATE_DETAIL" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPRE_GATE_DETAIL" nillable="true" type="tns:ArrayOfPRE_GATE_DETAIL" />
+  <xs:complexType name="PRE_GATE_DETAIL">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CONTAINERS" nillable="true" type="tns:ArrayOfCONTAINER" />
+      <xs:element minOccurs="0" name="DOCUMENT_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PRE_GATE" nillable="true" type="tns:PRE_GATE" />
+      <xs:element minOccurs="0" name="PRE_GATE_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="REFERENCE_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STATUS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TRANSACTION_NUMBER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TRANSACTION_TYPE" nillable="true" type="tns:TRANSACTION_TYPE" />
+      <xs:element minOccurs="0" name="TRANSACTION_TYPE_ID" type="xs:short" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="PRE_GATE_DETAIL" nillable="true" type="tns:PRE_GATE_DETAIL" />
+  <xs:complexType name="ArrayOfCONTAINER">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CONTAINER" nillable="true" type="tns:CONTAINER" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCONTAINER" nillable="true" type="tns:ArrayOfCONTAINER" />
+  <xs:complexType name="CONTAINER">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CONTAINER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="DAMAGES" nillable="true" type="tns:ArrayOfDAMAGE" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NUMBER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRE_GATE_DETAIL" nillable="true" type="tns:PRE_GATE_DETAIL" />
+      <xs:element minOccurs="0" name="PRE_GATE_DETAIL_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="SEALS" nillable="true" type="tns:ArrayOfSEAL" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="CONTAINER" nillable="true" type="tns:CONTAINER" />
+  <xs:complexType name="ArrayOfDAMAGE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DAMAGE" nillable="true" type="tns:DAMAGE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDAMAGE" nillable="true" type="tns:ArrayOfDAMAGE" />
+  <xs:complexType name="DAMAGE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="COMPONENT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTAINER" nillable="true" type="tns:CONTAINER" />
+      <xs:element minOccurs="0" name="CONTAINER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="DAMAGE_TYPE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LOCATION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOTES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QUANTITY" type="xs:short" />
+      <xs:element minOccurs="0" name="SEVERITY" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="DAMAGE" nillable="true" type="tns:DAMAGE" />
+  <xs:complexType name="ArrayOfSEAL">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SEAL" nillable="true" type="tns:SEAL" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSEAL" nillable="true" type="tns:ArrayOfSEAL" />
+  <xs:complexType name="SEAL">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CAPTION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CONTAINER" nillable="true" type="tns:CONTAINER" />
+      <xs:element minOccurs="0" name="CONTAINER_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SEAL_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="VALUE" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SEAL" nillable="true" type="tns:SEAL" />
+  <xs:complexType name="TRANSACTION_TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CODE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DESCRIPTION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:short" />
+      <xs:element minOccurs="0" name="PRE_GATE_DETAILS" nillable="true" type="tns:ArrayOfPRE_GATE_DETAIL" />
+      <xs:element minOccurs="0" name="ZONES" nillable="true" type="tns:ArrayOfZONE" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TRANSACTION_TYPE" nillable="true" type="tns:TRANSACTION_TYPE" />
+  <xs:complexType name="ArrayOfZONE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZONE" nillable="true" type="tns:ZONE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZONE" nillable="true" type="tns:ArrayOfZONE" />
+  <xs:complexType name="ArrayOfSTOCK_REGISTER">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="STOCK_REGISTER" nillable="true" type="tns:STOCK_REGISTER" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSTOCK_REGISTER" nillable="true" type="tns:ArrayOfSTOCK_REGISTER" />
+  <xs:complexType name="STOCK_REGISTER">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVE" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CREATE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATE_MONTH" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CREATE_WEEK" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CREATE_YEAR" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DEPOT" nillable="true" type="tns:DEPOT" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="ID_DEPOT" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_LINE" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_OPERATION" type="xs:int" />
+      <xs:element minOccurs="0" name="LINE" nillable="true" type="tns:LINE" />
+      <xs:element minOccurs="0" name="MULTIPLIER" type="xs:int" />
+      <xs:element minOccurs="0" name="OPERATION_NOTES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPERATION_OBJETC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPERATION_USER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRE_GATES" nillable="true" type="tns:PRE_GATE" />
+      <xs:element minOccurs="0" name="PRE_GATE_DETAILS_ID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="PRE_GATE_ID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="QTY" type="xs:int" />
+      <xs:element minOccurs="0" name="REGISTER_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="STOCK_OPERATION" nillable="true" type="tns:STOCK_OPERATION" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="STOCK_REGISTER" nillable="true" type="tns:STOCK_REGISTER" />
+  <xs:complexType name="DEPOT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVE" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AUXILIAR_STOCK" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CREATE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID_DEPOT" type="xs:int" />
+      <xs:element minOccurs="0" name="LINE_DEPOTS" nillable="true" type="tns:ArrayOfLINE_DEPOTS" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOTES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STOCK_REGISTER" nillable="true" type="tns:ArrayOfSTOCK_REGISTER" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="DEPOT" nillable="true" type="tns:DEPOT" />
+  <xs:complexType name="ArrayOfLINE_DEPOTS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LINE_DEPOTS" nillable="true" type="tns:LINE_DEPOTS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLINE_DEPOTS" nillable="true" type="tns:ArrayOfLINE_DEPOTS" />
+  <xs:complexType name="LINE_DEPOTS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CREATE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATE_USER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DEPOT" nillable="true" type="tns:DEPOT" />
+      <xs:element minOccurs="0" name="ID_DEPOT" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_LINE" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_LINE_DEPO" type="xs:long" />
+      <xs:element minOccurs="0" name="LINE" nillable="true" type="tns:LINE" />
+      <xs:element minOccurs="0" name="MOD_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MOD_USER" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="LINE_DEPOTS" nillable="true" type="tns:LINE_DEPOTS" />
+  <xs:complexType name="LINE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVE" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CREATE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_LINE" type="xs:int" />
+      <xs:element minOccurs="0" name="LINE_DEPOTS" nillable="true" type="tns:ArrayOfLINE_DEPOTS" />
+      <xs:element minOccurs="0" name="MAIL_STOCK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOTES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STOCK" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="STOCK_REGISTER" nillable="true" type="tns:ArrayOfSTOCK_REGISTER" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="LINE" nillable="true" type="tns:LINE" />
+  <xs:complexType name="STOCK_OPERATION">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CREATE_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CREATE_USER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_OPERATION" type="xs:int" />
+      <xs:element minOccurs="0" name="MOD_DATE" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MOD_USER" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MULTIPLIER" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NOTES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OPERATION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SCREEN" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="STOCK_REGISTER" nillable="true" type="tns:ArrayOfSTOCK_REGISTER" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="STOCK_OPERATION" nillable="true" type="tns:STOCK_OPERATION" />
+  <xs:complexType name="ArrayOfTOS_PROCCESS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TOS_PROCCESS" nillable="true" type="tns:TOS_PROCCESS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTOS_PROCCESS" nillable="true" type="tns:ArrayOfTOS_PROCCESS" />
+  <xs:complexType name="TOS_PROCCESS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="IS_OK" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_RECYCLED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MOBILE_TROUBLE_TICKET" nillable="true" type="tns:MOBILE_TROUBLE_TICKET" />
+      <xs:element minOccurs="0" name="PRE_GATE" nillable="true" type="tns:PRE_GATE" />
+      <xs:element minOccurs="0" name="PRE_GATE_ID" type="xs:long" />
+      <xs:element minOccurs="0" name="RESPONSE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STEP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="STEP_DATE" type="xs:dateTime" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TOS_PROCCESS" nillable="true" type="tns:TOS_PROCCESS" />
+  <xs:complexType name="MOBILE_TROUBLE_TICKET">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TROUBLE_TICKET">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MESSAGE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PRE_GATES" nillable="true" type="tns:PRE_GATE" />
+          <xs:element minOccurs="0" name="PRE_GATE_ID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="TOS_PROCCESS" nillable="true" type="tns:TOS_PROCCESS" />
+          <xs:element minOccurs="0" name="USER_SESSION" nillable="true" type="tns:USER_SESSION" />
+          <xs:element minOccurs="0" name="USER_SESSION_ID" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="ZONE" nillable="true" type="tns:ZONE" />
+          <xs:element minOccurs="0" name="ZONE_ID" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MOBILE_TROUBLE_TICKET" nillable="true" type="tns:MOBILE_TROUBLE_TICKET" />
+  <xs:complexType name="ArrayOfMOBILE_TROUBLE_TICKET">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MOBILE_TROUBLE_TICKET" nillable="true" type="tns:MOBILE_TROUBLE_TICKET" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMOBILE_TROUBLE_TICKET" nillable="true" type="tns:ArrayOfMOBILE_TROUBLE_TICKET" />
+  <xs:complexType name="ArrayOfKIOSK">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KIOSK" nillable="true" type="tns:KIOSK" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKIOSK" nillable="true" type="tns:ArrayOfKIOSK" />
+  <xs:complexType name="ArrayOfTRANSACTION_TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TRANSACTION_TYPE" nillable="true" type="tns:TRANSACTION_TYPE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTRANSACTION_TYPE" nillable="true" type="tns:ArrayOfTRANSACTION_TYPE" />
+  <xs:complexType name="ArrayOfPROCESS_TROUBLE_TICKET">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PROCESS_TROUBLE_TICKET" nillable="true" type="tns:PROCESS_TROUBLE_TICKET" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPROCESS_TROUBLE_TICKET" nillable="true" type="tns:ArrayOfPROCESS_TROUBLE_TICKET" />
+  <xs:complexType name="ArrayOfmb_get_ecuapass_message_pass_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="mb_get_ecuapass_message_pass_Result" nillable="true" type="tns:mb_get_ecuapass_message_pass_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfmb_get_ecuapass_message_pass_Result" nillable="true" type="tns:ArrayOfmb_get_ecuapass_message_pass_Result" />
+  <xs:complexType name="mb_get_ecuapass_message_pass_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CODIGO_SOLICITUD_TRANSACCION" type="xs:long" />
+      <xs:element minOccurs="0" name="CODIGO_TRANSACCION" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:decimal" />
+      <xs:element minOccurs="0" name="mensaje" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="mb_get_ecuapass_message_pass_Result" nillable="true" type="tns:mb_get_ecuapass_message_pass_Result" />
+  <xs:complexType name="mb_add_ecuapass_transaccion_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="mb_add_ecuapass_transaccion_Result" nillable="true" type="tns:mb_add_ecuapass_transaccion_Result" />
+  <xs:complexType name="ArrayOfBREAK_TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BREAK_TYPE" nillable="true" type="tns:BREAK_TYPE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBREAK_TYPE" nillable="true" type="tns:ArrayOfBREAK_TYPE" />
+  <xs:complexType name="ArrayOfREASSIGNMENT_MOTIVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="REASSIGNMENT_MOTIVE" nillable="true" type="tns:REASSIGNMENT_MOTIVE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfREASSIGNMENT_MOTIVE" nillable="true" type="tns:ArrayOfREASSIGNMENT_MOTIVE" />
+  <xs:complexType name="ArrayOfMOTIVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MOTIVE" nillable="true" type="tns:MOTIVE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMOTIVE" nillable="true" type="tns:ArrayOfMOTIVE" />
+  <xs:complexType name="MOTIVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MOTIVE_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUB_MOTIVES" nillable="true" type="tns:ArrayOfSUB_MOTIVE" />
+      <xs:element minOccurs="0" name="TYPE" type="xs:short" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="MOTIVE" nillable="true" type="tns:MOTIVE" />
+  <xs:complexType name="ArrayOfSUB_MOTIVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SUB_MOTIVE" nillable="true" type="tns:SUB_MOTIVE" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSUB_MOTIVE" nillable="true" type="tns:ArrayOfSUB_MOTIVE" />
+  <xs:complexType name="SUB_MOTIVE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACTIVE" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MOTIVE" nillable="true" type="tns:MOTIVE" />
+      <xs:element minOccurs="0" name="MOTIVES_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SUB_MOTIVE_ID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SUB_MOTIVE" nillable="true" type="tns:SUB_MOTIVE" />
+</xs:schema>

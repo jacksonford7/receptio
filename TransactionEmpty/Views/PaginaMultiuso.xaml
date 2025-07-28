@@ -1,0 +1,17 @@
+﻿<Page x:Class="TransactionEmpty.Views.PaginaMultiuso"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      FontFamily="Microsoft Sans Serif"
+      mc:Ignorable="d" 
+      Height="768" Width="787.2" >
+
+    <Grid Background="White">
+        <StackPanel>
+            <TextBlock Text="{Binding Titulo}" Foreground="Black" TextAlignment="Center" FontSize="60" Margin="10,0,0,0"/>
+            <TextBlock Text="{Binding Mensaje}" Foreground="{Binding ColorTextoMensaje}" Background="#F8FBEF"  
+                        TextWrapping="Wrap" FontSize="40" Height="275.2" Margin="50,50,50,0" />
+        </StackPanel>
+    </Grid>
+</Page>

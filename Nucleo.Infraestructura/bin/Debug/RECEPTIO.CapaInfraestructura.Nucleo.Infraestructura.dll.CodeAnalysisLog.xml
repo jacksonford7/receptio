@@ -1,0 +1,955 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files\microsoft visual studio\2022\community\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="17.0">
+ <Namespaces>
+  <Namespace Name="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura">
+   <Messages>
+    <Message Id="RECEPTIO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="85" Level="Error">Corrija el uso de mayúsculas y minúsculas en 'RECEPTIO' en el nombre del espacio de nombres 'RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura' cambiándolo a 'Receptio'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.Modelo">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Considere combinar los tipos definidos en 'RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.Modelo' con otro espacio de nombres.</Issue>
+    </Message>
+    <Message Id="RECEPTIO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="85" Level="Error">Corrija el uso de mayúsculas y minúsculas en 'RECEPTIO' en el nombre del espacio de nombres 'RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.Modelo' cambiándolo a 'Receptio'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+ </Namespaces>
+ <Targets>
+  <Target Name="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\bin\Debug\RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.dll">
+   <Modules>
+    <Module Name="receptio.capainfraestructura.nucleo.infraestructura.dll">
+     <Messages>
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="NonBreaking">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Firme 'RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.dll' con una clave de nombre seguro.</Issue>
+      </Message>
+      <Message Id="RECEPTIO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+       <Issue Name="Assembly" Certainty="85" Level="Error">Corrija el uso de mayúsculas y minúsculas en 'RECEPTIO' en el nombre del ensamblado 'RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.dll' cambiándolo a 'Receptio'.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error">Marque 'RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.dll' con CLSCompliant(true) porque expone tipos visibles externamente.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura">
+       <Types>
+        <Type Name="Repositorio`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AbstractTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1012" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="NonBreaking">
+           <Issue Certainty="95" Level="CriticalWarning">Cambie la accesibilidad de todos los constructores públicos de 'Repositorio&lt;TEntity&gt;' a protected.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Desechar (Dispose) objetos antes de perder el ámbito" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura" File="Repositorio.cs" Line="17">En el método 'Repositorio&lt;TEntity&gt;.Repositorio()', llame a System.IDisposable.Dispose en el objeto 'new ModeloReceptioContainer()' antes de que todas las referencias a él estén fuera de ámbito.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ObtenerObjetos(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.IFiltros`1&lt;!0&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura" File="Repositorio.cs" Line="58">En el método 'Repositorio&lt;TEntity&gt;.ObtenerObjetos(IFiltros&lt;TEntity&gt;)' visible externamente, valide el parámetro 'filtro' antes de usarlo.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ObtenerObjetosPorPagineo`1(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.IFiltros`1&lt;!0&gt;,System.Int32,System.Int32,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!0,!!0&gt;&gt;,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="T" TypeName="IdentifiersShouldHaveCorrectPrefix" Category="Microsoft.Naming" CheckId="CA1715" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="NonBreaking">
+             <Issue Name="MethodTypeParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura" File="Repositorio.cs" Line="62">En el método 'Repositorio&lt;TEntity&gt;.ObtenerObjetosPorPagineo&lt;S&gt;(IFiltros&lt;TEntity&gt;, int, int, Expression&lt;Func&lt;TEntity, S&gt;&gt;, bool)', ponga el prefijo 'T' al nombre del parámetro de tipo genérico 'S'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura" File="Repositorio.cs" Line="63">En el método 'Repositorio&lt;TEntity&gt;.ObtenerObjetosPorPagineo&lt;S&gt;(IFiltros&lt;TEntity&gt;, int, int, Expression&lt;Func&lt;TEntity, S&gt;&gt;, bool)' visible externamente, valide el parámetro 'filtro' antes de usarlo.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="RepositorioN4" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#TieneTransaccionActiva(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Convert.ToDecimal(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura" File="RepositorioN4.cs" Line="14">Puesto que el comportamiento de 'Convert.ToDecimal(string)' podría variar en función de la configuración regional del usuario actual, reemplace esta llamada en 'RepositorioN4.TieneTransaccionActiva(string)' por una llamada a 'Convert.ToDecimal(string, IFormatProvider)'. Si el resultado de 'Convert.ToDecimal(string, IFormatProvider)' estará basado en los datos proporcionados por el usuario, especifique 'CultureInfo.CurrentCulture' como parámetro 'IFormatProvider'. De lo contrario, si el resultado estará basado en datos almacenados a los que tiene acceso el software, como cuando se cargan desde un disco o una base de datos, especifique 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="RepositorioPreGate" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ObtenerPreGateConDetalle(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.IFiltros`1&lt;RECEPTIO.CapaDominio.Nucleo.Entidades.PRE_GATE&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura" File="RepositorioPreGate.cs" Line="14">En el método 'RepositorioPreGate.ObtenerPreGateConDetalle(IFiltros&lt;PRE_GATE&gt;)' visible externamente, valide el parámetro 'filtro' antes de usarlo.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ObtenerPreGateConDetalleParaSupervisor(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.IFiltros`1&lt;RECEPTIO.CapaDominio.Nucleo.Entidades.PRE_GATE&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura" File="RepositorioPreGate.cs" Line="19">En el método 'RepositorioPreGate.ObtenerPreGateConDetalleParaSupervisor(IFiltros&lt;PRE_GATE&gt;)' visible externamente, valide el parámetro 'filtro' antes de usarlo.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.Modelo">
+       <Types>
+        <Type Name="ModeloReceptioContainer" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ACTIONS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ACTIONS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="56">Corrija el uso de mayúsculas y minúsculas en 'ACTIONS' en el nombre del miembro 'ModeloReceptioContainer.ACTIONS' cambiándolo a 'Actions'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#APPLICATIONS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="APPLICATIONS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="51">Corrija el uso de mayúsculas y minúsculas en 'APPLICATIONS' en el nombre del miembro 'ModeloReceptioContainer.APPLICATIONS' cambiándolo a 'Applications'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#AUTO_TROUBLE_REASONS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="AUTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="49">Corrija el uso de mayúsculas y minúsculas en 'AUTO' en el nombre del miembro 'ModeloReceptioContainer.AUTO_TROUBLE_REASONS' cambiándolo a 'Auto'.</Issue>
+            </Message>
+            <Message Id="REASONS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="49">Corrija el uso de mayúsculas y minúsculas en 'REASONS' en el nombre del miembro 'ModeloReceptioContainer.AUTO_TROUBLE_REASONS' cambiándolo a 'Reasons'.</Issue>
+            </Message>
+            <Message Id="TROUBLE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="49">Corrija el uso de mayúsculas y minúsculas en 'TROUBLE' en el nombre del miembro 'ModeloReceptioContainer.AUTO_TROUBLE_REASONS' cambiándolo a 'Trouble'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="49">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.AUTO_TROUBLE_REASONS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#BREAK_TYPES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="BREAK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="45">Corrija el uso de mayúsculas y minúsculas en 'BREAK' en el nombre del miembro 'ModeloReceptioContainer.BREAK_TYPES' cambiándolo a 'Break'.</Issue>
+            </Message>
+            <Message Id="TYPES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="45">Corrija el uso de mayúsculas y minúsculas en 'TYPES' en el nombre del miembro 'ModeloReceptioContainer.BREAK_TYPES' cambiándolo a 'Types'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="45">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.BREAK_TYPES'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#BREAKS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="BREAKS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="44">Corrija el uso de mayúsculas y minúsculas en 'BREAKS' en el nombre del miembro 'ModeloReceptioContainer.BREAKS' cambiándolo a 'Breaks'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#BY_PASS_AUDITS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="AUDITS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="63">Corrija el uso de mayúsculas y minúsculas en 'AUDITS' en el nombre del miembro 'ModeloReceptioContainer.BY_PASS_AUDITS' cambiándolo a 'Audits'.</Issue>
+            </Message>
+            <Message Id="PASS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="63">Corrija el uso de mayúsculas y minúsculas en 'PASS' en el nombre del miembro 'ModeloReceptioContainer.BY_PASS_AUDITS' cambiándolo a 'Pass'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="63">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.BY_PASS_AUDITS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#BY_PASSES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PASSES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="62">Corrija el uso de mayúsculas y minúsculas en 'PASSES' en el nombre del miembro 'ModeloReceptioContainer.BY_PASSES' cambiándolo a 'Passes'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="62">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.BY_PASSES'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#CONTAINERS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="CONTAINERS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="34">Corrija el uso de mayúsculas y minúsculas en 'CONTAINERS' en el nombre del miembro 'ModeloReceptioContainer.CONTAINERS' cambiándolo a 'Containers'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DAMAGES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DAMAGES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="54">Corrija el uso de mayúsculas y minúsculas en 'DAMAGES' en el nombre del miembro 'ModeloReceptioContainer.DAMAGES' cambiándolo a 'Damages'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DEPOT" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DEPOT" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="64">Corrija el uso de mayúsculas y minúsculas en 'DEPOT' en el nombre del miembro 'ModeloReceptioContainer.DEPOT' cambiándolo a 'Depot'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DEVICES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DEVICES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="42">Corrija el uso de mayúsculas y minúsculas en 'DEVICES' en el nombre del miembro 'ModeloReceptioContainer.DEVICES' cambiándolo a 'Devices'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ERRORS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ERRORS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="50">Corrija el uso de mayúsculas y minúsculas en 'ERRORS' en el nombre del miembro 'ModeloReceptioContainer.ERRORS' cambiándolo a 'Errors'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#KIOSK_TRANSACTIONS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="KIOSK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="36">Corrija el uso de mayúsculas y minúsculas en 'KIOSK' en el nombre del miembro 'ModeloReceptioContainer.KIOSK_TRANSACTIONS' cambiándolo a 'Kiosk'.</Issue>
+            </Message>
+            <Message Id="TRANSACTIONS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="36">Corrija el uso de mayúsculas y minúsculas en 'TRANSACTIONS' en el nombre del miembro 'ModeloReceptioContainer.KIOSK_TRANSACTIONS' cambiándolo a 'Transactions'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="36">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.KIOSK_TRANSACTIONS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#KIOSKS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="KIOSKS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="39">Corrija el uso de mayúsculas y minúsculas en 'KIOSKS' en el nombre del miembro 'ModeloReceptioContainer.KIOSKS' cambiándolo a 'Kiosks'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LIFT_UP_BARRIERS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="BARRIERS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="60">Corrija el uso de mayúsculas y minúsculas en 'BARRIERS' en el nombre del miembro 'ModeloReceptioContainer.LIFT_UP_BARRIERS' cambiándolo a 'Barriers'.</Issue>
+            </Message>
+            <Message Id="LIFT" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="60">Corrija el uso de mayúsculas y minúsculas en 'LIFT' en el nombre del miembro 'ModeloReceptioContainer.LIFT_UP_BARRIERS' cambiándolo a 'Lift'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="60">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.LIFT_UP_BARRIERS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LINE" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="LINE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="65">Corrija el uso de mayúsculas y minúsculas en 'LINE' en el nombre del miembro 'ModeloReceptioContainer.LINE' cambiándolo a 'Line'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LINE_DEPOTS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DEPOTS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="66">Corrija el uso de mayúsculas y minúsculas en 'DEPOTS' en el nombre del miembro 'ModeloReceptioContainer.LINE_DEPOTS' cambiándolo a 'Depots'.</Issue>
+            </Message>
+            <Message Id="LINE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="66">Corrija el uso de mayúsculas y minúsculas en 'LINE' en el nombre del miembro 'ModeloReceptioContainer.LINE_DEPOTS' cambiándolo a 'Line'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="66">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.LINE_DEPOTS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_add_ecuapass_transaccion(System.Nullable`1&lt;System.Int64&gt;,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="BJETO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'BJETO' en el nombre del parámetro 'oBJETO_SOLICITA' cambiándolo a 'Bjeto'.</Issue>
+            </Message>
+            <Message Id="CARGA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'CARGA' en el nombre del parámetro 'cODIGO_CARGA' cambiándolo a 'Carga'.</Issue>
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'CARGA' en el nombre del parámetro 'cODIGO_TIPO_CARGA' cambiándolo a 'Carga'.</Issue>
+            </Message>
+            <Message Id="ENTREGA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'ENTREGA' en el nombre del parámetro 'nUMERO_ENTREGA' cambiándolo a 'Entrega'.</Issue>
+            </Message>
+            <Message Id="ODIGO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'ODIGO' en el nombre del parámetro 'cODIGO_CARGA' cambiándolo a 'Odigo'.</Issue>
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'ODIGO' en el nombre del parámetro 'cODIGO_TIPO_CARGA' cambiándolo a 'Odigo'.</Issue>
+            </Message>
+            <Message Id="OMENTARIOS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'OMENTARIOS' en el nombre del parámetro 'cOMENTARIOS' cambiándolo a 'Omentarios'.</Issue>
+            </Message>
+            <Message Id="ONTENEDOR" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'ONTENEDOR' en el nombre del parámetro 'cONTENEDOR' cambiándolo a 'Ontenedor'.</Issue>
+            </Message>
+            <Message Id="SOLICITA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'SOLICITA' en el nombre del parámetro 'oBJETO_SOLICITA' cambiándolo a 'Solicita'.</Issue>
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'SOLICITA' en el nombre del parámetro 'uSUARIO_SOLICITA' cambiándolo a 'Solicita'.</Issue>
+            </Message>
+            <Message Id="SUARIO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'SUARIO' en el nombre del parámetro 'uSUARIO_SOLICITA' cambiándolo a 'Suario'.</Issue>
+            </Message>
+            <Message Id="TIPO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'TIPO' en el nombre del parámetro 'cODIGO_TIPO_CARGA' cambiándolo a 'Tipo'.</Issue>
+            </Message>
+            <Message Id="UMERO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', corrija el uso de mayúsculas y minúsculas en 'UMERO' en el nombre del parámetro 'nUMERO_ENTREGA' cambiándolo a 'Umero'.</Issue>
+            </Message>
+            <Message Id="add" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">Corrija el uso de mayúsculas y minúsculas en 'add' en el nombre del miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)' cambiándolo a 'Add'.</Issue>
+            </Message>
+            <Message Id="ecuapass" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">Corrija el uso de mayúsculas y minúsculas en 'ecuapass' en el nombre del miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)' cambiándolo a 'Ecuapass'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="transaccion" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">Corrija el uso de mayúsculas y minúsculas en 'transaccion' en el nombre del miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)' cambiándolo a 'Transaccion'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', quite los caracteres de subrayado del nombre del parámetro 'cODIGO_CARGA'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', quite los caracteres de subrayado del nombre del parámetro 'cODIGO_TIPO_CARGA'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', quite los caracteres de subrayado del nombre del parámetro 'nUMERO_ENTREGA'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', quite los caracteres de subrayado del nombre del parámetro 'oBJETO_SOLICITA'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="73">En el miembro 'ModeloReceptioContainer.mb_add_ecuapass_transaccion(long?, string, string, string, string, string, string, string, string, string)', quite los caracteres de subrayado del nombre del parámetro 'uSUARIO_SOLICITA'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_ecuapass_message_pass(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ecuapass" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">Corrija el uso de mayúsculas y minúsculas en 'ecuapass' en el nombre del miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)' cambiándolo a 'Ecuapass'.</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="message" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">Corrija el uso de mayúsculas y minúsculas en 'message' en el nombre del miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)' cambiándolo a 'Message'.</Issue>
+            </Message>
+            <Message Id="num" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">En el miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)', corrija el uso de mayúsculas y minúsculas en 'num' en el nombre del parámetro 'ref_num' cambiándolo a 'Num'.</Issue>
+            </Message>
+            <Message Id="pass" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">Corrija el uso de mayúsculas y minúsculas en 'pass' en el nombre del miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)' cambiándolo a 'Pass'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="118">En el miembro 'ModeloReceptioContainer.mb_get_ecuapass_message_pass(string)', quite los caracteres de subrayado del nombre del parámetro 'ref_num'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_gkey_cont(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">Considere el uso de un diseño donde 'ModeloReceptioContainer.mb_get_gkey_cont(string)' no anide el tipo genérico 'ObjectResult&lt;long?&gt;'.</Issue>
+            </Message>
+            <Message Id="CONTENEDOR" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">En el miembro 'ModeloReceptioContainer.mb_get_gkey_cont(string)', corrija el uso de mayúsculas y minúsculas en 'CONTENEDOR' en el nombre del parámetro 'lv_CONTENEDOR' cambiándolo a 'Contenedor'.</Issue>
+            </Message>
+            <Message Id="cont" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">Corrija el uso de mayúsculas y minúsculas en 'cont' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont(string)' cambiándolo a 'Cont'.</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont(string)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="gkey" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">Corrija el uso de mayúsculas y minúsculas en 'gkey' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont(string)' cambiándolo a 'Gkey'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont(string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont(string)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="127">En el miembro 'ModeloReceptioContainer.mb_get_gkey_cont(string)', quite los caracteres de subrayado del nombre del parámetro 'lv_CONTENEDOR'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_gkey_cont_mty(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">Considere el uso de un diseño donde 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)' no anide el tipo genérico 'ObjectResult&lt;long?&gt;'.</Issue>
+            </Message>
+            <Message Id="CONTENEDOR" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">En el miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)', corrija el uso de mayúsculas y minúsculas en 'CONTENEDOR' en el nombre del parámetro 'lv_CONTENEDOR' cambiándolo a 'Contenedor'.</Issue>
+            </Message>
+            <Message Id="cont" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">Corrija el uso de mayúsculas y minúsculas en 'cont' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)' cambiándolo a 'Cont'.</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="gkey" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">Corrija el uso de mayúsculas y minúsculas en 'gkey' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)' cambiándolo a 'Gkey'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="mty" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">Corrija el uso de mayúsculas y minúsculas en 'mty' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)' cambiándolo a 'Mty'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="136">En el miembro 'ModeloReceptioContainer.mb_get_gkey_cont_mty(string)', quite los caracteres de subrayado del nombre del parámetro 'lv_CONTENEDOR'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_gkey_cont_yard(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">Considere el uso de un diseño donde 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)' no anide el tipo genérico 'ObjectResult&lt;long?&gt;'.</Issue>
+            </Message>
+            <Message Id="CONTENEDOR" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">En el miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)', corrija el uso de mayúsculas y minúsculas en 'CONTENEDOR' en el nombre del parámetro 'lv_CONTENEDOR' cambiándolo a 'Contenedor'.</Issue>
+            </Message>
+            <Message Id="cont" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">Corrija el uso de mayúsculas y minúsculas en 'cont' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)' cambiándolo a 'Cont'.</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="gkey" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">Corrija el uso de mayúsculas y minúsculas en 'gkey' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)' cambiándolo a 'Gkey'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="yard" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">Corrija el uso de mayúsculas y minúsculas en 'yard' en el nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)' cambiándolo a 'Yard'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="145">En el miembro 'ModeloReceptioContainer.mb_get_gkey_cont_yard(string)', quite los caracteres de subrayado del nombre del parámetro 'lv_CONTENEDOR'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_status_n4(System.Nullable`1&lt;System.Decimal&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="GATE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="154">En el miembro 'ModeloReceptioContainer.mb_get_status_n4(decimal?)', corrija el uso de mayúsculas y minúsculas en 'GATE' en el nombre del parámetro 'pRE_GATE' cambiándolo a 'Gate'.</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="154">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4(decimal?)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="154">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4(decimal?)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="n" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="154">Corrija el uso de mayúsculas y minúsculas en 'n' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4(decimal?)' cambiándolo a 'N'.</Issue>
+            </Message>
+            <Message Id="status" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="154">Corrija el uso de mayúsculas y minúsculas en 'status' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4(decimal?)' cambiándolo a 'Status'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="154">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4(decimal?)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="154">En el miembro 'ModeloReceptioContainer.mb_get_status_n4(decimal?)', quite los caracteres de subrayado del nombre del parámetro 'pRE_GATE'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_status_n4_placa(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="LACA" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="163">En el miembro 'ModeloReceptioContainer.mb_get_status_n4_placa(string)', corrija el uso de mayúsculas y minúsculas en 'LACA' en el nombre del parámetro 'pLACA' cambiándolo a 'Laca'.</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="163">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4_placa(string)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="163">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4_placa(string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="n" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="163">Corrija el uso de mayúsculas y minúsculas en 'n' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4_placa(string)' cambiándolo a 'N'.</Issue>
+            </Message>
+            <Message Id="placa" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="163">Corrija el uso de mayúsculas y minúsculas en 'placa' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4_placa(string)' cambiándolo a 'Placa'.</Issue>
+            </Message>
+            <Message Id="status" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="163">Corrija el uso de mayúsculas y minúsculas en 'status' en el nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4_placa(string)' cambiándolo a 'Status'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="163">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_status_n4_placa(string)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_valida_smdt(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="172">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_valida_smdt(string)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="172">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_valida_smdt(string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="num" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="172">En el miembro 'ModeloReceptioContainer.mb_get_valida_smdt(string)', corrija el uso de mayúsculas y minúsculas en 'num' en el nombre del parámetro 'ref_num' cambiándolo a 'Num'.</Issue>
+            </Message>
+            <Message Id="smdt" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="172">Corrija el uso de mayúsculas y minúsculas en 'smdt' en el nombre del miembro 'ModeloReceptioContainer.mb_get_valida_smdt(string)' cambiándolo a 'Smdt'.</Issue>
+            </Message>
+            <Message Id="valida" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="172">Corrija el uso de mayúsculas y minúsculas en 'valida' en el nombre del miembro 'ModeloReceptioContainer.mb_get_valida_smdt(string)' cambiándolo a 'Valida'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="172">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_valida_smdt(string)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="172">En el miembro 'ModeloReceptioContainer.mb_get_valida_smdt(string)', quite los caracteres de subrayado del nombre del parámetro 'ref_num'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_get_validaciones(System.String,System.String,System.Nullable`1&lt;System.Int32&gt;,System.Nullable`1&lt;System.Int64&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">Corrija el uso de mayúsculas y minúsculas en 'get' en el nombre del miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)' cambiándolo a 'Get'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="opcion" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">En el miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)', corrija el uso de mayúsculas y minúsculas en 'opcion' en el nombre del parámetro 'i_opcion' cambiándolo a 'Opcion'.</Issue>
+            </Message>
+            <Message Id="validaciones" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">Corrija el uso de mayúsculas y minúsculas en 'validaciones' en el nombre del miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)' cambiándolo a 'Validaciones'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">En el miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)', quite los caracteres de subrayado del nombre del parámetro 'i_BigintValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">En el miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)', quite los caracteres de subrayado del nombre del parámetro 'i_IntValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">En el miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)', quite los caracteres de subrayado del nombre del parámetro 'i_StrValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="181">En el miembro 'ModeloReceptioContainer.mb_get_validaciones(string, string, int?, long?)', quite los caracteres de subrayado del nombre del parámetro 'i_opcion'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_secuencia()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="202">Considere el uso de un diseño donde 'ModeloReceptioContainer.mb_secuencia()' no anide el tipo genérico 'ObjectResult&lt;long?&gt;'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="202">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_secuencia()' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="secuencia" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="202">Corrija el uso de mayúsculas y minúsculas en 'secuencia' en el nombre del miembro 'ModeloReceptioContainer.mb_secuencia()' cambiándolo a 'Secuencia'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="202">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_secuencia()'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#mb_set_estate_smdt_transaccion(System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="207">Considere el uso de un diseño donde 'ModeloReceptioContainer.mb_set_estate_smdt_transaccion(string, string, string)' no anide el tipo genérico 'ObjectResult&lt;byte?&gt;'.</Issue>
+            </Message>
+            <Message Id="estate" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="207">Corrija el uso de mayúsculas y minúsculas en 'estate' en el nombre del miembro 'ModeloReceptioContainer.mb_set_estate_smdt_transaccion(string, string, string)' cambiándolo a 'Estate'.</Issue>
+            </Message>
+            <Message Id="mb" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="207">Corrija el uso de mayúsculas y minúsculas en 'mb' en el nombre del miembro 'ModeloReceptioContainer.mb_set_estate_smdt_transaccion(string, string, string)' cambiándolo a 'MB'.</Issue>
+            </Message>
+            <Message Id="set" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="207">Corrija el uso de mayúsculas y minúsculas en 'set' en el nombre del miembro 'ModeloReceptioContainer.mb_set_estate_smdt_transaccion(string, string, string)' cambiándolo a 'Set'.</Issue>
+            </Message>
+            <Message Id="smdt" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="207">Corrija el uso de mayúsculas y minúsculas en 'smdt' en el nombre del miembro 'ModeloReceptioContainer.mb_set_estate_smdt_transaccion(string, string, string)' cambiándolo a 'Smdt'.</Issue>
+            </Message>
+            <Message Id="transaccion" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="207">Corrija el uso de mayúsculas y minúsculas en 'transaccion' en el nombre del miembro 'ModeloReceptioContainer.mb_set_estate_smdt_transaccion(string, string, string)' cambiándolo a 'Transaccion'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="207">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.mb_set_estate_smdt_transaccion(string, string, string)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#MESSAGES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="MESSAGES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="47">Corrija el uso de mayúsculas y minúsculas en 'MESSAGES' en el nombre del miembro 'ModeloReceptioContainer.MESSAGES' cambiándolo a 'Messages'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#MOTIVES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="MOTIVES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="69">Corrija el uso de mayúsculas y minúsculas en 'MOTIVES' en el nombre del miembro 'ModeloReceptioContainer.MOTIVES' cambiándolo a 'Motives'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PRE_GATE_DETAILS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DETAILS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="53">Corrija el uso de mayúsculas y minúsculas en 'DETAILS' en el nombre del miembro 'ModeloReceptioContainer.PRE_GATE_DETAILS' cambiándolo a 'Details'.</Issue>
+            </Message>
+            <Message Id="GATE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="53">Corrija el uso de mayúsculas y minúsculas en 'GATE' en el nombre del miembro 'ModeloReceptioContainer.PRE_GATE_DETAILS' cambiándolo a 'Gate'.</Issue>
+            </Message>
+            <Message Id="PRE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="53">Corrija el uso de mayúsculas y minúsculas en 'PRE' en el nombre del miembro 'ModeloReceptioContainer.PRE_GATE_DETAILS' cambiándolo a 'Pre'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="53">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.PRE_GATE_DETAILS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PRE_GATES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="GATES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="33">Corrija el uso de mayúsculas y minúsculas en 'GATES' en el nombre del miembro 'ModeloReceptioContainer.PRE_GATES' cambiándolo a 'Gates'.</Issue>
+            </Message>
+            <Message Id="PRE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="33">Corrija el uso de mayúsculas y minúsculas en 'PRE' en el nombre del miembro 'ModeloReceptioContainer.PRE_GATES' cambiándolo a 'Pre'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="33">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.PRE_GATES'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PROCESSES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PROCESSES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="37">Corrija el uso de mayúsculas y minúsculas en 'PROCESSES' en el nombre del miembro 'ModeloReceptioContainer.PROCESSES' cambiándolo a 'Processes'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#REASSIGNMENT_MOTIVES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="MOTIVES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="48">Corrija el uso de mayúsculas y minúsculas en 'MOTIVES' en el nombre del miembro 'ModeloReceptioContainer.REASSIGNMENT_MOTIVES' cambiándolo a 'Motives'.</Issue>
+            </Message>
+            <Message Id="REASSIGNMENT" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="48">Corrija el uso de mayúsculas y minúsculas en 'REASSIGNMENT' en el nombre del miembro 'ModeloReceptioContainer.REASSIGNMENT_MOTIVES' cambiándolo a 'Reassignment'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="48">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.REASSIGNMENT_MOTIVES'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#REASSIGNMENTS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="REASSIGNMENTS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="46">Corrija el uso de mayúsculas y minúsculas en 'REASSIGNMENTS' en el nombre del miembro 'ModeloReceptioContainer.REASSIGNMENTS' cambiándolo a 'Reassignments'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#REPRINTS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="REPRINTS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="61">Corrija el uso de mayúsculas y minúsculas en 'REPRINTS' en el nombre del miembro 'ModeloReceptioContainer.REPRINTS' cambiándolo a 'Reprints'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SEALS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="SEALS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="35">Corrija el uso de mayúsculas y minúsculas en 'SEALS' en el nombre del miembro 'ModeloReceptioContainer.SEALS' cambiándolo a 'Seals'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SENSOR_KIOSK_TRANSACTIONS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="KIOSK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="59">Corrija el uso de mayúsculas y minúsculas en 'KIOSK' en el nombre del miembro 'ModeloReceptioContainer.SENSOR_KIOSK_TRANSACTIONS' cambiándolo a 'Kiosk'.</Issue>
+            </Message>
+            <Message Id="SENSOR" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="59">Corrija el uso de mayúsculas y minúsculas en 'SENSOR' en el nombre del miembro 'ModeloReceptioContainer.SENSOR_KIOSK_TRANSACTIONS' cambiándolo a 'Sensor'.</Issue>
+            </Message>
+            <Message Id="TRANSACTIONS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="59">Corrija el uso de mayúsculas y minúsculas en 'TRANSACTIONS' en el nombre del miembro 'ModeloReceptioContainer.SENSOR_KIOSK_TRANSACTIONS' cambiándolo a 'Transactions'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="59">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.SENSOR_KIOSK_TRANSACTIONS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SENSORS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="SENSORS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="58">Corrija el uso de mayúsculas y minúsculas en 'SENSORS' en el nombre del miembro 'ModeloReceptioContainer.SENSORS' cambiándolo a 'Sensors'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#STOCK_OPERATION" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="OPERATION" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="67">Corrija el uso de mayúsculas y minúsculas en 'OPERATION' en el nombre del miembro 'ModeloReceptioContainer.STOCK_OPERATION' cambiándolo a 'Operation'.</Issue>
+            </Message>
+            <Message Id="STOCK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="67">Corrija el uso de mayúsculas y minúsculas en 'STOCK' en el nombre del miembro 'ModeloReceptioContainer.STOCK_OPERATION' cambiándolo a 'Stock'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="67">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.STOCK_OPERATION'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#STOCK_REGISTER" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="REGISTER" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="68">Corrija el uso de mayúsculas y minúsculas en 'REGISTER' en el nombre del miembro 'ModeloReceptioContainer.STOCK_REGISTER' cambiándolo a 'Register'.</Issue>
+            </Message>
+            <Message Id="STOCK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="68">Corrija el uso de mayúsculas y minúsculas en 'STOCK' en el nombre del miembro 'ModeloReceptioContainer.STOCK_REGISTER' cambiándolo a 'Stock'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="68">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.STOCK_REGISTER'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SUB_MOTIVES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="MOTIVES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="70">Corrija el uso de mayúsculas y minúsculas en 'MOTIVES' en el nombre del miembro 'ModeloReceptioContainer.SUB_MOTIVES' cambiándolo a 'Motives'.</Issue>
+            </Message>
+            <Message Id="SUB" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="70">Corrija el uso de mayúsculas y minúsculas en 'SUB' en el nombre del miembro 'ModeloReceptioContainer.SUB_MOTIVES' cambiándolo a 'Sub'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="70">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.SUB_MOTIVES'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TOS_PROCCESSES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="PROCCESSES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="57">Corrija el uso de mayúsculas y minúsculas en 'PROCCESSES' en el nombre del miembro 'ModeloReceptioContainer.TOS_PROCCESSES' cambiándolo a 'Proccesses'.</Issue>
+            </Message>
+            <Message Id="TOS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="57">Corrija el uso de mayúsculas y minúsculas en 'TOS' en el nombre del miembro 'ModeloReceptioContainer.TOS_PROCCESSES' cambiándolo a 'Tos'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="57">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.TOS_PROCCESSES'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TRANSACTION_TYPES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="TRANSACTION" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="55">Corrija el uso de mayúsculas y minúsculas en 'TRANSACTION' en el nombre del miembro 'ModeloReceptioContainer.TRANSACTION_TYPES' cambiándolo a 'Transaction'.</Issue>
+            </Message>
+            <Message Id="TYPES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="55">Corrija el uso de mayúsculas y minúsculas en 'TYPES' en el nombre del miembro 'ModeloReceptioContainer.TRANSACTION_TYPES' cambiándolo a 'Types'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="55">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.TRANSACTION_TYPES'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TROUBLE_DESK_USERS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DESK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="41">Corrija el uso de mayúsculas y minúsculas en 'DESK' en el nombre del miembro 'ModeloReceptioContainer.TROUBLE_DESK_USERS' cambiándolo a 'Desk'.</Issue>
+            </Message>
+            <Message Id="TROUBLE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="41">Corrija el uso de mayúsculas y minúsculas en 'TROUBLE' en el nombre del miembro 'ModeloReceptioContainer.TROUBLE_DESK_USERS' cambiándolo a 'Trouble'.</Issue>
+            </Message>
+            <Message Id="USERS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="41">Corrija el uso de mayúsculas y minúsculas en 'USERS' en el nombre del miembro 'ModeloReceptioContainer.TROUBLE_DESK_USERS' cambiándolo a 'Users'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="41">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.TROUBLE_DESK_USERS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TROUBLE_TICKETS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="TICKETS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="40">Corrija el uso de mayúsculas y minúsculas en 'TICKETS' en el nombre del miembro 'ModeloReceptioContainer.TROUBLE_TICKETS' cambiándolo a 'Tickets'.</Issue>
+            </Message>
+            <Message Id="TROUBLE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="40">Corrija el uso de mayúsculas y minúsculas en 'TROUBLE' en el nombre del miembro 'ModeloReceptioContainer.TROUBLE_TICKETS' cambiándolo a 'Trouble'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="40">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.TROUBLE_TICKETS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TYPE_ERRORS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ERRORS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="52">Corrija el uso de mayúsculas y minúsculas en 'ERRORS' en el nombre del miembro 'ModeloReceptioContainer.TYPE_ERRORS' cambiándolo a 'Errors'.</Issue>
+            </Message>
+            <Message Id="TYPE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="52">Corrija el uso de mayúsculas y minúsculas en 'TYPE' en el nombre del miembro 'ModeloReceptioContainer.TYPE_ERRORS' cambiándolo a 'Type'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="52">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.TYPE_ERRORS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#USER_SESSIONS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="SESSIONS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="43">Corrija el uso de mayúsculas y minúsculas en 'SESSIONS' en el nombre del miembro 'ModeloReceptioContainer.USER_SESSIONS' cambiándolo a 'Sessions'.</Issue>
+            </Message>
+            <Message Id="USER" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="43">Corrija el uso de mayúsculas y minúsculas en 'USER' en el nombre del miembro 'ModeloReceptioContainer.USER_SESSIONS' cambiándolo a 'User'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="95" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="43">Quite los caracteres de subrayado del nombre del miembro 'ModeloReceptioContainer.USER_SESSIONS'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ZONES" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ZONES" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:47Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Infraestructura\Modelo" File="ModeloReceptio.Context.cs" Line="38">Corrija el uso de mayúsculas y minúsculas en 'ZONES' en el nombre del miembro 'ModeloReceptioContainer.ZONES' cambiándolo a 'Zones'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AbstractTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1012">
+   <Name>Los tipos abstractos no deberían tener constructores</Name>
+   <Description>No tienen sentido los constructores públicos para tipos abstractos porque no pueden crear instancias de tipos abstractos.</Description>
+   <Resolution Name="Default">Cambie la accesibilidad de todos los constructores públicos de {0} a protected.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182126.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+   <Name>Los ensamblados deben tener nombres seguros válidos</Name>
+   <Description>Puede que el ensamblado no tenga un nombre seguro, que no sea válido o que éste sea válido únicamente por la configuración del equipo. No se puede implementar el ensamblado en este estado. Las causas más probables son: 1) El contenido del ensamblado se modificó después de firmarlo. 2) Error en el proceso de firma. 3) El ensamblado se firmó con retraso. 4) Existía una clave del Registro que permitió que se realizara la comprobación (de lo contrario no se hubiera realizado).</Description>
+   <Resolution Name="NoStrongName">Firme {0} con una clave de nombre seguro.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182127.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+   <Name>Evitar espacios de nombres con pocos tipos</Name>
+   <Description>Un espacio de nombres debe tener generalmente más de cinco tipos.</Description>
+   <Resolution Name="Default">Considere combinar los tipos definidos en '{0}' con otro espacio de nombres.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182130.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="Desechar (Dispose) objetos antes de perder el ámbito" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Desechar (Dispose) objetos antes de perder el ámbito</Name>
+   <Description>Si un objeto que se puede desechar (método Dispose) no se desecha de forma explícita antes de que todas las referencias a él estén fuera de ámbito, el objeto se desechará en algún momento indeterminado cuando el recolector de elementos no utilizados ejecute el finalizador del objeto. Puesto que podría producirse un evento excepcional que impida que se ejecute el finalizador del objeto, el objeto debe desecharse de forma explícita.</Description>
+   <Resolution Name="NonExceptionEdge">En el método {0}, llame a System.IDisposable.Dispose en el objeto {1} antes de que todas las referencias a él estén fuera de ámbito.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
+   <Name>No anidar tipos genéricos en signaturas de miembro</Name>
+   <Description>Evite utilizar API que requieran que los usuarios inicien un tipo genérico con otro tipo genérico como argumento de tipo. La sintaxis sería demasiado complicada.</Description>
+   <Resolution Name="Default">Considere el uso de un diseño donde {0} no anide el tipo genérico {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182144.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+   <Name>Los identificadores deberían utilizar las mayúsculas y minúsculas correctamente</Name>
+   <Description>Los identificadores de tipo, espacio de nombres y miembro usan las mayúsculas y minúsculas como en Pascal. Los identificadores de parámetro usan las mayúsculas y minúsculas como en Camel. Los acrónimos de dos letras en estos identificadores deben ir en mayúsculas; por ejemplo, use System.IO en lugar de System.Io. Los acrónimos de tres o más letras deben usar las mayúsculas y minúsculas como en Pascal; por ejemplo, use System.Xml en lugar de System.XML. La convención de mayúsculas y minúsculas Pascal pone en mayúscula la primera letra de cada palabra, como en BackColor. La convención de mayúsculas y minúsculas Camel pone en minúscula la primera letra de la primera palabra y, en mayúscula, la primera letra de las palabras siguientes, como en backgroundColor. Si bien puede ser una práctica común para algunos acrónimos de dos letras no ponerlos totalmente en mayúsculas, no se deben excluir las infracciones de esta regla por esta razón. Por ejemplo, 'DbConnection', es común pero incorrecto; use DBConnection. Una infracción de esta regla puede ser necesaria por compatibilidad con esquemas de símbolos no administrados existentes. En general, sin embargo, estos símbolos no deberían estar visibles fuera del ensamblado que los usa.</Description>
+   <Resolution Name="Assembly">Corrija el uso de mayúsculas y minúsculas en '{0}' en el nombre del ensamblado {1} cambiándolo a '{2}'.</Resolution>
+   <Resolution Name="Member">Corrija el uso de mayúsculas y minúsculas en '{0}' en el nombre del miembro {1} cambiándolo a '{2}'.</Resolution>
+   <Resolution Name="MemberParameter">En el miembro {0}, corrija el uso de mayúsculas y minúsculas en '{1}' en el nombre del parámetro {2} cambiándolo a '{3}'.</Resolution>
+   <Resolution Name="Namespace">Corrija el uso de mayúsculas y minúsculas en '{0}' en el nombre del espacio de nombres '{1}' cambiándolo a '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182240.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="85">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldHaveCorrectPrefix" Category="Microsoft.Naming" CheckId="CA1715">
+   <Name>Los identificadores deberían tener el prefijo correcto</Name>
+   <Description>Ponga la letra 'I' como prefijo a los nombres de interfaz para indicar que el tipo es una interfaz, como IFormattable. Ponga la letra 'T' como prefijo a los nombres de parámetro de tipo genérico y deles nombres descriptivos, como Diccionario&lt;TKey, TValue&gt;, a menos que una sola 'T' sea totalmente explicativa, como Colección&lt;T&gt;. Use las mayúsculas y  minúsculas como en Pascal para los nombres de interfaz y de parámetros de tipo. Use las abreviaciones con moderación. No use el carácter de subrayado. No use nombres similares cuando defina un par clase/interfaz donde la clase es una implementación estándar de la interfaz. Los nombres deben diferir sólo en la letra I usada como prefijo en el nombre de interfaz, como Component e IComponent.</Description>
+   <Resolution Name="MethodTypeParameter">En el método {0}, ponga el prefijo 'T' al nombre del parámetro de tipo genérico {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182243.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707">
+   <Name>Los identificadores no deberían contener subrayado</Name>
+   <Description>No utilice subrayado al especificar identificadores. Algunos identificadores de Visual Studio generados para aplicaciones contienen caracteres de subrayado. En general, se deberían evitar los caracteres de subrayado en identificadores públicos.</Description>
+   <Resolution Name="Member">Quite los caracteres de subrayado del nombre del miembro {0}.</Resolution>
+   <Resolution Name="MemberParameter">En el miembro {0}, quite los caracteres de subrayado del nombre del parámetro {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182245.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+   <Name>Marque los ensamblados con CLSCompliantAttribute</Name>
+   <Description>Los ensamblados deben establecer explícitamente ser conformes a CLS usando el atributo CLSCompliant. Un ensamblado sin este atributo no es conforme a CLS. Los ensamblados, módulos y tipos pueden ser conformes a CLS incluso si alguna parte del ensamblado, módulo o tipo no son conformes a CLS. Se aplican las siguientes reglas: 1) Si el elemento está marcado como CLSCompliant, cualquier miembro no compatible debe tener el atributo CLSCompliant presente con el argumento establecido como false. 2) Se debe proporcionar un miembro alternativo conforme a CLS comparable con cada miembro que no sea conforme a CLS.</Description>
+   <Resolution Name="Default">Marque {0} con CLSCompliant(true) porque expone tipos visibles externamente.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182156.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Especificar IFormatProvider</Name>
+   <Description>Si existe una sobrecarga que toma un argumento IFormatProvider, se debe llamar siempre en favor de una sobrecarga que no lo haga. Algunos métodos del runtime convierten un valor a o desde una representación de cadena y toman un parámetro de cadena que contiene uno o varios caracteres, denominados especificadores de formato, que indican cómo se debe convertir el valor. Si el significado del especificador de formato varía por referencia cultural, un objeto de formato proporciona los caracteres usados en la representación de cadena. En escenarios donde el comportamiento de ordenación y comparación no debería cambiar nunca entre referecias culturales, especifique CultureInfo.InvariantCulture; de lo contrario, especifique CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternate">Puesto que el comportamiento de {0} podría variar en función de la configuración regional del usuario actual, reemplace esta llamada en {1} por una llamada a {2}. Si el resultado de {2} estará basado en los datos proporcionados por el usuario, especifique {3} como parámetro 'IFormatProvider'. De lo contrario, si el resultado estará basado en datos almacenados a los que tiene acceso el software, como cuando se cargan desde un disco o una base de datos, especifique {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Validar argumentos de métodos públicos</Name>
+   <Description>Todos los argumentos de referencia pasados a métodos visibles externamente deben comprobarse para ver si son NULL (Nothing en VB). Si procede, produzca una excepción System.ArgumentNullException cuando el argumento sea NULL.</Description>
+   <Resolution Name="Default">En el método {0} visible externamente, valide el parámetro '{1}' antes de usarlo.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="17.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Categoría</String>
+  <String Key="Certainty">Certeza</String>
+  <String Key="CollapseAll">Contraer todo</String>
+  <String Key="CheckId">Comprobar id.</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">errores</String>
+  <String Key="ExpandAll">Expandir todo</String>
+  <String Key="Help">Ayuda</String>
+  <String Key="Line">Línea</String>
+  <String Key="Messages">mensajes</String>
+  <String Key="LocationNotStoredInPdb">[Ubicación no almacenada en Pdb]</String>
+  <String Key="Project">Proyecto</String>
+  <String Key="Resolution">Resolución</String>
+  <String Key="Rule">Regla</String>
+  <String Key="RuleFile">Archivo de regla</String>
+  <String Key="RuleDescription">Descripción de la regla</String>
+  <String Key="Source">Origen</String>
+  <String Key="Status">Estado</String>
+  <String Key="Target">Círculos concéntricos</String>
+  <String Key="Warning">Advertencia</String>
+  <String Key="Warnings">advertencias</String>
+  <String Key="ReportTitle">Informe de Code Analysis</String>
+ </Localized>
+</FxCopReport>

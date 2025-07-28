@@ -1,0 +1,13 @@
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Transaction.Dominio.dll
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Transaction.Dominio.pdb
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Transaction.Dominio.dll.CodeAnalysisLog.xml
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Transaction.Dominio.dll.lastcodeanalysissucceeded
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.dll
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.dll
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.pdb
+D:\Proyect\RECEPTIO\Transaction.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.pdb
+D:\Proyect\RECEPTIO\Transaction.Dominio\obj\Debug\Transaction.Dominio.csproj.AssemblyReference.cache
+D:\Proyect\RECEPTIO\Transaction.Dominio\obj\Debug\Transaction.Dominio.csproj.CoreCompileInputs.cache
+D:\Proyect\RECEPTIO\Transaction.Dominio\obj\Debug\Transact.AC53346B.Up2Date
+D:\Proyect\RECEPTIO\Transaction.Dominio\obj\Debug\RECEPTIO.CapaDominio.Transaction.Dominio.dll
+D:\Proyect\RECEPTIO\Transaction.Dominio\obj\Debug\RECEPTIO.CapaDominio.Transaction.Dominio.pdb

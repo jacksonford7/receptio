@@ -1,0 +1,3680 @@
+﻿using Mobile.ServiceTransact;
+using Mobile.ServicioMobile;
+using Mobile.ServiceTD;
+using Mobile.ServicioAutenticacion;
+using Mobile.Vistas;
+using Mobile.ViewModels;
+using RECEPTIO.CapaPresentacion.UWP.MVVM;
+using System;
+using System.Collections.ObjectModel;
+using System.Net;
+using System.ServiceModel;
+using Windows.UI.Popups;
+using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
+using System.Collections.Generic;
+using Windows.UI.Xaml.Controls;
+
+namespace Mobile.ViewModels
+{
+    internal class Main2PageViewModel : NotificationBase
+    {
+        #region Variables
+        private readonly MainPage _ventanaAutenticacion;
+        private ObservableCollection<InfoViewModel> _tb;
+        private ServiceClient s;
+        private ServicioMobileClient w;
+        private ServicioAnuncianteProblemaClient td;
+        private pre_gate_detail_container_item dcnt;
+        private pre_gate_detail_damage_item dam;
+        private pre_gate_container_seal_item seal;
+        private seal_setter sel;
+        private container_item contain;
+        private ServicioMobile.SEAL sealc;
+        private ServicioMobile.CONTAINER cont;
+        private ServicioMobile.DAMAGE damc;
+        private pre_gate_item cabt;
+        private ObservableCollection<pre_gate_details_item>  ldet;
+        private ObservableCollection<DatosContenedor> cdc;
+        private ObservableCollection<string> lpas;
+        private pre_gate_details_item dett;
+        private save_tablet_transactionResponse trMa;
+        private get_door_passResponse pp;
+        private aisv_item aisv;
+        private ObservableCollection<ListItem> _lsTip;
+        private ObservableCollection<ListItem> _lsCom;
+        private string Iso;
+        private string Linea;
+        private string Tamano;
+        private string TipoCarga;
+        private string Book;
+        private string chofer;
+        private string placa;
+        private string empresa;
+        private string usuario;
+        private string carga1;
+        private string carga2;
+        private string carga3;
+        private string carga4;
+        private string gkey1;
+        private string gkey2;
+        private string gkey3;
+        private string gkey4;
+        private string turno;
+        private string ap;
+        private string qty;
+        private string tip;
+        private string tipexp;
+        private int tipTran;
+        private string mns;
+        private bool val;
+        public bool bvalida = true;
+        public bool binicia = false;
+        public int num;
+        private string _tranexp;
+        private string _tranimp;
+        
+        private string _cargaimp1;
+        private string _cargaimp2;
+        private string _cargaimp3;
+        private string _cargaimp4;
+
+        private string _cargaexp1;
+        private string _sealcgsa1;
+        private string _seal1;
+        private string _seal2;
+        private string _seal3;
+        private string _seal4;
+        private ListItem _danio1;
+        private ListItem _danio2;
+        private string _danio3;
+        private string _danio4;
+        private string _cargaexp2;
+        private string _sealcgsa2;
+        private string _seal5;
+        private string _seal6;
+        private string _seal7;
+        private string _seal8;
+        private ListItem _danio5;
+        private ListItem _danio6;
+        private string _danio7;
+        private string _danio8;
+        private string _cargaexp3;
+        private string _sealcgsa3;
+        private string _seal9;
+        private string _seal10;
+        private string _seal11;
+        private string _seal12;
+        private ListItem _danio9;
+        private ListItem _danio10;
+        private string _danio11;
+        private string _danio12;
+        private ListItem _danio13;
+        private ListItem _danio14;
+        private string _danio15;
+        private string _danio16;
+        private ListItem _danio17;
+        private ListItem _danio18;
+        private string _danio19;
+        private string _danio20;
+        private string _cargaexp4;
+        private string _ip;
+        private string _host;
+        private string _zona;
+        private string _usuario;
+        private SolidColorBrush _gcolor;
+        private ObservableCollection<combo_item> _lsTipo;
+        private ObservableCollection<combo_item> _lsComp;
+        private RespuestaProceso tr;
+        private ServicioMobile.ZONE ZonaObj;
+        int id_device;
+
+        #endregion
+
+        #region Constructor
+        internal Main2PageViewModel(MainPage ventanaAutenticacion)
+        {
+            _ventanaAutenticacion = ventanaAutenticacion;
+            //ObtenerIp();
+            GColor = new SolidColorBrush(Colors.Green);
+
+            //s = new ServiceClient();
+            var binding = new BasicHttpBinding
+            {
+                MaxBufferPoolSize = 2147483647,
+                MaxBufferSize = 2147483647,
+                MaxReceivedMessageSize = 2147483647
+            };
+            binding.ReaderQuotas.MaxArrayLength = 2147483647;
+            binding.ReaderQuotas.MaxDepth = 2147483647;
+            binding.ReaderQuotas.MaxStringContentLength = 2147483647;
+            Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+            Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+            var endpoint = rmap.GetValue("ServiceTransact", ctx).ValueAsString;
+            s = new ServiceClient(binding, new EndpointAddress(endpoint));
+
+
+            //w = new ServicioMobileClient();
+            var endpoint2 = rmap.GetValue("DireccionServicioMobile", ctx).ValueAsString;
+            w = new ServicioMobileClient(binding, new EndpointAddress(endpoint2));
+
+            Ip = ((VentanaAutenticacionViewModel)(App.Current.Resources["UserData"])).Ip.Trim();
+
+            ObtenerDevice();
+            ObtenerZona();
+            //td = new ServicioAnuncianteProblemaClient();
+            var endpoint3 = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+            td = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint3));
+
+            chofer = ((ValidatePageViewModel)(App.Current.Resources["ValidaData"])).Chofer.Trim().ToUpper();
+            placa = ((ValidatePageViewModel)(App.Current.Resources["ValidaData"])).Placa.Trim().ToUpper();
+            empresa = ((ValidatePageViewModel)(App.Current.Resources["ValidaData"])).Empresa.Trim();
+            usuario = ((VentanaAutenticacionViewModel)(App.Current.Resources["UserData"])).Usuario;
+            Usuario = ((VentanaAutenticacionViewModel)(App.Current.Resources["UserData"])).Usuario;
+            Host = ((VentanaAutenticacionViewModel)(App.Current.Resources["UserData"])).Host;
+            Zona = ((VentanaAutenticacionViewModel)(App.Current.Resources["UserData"])).Zona;
+            mns = "";
+            lsTipo = new ObservableCollection<combo_item>();
+            lsComp = new ObservableCollection<combo_item>();
+            lsTip = new ObservableCollection<ListItem>();
+            lsCom = new ObservableCollection<ListItem>();
+            val = true;
+            ListTipo();
+            ListComponent();
+        }
+        #endregion
+
+        #region Propiedades
+        public string TransExp
+        {
+            get
+            {
+                return _tranexp;
+            }
+            set
+            {
+                if (_tranexp == value)
+                    return;
+                _tranexp = value;
+                RaisePropertyChanged("TransExp");
+            }
+        }
+
+        public string TransImp
+        {
+            get
+            {
+                return _tranimp;
+            }
+            set
+            {
+                if (_tranimp == value)
+                    return;
+                _tranimp = value;
+                RaisePropertyChanged("TransImp");
+            }
+        }
+
+        public string CargaExp1
+        {
+            get
+            {
+                return _cargaexp1;
+            }
+            set
+            {
+                if (_cargaexp1 == value)
+                    return;
+                _cargaexp1 = value;
+                RaisePropertyChanged("CargaExp1");
+            }
+        }
+
+        public string CargaExp2
+        {
+            get
+            {
+                return _cargaexp2;
+            }
+            set
+            {
+                if (_cargaexp2 == value)
+                    return;
+                _cargaexp2 = value;
+                RaisePropertyChanged("CargaExp2");
+            }
+        }
+
+        public string CargaExp3
+        {
+            get
+            {
+                return _cargaexp3;
+            }
+            set
+            {
+                if (_cargaexp3 == value)
+                    return;
+                _cargaexp3 = value;
+                RaisePropertyChanged("CargaExp3");
+            }
+        }
+
+        public string CargaExp4
+        {
+            get
+            {
+                return _cargaexp4;
+            }
+            set
+            {
+                if (_cargaexp4 == value)
+                    return;
+                _cargaexp4 = value;
+                RaisePropertyChanged("CargaExp4");
+            }
+        }
+
+        public string CargaImp1
+        {
+            get
+            {
+                return _cargaimp1;
+            }
+            set
+            {
+                if (_cargaimp1 == value)
+                    return;
+                _cargaimp1 = value;
+                RaisePropertyChanged("CargaImp1");
+            }
+        }
+
+        public string CargaImp2
+        {
+            get
+            {
+                return _cargaimp2;
+            }
+            set
+            {
+                if (_cargaimp2 == value)
+                    return;
+                _cargaimp2 = value;
+                RaisePropertyChanged("CargaImp2");
+            }
+        }
+
+        public string CargaImp3
+        {
+            get
+            {
+                return _cargaimp3;
+            }
+            set
+            {
+                if (_cargaimp3 == value)
+                    return;
+                _cargaimp3 = value;
+                RaisePropertyChanged("CargaImp3");
+            }
+        }
+
+        public string CargaImp4
+        {
+            get
+            {
+                return _cargaimp4;
+            }
+            set
+            {
+                if (_cargaimp4 == value)
+                    return;
+                _cargaimp4 = value;
+                RaisePropertyChanged("CargaImp4");
+            }
+        }
+
+        public string SealCgsa1
+        {
+            get
+            {
+                return _sealcgsa1;
+            }
+            set
+            {
+                if (_sealcgsa1 == value)
+                    return;
+                _sealcgsa1 = value;
+                RaisePropertyChanged("SealCgsa1");
+            }
+        }
+
+        public string SealCgsa2
+        {
+            get
+            {
+                return _sealcgsa2;
+            }
+            set
+            {
+                if (_sealcgsa2 == value)
+                    return;
+                _sealcgsa2 = value;
+                RaisePropertyChanged("SealCgsa2");
+            }
+        }
+
+        public string SealCgsa3
+        {
+            get
+            {
+                return _sealcgsa3;
+            }
+            set
+            {
+                if (_sealcgsa3 == value)
+                    return;
+                _sealcgsa3 = value;
+                RaisePropertyChanged("SealCgsa3");
+            }
+        }
+
+        public string Seal1
+        {
+            get
+            {
+                return _seal1;
+            }
+            set
+            {
+                if (_seal1 == value)
+                    return;
+                _seal1 = value;
+                RaisePropertyChanged("Seal1");
+            }
+        }
+
+        public string Seal2
+        {
+            get
+            {
+                return _seal2;
+            }
+            set
+            {
+                if (_seal2 == value)
+                    return;
+                _seal2 = value;
+                RaisePropertyChanged("Seal2");
+            }
+        }
+
+        public string Seal3
+        {
+            get
+            {
+                return _seal3;
+            }
+            set
+            {
+                if (_seal3 == value)
+                    return;
+                _seal3 = value;
+                RaisePropertyChanged("Seal3");
+            }
+        }
+
+        public string Seal4
+        {
+            get
+            {
+                return _seal4;
+            }
+            set
+            {
+                if (_seal4 == value)
+                    return;
+                _seal4 = value;
+                RaisePropertyChanged("Seal4");
+            }
+        }
+
+        public string Seal5
+        {
+            get
+            {
+                return _seal5;
+            }
+            set
+            {
+                if (_seal2 == value)
+                    return;
+                _seal5 = value;
+                RaisePropertyChanged("Seal5");
+            }
+        }
+
+        public string Seal6
+        {
+            get
+            {
+                return _seal6;
+            }
+            set
+            {
+                if (_seal6 == value)
+                    return;
+                _seal6 = value;
+                RaisePropertyChanged("Seal6");
+            }
+        }
+
+        public string Seal7
+        {
+            get
+            {
+                return _seal7;
+            }
+            set
+            {
+                if (_seal7 == value)
+                    return;
+                _seal7 = value;
+                RaisePropertyChanged("Seal7");
+            }
+        }
+
+        public string Seal8
+        {
+            get
+            {
+                return _seal8;
+            }
+            set
+            {
+                if (_seal8 == value)
+                    return;
+                _seal8 = value;
+                RaisePropertyChanged("Seal8");
+            }
+        }
+
+        public string Seal9
+        {
+            get
+            {
+                return _seal9;
+            }
+            set
+            {
+                if (_seal9 == value)
+                    return;
+                _seal9 = value;
+                RaisePropertyChanged("Seal9");
+            }
+        }
+
+        public string Seal10
+        {
+            get
+            {
+                return _seal10;
+            }
+            set
+            {
+                if (_seal10 == value)
+                    return;
+                _seal10 = value;
+                RaisePropertyChanged("Seal10");
+            }
+        }
+
+        public string Seal11
+        {
+            get
+            {
+                return _seal11;
+            }
+            set
+            {
+                if (_seal11 == value)
+                    return;
+                _seal11 = value;
+                RaisePropertyChanged("Seal11");
+            }
+        }
+
+        public string Seal12
+        {
+            get
+            {
+                return _seal12;
+            }
+            set
+            {
+                if (_seal12 == value)
+                    return;
+                _seal12 = value;
+                RaisePropertyChanged("Seal12");
+            }
+        }
+
+        public ListItem Danio1
+        {
+            get
+            {
+                return _danio1;
+            }
+            set
+            {
+                if (_danio1 == value)
+                    return;
+                _danio1 = value;
+                RaisePropertyChanged("Danio1");
+            }
+        }
+
+        public ListItem Danio2
+        {
+            get
+            {
+                return _danio2;
+            }
+            set
+            {
+                if (_danio2 == value)
+                    return;
+                _danio2 = value;
+                RaisePropertyChanged("Danio2");
+            }
+        }
+
+        public string Danio3
+        {
+            get
+            {
+                return _danio3;
+            }
+            set
+            {
+                if (_danio3 == value)
+                    return;
+                _danio3 = value;
+                RaisePropertyChanged("Danio3");
+            }
+        }
+
+        public string Danio4
+        {
+            get
+            {
+                return _danio4;
+            }
+            set
+            {
+                if (_danio4 == value)
+                    return;
+                _danio4 = value;
+                RaisePropertyChanged("Danio4");
+            }
+        }
+
+        public ListItem Danio5
+        {
+            get
+            {
+                return _danio5;
+            }
+            set
+            {
+                if (_danio5 == value)
+                    return;
+                _danio5 = value;
+                RaisePropertyChanged("Danio5");
+            }
+        }
+
+        public ListItem Danio6
+        {
+            get
+            {
+                return _danio6;
+            }
+            set
+            {
+                if (_danio6 == value)
+                    return;
+                _danio6 = value;
+                RaisePropertyChanged("Danio6");
+            }
+        }
+
+        public string Danio7
+        {
+            get
+            {
+                return _danio7;
+            }
+            set
+            {
+                if (_danio7 == value)
+                    return;
+                _danio7 = value;
+                RaisePropertyChanged("Danio7");
+            }
+        }
+
+        public string Danio8
+        {
+            get
+            {
+                return _danio8;
+            }
+            set
+            {
+                if (_danio8 == value)
+                    return;
+                _danio8 = value;
+                RaisePropertyChanged("Danio8");
+            }
+        }
+
+        public ListItem Danio9
+        {
+            get
+            {
+                return _danio9;
+            }
+            set
+            {
+                if (_danio9 == value)
+                    return;
+                _danio9 = value;
+                RaisePropertyChanged("Danio9");
+            }
+        }
+
+        public ListItem Danio10
+        {
+            get
+            {
+                return _danio10;
+            }
+            set
+            {
+                if (_danio10 == value)
+                    return;
+                _danio10 = value;
+                RaisePropertyChanged("Danio10");
+            }
+        }
+
+        public string Danio11
+        {
+            get
+            {
+                return _danio11;
+            }
+            set
+            {
+                if (_danio11 == value)
+                    return;
+                _danio11 = value;
+                RaisePropertyChanged("Danio11");
+            }
+        }
+
+        public string Danio12
+        {
+            get
+            {
+                return _danio12;
+            }
+            set
+            {
+                if (_danio12 == value)
+                    return;
+                _danio12 = value;
+                RaisePropertyChanged("Danio12");
+            }
+        }
+
+        public ListItem Danio13
+        {
+            get
+            {
+                return _danio13;
+            }
+            set
+            {
+                if (_danio13 == value)
+                    return;
+                _danio13 = value;
+                RaisePropertyChanged("Danio13");
+            }
+        }
+
+        public ListItem Danio14
+        {
+            get
+            {
+                return _danio14;
+            }
+            set
+            {
+                if (_danio14 == value)
+                    return;
+                _danio14 = value;
+                RaisePropertyChanged("Danio14");
+            }
+        }
+
+        public string Danio15
+        {
+            get
+            {
+                return _danio15;
+            }
+            set
+            {
+                if (_danio15 == value)
+                    return;
+                _danio15 = value;
+                RaisePropertyChanged("Danio15");
+            }
+        }
+
+        public string Danio16
+        {
+            get
+            {
+                return _danio16;
+            }
+            set
+            {
+                if (_danio16 == value)
+                    return;
+                _danio16 = value;
+                RaisePropertyChanged("Danio16");
+            }
+        }
+
+        public ListItem Danio17
+        {
+            get
+            {
+                return _danio17;
+            }
+            set
+            {
+                if (_danio17 == value)
+                    return;
+                _danio17 = value;
+                RaisePropertyChanged("Danio17");
+            }
+        }
+
+        public ListItem Danio18
+        {
+            get
+            {
+                return _danio18;
+            }
+            set
+            {
+                if (_danio18 == value)
+                    return;
+                _danio18 = value;
+                RaisePropertyChanged("Danio18");
+            }
+        }
+
+        public string Danio19
+        {
+            get
+            {
+                return _danio19;
+            }
+            set
+            {
+                if (_danio19 == value)
+                    return;
+                _danio19 = value;
+                RaisePropertyChanged("Danio19");
+            }
+        }
+
+        public string Danio20
+        {
+            get
+            {
+                return _danio20;
+            }
+            set
+            {
+                if (_danio20 == value)
+                    return;
+                _danio20 = value;
+                RaisePropertyChanged("Danio20");
+            }
+        }
+
+        public SolidColorBrush GColor
+        {
+            get
+            {
+                return _gcolor;
+            }
+            set
+            {
+                if (_gcolor == value)
+                    return;
+                _gcolor = value;
+                RaisePropertyChanged("GColor");
+            }
+        }
+
+        public string Ip
+        {
+            get
+            {
+                return _ip;
+            }
+            set
+            {
+                if (_ip == value)
+                    return;
+                _ip = value;
+                RaisePropertyChanged("Ip");
+            }
+        }
+
+        public string Host
+        {
+            get
+            {
+                return _host;
+            }
+            set
+            {
+                if (_host == value)
+                    return;
+                _host = value;
+                RaisePropertyChanged("Host");
+            }
+        }
+
+        public string Zona
+        {
+            get
+            {
+                return _zona;
+            }
+            set
+            {
+                if (_zona == value)
+                    return;
+                _zona = value;
+                RaisePropertyChanged("Zona");
+            }
+        }
+
+        public string Usuario
+        {
+            get
+            {
+                return _usuario;
+            }
+            set
+            {
+                if (_usuario == value)
+                    return;
+                _usuario = value;
+                RaisePropertyChanged("Usuario");
+            }
+        }
+
+        public ObservableCollection<InfoViewModel> tb
+        {
+            get
+            {
+                return _tb;
+            }
+            set
+            {
+                SetProperty(ref _tb, value);
+            }
+        }
+
+        public ObservableCollection<combo_item> lsTipo
+        {
+            get
+            {
+                return _lsTipo;
+            }
+            set
+            {
+                SetProperty(ref _lsTipo, value);
+            }
+        }
+
+        public ObservableCollection<combo_item> lsComp
+        {
+            get
+            {
+                return _lsComp;
+            }
+            set
+            {
+                SetProperty(ref _lsComp, value);
+            }
+        }
+
+        public ObservableCollection<ListItem> lsTip
+        {
+            get
+            {
+                return _lsTip;
+            }
+            set
+            {
+                SetProperty(ref _lsTip, value);
+            }
+        }
+
+        public ObservableCollection<ListItem> lsCom
+        {
+            get
+            {
+                return _lsCom;
+            }
+            set
+            {
+                SetProperty(ref _lsCom, value);
+            }
+        }
+        #endregion
+
+        #region Metodos
+        private async void ObtenerIp()
+        {
+            var ip = await Dns.GetHostEntryAsync(Dns.GetHostName());
+            Ip = ip.AddressList[1].ToString();
+
+            //var dv = await w.ObtenerDeviceAsync(Ip);
+
+            //if (dv != null)
+            //    id_device = dv.DEVICE_ID;
+            
+
+            //var dz = await w.ObtenerZonaConTiposTransaccionesAsync(Ip);
+
+            //if (dz != null)
+            //    ZonaObj = dz;
+        }
+
+        private async void ObtenerDevice()
+        {
+            var dv = new ServicioMobile.DEVICE();
+            dv = await w.ObtenerDeviceAsync(Ip);
+
+            if (dv != null)
+                id_device = dv.DEVICE_ID;
+        }
+
+        private async void ObtenerZona()
+        {
+            var dv = new ServicioMobile.ZONE();
+            dv = await w.ObtenerZonaConTiposTransaccionesAsync(Ip);
+
+            if (dv != null)
+                ZonaObj = dv;
+        }
+
+        private bool PuedoIngresar()
+        {
+            return !string.IsNullOrWhiteSpace(CargaImp1) || !string.IsNullOrWhiteSpace(CargaExp1);
+        }
+
+        public async void Ingresar()
+        {
+            tb = new ObservableCollection<InfoViewModel>();
+            bvalida = false;
+            if (!PuedoIngresar())
+            {
+                //var mensajeDialogo = new MessageDialog("Error", "Verificar si ha ingresado datos.");
+                //await mensajeDialogo.ShowAsync();
+                LlenarGrid("Error", "Datos", "Verificar si ha ingresado datos", new SolidColorBrush(Colors.Red));
+                bvalida = true;
+                return;
+            }
+
+            if (!val)
+            {
+                LimpiarGrid();
+                val = true;
+            }
+
+            if (CargaExp1 != null && CargaExp1.Trim().Length > 0)
+            {
+                try
+                {
+                    int cn = 0;
+                    if (CargaExp1 != null && CargaExp1.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        cdc = new ObservableCollection<DatosContenedor>();
+                        await ValidarAisv(CargaExp1.Trim(), 1);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Aisv", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            cabt = new pre_gate_item();
+                            ldet = new ObservableCollection<pre_gate_details_item>();
+                            if (tipexp == "CNTR")
+                                if (contain.freight_kind != "MTY" && contain.freight_kind != "LCL")
+                                    tipTran = 3;
+                                else
+                                    tipTran = 7;
+                            else
+                                if (aisv.type_mov == "E")
+                                    if (aisv.comodity.Contains("BANAN")||(aisv.comodity.Contains("BAB")&& aisv.comodity.Trim().Length==3) || (aisv.comodity.Contains("BAN") && aisv.comodity.Trim().Length == 3))
+                                    {
+                                        cn = (int)aisv.packs;
+                                        tipTran = 8;
+                                    }
+                                    else
+                                        tipTran = 4;
+                                else
+                                    if (aisv.comodity.Contains("BANAN") || (aisv.comodity.Contains("BAB") && aisv.comodity.Trim().Length == 3) || (aisv.comodity.Contains("BAN") && aisv.comodity.Trim().Length == 3))
+                                    {
+                                        //cn = (int)aisv.packs;
+                                        tipTran = 9;
+                                    }
+                                    else
+                                        tipTran = 5;
+
+                            LlenaDetalleE(CargaExp1.Trim(), tipTran, aisv != null ? aisv.customs_doc:"", cn);
+
+                            //lpas = new ObservableCollection<string>();
+                            //lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+                    if (tipTran!=8 || tipTran!=9)
+                    if (CargaExp2 != null && CargaExp2.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        await ValidarAisv(CargaExp2.Trim(), 2);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Aisv", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            if (tipTran == 8)
+                                cn = (int)aisv.packs;
+                            LlenaDetalleE(CargaExp2.Trim(), tipTran, aisv != null ? aisv.customs_doc : "", cn);
+                            //lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+
+                    if (tipTran != 8 || tipTran != 9)
+                    if (CargaExp3 != null && CargaExp3.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        await ValidarAisv(CargaExp3.Trim(), 3);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Aisv", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            if (tipTran == 8)
+                                cn = (int)aisv.packs;
+                            LlenaDetalleE(CargaExp3.Trim(), tipTran, aisv != null ? aisv.customs_doc : "", cn);
+                            //lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+
+                    if (tipTran != 8 || tipTran != 9)
+                    if (CargaExp4 != null && CargaExp4.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        await ValidarAisv(CargaExp4.Trim(), 4);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Aisv", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            if (tipTran == 8)
+                                cn = (int)aisv.packs;
+                            LlenaDetalleE(CargaExp4.Trim(), tipTran, aisv != null ? aisv.customs_doc : "", cn);
+                            //lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+
+                    LlenaCabecera();
+                    await CreaTransacTablet();
+
+                    if (!val)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", mns);
+                        //await mensajeDialogo.ShowAsync();
+
+                        LlenarGrid("Problema", "Transacción Tablet", mns, new SolidColorBrush(Colors.Red));
+                        //await ActualizaTransacTablet();
+                        var binding = new BasicHttpBinding();
+                        Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                        var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                        var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                        await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción TABLET] " + mns, ZonaObj.ZONE_ID);
+
+                        bvalida = true;
+                        return;
+                    }
+                    //    i = tb.Count;
+                    if (tipexp == "CNTR")
+                    {
+                        //Desbloquear Contenedores
+                        if (carga1 != null && carga1.Length > 0)
+                        {
+                            await LiberaHold(carga1, "CGSA_EXPO_SEAL");
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                        }
+
+                        if (carga2 != null && carga2.Length > 0)
+                        {
+                            await LiberaHold(carga2, "CGSA_EXPO_SEAL");
+                            if (val == false)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                        }
+
+                        if (carga3 != null && carga3.Length > 0)
+                        {
+                            await LiberaHold(carga3, "CGSA_EXPO_SEAL");
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                        }
+
+                        if (carga4 != null && carga4.Length > 0)
+                        {
+                            await LiberaHold(carga4, "CGSA_EXPO_SEAL");
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                        }
+                    }
+
+
+                    await CreaTransacN4();
+                    //mns= "EstadoRecepcionXml = ACCEPTED; Estado = Successful; Mensajes = ; ResultadosConsultas = Result :< create - truck - visit - response action = \"EXIT\" >< truck - visit tv - key = \"3041445\" gos - tv - key = \"-197\" is -internal=\"false\" next-stage-id=\"pregatein\" status=\"TROUBLE\" action=\"EXIT\" gate-id=\"RECEPTIO\" entered=\"2018-10-26T11:48:59\"><truck id = \"10670\" tag-id=\"12206824\" license-nbr=\"XAH0740\" /><driver card-id=\"0916892136\" driver-name=\"RODRIGUEZ CARRIEL JOSE LUIS\" /><messages locale = \"en_US\" >< message message-id=\"gate.trucking_company_unknown\" message-text=\"Trucking Company with Id 1710540830 is unknown\" message-severity=\"SEVERE\" /></messages><actions overall-id=\"EXIT\"><action id = \"EXIT\" /></ actions ></ truck - visit ></ create - truck - visit - response ></ argo:gate-response>;";
+                    //var a = mns.IndexOf("message-text=");
+                    //var b = mns.IndexOf("message-severity=");
+                    //LlenarGrid(TransExp, "Transacción N4", mns.Substring(a + 14, b - a - 17), new SolidColorBrush(Colors.Red));
+                    if (!val)
+                    {
+                        if (mns.Contains("TROUBLE"))
+                        {
+                            if (mns.Contains("message-text="))
+                            {
+                                var a = mns.IndexOf("message-text=");
+                                var b = mns.IndexOf("message-severity=");
+                                LlenarGrid(TransExp, "Transacción N4", mns.Substring(a + 14, b - a - 17), new SolidColorBrush(Colors.Red));
+                            }
+                            else
+                                LlenarGrid(TransExp, "Transacción N4", mns, new SolidColorBrush(Colors.Red));
+                            //await ActualizaTransacTablet();
+                        }
+                        else
+                        {
+                            await ActualizaTransacTablet();
+                            LlenarGrid(TransExp, "Transacción N4", mns, new SolidColorBrush(Colors.Red));
+                        }
+                    }
+                    else
+                    {
+                        LlenarGrid(TransExp, "Transacción N4", mns, new SolidColorBrush(Colors.Green));
+                        var mensajeDialogo = new MessageDialog("Transacción N4", mns);
+                        await mensajeDialogo.ShowAsync();
+                    }
+                }
+                catch (Exception e)
+                {
+                    LlenarGrid("Error", "Ingresar Expo", e.Message, new SolidColorBrush(Colors.Red));
+                    //await ActualizaTransacTablet();
+                }
+            }
+
+            if (CargaImp1 != null && CargaImp1.Trim().Length > 0)
+            {
+                try
+                {
+
+                    if (CargaImp1 != null && CargaImp1.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        await ValidarPase(CargaImp1.Trim(), 1);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Pase", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            cabt = new pre_gate_item();
+                            ldet = new ObservableCollection<pre_gate_details_item>();
+                            if (contain!=null && contain.category != "EXPRT")
+                                tipTran = 1;
+                            else
+                                if (contain != null)
+                                    tipTran = 6;
+                                else
+                                    tipTran = 2;
+
+                            LlenaDetalleI(CargaImp1.Trim(), tipTran, carga1);
+                            lpas = new ObservableCollection<string>();
+                            lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+
+                    if (CargaImp2 != null && CargaImp2.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        await ValidarPase(CargaImp2.Trim(), 2);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Pase", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            LlenaDetalleI(CargaImp2.Trim(), tipTran, carga2);
+                            lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+
+                    if (CargaImp3 != null && CargaImp3.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        await ValidarPase(CargaImp3.Trim(), 3);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Pase", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            LlenaDetalleI(CargaImp3.Trim(), tipTran, carga3);
+                            lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+
+                    if (CargaImp4 != null && CargaImp4.Trim().Length > 0)
+                    {
+                        dcnt = new pre_gate_detail_container_item();
+                        await ValidarPase(CargaImp4.Trim(), 4);
+
+                        if (!val)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", mns);
+                            //await mensajeDialogo.ShowAsync();
+                            //LlenarGrid("Problema", "Pase", mns, new SolidColorBrush(Colors.Red));
+                            bvalida = true;
+                            return;
+                        }
+                        else
+                        {
+                            LlenaDetalleI(CargaImp4.Trim(), tipTran, carga4);
+                            lpas.Add(ap);
+                            ldet.Add(dett);
+                        }
+                    }
+
+                    LlenaCabecera();
+                    await CreaTransacTablet();
+
+                    if (!val)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", mns);
+                        //await mensajeDialogo.ShowAsync();
+                        LlenarGrid("Problema", "Transacción Tablet", mns, new SolidColorBrush(Colors.Red));
+                        //await ActualizaTransacTablet();
+
+                        var binding = new BasicHttpBinding();
+                        Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                        var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                        var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                        await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción TABLET] " + mns, ZonaObj.ZONE_ID);
+
+                        var mensajeDialogo = new MessageDialog("Problema", mns);
+                        await mensajeDialogo.ShowAsync();
+
+                        bvalida = true;
+                        return;
+                    }
+                    //    i = tb.Count;
+                    if (tip == "CNTR")
+                    {
+                        //Desbloquear Contenedores
+                        if (carga1 != null && carga1.Length > 0)
+                        {
+                            await LiberaHold(carga1, "CGSA_APPT_VBS");
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                            await CambiaHold(gkey1);
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Cambio de Appoitment", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+                        }
+
+                        if (carga2 != null && carga2.Length > 0)
+                        {
+                            await LiberaHold(carga2, "CGSA_APPT_VBS");
+                            if (val == false)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                            await CambiaHold(gkey2);
+                            if (val == false)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Cambio de Appoitment", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+                        }
+
+                        if (carga3 != null && carga3.Length > 0)
+                        {
+                            await LiberaHold(carga3, "CGSA_APPT_VBS");
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                            await CambiaHold(gkey3);
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Cambio de Appoitment", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+                        }
+
+                        if (carga4 != null && carga4.Length > 0)
+                        {
+                            await LiberaHold(carga4, "CGSA_APPT_VBS");
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Hold", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+
+                            await CambiaHold(gkey4);
+                            if (!val)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema Hold", mns);
+                                //await mensajeDialogo.ShowAsync();
+                                //LlenarGrid("Problema", "Cambio de Appoitment", mns, new SolidColorBrush(Colors.Red));
+                                bvalida = true;
+                                return;
+                            }
+                        }
+                    }
+                    //obtener id
+                    //var trr = new save_tablet_transaction_returnRequest();
+                    //trr.transaction = cabt;
+
+                    //var tra = s.save_tablet_transaction_returnAsync(trr);
+                    //if (tra.Id == 0)
+                    //{
+                    //    var mensajeDialogo = new MessageDialog("Problema", "No se pudo extraer Id de Transacción");
+                    //    await mensajeDialogo.ShowAsync();
+                    //}
+
+                    await CreaTransacN4();
+
+                    if (!val)
+                    {
+
+                        if (mns.Contains("TROUBLE"))
+                        {
+                            if (mns.Contains("message-text="))
+                            {
+                                var a = mns.IndexOf("message-text=");
+                                var b = mns.IndexOf("message-severity=");
+                                LlenarGrid(TransExp, "Transacción N4", mns.Substring(a + 14, b - a - 17), new SolidColorBrush(Colors.Red));
+
+                                var mensajeDialogo = new MessageDialog("Problema Transacción N4", mns.Substring(a + 14, b - a - 17));
+                                await mensajeDialogo.ShowAsync();
+                            }
+                            else
+                            { 
+                                LlenarGrid(TransExp, "Transacción N4", mns, new SolidColorBrush(Colors.Red));
+                                var mensajeDialogo = new MessageDialog("Problema Transacción N4", mns);
+                                await mensajeDialogo.ShowAsync();
+                                //await ActualizaTransacTablet();
+                            }
+                        }
+                        else
+                        {
+                            await ActualizaTransacTablet();
+                            LlenarGrid(TransExp, "Transacción N4", mns, new SolidColorBrush(Colors.Red));
+                            var mensajeDialogo = new MessageDialog("Problema Transacción N4", mns);
+                            await mensajeDialogo.ShowAsync();
+                        }
+                    }
+                    else
+                    {
+                        LlenarGrid(TransImp, "Transacción N4", mns, new SolidColorBrush(Colors.Green));
+                        var mensajeDialogo = new MessageDialog("Transacción N4", mns);
+                        await mensajeDialogo.ShowAsync();
+                    }
+                }
+                catch (Exception e)
+                {
+                    LlenarGrid("Error", "Ingresar Impo", e.Message, new SolidColorBrush(Colors.Red));
+                    //await ActualizaTransacTablet();
+                }
+            }
+
+            bvalida = true;
+        }
+
+        public void Limpiar()
+        {
+            if (!bvalida)
+                return;
+            LimpiarCampos();
+        }
+
+        public void VentanaInicio()
+        {
+            if (!bvalida)
+                return;
+            IrVentanaPrincipal(true);
+        }
+
+        public void Regresar()
+        {
+            if (!bvalida)
+                return;
+            IrVentanaLogin(true);
+        }
+
+        public void Sellos()
+        {
+            binicia = false;
+            //IrVentanaSello(true);
+            CargarSellos();
+            binicia = true;
+        }
+
+        public void SellosUp()
+        {
+            binicia = false;
+            //IrVentanaSello(true);
+            DescargarSellos();
+            binicia = true;
+        }
+
+        public void LimpiaSello()
+        {
+            binicia = false;
+            //IrVentanaSello(true);
+            LimpiarSellos();
+            binicia = true;
+        }
+
+        public void Danios()
+        {
+            binicia = false;
+            //IrVentanaDanio(true);
+            CargarDanios();
+            binicia = true;
+        }
+
+        public void DaniosUp()
+        {
+            binicia = false;
+            //IrVentanaDanio(true);
+            DescargarDanios();
+            binicia = true;
+        }
+
+        public void LimpiaDanio()
+        {
+            binicia = false;
+            //IrVentanaDanio(true);
+            LimpiarDanios();
+            binicia = true;
+        }
+
+        private async Task ValidarPase(string pase, int num)
+        {
+            val = true;
+            ap = "";
+            TransImp = "Retiro Impo";
+            pp = null;
+            contain = null;
+
+            if (pase.Trim().Length < 11)
+            {
+                var pr = new get_door_passRequest();
+                pr.pass = decimal.Parse(pase);
+                pp = await s.get_door_passAsync(pr);
+
+                if ((pp != null) && (pp.msg == "" || pp.msg != null) && (pp.get_door_passResult != null))
+                {
+                    tip = pp.get_door_passResult.tipe;
+                    ap = pp.get_door_passResult.n4_pass_id;
+
+                    turno = pp.get_door_passResult.turno;
+                    TransImp = "Retiro Impo " + tip;
+
+                    if (turno != null && turno.Trim().Length > 0)
+                        LlenarGrid(TransImp, "Turno", turno, new SolidColorBrush(Colors.Green));
+
+                    pp.get_door_passResult.driver_id = chofer;
+                    pp.get_door_passResult.truck_id = placa;
+
+                    var cit = new check_impedimentsRequest();
+
+                    //valida Pase
+                    var cps = new check_pass_statusRequest();
+                    cps.pass = pp.get_door_passResult;
+                    var csa = await s.check_pass_statusAsync(cps);
+
+                    if (csa.check_pass_statusResult != true)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", csa.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        mns = csa.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Pase", csa.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida chofer
+                    var cdr = new ckeck_pass_driverRequest();
+                    cdr.pass = pp.get_door_passResult;
+                    var cda = await s.ckeck_pass_driverAsync(cdr);
+
+                    if (!cda.ckeck_pass_driverResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cda.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cda.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Chofer", cda.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida camion
+                    var ctr = new check_pass_truckRequest();
+                    ctr.pass = pp.get_door_passResult;
+                    var cca = await s.check_pass_truckAsync(ctr);
+
+                    if (!cca.check_pass_truckResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cca.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cca.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Camión", cca.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida date
+                    var cpd = new check_pass_dateRequest();
+                    cpd.pass = pp.get_door_passResult;
+                    var cfa = await s.check_pass_dateAsync(cpd);
+
+                    if (!cfa.check_pass_dateResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cfa.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cfa.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Fecha", cfa.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida turno
+                    var cptn = new check_pass_ticketRequest();
+                    cptn.pass = pp.get_door_passResult;
+                    var ctna = await s.check_pass_ticketAsync(cptn);
+
+                    if (!ctna.check_pass_ticketResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cfa.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = ctna.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Turno", ctna.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida ridt
+                    var crid = new check_pass_ridtRequest();
+                    crid.pass = pp.get_door_passResult;
+                    var cria = await s.check_pass_ridtAsync(crid);
+
+                    if (!cria.check_pass_ridtResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cria.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cria.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "RIDT", cria.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida transact N4
+                    var cpt = new check_pass_transactionRequest();
+                    cpt.pass = pp.get_door_passResult;
+                    var cta = await s.check_pass_transactionAsync(cpt);
+
+                    if (!cta.check_pass_transactionResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cta.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val == true)
+                            mns = cta.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Transacción PLC", cta.msg, new SolidColorBrush(Colors.Red));
+
+                        var binding = new BasicHttpBinding();
+                        Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                        var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                        var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                        await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 PLC] "+cta.msg + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                    }
+
+                    var cptf = new check_transaction_by_driverRequest();
+                    cptf.driver_id = chofer;
+                    var ctaf = await s.check_transaction_by_driverAsync(cptf);
+
+                    if (!ctaf.check_transaction_by_driverResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cta.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val == true)
+                            mns = ctaf.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Transacción CHF", ctaf.msg, new SolidColorBrush(Colors.Red));
+
+                        var binding = new BasicHttpBinding();
+                        Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                        var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                        var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                        await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 CHF] " + ctaf.msg + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                    }
+
+                    var uni = await s.get_pass_unitAsync(pp.get_door_passResult);
+
+                    if (tip == "CNTR")
+                    {
+                        //var dcnt = new pre_gate_detail_container_item();
+
+                        if (uni != null)
+                        {
+                            contain = await s.get_pass_containerAsync(uni);
+
+                            if (contain != null)
+                            {
+                                if (num == 1)
+                                {
+                                    carga1 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga1, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                if (num == 2)
+                                {
+                                    carga2 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga2, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                if (num == 3)
+                                {
+                                    carga3 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga3, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                if (num == 4)
+                                {
+                                    carga4 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga4, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                var cptc = new check_transaction_by_containerRequest();
+                                cptc.cntr_id = contain.id;
+                                var ctac = await s.check_transaction_by_containerAsync(cptc);
+
+                                if (!ctac.check_transaction_by_containerResult)
+                                {
+                                    //var mensajeDialogo = new MessageDialog("Problema", cta.msg);
+                                    //await mensajeDialogo.ShowAsync();
+                                    if (val == true)
+                                        mns = ctac.msg;
+                                    val = false;
+                                    LlenarGrid(TransImp, "Transacción CNT", ctac.msg, new SolidColorBrush(Colors.Red));
+
+                                    var binding = new BasicHttpBinding();
+                                    Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                                    Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                                    var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                                    var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                                    await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 CNT] " + ctac.msg + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                                }
+
+
+                                //dcnt.container_id = int.Parse(contain.gkey.ToString("0"));
+                                cit.cntr = contain;
+                                cit.stage = "PRE_IN";
+
+                                var cia = await s.check_impedimentsAsync(cit);
+
+                                if (!cia.check_impedimentsResult)
+                                {
+                                    //var mensajeDialogo = new MessageDialog("Problema", cia.msg);
+                                    //await mensajeDialogo.ShowAsync();
+                                    //return;
+                                    if (val)
+                                        mns = cia.msg;
+                                    val = false;
+                                    LlenarGrid(TransImp, "Contenedor", mns, new SolidColorBrush(Colors.Red));
+                                }
+                            }
+                            else
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema", "No se obtuvo información del CONTENEDOR");
+                                //await mensajeDialogo.ShowAsync();
+                                //return;
+                                mns = "No se obtuvo información del CONTENEDOR";
+                                LlenarGrid(TransImp, "Contenedor", mns, new SolidColorBrush(Colors.Red));
+                                val = false;
+                            }
+
+                        }
+                        else
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", "No se obtuvo información del CONTENEDOR");
+                            //await mensajeDialogo.ShowAsync();
+                            //return;
+                            var fcf = new find_expo_cntr_fcl_by_gkeyRequest();
+                            fcf.gkey = int.Parse(pp.get_door_passResult.id_charge.ToString());
+                            var fcfa = await s.find_expo_cntr_fcl_by_gkeyAsync(fcf);
+
+                            if (fcfa.find_expo_cntr_fcl_by_gkeyResult != null)
+                                contain = fcfa.find_expo_cntr_fcl_by_gkeyResult;
+                            else
+                            {
+                                mns = fcfa.msg;
+                                //mns = "No se obtuvo información del UNIT";
+                                LlenarGrid(TransImp, "Contenedor", mns, new SolidColorBrush(Colors.Red));
+                                val = false;
+                            }
+
+                            if (contain != null)
+                            {
+                                if (num == 1)
+                                {
+                                    carga1 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga1, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (uni != null)
+                        {
+                            if (num == 1)
+                            {
+                                carga1 = uni.nbr;
+                                qty = pp.get_door_passResult.quantity.ToString();
+                            }
+
+                            if (num == 2)
+                            {
+                                //carga2 = uni.nbr;
+                                LlenarGrid(TransImp, "Carga", "No se considerará el pase 2 de carga BRBK/CFS, ingresar 1 solo pase.", new SolidColorBrush(Colors.Red));
+                                val = false;
+                            }
+
+                            if (num == 3)
+                            {
+                                //carga3 = uni.nbr;
+                                LlenarGrid(TransImp, "Carga", "No se considerará el pase 3 de carga BRBK/CFS, ingresar 1 solo pase.", new SolidColorBrush(Colors.Red));
+                                val = false;
+                            }
+
+                            if (num == 4)
+                            {
+                                //carga4 = uni.nbr;
+                                LlenarGrid(TransImp, "Carga", "No se considerará el pase 4 de carga BRBK/CFS, ingresar 1 solo pase.", new SolidColorBrush(Colors.Red));
+                                val = false;
+                            }
+                        }
+                        else
+                        {
+                            LlenarGrid(TransImp, "Carga", "El Unit de la carga no ha sido encontrado", new SolidColorBrush(Colors.Red));
+                            val = false;
+                        }
+                    }
+
+                    if (num == 1)
+                    {
+                        gkey1 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+
+                    if (num == 2)
+                    {
+                        gkey2 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+
+                    if (num == 3)
+                    {
+                        gkey3 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+
+                    if (num == 4)
+                    {
+                        gkey4 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+                }
+                else
+                {
+                    LlenarGrid(TransImp, "Pase", "Pase no existe", new SolidColorBrush(Colors.Red));
+                    val = false;
+                }
+            }
+            else
+            {
+                var pr = new find_expo_cntr_mty_desistRequest();
+                pr.cntr_id = pase;
+                var cmda = await s.find_expo_cntr_mty_desistAsync(pr);
+
+                if ((cmda != null) && (cmda.msg == "" || cmda.msg != null) && (cmda.find_expo_cntr_mty_desistResult != null))
+                {
+                    tip = "CNTR";
+                    TransImp = "Retiro Impo " + tip;
+                    contain = cmda.find_expo_cntr_mty_desistResult;
+
+                    LlenarGrid(TransImp, "Contenedor", contain.id, new SolidColorBrush(Colors.Green));
+                    // llenas detalle de contenedor
+                    dcnt.number = contain.id;
+
+                    if (num == 1)
+                        carga1 = contain.id;
+                    if (num == 2)
+                        carga2 = contain.id;
+                    if (num == 3)
+                        carga3 = contain.id;
+                    if (num == 4)
+                        carga4 = contain.id;
+                }
+                else
+                {
+                    LlenarGrid(TransImp, "Contenedor", "No existe como desestimiento", new SolidColorBrush(Colors.Red));
+                    val = false;
+                }
+            }
+        }
+
+        private async Task ValidarAisv(string pase, int num)
+        {
+            val = true;
+            TransExp = "Entrega Expo";
+            contain = null;
+            aisv = null;
+            if (pase.Trim().Length > 11)
+            {
+                var fan = new find_aisv_by_numberRequest(pase);
+                var fana = await s.find_aisv_by_numberAsync(fan);
+                
+                if (fana.find_aisv_by_numberResult != null)
+                    aisv = fana.find_aisv_by_numberResult;
+                else
+                {
+                    mns = fana.msg;   
+                    val = false;
+                    LlenarGrid(TransExp, "Aisv", mns, new SolidColorBrush(Colors.Red));
+                }
+            }
+            else
+            {
+                var fan = new find_aisv_by_containerRequest(pase);
+                var fana = await s.find_aisv_by_containerAsync(fan);
+                if (fana.find_aisv_by_containerResult != null)
+                    aisv = fana.find_aisv_by_containerResult;
+                else
+                {
+                    /*
+                    var fce = new find_expo_cntr_mtyRequest(pase);
+                    var fcea = await s.find_expo_cntr_mtyAsync(fce);
+                    if (fcea.find_expo_cntr_mtyResult != null)
+                        contain = fcea.find_expo_cntr_mtyResult;
+                    else
+                    {
+                        if (fcea.msg != null)
+                            mns = fcea.msg;
+                        else
+                        {
+                            if (fana.msg != null)
+                                mns = fana.msg;
+                            else
+                                mns = "No existe Aisv";
+                        }
+                        val = false;
+                        LlenarGrid(TransExp, "Aisv/Cont", mns, new SolidColorBrush(Colors.Red));
+                    }*/
+                    val = false;
+                    LlenarGrid(TransExp, "Aisv/Cont", "No se puede procesar UNIDAD VACÍA", new SolidColorBrush(Colors.Red));
+                }
+            }
+
+            if (aisv != null || contain != null)
+            {
+                if (aisv != null)
+                {
+                    tipexp = aisv.cargo_type;
+
+                    if (aisv.container!=null)
+                        turno = aisv.container.Trim();
+
+                    //valida Pase
+                    var cps = new check_aisv_statusRequest();
+                    cps.ai = aisv;
+                    var csa = await s.check_aisv_statusAsync(cps);
+
+                    if (!csa.check_aisv_statusResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", csa.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        mns = csa.msg;
+                        val = false;
+                        LlenarGrid(TransExp, "Aisv", csa.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida chofer
+                    var cdr = new check_aisv_driverRequest();
+                    cdr.ai = aisv;
+                    cdr.id_driver = chofer;
+                    var cda = await s.check_aisv_driverAsync(cdr);
+
+                    if (!cda.check_aisv_driverResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cda.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cda.msg;
+                        val = false;
+                        LlenarGrid(TransExp, "Chofer", cda.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida camion
+                    var ctr = new check_aisv_truckRequest();
+                    ctr.ai = aisv;
+                    ctr.id_truck = placa;
+                    var cca = await s.check_aisv_truckAsync(ctr);
+
+                    if (!cca.check_aisv_truckResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cca.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cca.msg;
+                        val = false;
+                        LlenarGrid(TransExp, "Camión", cca.msg, new SolidColorBrush(Colors.Red));
+                    }
+                }
+                else
+                {
+                    tipexp = "CNTR";
+                    turno = contain.id;
+                }
+
+                TransExp = "Entrega Expo " + tipexp;
+
+                if (turno != null && turno.Trim().Length > 0)
+                    LlenarGrid(TransExp, "Contenedor", turno, new SolidColorBrush(Colors.Green));
+
+
+                //valida transact N4
+                var cpt = new check_transaction_by_truckRequest();
+                cpt.truck_id = placa;
+                var cta = await s.check_transaction_by_truckAsync(cpt);
+
+                if (!cta.check_transaction_by_truckResult)
+                {
+                    //var mensajeDialogo = new MessageDialog("Problema", cta.msg);
+                    //await mensajeDialogo.ShowAsync();
+                    if (val == true)
+                        mns = cta.msg;
+                    val = false;
+                    LlenarGrid(TransExp, "Transacción PLC", cta.msg, new SolidColorBrush(Colors.Red));
+
+                    var binding = new BasicHttpBinding();
+                    Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                    Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                    var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                    var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                    await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 PLC] " + cta.msg + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                }
+
+                var cptf = new check_transaction_by_driverRequest();
+                cptf.driver_id = chofer;
+                var ctaf = await s.check_transaction_by_driverAsync(cptf);
+
+                if (!ctaf.check_transaction_by_driverResult)
+                {
+                    //var mensajeDialogo = new MessageDialog("Problema", cta.msg);
+                    //await mensajeDialogo.ShowAsync();
+                    if (val == true)
+                        mns = ctaf.msg;
+                    val = false;
+                    LlenarGrid(TransExp, "Transacción CHF", ctaf.msg, new SolidColorBrush(Colors.Red));
+
+                    var binding = new BasicHttpBinding();
+                    Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                    Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                    var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                    var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                    await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 CHF] " + ctaf.msg + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                }
+
+
+                var cit = new check_impedimentsRequest();
+
+                if (tipexp == "CNTR")
+                {
+                    if (contain == null)
+                    {
+                        //valida preaviso
+                        var cpd = new check_aisv_preadviceRequest();
+                        cpd.ai = aisv;
+                        var cfa = await s.check_aisv_preadviceAsync(cpd);
+
+                        if (!cfa.check_aisv_preadviceResult)
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", cfa.msg);
+                            //await mensajeDialogo.ShowAsync();
+                            if (val)
+                                mns = cfa.msg;
+                            val = false;
+                            LlenarGrid(TransExp, "Preaviso", cfa.msg, new SolidColorBrush(Colors.Red));
+                        }
+
+                        contain = await s.get_aisv_containerAsync(aisv);
+                    }
+
+                    int vac=0;
+                    if (contain != null)
+                    {
+                        //if (contain.freight_kind == "MTY" || contain.freight_kind == "LCL")
+                        //{
+                            LlenarGrid(TransExp, "Booking", contain.bl_nbr, new SolidColorBrush(Colors.Green));
+                            LlenarGrid(TransExp, "Iso", contain.type_cntr, new SolidColorBrush(Colors.Green));
+                            var mensajeDialogo = new MessageDialog("Notificación", string.Format("El Contenedor {3} presenta el Booking {0} Iso {1} Height {2} confirmar si desea continuar.", contain.bl_nbr, contain.type_cntr, contain.tare_weight, contain.id));
+                            mensajeDialogo.Commands.Add(new Windows.UI.Popups.UICommand("Continuar") { Id = 0 });
+                            mensajeDialogo.Commands.Add(new Windows.UI.Popups.UICommand("Cancelar") { Id = 1 });
+                            mensajeDialogo.DefaultCommandIndex = 0;
+                            mensajeDialogo.CancelCommandIndex = 1;
+                            var men = await mensajeDialogo.ShowAsync();
+                            vac = (int)men.Id;
+                        //}
+
+                        if(vac==0)
+                        { 
+                            ObservableCollection<ServicioMobile.SEAL> csealC;
+                            ObservableCollection<ServicioMobile.DAMAGE> cdamC;
+
+                            if (num == 1)
+                            {
+                                vac = 0;
+
+                                if (Seal1 != null && Seal1.Trim().Length > 0)
+                                {
+                                    if (aisv != null && aisv.seal1.Trim() != Seal1.Trim() && (Seal2 != null && aisv.seal1 != Seal2.Trim()) && (Seal3 != null && aisv.seal1 != Seal3.Trim()) && (Seal4 != null && aisv.seal1 != Seal4.Trim()))
+                                    {
+                                        LlenarGrid(TransExp, "Diferencia Sellos", string.Format("AISV Sello {0}***{1} no ha sido encontrado para la Unidad {2}", aisv.seal1.Trim().Substring(0, 1), aisv.seal1.Trim().Substring(aisv.seal1.Trim().Length - 1, 1), contain.id), new SolidColorBrush(Colors.Red));
+                                        mensajeDialogo = new MessageDialog("Notificación", string.Format("Confirme que los sellos ingresados están correctos."));
+                                        mensajeDialogo.Commands.Add(new Windows.UI.Popups.UICommand("Continuar") { Id = 0 });
+                                        mensajeDialogo.Commands.Add(new Windows.UI.Popups.UICommand("Cancelar") { Id = 1 });
+                                        mensajeDialogo.DefaultCommandIndex = 0;
+                                        mensajeDialogo.CancelCommandIndex = 1;
+                                        men = await mensajeDialogo.ShowAsync();
+                                        vac = (int)men.Id;
+                                    }
+                                }
+
+                                if (vac == 0)
+                                {
+                                    carga1 = contain.id;
+                                    var dc = new DatosContenedor();
+                            
+                                    cont = new ServicioMobile.CONTAINER();
+                            
+                                    //LlenarGrid(TransExp, "Contenedor", carga1, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    Iso = contain.type_cntr;
+                                    Linea = contain.line;
+                                    Tamano = contain.size;
+                                    TipoCarga = contain.freight_kind;
+                                    Book = contain.bl_nbr;
+
+                                    cont.NUMBER = contain.id;
+                                    dc.Aisv = Book;
+                                    //dc.Contenedor = cont;
+                                    dc.Iso = Iso;
+                                    dc.Linea = Linea;
+                                    dc.Tamano = Tamano;
+                                    dc.TipoCarga = TipoCarga;
+
+                                    //cdc.Add(dc);
+
+                                    if (SealCgsa1 != null && SealCgsa1.Trim().Length > 0)
+                                    {
+                                    
+                                        var cseal = new ObservableCollection<pre_gate_container_seal_item>();
+                                        csealC = new ObservableCollection<ServicioMobile.SEAL>();
+
+                                        sel = new seal_setter();
+                                        sel.seal_cgsa = SealCgsa1;
+                                        sel.seal_user = Usuario;
+                                        sel.seal_ip_address = Ip;
+
+
+
+                                        if (Seal1 != null && Seal1.Trim().Length > 0)
+                                        {
+                                            LlenaSello("seal1", Seal1);
+                                            LlenaSelloC("SEAL-1", Seal1);
+                                            cseal.Add(seal);
+                                            csealC.Add(sealc);
+                                            if (TipoCarga != "MTY" && TipoCarga != "LCL")
+                                                aisv.seal1 = Seal1;
+                                        }
+                                        else
+                                        {
+                                            val = false;
+                                            LlenarGrid(TransExp, "Sello", "Primera carga sin sello 1", new SolidColorBrush(Colors.Red));
+                                            return;
+                                        }
+
+                                        if (TipoCarga != "MTY" && TipoCarga != "LCL")
+                                        {
+                                            if (Seal2 != null && Seal2.Trim().Length > 0)
+                                            {
+                                                LlenaSello("seal2", Seal2);
+                                                LlenaSelloC("SEAL-2", Seal2);
+                                                cseal.Add(seal);
+                                                csealC.Add(sealc);
+                                                aisv.seal2 = Seal2;
+                                            }
+
+                                            if (Seal3 != null && Seal3.Trim().Length > 0)
+                                            {
+                                                LlenaSello("seal3", Seal3);
+                                                LlenaSelloC("SEAL-3", Seal3);
+                                                cseal.Add(seal);
+                                                csealC.Add(sealc);
+                                                aisv.seal3 = Seal3;
+                                            }
+
+                                            if (Seal4 != null && Seal4.Trim().Length > 0)
+                                            {
+                                                LlenaSello("seal4", Seal4);
+                                                LlenaSelloC("SEAL-4", Seal4);
+                                                cseal.Add(seal);
+                                                csealC.Add(sealc);
+                                                aisv.seal4 = Seal4;
+                                            }
+                                        }
+                                        LlenaSello("cgsa_seal", SealCgsa1);
+                                        cseal.Add(seal);
+                                        dcnt.seals = cseal;
+                                        cont.SEALS = csealC;
+                                    }
+                                    else
+                                    {
+                                        val = false;
+                                        LlenarGrid(TransExp, "Sello", "Primera carga sin sello CGSA", new SolidColorBrush(Colors.Red));
+                                        return;
+                                    }
+
+                                    var cdam = new ObservableCollection<pre_gate_detail_damage_item>(); 
+                                    cdamC = new ObservableCollection<ServicioMobile.DAMAGE>();
+
+                                    if (Danio1 != null)
+                                    {
+                                        LlenaDanio(Danio1.Dato, Danio2.Dato, Danio3, Danio4);
+                                        LlenaDanioC(Danio1.Dato, Danio2.Dato, Danio3, Danio4);
+                                        cdam.Add(dam);
+                                        cdamC.Add(damc);
+                                    }
+
+                                    if (Danio13 != null)
+                                    {
+                                        LlenaDanio(Danio13.Dato, Danio14.Dato, Danio15, Danio16);
+                                        LlenaDanioC(Danio13.Dato, Danio14.Dato, Danio15, Danio16);
+                                        cdam.Add(dam);
+                                        cdamC.Add(damc);
+                                    }
+
+                                    if (cdam.Count>0)
+                                        dcnt.damages = cdam;
+
+                                    if (cdamC.Count > 0)
+                                        cont.DAMAGES = cdamC;
+
+                                    dc.Contenedor = cont;
+                                    cdc.Add(dc);
+                                }
+                                else
+                                {
+                                    mns = "Se detuvo Proceso";
+                                    LlenarGrid(TransExp, "Diferencia Sellos", mns, new SolidColorBrush(Colors.Red));
+                                    val = false;
+                                }
+                            }
+
+                            if (num == 2)
+                            {
+                                vac = 0;
+
+                                if (Seal5 != null && Seal5.Trim().Length > 0)
+                                {
+                                    if (aisv != null && aisv.seal1.Trim() != Seal5.Trim() && (Seal6 != null && aisv.seal1 != Seal6.Trim()) && (Seal7 != null && aisv.seal1 != Seal7.Trim()) && (Seal8 != null && aisv.seal1 != Seal8.Trim()))
+                                    {
+                                        LlenarGrid(TransExp, "Diferencia Sellos", string.Format("AISV Sello {0}***{1} no ha sido encontrado para la Unidad {2}", aisv.seal1.Trim().Substring(0,1), aisv.seal1.Trim().Substring(aisv.seal1.Trim().Length-1, 1), contain.id), new SolidColorBrush(Colors.Red));
+                                        mensajeDialogo = new MessageDialog("Notificación", string.Format("Confirme que los sellos ingresados están correctos."));
+                                        mensajeDialogo.Commands.Add(new Windows.UI.Popups.UICommand("Continuar") { Id = 0 });
+                                        mensajeDialogo.Commands.Add(new Windows.UI.Popups.UICommand("Cancelar") { Id = 1 });
+                                        mensajeDialogo.DefaultCommandIndex = 0;
+                                        mensajeDialogo.CancelCommandIndex = 1;
+                                        men = await mensajeDialogo.ShowAsync();
+                                        vac = (int)men.Id;
+                                    }
+                                }
+
+                                if (vac == 0)
+                                {
+                                    carga2 = contain.id;
+                                    var dc = new DatosContenedor();
+                                    cont = new ServicioMobile.CONTAINER();
+                                    //LlenarGrid(TransImp, "Contenedor", carga2, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    Iso = contain.type_cntr;
+                                    Linea = contain.line;
+                                    Tamano = contain.size;
+                                    TipoCarga = contain.freight_kind;
+                                    Book = contain.bl_nbr;
+
+                                    cont.NUMBER = contain.id;
+                                    dc.Aisv = Book;
+                                    //dc.Contenedor = cont;
+                                    dc.Iso = Iso;
+                                    dc.Linea = Linea;
+                                    dc.Tamano = Tamano;
+                                    dc.TipoCarga = TipoCarga;
+
+                                    //cdc.Add(dc);
+
+                                    if (SealCgsa2 != null && SealCgsa2.Trim().Length > 0)
+                                    {
+                                    
+                                        var cseal = new ObservableCollection<pre_gate_container_seal_item>();
+                                        csealC = new ObservableCollection<ServicioMobile.SEAL>();
+
+                                        sel = new seal_setter();
+                                        sel.seal_cgsa = SealCgsa2;
+                                        sel.seal_user = Usuario;
+                                        sel.seal_ip_address = Ip;
+
+
+                                        if (Seal5 != null && Seal5.Trim().Length > 0)
+                                        {
+                                            LlenaSello("seal1", Seal5);
+                                            LlenaSelloC("SEAL-1", Seal5);
+                                            cseal.Add(seal);
+                                            csealC.Add(sealc);
+                                            if (TipoCarga != "MTY" && TipoCarga != "LCL")
+                                                aisv.seal1 = Seal1;
+                                        }
+                                        else
+                                        {
+                                            val = false;
+                                            LlenarGrid(TransExp, "Sello", "Segunda carga sin sello 1", new SolidColorBrush(Colors.Red));
+                                            return;
+                                        }
+
+                                        if (TipoCarga != "MTY" && TipoCarga != "LCL")
+                                        {
+                                            if (Seal6 != null && Seal6.Trim().Length > 0)
+                                            {
+                                                LlenaSello("seal2", Seal6);
+                                                LlenaSelloC("SEAL-2", Seal6);
+                                                cseal.Add(seal);
+                                                csealC.Add(sealc);
+                                            }
+
+                                            if (Seal7 != null && Seal7.Trim().Length > 0)
+                                            {
+                                                LlenaSello("seal3", Seal7);
+                                                LlenaSelloC("SEAL-3", Seal7);
+                                                cseal.Add(seal);
+                                                csealC.Add(sealc);
+                                            }
+
+                                            if (Seal8 != null && Seal8.Trim().Length > 0)
+                                            {
+                                                LlenaSello("seal4", Seal8);
+                                                LlenaSelloC("SEAL-4", Seal8);
+                                                cseal.Add(seal);
+                                                csealC.Add(sealc);
+                                            }
+                                        }
+
+                                        LlenaSello("cgsa_seal", SealCgsa2);
+                                        cseal.Add(seal);
+                                        dcnt.seals = cseal;
+                                        cont.SEALS = csealC;
+                                    
+                                    }
+                                    else
+                                    {
+                                        val = false;
+                                        LlenarGrid(TransExp, "Sello", "Segunda carga sin sello CGSA", new SolidColorBrush(Colors.Red));
+                                        return;
+                                    }
+
+                                    var cdam = new ObservableCollection<pre_gate_detail_damage_item>();
+                                    cdamC = new ObservableCollection<ServicioMobile.DAMAGE>();
+                                    if (Danio5 != null)
+                                    {
+                                        LlenaDanio(Danio5.Dato, Danio6.Dato, Danio7, Danio8);
+                                        LlenaDanioC(Danio5.Dato, Danio6.Dato, Danio7, Danio8);
+                                        cdam.Add(dam);
+                                        cdamC.Add(damc);
+                                    }
+
+                                    if (Danio17 != null)
+                                    {
+                                        LlenaDanio(Danio17.Dato, Danio18.Dato, Danio19, Danio20);
+                                        LlenaDanioC(Danio17.Dato, Danio18.Dato, Danio19, Danio20);
+                                        cdam.Add(dam);
+                                        cdamC.Add(damc);
+                                    }
+
+                                    if (cdam.Count>0)
+                                        dcnt.damages = cdam;
+
+                                    if (cdamC.Count > 0)
+                                        cont.DAMAGES = cdamC;
+
+                                    dc.Contenedor = cont;
+                                    cdc.Add(dc);
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+                                else
+                                {
+                                    mns = "Se detuvo Proceso";
+                                    LlenarGrid(TransExp, "Diferencia Sellos", mns, new SolidColorBrush(Colors.Red));
+                                    val = false;
+                                }
+                            }
+
+                            if (num == 3)
+                            {
+                                carga3 = contain.id;
+                                var dc = new DatosContenedor();
+                                cont = new ServicioMobile.CONTAINER();
+
+                                // llenas detalle de contenedor
+                                dcnt.number = contain.id;
+                                Iso = contain.type_cntr;
+                                Linea = contain.line;
+                                Tamano = contain.size;
+                                TipoCarga = contain.freight_kind;
+                                Book = contain.bl_nbr;
+                                cont.NUMBER = contain.id;
+                                dc.Aisv = Book;
+                                dc.Contenedor = cont;
+                                dc.Iso = Iso;
+                                dc.Linea = Linea;
+                                dc.Tamano = Tamano;
+                                dc.TipoCarga = TipoCarga;
+
+                                cdc.Add(dc);
+                            }
+
+                            if (num == 4)
+                            {
+                                carga4 = contain.id;
+                                var dc = new DatosContenedor();
+                                cont = new ServicioMobile.CONTAINER();
+
+                                // llenas detalle de contenedor
+                                dcnt.number = contain.id;
+                                Iso = contain.type_cntr;
+                                Linea = contain.line;
+                                Tamano = contain.size;
+                                TipoCarga = contain.freight_kind;
+                                Book = contain.bl_nbr;
+                                cont.NUMBER = contain.id;
+                                dc.Aisv = Book;
+                                dc.Contenedor = cont;
+                                dc.Iso = Iso;
+                                dc.Linea = Linea;
+                                dc.Tamano = Tamano;
+                                dc.TipoCarga = TipoCarga;
+
+                                cdc.Add(dc);
+                            }
+
+                            var cptc = new check_transaction_by_containerRequest();
+                            cptc.cntr_id = contain.id;
+                            var ctac = await s.check_transaction_by_containerAsync(cptc);
+
+                            if (!ctac.check_transaction_by_containerResult)
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema", cta.msg);
+                                //await mensajeDialogo.ShowAsync();
+                                if (val == true)
+                                    mns = ctac.msg;
+                                val = false;
+                                LlenarGrid(TransImp, "Transacción CNT", ctac.msg, new SolidColorBrush(Colors.Red));
+
+                                var binding = new BasicHttpBinding();
+                                Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                                Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                                var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                                var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                                await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 CNT] " + ctac.msg + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                            }
+
+                            cit.cntr = contain;
+                            cit.stage = "PRE_IN";
+
+                            var cia = await s.check_impedimentsAsync(cit);
+
+                            if (!cia.check_impedimentsResult)
+                            {
+                                if (val)
+                                    mns = cia.msg;
+                                val = false;
+                                LlenarGrid(TransExp, "Impedimento", cia.msg, new SolidColorBrush(Colors.Red));
+                            }
+
+                            if (val && sel!=null && TipoCarga != "MTY" && TipoCarga != "LCL")
+                            {
+                                var afs = new set_aisv_fcl_sealsRequest();
+                                afs.ai = aisv;
+                                afs.se = sel;
+                            
+                                var afsa = await s.set_aisv_fcl_sealsAsync(afs);
+
+                                if (!afsa.set_aisv_fcl_sealsResult)
+                                {
+                                    mns = afsa.msg;
+                                    LlenarGrid(TransExp, "Sellos", mns, new SolidColorBrush(Colors.Red));
+                                    val = false;
+
+                                    if (mns.Contains("SAFE WEIGHT") || mns.Contains("FUERA CUTOFF"))
+                                    {
+                                        var binding = new BasicHttpBinding();
+                                        Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                                        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                                        var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                                        var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                                        await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 CNT] " + mns + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                                    }
+                                }
+                            }
+                            else if(val && sel!=null)
+                            {
+                                var afs = new set_aisv_mty_sealsRequest();
+                            
+                                afs.cntr = contain.id;
+                                afs.se = sel;
+
+                                if (num == 1)
+                                {
+                                    afs.seal1 = Seal1;
+                                    if (Seal2 != null && Seal2.Trim().Length > 0)
+                                        afs.label1 = Seal2;
+                                    else
+                                        afs.label1 = "SS";
+                                    if (Seal3 != null && Seal3.Trim().Length > 0)
+                                        afs.label2 = Seal3;
+                                    else
+                                        afs.label2 = "SS";
+                                }
+                                else if (num == 2)
+                                {
+                                    afs.seal1 = Seal5;
+                                    if (Seal6 != null && Seal6.Trim().Length > 0)
+                                        afs.label1 = Seal2;
+                                    else
+                                        afs.label1 = "SS";
+                                    if (Seal7 != null && Seal7.Trim().Length > 0)
+                                        afs.label2 = Seal7;
+                                    else
+                                        afs.label2 = "SS";
+                                }
+                                else
+                                {
+                                    afs.seal1 = "SS";
+                                    afs.label1 = "SS";
+                                    afs.label2 = "SS";
+                                }
+
+                                var afsa = await s.set_aisv_mty_sealsAsync(afs);
+
+                                if (!afsa.set_aisv_mty_sealsResult)
+                                {
+                                    mns = afsa.msg;
+                                    LlenarGrid(TransExp, "Sellos", mns, new SolidColorBrush(Colors.Red));
+                                    val = false;
+
+
+                                    if (mns.Contains("SAFE WEIGHT") || mns.Contains("FUERA CUTOFF"))
+                                    {
+                                        var binding = new BasicHttpBinding();
+                                        Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                                        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                                        var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                                        var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                                        await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4 CNT] " + mns + "- Tablet " + Host + " User " + Usuario, ZonaObj.ZONE_ID);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            mns = "Se detuvo Proceso";
+                            LlenarGrid(TransExp, "Booking", mns, new SolidColorBrush(Colors.Red));
+                            val = false;
+                        }
+                    }
+                    else
+                    {
+                        mns = "No se obtuvo información del CONTENEDOR";
+                        LlenarGrid(TransExp, "Contenedor", mns, new SolidColorBrush(Colors.Red));
+                        val = false;
+                    }
+                }
+                else
+                {
+                    if (num == 1)
+                    {
+                        carga1 = aisv.number;
+                    }
+
+                    if (num == 2)
+                    {
+                        carga2 = aisv.number;
+                    }
+
+                    if (num == 3)
+                    {
+                        carga3 = aisv.number;
+                    }
+
+                    if (num == 4)
+                    {
+                        carga4 = aisv.number;
+                    }
+                }
+            }
+            //else
+            //    LlenarGrid(TransExp, "Aisv", "Aisv no existe", new SolidColorBrush(Colors.Red));
+
+        }
+
+        private async Task ValidarEdo(string pase, int num)
+        {
+            val = true;
+            ap = "";
+            TransImp = "Retiro Impo";
+            pp = null;
+            contain = null;
+
+            if (pase.Trim().Length < 11)
+            {
+                var pr = new edo_item();
+                pr.op_line = pase;
+                //pp = await s.get_door_passAsync(pr);
+
+                if ((pp != null) && (pp.msg == "" || pp.msg != null) && (pp.get_door_passResult != null))
+                {
+                    tip = pp.get_door_passResult.tipe;
+                    ap = pp.get_door_passResult.n4_pass_id;
+
+                    turno = pp.get_door_passResult.turno;
+                    TransImp = "Retiro Impo " + tip;
+
+                    if (turno != null && turno.Trim().Length > 0)
+                        LlenarGrid(TransImp, "Turno", turno, new SolidColorBrush(Colors.Green));
+
+                    pp.get_door_passResult.driver_id = chofer;
+                    pp.get_door_passResult.truck_id = placa;
+
+                    var cit = new check_impedimentsRequest();
+
+                    //valida Edo
+                    var cps = new check_pass_statusRequest();
+                    cps.pass = pp.get_door_passResult;
+                    var csa = await s.check_pass_statusAsync(cps);
+
+                    if (csa.check_pass_statusResult != true)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", csa.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        mns = csa.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Pase", csa.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida chofer
+                    var cdr = new ckeck_pass_driverRequest();
+                    cdr.pass = pp.get_door_passResult;
+                    var cda = await s.ckeck_pass_driverAsync(cdr);
+
+                    if (!cda.ckeck_pass_driverResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cda.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cda.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Chofer", cda.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida camion
+                    var ctr = new check_pass_truckRequest();
+                    ctr.pass = pp.get_door_passResult;
+                    var cca = await s.check_pass_truckAsync(ctr);
+
+                    if (!cca.check_pass_truckResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cca.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cca.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Camión", cca.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida date
+                    var cpd = new check_pass_dateRequest();
+                    cpd.pass = pp.get_door_passResult;
+                    var cfa = await s.check_pass_dateAsync(cpd);
+
+                    if (!cfa.check_pass_dateResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cfa.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cfa.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Fecha", cfa.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida turno
+                    var cptn = new check_pass_ticketRequest();
+                    cptn.pass = pp.get_door_passResult;
+                    var ctna = await s.check_pass_ticketAsync(cptn);
+
+                    if (!ctna.check_pass_ticketResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cfa.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = ctna.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Turno", ctna.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida ridt
+                    var crid = new check_pass_ridtRequest();
+                    crid.pass = pp.get_door_passResult;
+                    var cria = await s.check_pass_ridtAsync(crid);
+
+                    if (!cria.check_pass_ridtResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cria.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val)
+                            mns = cria.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "RIDT", cria.msg, new SolidColorBrush(Colors.Red));
+                    }
+                    //valida transact N4
+                    var cpt = new check_pass_transactionRequest();
+                    cpt.pass = pp.get_door_passResult;
+                    var cta = await s.check_pass_transactionAsync(cpt);
+
+                    if (!cta.check_pass_transactionResult)
+                    {
+                        //var mensajeDialogo = new MessageDialog("Problema", cta.msg);
+                        //await mensajeDialogo.ShowAsync();
+                        if (val == true)
+                            mns = cta.msg;
+                        val = false;
+                        LlenarGrid(TransImp, "Transacción", cta.msg, new SolidColorBrush(Colors.Red));
+
+                        var binding = new BasicHttpBinding();
+                        Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                        Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                        var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                        var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                        await servicio.AnunciarProblemaGenericoMobileAsync("[Transacción N4] " + cta.msg, ZonaObj.ZONE_ID);
+                    }
+
+                    var uni = await s.get_pass_unitAsync(pp.get_door_passResult);
+
+                    if (tip == "CNTR")
+                    {
+                        //var dcnt = new pre_gate_detail_container_item();
+
+                        if (uni != null)
+                        {
+                            contain = await s.get_pass_containerAsync(uni);
+
+                            if (contain != null)
+                            {
+                                if (num == 1)
+                                {
+                                    carga1 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga1, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                if (num == 2)
+                                {
+                                    carga2 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga2, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                if (num == 3)
+                                {
+                                    carga3 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga3, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                if (num == 4)
+                                {
+                                    carga4 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga4, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+
+                                //dcnt.container_id = int.Parse(contain.gkey.ToString("0"));
+                                cit.cntr = contain;
+                                cit.stage = "PRE_IN";
+
+                                var cia = await s.check_impedimentsAsync(cit);
+
+                                if (!cia.check_impedimentsResult)
+                                {
+                                    //var mensajeDialogo = new MessageDialog("Problema", cia.msg);
+                                    //await mensajeDialogo.ShowAsync();
+                                    //return;
+                                    if (val)
+                                        mns = cia.msg;
+                                    val = false;
+                                    LlenarGrid(TransImp, "Contenedor", mns, new SolidColorBrush(Colors.Red));
+                                }
+                            }
+                            else
+                            {
+                                //var mensajeDialogo = new MessageDialog("Problema", "No se obtuvo información del CONTENEDOR");
+                                //await mensajeDialogo.ShowAsync();
+                                //return;
+                                mns = "No se obtuvo información del CONTENEDOR";
+                                LlenarGrid(TransImp, "Contenedor", mns, new SolidColorBrush(Colors.Red));
+                                val = false;
+                            }
+
+                        }
+                        else
+                        {
+                            //var mensajeDialogo = new MessageDialog("Problema", "No se obtuvo información del CONTENEDOR");
+                            //await mensajeDialogo.ShowAsync();
+                            //return;
+                            var fcf = new find_expo_cntr_fcl_by_gkeyRequest();
+                            fcf.gkey = int.Parse(pp.get_door_passResult.id_charge.ToString());
+                            var fcfa = await s.find_expo_cntr_fcl_by_gkeyAsync(fcf);
+
+                            if (fcfa.find_expo_cntr_fcl_by_gkeyResult != null)
+                                contain = fcfa.find_expo_cntr_fcl_by_gkeyResult;
+                            else
+                            {
+                                mns = fcfa.msg;
+                                //mns = "No se obtuvo información del UNIT";
+                                LlenarGrid(TransImp, "Contenedor", mns, new SolidColorBrush(Colors.Red));
+                                val = false;
+                            }
+
+                            if (contain != null)
+                            {
+                                if (num == 1)
+                                {
+                                    carga1 = contain.id;
+                                    LlenarGrid(TransImp, "Contenedor", carga1, new SolidColorBrush(Colors.Green));
+                                    // llenas detalle de contenedor
+                                    dcnt.number = contain.id;
+                                    //dcnt.container_id = int.Parse(contain.gkey.ToString().Substring(0, contain.gkey.ToString().Length - 3));
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (num == 1)
+                        {
+                            carga1 = uni.nbr;
+                        }
+
+                        if (num == 2)
+                        {
+                            carga2 = uni.nbr;
+                        }
+
+                        if (num == 3)
+                        {
+                            carga3 = uni.nbr;
+                        }
+
+                        if (num == 4)
+                        {
+                            carga4 = uni.nbr;
+                        }
+                    }
+
+                    if (num == 1)
+                    {
+                        gkey1 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+
+                    if (num == 2)
+                    {
+                        gkey2 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+
+                    if (num == 3)
+                    {
+                        gkey3 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+
+                    if (num == 4)
+                    {
+                        gkey4 = int.Parse(pp.get_door_passResult.gkey_pase.ToString()).ToString();
+                    }
+                }
+                else
+                {
+                    LlenarGrid(TransImp, "Pase", "Pase no existe", new SolidColorBrush(Colors.Red));
+                    val = false;
+                }
+            }
+            else
+            {
+                var pr = new find_expo_cntr_mty_desistRequest();
+                pr.cntr_id = pase;
+                var cmda = await s.find_expo_cntr_mty_desistAsync(pr);
+
+                if ((cmda != null) && (cmda.msg == "" || cmda.msg != null) && (cmda.find_expo_cntr_mty_desistResult != null))
+                {
+                    tip = "CNTR";
+                    TransImp = "Retiro Impo " + tip;
+                    contain = cmda.find_expo_cntr_mty_desistResult;
+
+                    LlenarGrid(TransImp, "Contenedor", contain.id, new SolidColorBrush(Colors.Green));
+                    // llenas detalle de contenedor
+                    dcnt.number = contain.id;
+
+                    if (num == 1)
+                        carga1 = contain.id;
+                    if (num == 2)
+                        carga2 = contain.id;
+                    if (num == 3)
+                        carga3 = contain.id;
+                    if (num == 4)
+                        carga4 = contain.id;
+                }
+                else
+                {
+                    LlenarGrid(TransImp, "Contenedor", "No existe como desestimiento", new SolidColorBrush(Colors.Red));
+                    val = false;
+                }
+            }
+        }
+
+        private void LlenaDetalle(string carga, int tip)
+        {
+            dett = new pre_gate_details_item();
+            //llenas detalle de transact
+            dett.status = "N";
+            dett.transaction_number = carga;
+            dett.transaction_type_id = tip;
+
+            if (tip == 1 || tip == 3 || tip == 6 || tip == 7)
+                dett.container = dcnt;
+        }
+
+        private void LlenaDetalleE(string carga, int tip, string dae, int cant)
+        {
+            dett = new pre_gate_details_item();
+            //llenas detalle de transact
+            dett.status = "N";
+            dett.transaction_number = carga;
+            dett.transaction_type_id = tip;
+            if(dae!=null && dae.Trim().Length>0)
+                dett.document_id = dae.Trim();
+            if (cant > 0)
+                dett.reference_id = cant.ToString();
+            if (tip == 1 || tip == 3 || tip == 6 || tip == 7)
+                dett.container = dcnt;
+        }
+
+        private void LlenaDetalleI(string carga, int tip, string dae)
+        {
+            dett = new pre_gate_details_item();
+            //llenas detalle de transact
+            dett.status = "N";
+            dett.transaction_number = carga;
+            dett.transaction_type_id = tip;
+            if (dae != null && dae.Trim().Length > 0)
+                dett.document_id = dae.Trim();
+
+            if (tip == 1 || tip == 3 || tip == 6 || tip == 7)
+                dett.container = dcnt;
+        }
+
+        private void LlenaSello(string name, string sello)
+        {
+            seal = new pre_gate_container_seal_item();
+            seal.caption = name;
+            seal.value = sello;
+        }
+
+        private void LlenaSelloC(string name, string sello)
+        {
+            sealc = new ServicioMobile.SEAL();
+            sealc.CAPTION = name;
+            sealc.VALUE = sello;
+        }
+
+        private void LlenaDanio(string tip, string comp, string sev, string not)
+        {
+            dam = new pre_gate_detail_damage_item();
+            dam.damage_type = tip;
+            dam.component = comp;
+            dam.severity = sev;
+            dam.notes = not;
+            dam.location = "RECEPT";
+            dam.quantity = 1;
+        }
+
+        private void LlenaDanioC(string tip, string comp, string sev, string not)
+        {
+            damc = new ServicioMobile.DAMAGE();
+            damc.DAMAGE_TYPE = tip;
+            damc.COMPONENT = comp;
+            damc.SEVERITY = sev;
+            damc.NOTES = not;
+            damc.LOCATION = "RECEPT";
+            damc.QUANTITY = 1;
+        }
+
+        private void LlenaCabecera()
+        {
+            //llena cabecera transact
+            cabt.device_id = id_device;
+            cabt.driver_id = chofer;
+            cabt.truck_licence = placa;
+            cabt.user = usuario;
+            cabt.pre_gate_details = ldet;
+        }
+
+        private async Task CreaTransacTablet()
+        {
+            val = true;
+            // crear transacción interna
+            var trM = new save_tablet_transactionRequest();
+            trM.transaction = cabt;
+            
+            trMa = await s.save_tablet_transactionAsync(trM);
+
+            if (!trMa.save_tablet_transactionResult)
+            {
+                mns = trMa.OnError + "- Tablet " + Host + " User " + Usuario + " Placa " + placa + " Id Chofer " + chofer;
+                val = false;
+                //LlenarGrid(TransExp, "Transaccion Tablet", mns, new SolidColorBrush(Colors.Red));
+            }
+        }
+
+        private async Task ActualizaTransacTablet()
+        {
+            val = true;
+            // crear transacción interna
+            var trU = new update_pregate_transactionRequest();
+            trU.driver = chofer;
+            trU.truck = placa;
+
+            var trUa = await s.update_pregate_transactionAsync(trU);
+            if (!trUa.update_pregate_transactionResult)
+            {
+                mns = trUa.OnError;
+                val = false;
+                LlenarGrid(TransImp, "Transaccion Tablet Act", mns, new SolidColorBrush(Colors.Red));
+            }
+        }
+
+        private async Task LiberaHold(string unit, string hold)
+        {
+            val = true;
+            //DesbloqueaUnit
+            var dbuni = new DatosN4();
+            dbuni.IdCompania = unit;
+            dbuni.CedulaChofer = hold;//"CGSA_APPT_VBS"
+            var lbh = await w.LiberarHoldAsync(dbuni);
+
+            if (lbh.FueOk == true)
+            {
+                if(TransImp!=null && TransImp.Trim().Length>0)
+                    LlenarGrid(TransImp, "Hold", $@"Contenedor ""{unit}"" Liberado", new SolidColorBrush(Colors.Green));
+                else
+                    LlenarGrid(TransExp, "Hold", $@"Contenedor ""{unit}"" Liberado", new SolidColorBrush(Colors.Green));
+            }
+            else
+            {
+                mns = lbh.Mensaje;
+                val = false;
+                if (TransImp != null && TransImp.Trim().Length > 0)
+                    LlenarGrid(TransImp, "Problema Hold", mns, new SolidColorBrush(Colors.Red));
+                else
+                    LlenarGrid(TransExp, "Problema Hold", mns, new SolidColorBrush(Colors.Red));
+            }
+        }
+
+        private async Task CambiaHold(string appk)
+        {
+            val = true;
+            //DesbloqueaUnit
+            var dbuni = new DatosN4();
+            dbuni.IdCompania = appk;
+            var lbh = await w.CambiarHoldAsync(dbuni);
+
+            if (lbh.FueOk == true)
+            {
+                LlenarGrid(TransImp, "Cambio Appoitment", $@"Appoitment ""{appk}"" Cambiado a Receptio", new SolidColorBrush(Colors.Green));
+            }
+            else
+            {
+                mns = lbh.Mensaje;
+                val = false;
+                LlenarGrid(TransImp, "Problema Cambio Appoitment", mns, new SolidColorBrush(Colors.Red));
+            }
+        }
+
+        private async Task CreaTransacN4()
+        {
+            val = true;
+            bool r = false;
+
+            if (TransImp != null && TransImp.Trim().Length > 0)
+            {
+                if (tip == "CNTR")
+                {
+                    var pr = new DatosN4();
+                    pr.CedulaChofer = chofer;
+                    pr.PlacaVehiculo = placa;
+                    pr.IdCompania = empresa;
+
+                    if (trMa != null)
+                        pr.IdPreGate = trMa.OnError;//tra.Id.ToString();
+
+                    pr.NumerosTransacciones = lpas;
+                    var tr = await w.EjecutarProcesosDeliveryImportFullAsync(pr);
+
+                    r = tr.FueOk;
+                    mns = tr.Mensaje;
+                }
+                else
+                {
+                    var br = new DatosDeliveryImportBrbkCfs();
+                    br.CedulaChofer = chofer;
+                    br.PlacaVehiculo = placa;
+                    br.IdCompania = empresa;
+                    br.Bl = carga1;
+                    br.Qty = qty;
+
+                    if (trMa != null)
+                        br.IdPreGate = trMa.OnError;
+
+                    br.NumerosTransacciones = lpas;
+                    var tr = await w.EjecutarProcesosDeliveryImportBrBkCfsAsync(br);
+
+                    r = tr.FueOk;
+                    mns = tr.Mensaje;
+                }
+            }
+            else
+            {
+                if (tipexp == "CNTR")
+                {
+                    var de = new DatosReceiveExport();
+                    de.CedulaChofer = chofer;
+                    de.PlacaVehiculo = placa;
+                    de.IdCompania = empresa;// aisv.truck_company_id;
+
+                    if (trMa != null)
+                        de.IdPreGate = trMa.OnError;
+                    else
+                        de.IdPreGate = "1";
+
+                    if (cdc != null && cdc.Count > 0)
+                    {
+                        de.DataContenedores = cdc;
+
+                        tr = new RespuestaProceso();
+                        tr = await w.EjecutarProcesosReceiveExportAsync(de);
+                        r = tr.FueOk;
+                        mns = tr.Mensaje;
+                    }
+                    else
+                    {
+                        r = false;
+                        mns = "ERROR EN CARGA DE UNIDADES PARA N4";
+                    }
+                }
+                else
+                {
+                    if (aisv.comodity.Contains("BANAN") || (aisv.comodity.Contains("BAB") && aisv.comodity.Trim().Length == 3) || (aisv.comodity.Contains("BAN") && aisv.comodity.Trim().Length == 3))
+                    {
+                        var de = new DatosReceiveExportBanano();
+                        de.CedulaChofer = chofer;
+                        de.PlacaVehiculo = placa;
+                        de.IdCompania = aisv.truck_company_id;
+                        de.Bl = aisv.number;
+                        de.Cantidad = (int)aisv.packs;
+                        de.Ip = Ip;
+                        de.VeeselVisit = aisv.reference;
+                        if (aisv.customs_doc != null)
+                            de.Dae = aisv.customs_doc.Trim();
+                        de.Notas = "";
+
+                        if (trMa != null)
+                            de.IdPreGate = trMa.OnError;
+
+                        tr = new RespuestaProceso();
+                        tr = await w.EjecutarProcesosReceiveExportBananoAsync(de);
+                        r = tr.FueOk;
+                        mns = tr.Mensaje;
+                    }
+                    else
+                    {
+                        var de = new DatosReceiveExportBrBk();
+                        de.CedulaChofer = chofer;
+                        de.PlacaVehiculo = placa;
+                        de.IdCompania = aisv.truck_company_id;
+                        de.Bl = aisv.number;
+                        de.Cantidad = int.Parse(aisv.packs.ToString());
+                        de.Ip = Ip;
+                        de.VeeselVisit = aisv.reference;
+                        if (aisv.customs_doc != null)
+                            de.Dae = aisv.customs_doc.Trim();
+                        de.Notas = "";
+
+                        if (trMa != null)
+                            de.IdPreGate = trMa.OnError;
+
+                        tr = new RespuestaProceso();
+                        tr = await w.EjecutarProcesosReceiveExportBrBkAsync(de);
+                        r = tr.FueOk;
+                        mns = tr.Mensaje;
+                    }
+                }
+            }
+
+            if (r)
+            {
+                //var mensajeDialogo = new MessageDialog("Transacción N4", "Proceso Satisfactorio.");
+                //await mensajeDialogo.ShowAsync();
+                mns = "Proceso Satisfactorio";
+                //LlenarGrid(TransImp, "Transaccion N4", mns);
+            }
+            else
+            {
+                var binding = new BasicHttpBinding();
+                Windows.ApplicationModel.Resources.Core.ResourceContext ctx = new Windows.ApplicationModel.Resources.Core.ResourceContext();
+                Windows.ApplicationModel.Resources.Core.ResourceMap rmap = Windows.ApplicationModel.Resources.Core.ResourceManager.Current.MainResourceMap.GetSubtree("Recursos");
+                var endpoint = rmap.GetValue("ServicioTD", ctx).ValueAsString;
+                var servicio = new ServicioAnuncianteProblemaClient(binding, new EndpointAddress(endpoint));
+                await servicio.AnunciarProblemaMobileAsync(tr.IdTosProcess, ZonaObj.ZONE_ID);
+                val = false;
+                //LlenarGrid(TransImp, "Transaccion N4", mns);
+            }
+        }
+
+        private async void ListTipo()
+        {
+            lsTipo = await s.get_damage_listAsync();
+            ListItem c;
+
+            for (int i = 0; i < lsTipo.Count; i++)
+            {
+                c = new ListItem();
+                c.Dato = lsTipo[i].value;
+                c.Info = lsTipo[i].name;
+                lsTip.Add(c);
+            }
+
+            if (lsTip.Count == 0)
+            {
+                c = new ListItem();
+                c.Dato = "BLANCO";
+                c.Info = "BLANCO";
+                lsTip.Add(c);
+                //Danio9.Dato = "BLANCO";
+            }
+            //Color = lsColor[0].value;
+        }
+
+        private async void ListComponent()
+        {
+            lsComp = await s.get_component_listAsync();
+            ListItem c;
+
+            for (int i =0; i < lsComp.Count; i++)
+            {
+                c = new ListItem();
+                c.Dato = lsComp[i].value;
+                c.Info = lsComp[i].name;
+                lsCom.Add(c);//, lsColor[i].value);
+            }
+
+            if (lsCom.Count == 0)
+            {
+                c = new ListItem();
+                c.Dato = "BLANCO";
+                c.Info = "BLANCO";
+                lsCom.Add(c);
+                //Danio10.Dato = "BLANCO";
+            }
+            //Color = lsColor[0].value;
+        }
+
+        private void LimpiarCampos()
+        {
+            CargaExp1 = "";
+            CargaExp2 = "";
+            CargaExp3 = "";
+            CargaExp4 = "";
+            CargaImp1 = "";
+            CargaImp2 = "";
+            CargaImp3 = "";
+            CargaImp4 = "";
+            TransExp = "";
+            TransImp = "";
+            SealCgsa1 = "";
+            SealCgsa2 = "";
+            Seal1 = "";
+            Seal2 = "";
+            Seal3 = "";
+            Seal4 = "";
+            Seal5 = "";
+            Seal6 = "";
+            Seal7 = "";
+            Seal8 = "";
+            Seal9 = "";
+            Seal10 = "";
+            Seal11 = "";
+            Seal12 = "";
+            Danio1 = null;
+            Danio2 = null;
+            Danio3 = "";
+            Danio4 = "";
+            Danio5 = null;
+            Danio6 = null;
+            Danio7 = "";
+            Danio8 = "";
+            Danio9 = null;
+            Danio10 = null;
+            Danio11 = "";
+            Danio12 = "";
+            Danio13 = null;
+            Danio14 = null;
+            Danio15 = "";
+            Danio16 = "";
+            Danio17 = null;
+            Danio18 = null;
+            Danio19 = "";
+            Danio20 = "";
+            val = true;
+            tb = new ObservableCollection<InfoViewModel>();
+        }
+
+        private void LimpiarSellos()
+        {
+            SealCgsa3 = "";
+            Seal9 = "";
+            Seal10 = "";
+            Seal11 = "";
+            Seal12 = "";
+        }
+
+        private void LimpiarDanios()
+        {
+            Danio9 = null;
+            Danio10 = null;
+            Danio11 = "";
+            Danio12 = "";
+        }
+
+        private void CargarSellos()
+        {
+            if (num == 1)
+            {
+                if (SealCgsa3 != null && SealCgsa3.Trim().Length > 0)
+                {
+                    SealCgsa1 = SealCgsa3.Trim().ToUpper();
+                    Seal1 = Seal9!=null?Seal9.Trim().ToUpper():"";
+                    Seal2 = Seal10!=null?Seal10.Trim().ToUpper():"";
+                    Seal3 = Seal11!=null?Seal11.Trim().ToUpper():"";
+                    Seal4 = Seal12!=null?Seal12.Trim().ToUpper():"";
+                }
+            }
+            else
+            {
+                if (SealCgsa3 != null && SealCgsa3.Trim().Length > 0)
+                {
+                    SealCgsa2 = SealCgsa3.Trim().ToUpper();
+                    Seal5 = Seal9 != null ? Seal9.Trim().ToUpper() : "";
+                    Seal6 = Seal10 != null ? Seal10.Trim().ToUpper() : "";
+                    Seal7 = Seal11 != null ? Seal11.Trim().ToUpper() : "";
+                    Seal8 = Seal12 != null ? Seal12.Trim().ToUpper() : "";
+                }
+            }
+        }
+
+        private void DescargarSellos()
+        {
+            if (num == 1)
+            {
+                if (SealCgsa1 != null && SealCgsa1.Trim().Length > 0)
+                {
+                    SealCgsa3 = SealCgsa1.Trim().ToUpper();
+                    Seal9 = Seal1;
+                    Seal10 = Seal2;
+                    Seal11 = Seal3;
+                    Seal12 = Seal4;
+                }
+            }
+            else
+            {
+                if (SealCgsa2 != null && SealCgsa2.Trim().Length > 0)
+                {
+                    SealCgsa3 = SealCgsa2.Trim().ToUpper();
+                    Seal9 = Seal5;
+                    Seal10 = Seal6;
+                    Seal11 = Seal7;
+                    Seal12 = Seal8;
+                }
+            }
+        }
+
+        private void CargarDanios()
+        {
+            if (num == 1)
+            {
+                if (Danio9 != null && Danio10 != null)
+                {
+                    Danio1 = Danio9;
+                    Danio2 = Danio10;
+                    Danio3 = Danio11!=null?Danio11.Trim().ToUpper():"MINOR";
+                    Danio4 = Danio12!=null?Danio12.Trim().ToUpper():"RECEPTIO";
+                }
+            }
+            else if (num == 2)
+            {
+                if (Danio9 != null && Danio10 != null)
+                {
+                    Danio5 = Danio9;
+                    Danio6 = Danio10;
+                    Danio7 = Danio11 != null ? Danio11.Trim().ToUpper() : "MINOR";
+                    Danio8 = Danio12 != null ? Danio12.Trim().ToUpper() : "RECEPTIO";
+                }
+            }
+            else if (num == 3)
+            {
+                if (Danio9 != null && Danio10 != null)
+                {
+                    Danio13 = Danio9;
+                    Danio14 = Danio10;
+                    Danio15 = Danio11 != null ? Danio11.Trim().ToUpper() : "MINOR";
+                    Danio16 = Danio12 != null ? Danio12.Trim().ToUpper() : "RECEPTIO";
+                }
+            }
+            else
+            {
+                if (Danio9 != null && Danio10 != null)
+                {
+                    Danio17 = Danio9;
+                    Danio18 = Danio10;
+                    Danio19 = Danio11 != null ? Danio11.Trim().ToUpper() : "MINOR";
+                    Danio20 = Danio12 != null ? Danio12.Trim().ToUpper() : "RECEPTIO";
+                }
+            }
+        }
+
+        private void DescargarDanios()
+        {
+            if (num == 1)
+            {
+                if (Danio1 != null)
+                {
+                    Danio9 = Danio1;
+                    Danio10 = Danio2;
+                    Danio11 = Danio3;
+                    Danio12 = Danio4;
+                }
+            }
+            else if (num == 2)
+            {
+                if (Danio5 != null)
+                {
+                    Danio9 = Danio5;
+                    Danio10 = Danio6;
+                    Danio11 = Danio7;
+                    Danio12 = Danio8;
+                }
+            }
+            else if (num == 3)
+            {
+                if (Danio13 != null)
+                {
+                    Danio9 = Danio13;
+                    Danio10 = Danio14;
+                    Danio11 = Danio15;
+                    Danio12 = Danio16;
+                }
+            }
+            else
+            {
+                if (Danio14 != null)
+                {
+                    Danio9 = Danio17;
+                    Danio10 = Danio18;
+                    Danio11 = Danio19;
+                    Danio12 = Danio20;
+                }
+            }
+        }
+
+        private void LimpiarGrid()
+        {
+            tb = new ObservableCollection<InfoViewModel>();
+        }
+
+        private void GuardarRecursosAplicacion(DatosLogin resultado)
+        {
+            App.Current.Resources.Add("LoginData", resultado);
+        }
+
+        public void IrVentanaPrincipal(bool esLider)
+        {
+            _ventanaAutenticacion.Frame.Navigate(typeof(ValidatePage));
+        }
+
+        public void IrVentanaSello(bool esLider)
+        {
+            _ventanaAutenticacion.Frame.Navigate(typeof(SealsPage));
+        }
+
+        public void IrVentanaDanio(bool esLider)
+        {
+            _ventanaAutenticacion.Frame.Navigate(typeof(DanioPage));
+        }
+
+        public void LlenarGrid(string tran, string dat, string inf, SolidColorBrush col)
+        {
+            var obj = new InfoViewModel();
+
+            obj.Trans = tran.ToUpper();
+            obj.Dato = dat.ToUpper();
+            obj.Info = inf.ToUpper();
+            obj.GColor = col;
+            tb.Add(obj);
+        }
+
+        private void IrVentanaLogin(bool esLider)
+        {
+            _ventanaAutenticacion.Frame.Navigate(typeof(VentanaAutenticacion));
+        }
+
+        #endregion
+    }
+}

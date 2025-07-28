@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{9F81C18D-5B81-460C-B834-0841C06E6806}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mobile</RootNamespace>
+    <AssemblyName>Mobile</AssemblyName>
+    <DefaultLanguage>es-ES</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>
+    </PackageCertificateKeyFile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <PackageCertificateThumbprint>70E7909FA6FC244635348497B63DBC912169BB20</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceSMDT\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceTD\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceTransact\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioAutenticacion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioMobile\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DanioGridViewModel.cs" />
+    <Compile Include="ViewModels\SAVPageViewModel.cs" />
+    <Compile Include="ViewModels\InfoViewModel.cs" />
+    <Compile Include="ViewModels\DatoGridViewModel.cs" />
+    <Compile Include="ViewModels\IValueConverter.cs" />
+    <Compile Include="ViewModels\ListItem.cs" />
+    <Compile Include="ViewModels\EmptyPageViewModel.cs" />
+    <Compile Include="ViewModels\Main2PageViewModel.cs" />
+    <Compile Include="ViewModels\OutPageViewModel.cs" />
+    <Compile Include="ViewModels\DanioPageViewModel.cs" />
+    <Compile Include="ViewModels\ProveedorPageViewModel.cs" />
+    <Compile Include="ViewModels\SealsPageViewModel.cs" />
+    <Compile Include="ViewModels\ValidatePageViewModel.cs" />
+    <Compile Include="ViewModels\VentanaAutenticacionViewModel.cs" />
+    <Compile Include="Vistas\SAVPage.xaml.cs">
+      <DependentUpon>SAVPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\EmptyPage.xaml.cs">
+      <DependentUpon>EmptyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\OutPage.xaml.cs">
+      <DependentUpon>OutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\DanioPage.xaml.cs">
+      <DependentUpon>DanioPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ProveedorPage.xaml.cs">
+      <DependentUpon>ProveedorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\SealsPage.xaml.cs">
+      <DependentUpon>SealsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ValidatePage.xaml.cs">
+      <DependentUpon>ValidatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VentanaAutenticacion.xaml.cs">
+      <DependentUpon>VentanaAutenticacion.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Connected Services\ServiceSMDT\Mobile.ServiceSMDT.basicInvokeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceSMDT\n4Service1.wsdl" />
+    <None Include="Connected Services\ServiceTD\ServicioAnuncianteProblema1.wsdl" />
+    <None Include="Connected Services\ServiceTD\ServicioAnuncianteProblema2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTD\ServicioAnuncianteProblema3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.aisv_item.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.booking_item.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_aisv_driverResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_aisv_preadviceResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_aisv_statusResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_aisv_truckResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_cntr_statusResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_driver_expoResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_impedimentsResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_pass_dateResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_pass_ridtResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_pass_statusResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_pass_ticketResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_pass_transactionResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_pass_truckResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_transaction_by_containerResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_transaction_by_driverResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_transaction_by_truckResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.check_truck_expoResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.ckeck_pass_driverResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.combo_item.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.container_item.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.edo_control_item.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.edo_data_validationResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.edo_item.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.find_aisv_by_containerResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.find_aisv_by_numberResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.find_expo_cntr_fclResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.find_expo_cntr_fcl_by_gkeyResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.find_expo_cntr_mtyResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.find_expo_cntr_mty_desistResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.find_impo_cntr_pre_outResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.get_door_passResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.save_tablet_transactionResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.save_tablet_transaction_returnResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.sav_validationResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.set_aisv_fcl_sealsResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.set_aisv_mty_sealsResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.set_impo_fcl_sealsResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.unit_item.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.update_pregate_transactionResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.vip_find_passResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.vip_validate_dateResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.vip_validate_driverResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Mobile.ServiceTransact.vip_validate_truckResponse.datasource" />
+    <None Include="Connected Services\ServiceTransact\Service3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service34.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service35.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service36.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service37.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service38.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceTransact\ValidationService1.wsdl" />
+    <None Include="Connected Services\ServiceTransact\ValidationService11.wsdl" />
+    <None Include="Connected Services\ServiceTransact\ValidationService12.wsdl" />
+    <None Include="Connected Services\ServicioAutenticacion\ServicioLoginMobile1.wsdl" />
+    <None Include="Connected Services\ServicioAutenticacion\ServicioLoginMobile3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioAutenticacion\ServicioLoginMobile4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioAutenticacion\ServicioLoginMobile5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioMobile\Mobile.ServicioMobile.DEVICE.datasource" />
+    <None Include="Connected Services\ServicioMobile\Mobile.ServicioMobile.RespuestaProceso.datasource" />
+    <None Include="Connected Services\ServicioMobile\Mobile.ServicioMobile.ZONE.datasource" />
+    <None Include="Connected Services\ServicioMobile\ServicioMobile.wsdl" />
+    <None Include="Connected Services\ServicioMobile\ServicioMobile.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioMobile\ServicioMobile1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioMobile\ServicioMobile2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioMobile\ServicioMobile3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioMobile\ServicioMobile4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioMobile\ServicioMobile5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mobile_TemporaryKey.pfx" />
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <PRIResource Include="Recursos.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceTD\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceTD\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceTD\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServiceSMDT\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceSMDT\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceSMDT\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServiceSMDT\n4Service1.disco" />
+    <None Include="Connected Services\ServicioAutenticacion\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioAutenticacion\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioAutenticacion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServiceTD\ServicioAnuncianteProblema1.disco" />
+    <None Include="Connected Services\ServiceTransact\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceTransact\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceTransact\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service1.disco" />
+    <None Include="Connected Services\ServicioMobile\ServicioMobile.disco" />
+    <None Include="Connected Services\ServicioMobile\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioMobile\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioMobile\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ServiceTransact\Service12.disco" />
+    <None Include="Connected Services\ServicioAutenticacion\ServicioLoginMobile1.disco" />
+    <None Include="Connected Services\ServiceTransact\Service11.disco" />
+    <Content Include="Imagenes\anter_vrd2.jpg" />
+    <Content Include="Imagenes\anter_vrd3.jpg" />
+    <Content Include="Imagenes\ant_vrd.png" />
+    <Content Include="Imagenes\borr_vrd_blnc.jpg" />
+    <Content Include="Imagenes\borr_x_vrd.jpg" />
+    <Content Include="Imagenes\camion_azl2.jpg" />
+    <Content Include="Imagenes\camion_cabn.bmp" />
+    <Content Include="Imagenes\camion_cbn.bmp" />
+    <Content Include="Imagenes\camion_cbn.png" />
+    <Content Include="Imagenes\camion_frnt.png" />
+    <Content Include="Imagenes\camion_rj.png" />
+    <Content Include="Imagenes\check.png" />
+    <Content Include="Imagenes\check2.jpg" />
+    <Content Include="Imagenes\check3.png" />
+    <Content Include="Imagenes\check4.png" />
+    <Content Include="Imagenes\check5.jpg" />
+    <Content Include="Imagenes\Contrasena.png" />
+    <Content Include="Imagenes\full.jpg" />
+    <Content Include="Imagenes\fullybult.jpg" />
+    <Content Include="Imagenes\inicio2.jpg" />
+    <Content Include="Imagenes\limpiar2.png" />
+    <Content Include="Imagenes\Login.png" />
+    <Content Include="Imagenes\logoff.png" />
+    <Content Include="Imagenes\logoff2.jpg" />
+    <Content Include="Imagenes\next.png" />
+    <Content Include="Imagenes\next2.jpg" />
+    <Content Include="Imagenes\next3.jpg" />
+    <Content Include="Imagenes\on_vrd.png" />
+    <Content Include="Imagenes\process.png" />
+    <Content Include="Imagenes\process2.jpg" />
+    <Content Include="Imagenes\process3.png" />
+    <Content Include="Imagenes\proc_vrd2.jpg" />
+    <Content Include="Imagenes\sav_1.jpg" />
+    <Content Include="Imagenes\sav_2.png" />
+    <Content Include="Imagenes\signt_vrd3.jpg" />
+    <Content Include="Imagenes\user4.jpg" />
+    <Content Include="Imagenes\Usuario.png" />
+    <Content Include="Imagenes\validate.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Vistas\SAVPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\EmptyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\OutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\DanioPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\ProveedorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\SealsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\ValidatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VentanaAutenticacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UWP.MVVM\UWP.MVVM.csproj">
+      <Project>{c5cb9d1c-8977-4e8d-b493-9a29b9fef582}</Project>
+      <Name>UWP.MVVM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceSMDT\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceTD\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceTransact\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioAutenticacion\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioMobile\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.1.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
+      <Version>6.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="QueryString.NET">
+      <Version>1.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4294b1fc-28e8-4336-b084-0c6bdc374c22" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioTransactionEmpty1.wsdl" MetadataType="Wsdl" ID="1382e9b8-98ee-47d8-affb-eb47f311c8e8" SourceId="1" SourceUrl="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc?wsdl" />
+    <MetadataFile FileName="ServicioTransactionEmpty5.xsd" MetadataType="Schema" ID="b6e7e5c9-399d-4ac8-a686-28ad3e312e3e" SourceId="1" SourceUrl="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioTransactionEmpty51.xsd" MetadataType="Schema" ID="43b22e71-2406-4931-afb5-817c0058e0f2" SourceId="1" SourceUrl="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicioTransactionEmpty52.xsd" MetadataType="Schema" ID="07e520c3-0e16-4db7-b120-b10087753259" SourceId="1" SourceUrl="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioTransactionEmpty53.xsd" MetadataType="Schema" ID="ab7ccb75-5049-4b30-8e2b-ccf0949a25da" SourceId="1" SourceUrl="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioTransactionEmpty54.xsd" MetadataType="Schema" ID="d9a91b39-0c01-4f14-8267-59023b95e595" SourceId="1" SourceUrl="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServicioTransactionEmpty1.disco" MetadataType="Disco" ID="693bd66b-16b7-4459-a8e1-9ec286ffad4c" SourceId="1" SourceUrl="http://cgdes13:1700/TransactionEmpty/ServicioTransactionEmpty.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

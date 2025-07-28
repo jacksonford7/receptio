@@ -1,0 +1,10 @@
+﻿<Application x:Class="Transaction.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Transaction"
+             StartupUri="Views\VentanaPrincipal.xaml" Startup="ApplicationStartup"
+             DispatcherUnhandledException="ApplicationDispatcherUnhandledException">
+    <Application.Resources>
+        <ResourceDictionary Source="Estilos\Compartido.xaml" />
+    </Application.Resources>
+</Application>

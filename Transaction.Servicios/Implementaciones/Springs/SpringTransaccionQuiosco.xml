@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+        type="RECEPTIO.CapaServiciosDistribuidos.Transaction.Servicios.Aspectos.ThrowsException, RECEPTIO.CapaServiciosDistribuidos.Transaction.Servicios">
+  </object>
+
+  <object id="AdministradorTransaccionQuiosco" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaDominio.Transaction.ServiciosDominio.ServicioTransaccionQuiosco, RECEPTIO.CapaDominio.Transaction.ServiciosDominio">
+        <constructor-arg ref="RepositorioTransaccionQuiosco"/>
+        <constructor-arg ref="RepositorioPreGate"/>
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+
+  <object name ="RepositorioTransaccionQuiosco" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioTransaccionQuiosco, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioPreGate" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioPreGate, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+</objects>

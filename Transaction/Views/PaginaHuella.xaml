@@ -1,0 +1,38 @@
+﻿<Page x:Class="Transaction.Views.PaginaHuella"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      FontFamily="Microsoft Sans Serif"
+      mc:Ignorable="d" 
+      Height="1200" Width="1230">
+
+    <Grid Background="{StaticResource StandardBackground}">
+        <StackPanel>
+            <TextBlock Text="IDENTIDAD DEL CONDUCTOR" Foreground="Black" TextAlignment="Center" FontSize="80" Margin="10,0,0,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,80,0,0">
+                <TextBlock Text="Licencia :" FontSize="60" Foreground="Black" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding Licencia}" FontSize="60" Foreground="Black" Margin="20,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Nombre :" FontSize="60" Foreground="Black" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding NombreConductor}" FontSize="60" Foreground="Black" Margin="20,0,0,0"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Mensaje}" Foreground="{Binding ColorTextoMensaje}" Background="#F8FBEF"  
+                        TextWrapping="Wrap" FontSize="60" Height="420" Margin="50,50,50,0" />
+            <StackPanel Orientation="Horizontal">
+                <Button FontSize="40" Height="350" Width="1160" Margin="20,50,0,0" Command="{Binding ComandoIntentarNuevamenteHuella}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="350" Width="400" Source="/Imagenes/Huella.png"/>
+                            <TextBlock Text="Presione aquí.       Para intentar nuevamente" VerticalAlignment="Center" FontSize="80" Width="800" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Button.Content>
+                    <Button.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                    </Button.BitmapEffect>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

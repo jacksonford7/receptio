@@ -1,0 +1,54 @@
+﻿<Page x:Class="Transaction.Views.PaginaInicio"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      FontFamily="Microsoft Sans Serif"
+      mc:Ignorable="d" 
+      Height="1200" Width="1230" Title="" Loaded="PageLoaded">
+    
+    <Page.Resources>
+        <Style x:Name="BotonesNumericos" TargetType="Button">
+            <Setter Property="Background" Value="#EF6C00"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="{StaticResource StandardBackground}">
+        <StackPanel>
+            <TextBlock Text="{Binding Titulo}" Foreground="#191007" FontSize="80" Margin="0,0,0,0" TextAlignment="Center" Background="Transparent"/>
+            <TextBlock Text="{Binding Mensaje}" Foreground="{Binding ColorTextoMensaje}" Background="#F8FBEF"  
+                         TextWrapping="Wrap" FontSize="60" Height="430" Margin="50,50,50,0" />
+            <TextBox Background="#EF6C00" Name="TxtPanel" Width="1150" Height="110" Foreground="White" Margin="0,10,0,0" Text="{Binding Numero,Mode=TwoWay}" FontSize="88" FlowDirection="RightToLeft" MaxLength="10" KeyDown="TxtPanelKeyDown" DataObject.Pasting="TxtPanelPasting"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="40,30,0,0">
+                        <Button Content="0" Height="163" Width="163" FontSize="75" Command="{Binding Comando0}" Click="ButtonClick"/>
+                        <Button Content="1" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando1}" Click="ButtonClick"/>
+                        <Button Content="2" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando2}" Click="ButtonClick"/>
+                        <Button Content="3" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando3}" Click="ButtonClick"/>
+                        <Button Content="4" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando4}" Click="ButtonClick"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="40,20,0,0">
+                        <Button Content="5" Height="163" Width="163" FontSize="75" Command="{Binding Comando5}" Click="ButtonClick"/>
+                        <Button Content="6" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando6}" Click="ButtonClick"/>
+                        <Button Content="7" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando7}" Click="ButtonClick"/>
+                        <Button Content="8" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando8}" Click="ButtonClick"/>
+                        <Button Content="9" Height="163" Width="163" FontSize="75" Margin="20,0,0,0" Command="{Binding Comando9}" Click="ButtonClick" />
+                    </StackPanel>
+                    <Button Content="Borrar" Height="100" Width="163" FontSize="40" Margin="770,20,0,0" Command="{Binding ComandoRetroceder}" Click="ButtonClick"/>
+                </StackPanel>
+                <StackPanel>
+                    <Button Name="BotonOk" Height="Auto" Width="Auto" Background="Transparent" BorderBrush="Transparent" Margin="100,30,0,0" Command="{Binding ComandoOk}" Click="ButtonClick"  Foreground="White">
+                        <StackPanel>
+                            <Rectangle Fill="LightGreen" Height="320" Width="150"/>
+                            <Rectangle Fill="LightGreen" Height="150" Width="200" Margin="-50,-490,0,0"/>
+                            <TextBlock Text="OK" FontSize="60" Margin="20,-200,0,0" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Content="Limpiar" FontSize="40" Height="100" Width="200" Foreground="White" Margin="50,40,0,0" Background="#DD2C00" Command="{Binding ComandoLimpiar}" Click="ButtonClick"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

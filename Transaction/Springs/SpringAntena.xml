@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+        type="Transaction.Aspectos.ThrowsException, Transaction">
+  </object>
+
+  <object id="AdministradorAntena" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaPresentacion.UI.RFID_CHAFON.Antena, RECEPTIO.CapaPresentacion.UI.RFID_CHAFON">
+        <!--<object type="RECEPTIO.CapaPresentacion.UI.RFID.Antena, RECEPTIO.CapaPresentacion.UI.RFID">-->
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+</objects>

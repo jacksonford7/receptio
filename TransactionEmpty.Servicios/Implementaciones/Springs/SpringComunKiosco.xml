@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+        type="RECEPTIO.CapaServiciosDistribuidos.TransactionEmpty.Servicios.Aspectos.ThrowsException, RECEPTIO.CapaServiciosDistribuidos.TransactionEmpty.Servicios">
+  </object>
+
+  <object id="AdministradorComunKiosco" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaDominio.Nucleo.ServiciosDominio.Entidades.ServicioComunKiosco, RECEPTIO.CapaDominio.Nucleo.ServiciosDominio">
+        <constructor-arg ref="RepositorioAplicacion"/>
+        <constructor-arg ref="RepositorioMensaje"/>
+        <constructor-arg ref="RepositorioQuiosco"/>
+        <constructor-arg ref="RepositorioDepot"/>
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+
+  <object name ="RepositorioAplicacion" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioApplication, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioMensaje" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioMensaje, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioQuiosco" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioQuiosco, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioDepot" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioDepot, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+</objects>

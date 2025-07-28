@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RECEPTIO.CapaServiciosDistribuidos.Mobile.Servicios.ServicioMobile" CodeBehind="ServicioMobile.svc.cs" %>

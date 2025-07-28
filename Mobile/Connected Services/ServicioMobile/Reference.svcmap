@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="45db109b-2ec6-4f78-b392-fd99848c63d3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioMobile.xsd" MetadataType="Schema" ID="8ebe691f-1d45-4cfd-ae01-4f51cddb3e80" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioMobile1.xsd" MetadataType="Schema" ID="15d05578-3f50-4adf-a897-f3baf2ff9a53" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioMobile2.xsd" MetadataType="Schema" ID="8fcebbfd-0b41-4a39-afdb-a76d1666cdfd" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicioMobile.wsdl" MetadataType="Wsdl" ID="31b20f7b-2519-4523-a704-0bc5250c6491" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?wsdl" />
+    <MetadataFile FileName="ServicioMobile3.xsd" MetadataType="Schema" ID="3e32c881-eea4-40fa-be13-ec1770896e0d" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServicioMobile4.xsd" MetadataType="Schema" ID="7b0f2098-3b12-4efb-b14a-5a24386987f1" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServicioMobile.disco" MetadataType="Disco" ID="b1316a57-fcf3-46cf-aa88-6c5a53ae18e6" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?disco" />
+    <MetadataFile FileName="ServicioMobile5.xsd" MetadataType="Schema" ID="383293ea-e8ee-4247-b0c3-3dde03d40aae" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

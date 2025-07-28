@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://types.webservice.argo.navis.com/v1.0" xmlns:types="http://types.webservice.argo.navis.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://types.webservice.argo.navis.com/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="common-types.xsd" />
+  <xs:complexType name="Empty" />
+  <xs:complexType name="ScopeCoordinates">
+    <xs:choice>
+      <xs:element name="scopeId" type="xs:string" />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="operatorId" type="xs:string" />
+        <xs:element minOccurs="0" name="complexId" type="xs:string" />
+        <xs:element minOccurs="0" name="facilityId" type="xs:string" />
+        <xs:element minOccurs="0" name="yardId" type="xs:string" />
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="GenericInvokeResponseWsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="commonResponse" type="ResponseType" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="responsePayLoad" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScopeCoordinateIdsWsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="operatorId" type="xs:string" />
+      <xs:element minOccurs="0" name="complexId" type="xs:string" />
+      <xs:element minOccurs="0" name="facilityId" type="xs:string" />
+      <xs:element minOccurs="0" name="yardId" type="xs:string" />
+      <xs:element minOccurs="0" name="externalUserId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

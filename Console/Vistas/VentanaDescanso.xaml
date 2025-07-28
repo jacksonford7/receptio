@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="Console.Vistas.VentanaDescanso"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="Console" Foreground="#344955"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="BotonRedondeado" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="Border" 
+                                CornerRadius="15"
+                                BorderThickness="1"
+                                Width="700"
+                                Height="100"
+                                Background="#F9AA33"
+                                BorderBrush="Transparent">
+                            </Border>
+                            <TextBlock FontFamily="Console" Foreground="#344955" Text="Terminar Descanso" FontSize="80" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="White">
+        <StackPanel>
+            <CommandBar Background="#4A6572" Foreground="White">
+                <AppBarButton Foreground="White" Icon="Stop" Label="TerminarDescanso" Command="{x:Bind _viewModel.ComandoTerminarDescanso}"/>
+                <CommandBar.Content>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Bienvenido" FontSize="18"/>
+                                <TextBlock Text="{x:Bind _viewModel.Usuario,Mode=OneWay}" FontSize="18" Margin="2,0,0,0" Width="250"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="IP:" FontSize="15" VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Bind _viewModel.Ip,Mode=OneWay}" Margin="2,0,0,0" Width="120" FontSize="18"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </CommandBar.Content>
+            </CommandBar>
+            <TextBlock Text="Disfrute su Descanso" FontSize="80" HorizontalAlignment="Center"/>
+            <TextBlock Text="Tiempo Transcurrido" FontStyle="Italic" FontSize="80" HorizontalAlignment="Center" Margin="0,140,0,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,50,0,0" HorizontalAlignment="Center">
+                <TextBlock Text="{x:Bind _viewModel.Horas, Mode=OneWay}" Foreground="Red" FontSize="120" />
+                <TextBlock Text=":" FontSize="120" Foreground="Red"/>
+                <TextBlock Text="{x:Bind _viewModel.Minutos, Mode=OneWay}" Foreground="Red" FontSize="120" />
+                <TextBlock Text=":" FontSize="120" Foreground="Red"/>
+                <TextBlock Text="{x:Bind _viewModel.Segundos, Mode=OneWay}" Foreground="Red" FontSize="120" />
+            </StackPanel>
+            <Button HorizontalAlignment="Center" Style="{StaticResource BotonRedondeado}" Command="{x:Bind _viewModel.ComandoTerminarDescanso}"/>
+        </StackPanel>
+    </Grid>
+</Page>

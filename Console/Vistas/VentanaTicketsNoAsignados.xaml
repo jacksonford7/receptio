@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="Console.Vistas.VentanaTicketsNoAsignados"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d" FontFamily="Console"
+    Foreground="#344955" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="White">
+        <StackPanel>
+            <CommandBar Background="#4A6572" Foreground="White">
+                <AppBarButton Foreground="White" Icon="Back" Label="Regresar" Command="{x:Bind _viewModel.ComandoRegresar}"/>
+                <AppBarButton Foreground="White" Icon="Refresh" Label="Actualizar" Command="{x:Bind _viewModel.ComandoActualizar}"/>
+                <AppBarButton Foreground="White" Icon="ReShare" Label="Reasignar" Command="{x:Bind _viewModel.ComandoReasignar}"/>
+                <AppBarButton Foreground="White" Icon="Delete" Label="Cancelar Tickets" Command="{x:Bind _viewModel.ComandoCancelar}"/>
+                <CommandBar.Content>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Bienvenido" FontSize="18"/>
+                                <TextBlock Text="{x:Bind _viewModel.Usuario,Mode=OneWay}" FontSize="18" Margin="2,0,0,0" Width="250"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="IP:" FontSize="15" VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Bind _viewModel.Ip,Mode=OneWay}" Margin="2,0,0,0" Width="120" FontSize="18"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </CommandBar.Content>
+            </CommandBar>
+            <StackPanel>
+                <TextBlock Text="{x:Bind _viewModel.Titulo}" FontSize="24" HorizontalAlignment="Center"/>
+                <CheckBox Margin="25,0,0,0" IsChecked="{x:Bind _viewModel.ChequearTodos, Mode=TwoWay}"/>
+                <controls:DataGrid Height="900" Margin="12" CanUserResizeColumns="False" CanUserSortColumns="False" 
+                                   AlternatingRowBackground="LightGray" CanUserReorderColumns="False" AutoGenerateColumns="False" 
+                                   VerticalScrollBarVisibility="Auto" GridLinesVisibility="All" HeadersVisibility="Column" 
+                                   ItemsSource="{x:Bind _viewModel.Tickets, Mode=OneWay}" SelectedItem="{x:Bind _viewModel.TicketSeleccionado, Mode=TwoWay}">
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridTemplateColumn Width="50">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Margin="10,0,0,0" IsChecked="{Binding EstaChequeado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
+                        <controls:DataGridTextColumn Header="Id" Width="100" Binding="{Binding IdTicket}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Tipo" Width="100" Binding="{Binding NombreTipo}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Fecha" Width="150" Binding="{Binding FechaCreacion}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Zona" Width="100" Binding="{Binding Zona}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Mensaje" Width="650" Binding="{Binding Mensaje}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Quiosco" Width="110" Binding="{Binding NombreQuiosco}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="E/S" Width="100" Binding="{Binding NombreEntradaSalida}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Proceso" Width="150" Binding="{Binding NombreProceso}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Transaccion" Width="200" Binding="{Binding TipoTransaccion}" FontSize="12" IsReadOnly ="True"/>
+                        <controls:DataGridTextColumn Header="Asignado A" Width="200" Binding="{Binding Responsable}" FontSize="12" IsReadOnly ="True"/>
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
+            </StackPanel>
+        </StackPanel>
+        
+    </Grid>
+
+
+</Page>

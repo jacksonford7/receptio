@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Interfaces" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Interfaces" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="BusquedaTicketReporte">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Id" />
+      <xs:enumeration value="Estado" />
+      <xs:enumeration value="Fecha" />
+      <xs:enumeration value="Usuario" />
+      <xs:enumeration value="Contenedor" />
+      <xs:enumeration value="Placa" />
+      <xs:enumeration value="CedulaChofer" />
+      <xs:enumeration value="TipoTicket" />
+      <xs:enumeration value="IdKiosco" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BusquedaTicketReporte" nillable="true" type="tns:BusquedaTicketReporte" />
+  <xs:simpleType name="BusquedaReporteTransacciones">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Fecha" />
+      <xs:enumeration value="GosTv" />
+      <xs:enumeration value="Usuario" />
+      <xs:enumeration value="CedulaChofer" />
+      <xs:enumeration value="Placa" />
+      <xs:enumeration value="IdDispositivo" />
+      <xs:enumeration value="Estado" />
+      <xs:enumeration value="IdTipoTransaccion" />
+      <xs:enumeration value="IdKiosco" />
+      <xs:enumeration value="IdZona" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BusquedaReporteTransacciones" nillable="true" type="tns:BusquedaReporteTransacciones" />
+</xs:schema>

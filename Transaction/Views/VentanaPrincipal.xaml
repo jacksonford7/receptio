@@ -1,0 +1,77 @@
+﻿<Window x:Class="Transaction.Views.VentanaPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        mc:Ignorable="d"
+        Title="TRANSACTION" Height="700" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        WindowState="Maximized" Loaded="WindowLoaded" Closed="WindowClosed">
+    
+    <Window.Resources>
+        <Style x:Key="ContrasteSeleccion" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="Background" Value="Transparent">
+                    <Setter Property="Foreground" Value="#191007"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource StandardBackground}">
+        <extToolkit:BusyIndicator IsBusy="{Binding EstaOcupado}" BusyContent="{Binding MensajeBusy}">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Frame Name="frmContenedor" Width="Auto" Height="Auto" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" NavigationUIVisibility="Hidden"/>
+                </StackPanel>
+                <Border BorderBrush="#E65100" BorderThickness="5">
+                    <DockPanel >
+                        <StackPanel DockPanel.Dock="Bottom">
+                            <TextBlock Height="50" Width="350" FontSize="35" Text="{Binding TipoTransaccion}" FontFamily="Georgia"/>
+                            <StackPanel Orientation="Horizontal" Visibility="{Binding EsVisibleSensores}">
+                                <CheckBox IsChecked="{Binding Input1, Mode=TwoWay}" IsEnabled="False"/>
+                                <CheckBox IsChecked="{Binding Input2, Mode=TwoWay}" IsEnabled="False"/>
+                                <CheckBox IsChecked="{Binding Input3, Mode=TwoWay}" IsEnabled="False"/>
+                                <CheckBox IsChecked="{Binding Input4, Mode=TwoWay}" IsEnabled="False"/>
+                            </StackPanel>
+                            <TextBlock Height="70" Width="350" FontSize="15" TextWrapping="Wrap" Text="{Binding ListaTags}" Visibility="{Binding EsVisibleSensores}"/>
+                            <TextBlock Height="25" Width="350" FontSize="15" TextWrapping="Wrap" Text="{Binding TagReal}" Visibility="{Binding EsVisibleSensores}"/>
+                            <TextBlock Text="Kiosco" FontSize="70" Foreground="#191007" FontFamily="Georgia" TextAlignment="Center" />
+                            <TextBlock Height="250" Text="{Binding NumeroKiosco}" TextAlignment="Center" FontSize="220" FontFamily="Microsoft Sans Serif" Foreground="White" Width="300" Background="#EF6C00" MouseLeftButtonDown="TextBlockMouseLeftButtonDown"/>
+                            <TextBlock Text="{Binding Fecha}" FontSize="30" Foreground="#191007" TextAlignment="Center"/>
+                            <Image Source="../Imagenes/Logo.png" Width="350" MouseLeftButtonDown="ImageMouseLeftButtonDown"/>
+                        </StackPanel>
+                        <StackPanel DockPanel.Dock="Top">
+                            <StackPanel Orientation="Horizontal" Height="70" Width="350" Background="{Binding InicioBackground}" HorizontalAlignment="Left">
+                                <Image Height="50" Width="75" Source="{Binding RutaImagenInicio}" Margin="0,10"/>
+                                <TextBlock Style="{DynamicResource ContrasteSeleccion}" Background="{Binding InicioBackground}" Text="Datos" FontSize="50"  VerticalAlignment="Center" Margin="20,0,0,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="70" Width="350" Background="{Binding HuellaBackground}" HorizontalAlignment="Left" Visibility="{Binding EsVisibleHuella}">
+                                <Image Width="79" Source="{Binding RutaImagenHuella}" Margin="0,10,0,0"/>
+                                <TextBlock Style="{DynamicResource ContrasteSeleccion}" Background="{Binding HuellaBackground}" Text="Huella" FontSize="50" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="70" Width="350" Background="{Binding RfidBackground}" HorizontalAlignment="Left">
+                                <Image Height="50" Width="77" Source="{Binding RutaImagenRfid}" Margin="0,10"/>
+                                <TextBlock Style="{DynamicResource ContrasteSeleccion}" Background="{Binding RfidBackground}" Text="Tag" FontSize="50" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="70" Width="350" Background="{Binding ProcesoBackground}" HorizontalAlignment="Left">
+                                <Image Height="50" Width="79" Source="{Binding RutaImagenProceso}" Margin="0,10"/>
+                                <TextBlock Style="{DynamicResource ContrasteSeleccion}" Background="{Binding ProcesoBackground}" Text="Procesos" FontSize="50" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="70" Width="350" Background="{Binding TicketBackground}" HorizontalAlignment="Left">
+                                <Image Height="40" Width="78" Source="{Binding RutaImagenTicket}" Margin="0,15"/>
+                                <TextBlock Style="{DynamicResource ContrasteSeleccion}" Background="{Binding TicketBackground}" Text="Ticket" FontSize="50" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="70" Width="350" Background="{Binding BarreraBackground}" HorizontalAlignment="Left">
+                                <Image Width="79" Source="{Binding RutaImagenBarrera}" Margin="0,10,0,2" RenderTransformOrigin="0.519,0.612"/>
+                                <TextBlock Style="{DynamicResource ContrasteSeleccion}" Background="{Binding BarreraBackground}" Text="Barrera" FontSize="50" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+            </StackPanel>
+        </extToolkit:BusyIndicator>
+    </Grid>
+</Window>

@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="Mobile.Vistas.SealsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:local="Mobile.ViewModels"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="344.768" Width="533.802" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+    <Page.Resources>
+        <Style x:Key="OrangeStyle" TargetType="controls:DataGrid">
+            <!--<Setter Property="FontFamily" Value="Segoe UI"/>-->
+            <Setter Property="FontSize" Value="20"/>
+            <!--<Setter Property="Background"  Value="Purple"/>-->
+            <Setter Property="BorderBrush" Value="DarkOrange"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <!--<Setter Property="Foreground" Value="Green"/>-->
+            <!--<Setter Property="ColumnHeaderStyle" Value="Green"/>-->
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <!--<Setter Property="ColumnHeaderStyle" Value=""/>-->
+        </Style>
+        <Style x:Key="CelStyle" TargetType="controls:DataGridCell">
+            <Setter Property="BorderBrush" Value="ForestGreen"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <!--<SolidColorBrush x:Key="MiConvertidor" Color="{Binding MiConvertidor}"/>-->
+        <!--<local:MiConvertidor x:Key="eConvertidor"/>-->
+        <Style x:Key="RwStyle" TargetType="controls:DataGridRow">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="BorderBrush" Value="DarkOrange"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Foreground" Value="{Binding GColor2}"/>
+            <!--<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Item,Converter={StaticResource MiConvertidor}}"/>-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:DataGridRow">
+                        <Border x:Name="DG_Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HeaderStyle" TargetType="controls:DataGridRowGroupHeader">
+            <Setter Property="BorderBrush" Value="Blue"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style x:Key="ButStyle" TargetType="Button">
+            <Setter Property="BorderBrush" Value="DarkOrange"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Width" Value="295"/>
+            <Setter Property="Height" Value="120"/>
+        </Style>
+    </Page.Resources>
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Height="346" Width="533">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,00,0,0" Height="30" VerticalAlignment="Top" Width="530" BorderBrush="DarkOrange" BorderThickness="2" Background="Orange">
+            <TextBlock Text="INGRESO DE SELLOS" Foreground="Black" VerticalAlignment="Center" Margin="210,0,0,0" FontWeight="Bold"/>
+        </StackPanel>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Height="310" Width="530" Margin="0,30,0,0" BorderBrush="DarkOrange" BorderThickness="3">
+
+            <TextBlock HorizontalAlignment="Left" Margin="70,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="34"><Run Text="CGSA" FontSize="16" FontWeight="Bold"/></TextBlock>
+            <PasswordBox Name="SCGSA" HorizontalAlignment="Left" Height="41" Margin="185,5,0,0" VerticalAlignment="Top" Width="203" Password="{x:Bind _viewModelSeal.CGSA, Mode=TwoWay}"  MaxLength="10" FontSize="24" TabIndex="0" IsPasswordRevealButtonEnabled="False"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="34" Margin="70,55,0,0" ><Run Text="SELLO 1" FontSize="16" FontWeight="Bold"/></TextBlock>
+            <TextBox Name="SEAL1" Height="41" VerticalAlignment="Top" Width="203" Text="{x:Bind _viewModelSeal.Seal1, Mode=TwoWay}" HorizontalAlignment="Left" Margin="185,50,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="34" Margin="70,100,0,0" ><Run Text="SELLO 2" FontSize="16" FontWeight="Bold"/></TextBlock>
+            <TextBox Name="SEAL2" Height="41" VerticalAlignment="Top" Width="203" Text="{x:Bind _viewModelSeal.Seal2, Mode=TwoWay}" HorizontalAlignment="Left" Margin="185,95,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="34" Margin="70,145,0,0" ><Run Text="SELLO 3" FontSize="16" FontWeight="Bold"/></TextBlock>
+            <TextBox Name="SEAL3" Height="41" VerticalAlignment="Top" Width="203" Text="{x:Bind _viewModelSeal.Seal3, Mode=TwoWay}" HorizontalAlignment="Left" Margin="185,140,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="34" Margin="70,190,0,0" ><Run Text="SELLO 4" FontSize="16" FontWeight="Bold"/></TextBlock>
+            <TextBox Name="SEAL4" Height="41" VerticalAlignment="Top" Width="203" Text="{x:Bind _viewModelSeal.Seal4, Mode=TwoWay}" HorizontalAlignment="Left" Margin="185,185,0,0"/>
+            <Button Name="BtSave" Height="30" Width="203" Margin="185,250,0,0" VerticalAlignment="Top" Click="{x:Bind _viewModelSeal.Regresar}">
+                <TextBlock Text="Guardar" FontSize="16" Width="70" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

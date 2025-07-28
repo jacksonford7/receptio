@@ -1,0 +1,298 @@
+﻿<Page
+    x:Class="Console.Vistas.VentanaPrincipal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d" FontFamily="Console" 
+    Foreground="#344955" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="TicketViewTemplate">
+            <StackPanel Height="30" Width="Auto" Orientation="Horizontal" Margin="-0">
+                <Image Source="{Binding ImagenEstado}" Height="25" Width="25" ToolTipService.ToolTip="{Binding Estado}"/>
+                <StackPanel>
+                    <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" >
+                        <TextBlock FontSize="12" Text="#" />
+                        <TextBlock FontSize="12" Text="{Binding IdTicket}" Width="55"/>
+                        <TextBlock FontSize="12" Text="{Binding NombreQuiosco}" Width="60"/>
+                        <TextBlock FontSize="12" Text="{Binding NombreEntradaSalida}" Width="50"/>
+                        <TextBlock FontSize="12" Text="{Binding TipoTransaccion}" Width="50"/>
+                        <TextBlock FontSize="12" Text="Tipo: " Width="30"/>
+                        <TextBlock FontSize="12" Text="{Binding NombreTipo}" Width="55"/>
+                        <TextBlock FontSize="12" Text="Paso: " Width="30"/>
+                        <TextBlock FontSize="12" Text="{Binding NombreProceso}" />
+                    </StackPanel>
+                    <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal">
+                        <TextBlock FontSize="12" Text="Asignado : " />
+                        <TextBlock FontSize="12" Text="{Binding FechaAsignacion}" Width="110"/>
+                        <TextBlock FontSize="12" Text="{Binding Mensaje}" Width="300"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <Style x:Key="BotonRedondeadoAceptarTicket" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="Border" 
+                                CornerRadius="15"
+                                BorderThickness="1"
+                                Width="120"
+                                Height="30"
+                                Background="#F9AA33"
+                                BorderBrush="Transparent">
+                            </Border>
+                            <TextBlock FontFamily="Console" Foreground="#344955" Text="Aceptar Ticket" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BotonRedondeadoCerrarTicket" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="Border" 
+                                CornerRadius="15"
+                                BorderThickness="1"
+                                Width="120"
+                                Height="30"
+                                Background="#F9AA33"
+                                BorderBrush="Transparent">
+                            </Border>
+                            <TextBlock FontFamily="Console" Foreground="#344955" Text="Cerrar Ticket" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BotonRedondeadoCambiarEstado" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="Border" 
+                                CornerRadius="15"
+                                BorderThickness="1"
+                                Width="122"
+                                Height="30"
+                                Background="#F9AA33"
+                                BorderBrush="Transparent">
+                            </Border>
+                            <TextBlock FontFamily="Console" Foreground="#344955" Text="Cambiar Estado" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BotonRedondeadoAgregarTransaccionManual" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="Border" 
+                                CornerRadius="15"
+                                BorderThickness="1"
+                                Width="150"
+                                Height="30"
+                                Background="#F9AA33"
+                                BorderBrush="Transparent">
+                            </Border>
+                            <TextBlock FontFamily="Console" Foreground="#344955" Text="Transaccion Manual" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="White">
+        <StackPanel>
+            <CommandBar Background="#4A6572" Foreground="White">
+                <AppBarButton Foreground="White" Icon="Add" Label="Auto Ticket" Command="{x:Bind _viewModel.ComandoAutoTicket}"/>
+                <AppBarButton Foreground="White" Icon="Remove" Label="Suspender" Command="{x:Bind _viewModel.ComandoSuspenderTicket}"/>
+                <AppBarButton Foreground="White" Icon="Refresh" Label="Actualizar" Command="{x:Bind _viewModel.ComandoActualizar}"/>
+                <AppBarButton Foreground="White" Icon="Pause" Label="Descanso" Command="{x:Bind _viewModel.ComandoDescanso}"/>
+                <AppBarButton Foreground="White" Icon="Permissions" Label="Cerrar Sesión" Command="{x:Bind _viewModel.ComandoCerrarSesion}"/>
+                <AppBarSeparator Foreground="White"/>
+                <AppBarButton Foreground="White" Icon="Home" Label="Ir Home Quiosco" Command="{x:Bind _viewModel.ComandoIrHome}"/>
+                <AppBarButton Foreground="White" Icon="Up" Label="Abrir Barrera" Command="{x:Bind _viewModel.ComandoAbrirBarrera}"/>
+                <AppBarButton Foreground="White" Icon="Print" Label="Reimprimir Ticket" Command="{x:Bind _viewModel.ComandoReimprimirTicket}"/>
+                <CommandBar.Content>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="V 1.3.4.0 | Bienvenido" FontSize="18"/>
+                                <TextBlock Text="{x:Bind _viewModel.Usuario,Mode=OneWay}" FontSize="18" Margin="2,0,0,0" Width="250"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Zona:" FontSize="18" />
+                                <TextBlock Text="{x:Bind _viewModel.Zona,Mode=OneWay}" Margin="2,0,0,0" Width="120" FontSize="18"/>
+                                <TextBlock Text="IP:" Margin="10,0,0,0" FontSize="15" VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Bind _viewModel.Ip,Mode=OneWay}" Margin="2,0,0,0" Width="120" FontSize="18"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid>
+                            <Ellipse Width="40" Height="40" Fill="{x:Bind _viewModel.ColorBotonAntena, Mode=OneWay}" Visibility="{x:Bind _viewModel.EsVisibleDispositivos, Mode=OneWay}"/>
+                            <Ellipse Width="30" Height="30" Visibility="{x:Bind _viewModel.EsVisibleDispositivos, Mode=OneWay}" PointerPressed="{x:Bind _viewModel.MensajeAntena}">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Imagenes/Rfid.png" Stretch="Fill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Margin="20,0,0,0">
+                            <Ellipse Width="40" Height="40" Fill="{x:Bind _viewModel.ColorBotonBarrera, Mode=OneWay}" Visibility="{x:Bind _viewModel.EsVisibleDispositivos, Mode=OneWay}"/>
+                            <Ellipse Width="30" Height="30" Visibility="{x:Bind _viewModel.EsVisibleDispositivos, Mode=OneWay}" PointerPressed="{x:Bind _viewModel.MensajeBarrera}">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Imagenes/Barrera.png" Stretch="Fill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                        <Grid Margin="20,0,0,0">
+                            <Ellipse Width="40" Height="40" Fill="{x:Bind _viewModel.ColorBotonImpresora, Mode=OneWay}" Visibility="{x:Bind _viewModel.EsVisibleDispositivos, Mode=OneWay}"/>
+                            <Ellipse Width="30" Height="30" Visibility="{x:Bind _viewModel.EsVisibleDispositivos, Mode=OneWay}" PointerPressed="{x:Bind _viewModel.MensajesImpresora}">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Imagenes/Ticket.png" Stretch="Fill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                    </StackPanel>
+                </CommandBar.Content>
+            </CommandBar>
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="TICKETS" FontSize="24" HorizontalAlignment="Center"/>
+                    <ListBox ItemsSource="{x:Bind _viewModel.Tickets, Mode=OneWay}" BorderThickness="1" IsEnabled="{x:Bind _viewModel.EstaHabilitado, Mode=OneWay}"
+                            ItemTemplate="{StaticResource TicketViewTemplate}"
+                            Background="Transparent" BorderBrush="#232F34" FocusVisualPrimaryBrush="Black"
+                            SelectedItem="{x:Bind _viewModel.TicketSeleccionado, Mode=TwoWay}" Height="990" Width="500" ScrollViewer.VerticalScrollMode="Auto">
+                    </ListBox>
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="20,0,0,0" Width="300">
+                            <TextBlock Text="CONTROL TICKET" FontSize="24" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Número:" Height="20" FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind _viewModel.IdTicket, Mode=OneWay}" Height="20" Margin="2,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fecha Creación:" Height="20" FontWeight="Bold" Width="130"/>
+                                <TextBlock Text="{x:Bind _viewModel.FechaCreacion, Mode=OneWay}" Height="20" Margin="2,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fecha Asignación:" Height="20" FontWeight="Bold" Width="130"/>
+                                <TextBlock Text="{x:Bind _viewModel.FechaAsignacion, Mode=OneWay}" Height="20" Margin="2,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fecha Aceptación:" Height="20" FontWeight="Bold" Width="130"/>
+                                <TextBlock Text="{x:Bind _viewModel.FechaAceptacion, Mode=OneWay}" Height="20" Margin="2,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fecha Finalización:" Height="20" FontWeight="Bold" Width="130"/>
+                                <TextBlock Text="{x:Bind _viewModel.FechaFinalizacion, Mode=OneWay}" Height="20" Margin="2,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Tiempo (minutos):" Height="20" FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind _viewModel.Tiempo, Mode=OneWay}" Height="20" Margin="2,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock Text="Notas:" Height="20" FontWeight="Bold"/>
+                            <TextBox Text="{x:Bind _viewModel.Notas, Mode=TwoWay}" TextWrapping="Wrap" Height="{x:Bind _viewModel.AlturaNotas, Mode=OneWay}" Width="300" IsEnabled="{x:Bind _viewModel.EstaHabilitadoNotas, Mode=OneWay}"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Motivo Cat:" Height="20" FontWeight="Bold"/>
+                                <ComboBox HorizontalAlignment="Left" Height="32" Margin="35,10,-19,0" Name="cmbMotivo" 
+                                          ItemsSource="{x:Bind _viewModel.Motivos, Mode=OneWay}" 
+                                          SelectedItem="{x:Bind _viewModel.MotivoSeleccionado, Mode=TwoWay}" 
+                                          SelectionChanged="{x:Bind _viewModel.ObtenerSubMotivos, Mode=OneWay}"
+                                          IsEnabled="{x:Bind _viewModel.EstaHabilitadoNotas, Mode=OneWay}"
+                                          DisplayMemberPath="NAME" Width="180"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Motivo Det:" Height="20" FontWeight="Bold"/>
+                                <ComboBox HorizontalAlignment="Left" Height="32" Margin="35,10,-19,0" 
+                                          Name="cmbSubMotivo" ItemsSource="{x:Bind _viewModel.SubMotivos, Mode=OneWay}" 
+                                          SelectedItem="{x:Bind _viewModel.SubMotivoSeleccionado, Mode=TwoWay}" 
+                                          IsEnabled="{x:Bind _viewModel.EstaHabilitadoNotas, Mode=OneWay}"
+                                        
+                                          DisplayMemberPath="NAME" Width="180"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                <Button Style="{StaticResource BotonRedondeadoAceptarTicket}" Command="{x:Bind _viewModel.ComandoAceptarTicket}" Visibility="{x:Bind _viewModel.EsVisibleAceptarTicket, Mode=OneWay}"/>
+                                <Button Style="{StaticResource BotonRedondeadoCerrarTicket}" Command="{x:Bind _viewModel.ComandoCerrarTicket}" Visibility="{x:Bind _viewModel.EsVisibleCerrarTicket, Mode=OneWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="5,0,0,0">
+                            <TextBlock Text="MENSAJES DE ADUANA" FontSize="24" HorizontalAlignment="Center"/>
+                            <controls:DataGrid Height="100" Margin="12" CanUserResizeColumns="False" CanUserSortColumns="False"  IsEnabled="{x:Bind _viewModel.EstaHabilitado, Mode=OneWay}"
+                                   AlternatingRowBackground="LightGray" CanUserReorderColumns="False" AutoGenerateColumns="False" 
+                                   VerticalScrollBarVisibility="Auto" GridLinesVisibility="All" HeadersVisibility="Column" Width="500"
+                                   ItemsSource="{x:Bind _viewModel.TransaccionContenedores, Mode=OneWay}" SelectedItem="{x:Bind _viewModel.TransaccionContenedorSeleccionada, Mode=TwoWay}">
+                                <controls:DataGrid.Columns>
+                                    <controls:DataGridTextColumn Header="# Transacción" Width="150" Binding="{Binding NumeroTransaccion}" FontSize="12" IsReadOnly ="True"/>
+                                    <controls:DataGridTextColumn Header="Contenedor" Width="200" Binding="{Binding Contenedor}" FontSize="12" IsReadOnly ="True"/>
+                                </controls:DataGrid.Columns>
+                            </controls:DataGrid>
+                            <controls:DataGrid Height="100" Margin="12" CanUserResizeColumns="False" CanUserSortColumns="False" 
+                                   AlternatingRowBackground="LightGray" CanUserReorderColumns="False" AutoGenerateColumns="False" 
+                                   VerticalScrollBarVisibility="Auto" GridLinesVisibility="All" HeadersVisibility="Column" Width="500"
+                                   ItemsSource="{x:Bind _viewModel.MensajesSmdt, Mode=OneWay}" PointerPressed="DataGridPointerPressedMensajesSmdt">
+                                <controls:DataGrid.Columns>
+                                    <controls:DataGridTextColumn Header="Mensajes" Width="480" Binding="{Binding mensaje}" FontSize="12" IsReadOnly ="True"/>
+                                </controls:DataGrid.Columns>
+                            </controls:DataGrid>
+                            <StackPanel Orientation="Horizontal" Margin="5,15,0,0">
+                                <Button Style="{StaticResource BotonRedondeadoCambiarEstado}" Command="{x:Bind _viewModel.ComandoCambiarEstado}" Visibility="{x:Bind _viewModel.EsVisibleCambiarEstado, Mode=OneWay}"/>
+                                <Button Style="{StaticResource BotonRedondeadoAgregarTransaccionManual}" Command="{x:Bind _viewModel.ComandoAgregarTransaccionManual}" Visibility="{x:Bind _viewModel.EsVisibleAgregarTransaccionManual, Mode=OneWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Width="540">
+                            
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="5,5,0,0">
+                        <TextBlock Text="DETALLES TICKET" FontSize="24" HorizontalAlignment="Left"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tipo Transacción:" Height="20" FontWeight="Bold"/>
+                            <TextBlock Text="{x:Bind _viewModel.TipoTransaccion, Mode=OneWay}" Height="20" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Cédula:" Height="20" FontWeight="Bold"/>
+                            <TextBox  IsReadOnly="True" Text="{x:Bind _viewModel.Cedula, Mode=OneWay}" Height="20"  Width="150" Margin="2,0,0,0"/>
+                            <TextBlock Text="Placa:" Height="20" Margin="30,0,0,0" FontWeight="Bold"/>
+                            <TextBox IsReadOnly="True" Text="{x:Bind _viewModel.Placa, Mode=OneWay}" Height="20" Width="100" Margin="2,0,0,0"/>
+                            <TextBlock Text="Contenedores:" Height="20" Margin="30,0,0,0" FontWeight="Bold"/>
+                            <TextBox IsReadOnly="True" Text="{x:Bind _viewModel.Contenedores, Mode=OneWay}" Height="21" Width="200" Margin="2,0,0,0"/>
+                        </StackPanel>
+                        <controls:DataGrid Height="380" Margin="12" CanUserResizeColumns="False" CanUserSortColumns="False" 
+                                   AlternatingRowBackground="LightGray" CanUserReorderColumns="False" AutoGenerateColumns="False" 
+                                   VerticalScrollBarVisibility="Auto" GridLinesVisibility="All" HeadersVisibility="Column" 
+                                   ItemsSource="{x:Bind _viewModel.Procesos, Mode=OneWay}" PointerPressed="DataGrid_PointerPressed">
+                            <controls:DataGrid.Columns>
+                                <controls:DataGridCheckBoxColumn Header="Ok?" Width="60" Binding="{Binding FueOk}" IsReadOnly ="True"/>
+                                <controls:DataGridTextColumn Header="Paso" Width="100" Binding="{Binding Paso}" FontSize="12" IsReadOnly ="True"/>
+                                <controls:DataGridTextColumn Header="Fecha" Width="100" Binding="{Binding FechaProceso}" FontSize="12" IsReadOnly ="True"/>
+                                <controls:DataGridTextColumn Header="Mensaje Usuario" Width="260" Binding="{Binding MensajeUsuario}" FontSize="12" IsReadOnly ="True"/>
+                                <controls:DataGridTextColumn Header="Mensaje Técnico" Width="260" Binding="{Binding MensajeTecnico}" FontSize="12" IsReadOnly ="True"/>
+                                <controls:DataGridTextColumn Header="Mensaje Especifico" Width="260" Binding="{Binding MensajeEspecifico}" FontSize="12" IsReadOnly ="True"/>
+                                <controls:DataGridTextColumn Header="Respuesta Adicional" Width="260" Binding="{Binding Respuesta}" FontSize="12" IsReadOnly ="True"/>
+                            </controls:DataGrid.Columns>
+                        </controls:DataGrid>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Tickets Resueltos:" Margin="0,0,0,0" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="{x:Bind _viewModel.TicketsResueltos,Mode=OneWay}" Margin="2,0,0,0" FontSize="20"/>
+                        <TextBlock Text="Tiempo Promedio de Resolución (min):" Margin="150,0,0,0" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="{x:Bind _viewModel.TiempoPromedioResolucion,Mode=OneWay}" Margin="2,0,0,0" FontSize="20"/>
+                    </StackPanel>
+                </StackPanel>
+                <ProgressRing Margin="-1800,-300,0,0" IsActive="{x:Bind _viewModel.EstaOcupado, Mode=OneWay}" Height="100" Width="100" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

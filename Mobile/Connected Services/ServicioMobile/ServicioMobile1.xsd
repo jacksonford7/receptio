@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" />
+  <xs:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+  <xs:element name="EjecutarProcesosDeliveryImportFull">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q1:DatosN4" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosDeliveryImportFullResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosDeliveryImportFullResult" nillable="true" type="q2:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosDeliveryImportBrBkCfs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q3:DatosDeliveryImportBrbkCfs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosDeliveryImportBrBkCfsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosDeliveryImportBrBkCfsResult" nillable="true" type="q4:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosReceiveExport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q5:DatosReceiveExport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosReceiveExportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosReceiveExportResult" nillable="true" type="q6:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosReceiveExportBrBk">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q7:DatosReceiveExportBrBk" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosReceiveExportBrBkResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosReceiveExportBrBkResult" nillable="true" type="q8:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosReceiveExportBanano">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q9:DatosReceiveExportBanano" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosReceiveExportBananoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosReceiveExportBananoResult" nillable="true" type="q10:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LiberarHold">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q11:DatosN4" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LiberarHoldResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="LiberarHoldResult" nillable="true" type="q12:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarHold">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q13:DatosN4" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CambiarHoldResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="CambiarHoldResult" nillable="true" type="q14:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosDeliveryImportMTYBooking">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="datos" nillable="true" type="q15:DatosN4" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EjecutarProcesosDeliveryImportMTYBookingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" minOccurs="0" name="EjecutarProcesosDeliveryImportMTYBookingResult" nillable="true" type="q16:RespuestaProceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerZonaConTiposTransacciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerZonaConTiposTransaccionesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="ObtenerZonaConTiposTransaccionesResult" nillable="true" type="q17:ZONE" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerDevice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerDeviceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="ObtenerDeviceResult" nillable="true" type="q18:DEVICE" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CrearError">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="error" nillable="true" type="q19:ERROR" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CrearErrorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CrearErrorResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

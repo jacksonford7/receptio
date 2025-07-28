@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioTransaction" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IServicioTransaction_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Transaction.Aplicacion.Contratos" />
+      <xsd:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" />
+      <xsd:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+      <xsd:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioTransaction_EjecutarProcesosEntrada_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosEntrada" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_EjecutarProcesosEntrada_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosEntradaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_EjecutarProcesosSalida_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosSalida" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_EjecutarProcesosSalida_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosSalidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_CrearError_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearError" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_CrearError_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ValidarPreGate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarPreGate" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ValidarPreGate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarPreGateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ValidarEntradaQuiosco_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarEntradaQuiosco" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ValidarEntradaQuiosco_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarEntradaQuioscoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTag" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_RegistrarProceso_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarProceso" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_RegistrarProceso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarProcesoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_AutenticarAccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AutenticarAccion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_AutenticarAccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AutenticarAccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerAplicacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAplicacion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerAplicacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAplicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerMensajesErrores_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMensajesErrores" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerMensajesErrores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerMensajesErroresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerQuiosco_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerQuiosco" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerQuiosco_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerQuioscoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerDepot_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDepot" />
+  </wsdl:message>
+  <wsdl:message name="IServicioTransaction_ObtenerDepot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDepotResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioTransaction">
+    <wsdl:operation name="EjecutarProcesosEntrada">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesosN4/EjecutarProcesosEntrada" message="tns:IServicioTransaction_EjecutarProcesosEntrada_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesosN4/EjecutarProcesosEntradaResponse" message="tns:IServicioTransaction_EjecutarProcesosEntrada_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosSalida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesosN4/EjecutarProcesosSalida" message="tns:IServicioTransaction_EjecutarProcesosSalida_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesosN4/EjecutarProcesosSalidaResponse" message="tns:IServicioTransaction_EjecutarProcesosSalida_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearError">
+      <wsdl:input wsaw:Action="http://tempuri.org/IError/CrearError" message="tns:IServicioTransaction_CrearError_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IError/CrearErrorResponse" message="tns:IServicioTransaction_CrearError_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarPreGate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPreGate/ValidarPreGate" message="tns:IServicioTransaction_ValidarPreGate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPreGate/ValidarPreGateResponse" message="tns:IServicioTransaction_ValidarPreGate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarEntradaQuiosco">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPreGate/ValidarEntradaQuiosco" message="tns:IServicioTransaction_ValidarEntradaQuiosco_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPreGate/ValidarEntradaQuioscoResponse" message="tns:IServicioTransaction_ValidarEntradaQuiosco_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITag/ObtenerTag" message="tns:IServicioTransaction_ObtenerTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITag/ObtenerTagResponse" message="tns:IServicioTransaction_ObtenerTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarProceso">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITransaccionQuiosco/RegistrarProceso" message="tns:IServicioTransaction_RegistrarProceso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITransaccionQuiosco/RegistrarProcesoResponse" message="tns:IServicioTransaction_RegistrarProceso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AutenticarAccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginBase/AutenticarAccion" message="tns:IServicioTransaction_AutenticarAccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginBase/AutenticarAccionResponse" message="tns:IServicioTransaction_AutenticarAccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAplicacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerAplicacion" message="tns:IServicioTransaction_ObtenerAplicacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerAplicacionResponse" message="tns:IServicioTransaction_ObtenerAplicacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMensajesErrores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerMensajesErrores" message="tns:IServicioTransaction_ObtenerMensajesErrores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerMensajesErroresResponse" message="tns:IServicioTransaction_ObtenerMensajesErrores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerQuiosco">
+      <wsdl:input wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerQuiosco" message="tns:IServicioTransaction_ObtenerQuiosco_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerQuioscoResponse" message="tns:IServicioTransaction_ObtenerQuiosco_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDepot">
+      <wsdl:input wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerDepot" message="tns:IServicioTransaction_ObtenerDepot_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IComunKiosco/ObtenerDepotResponse" message="tns:IServicioTransaction_ObtenerDepot_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IServicioTransaction" type="tns:IServicioTransaction">
+    <wsp:PolicyReference URI="#WSHttpBinding_IServicioTransaction_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EjecutarProcesosEntrada">
+      <soap12:operation soapAction="http://tempuri.org/IProcesosN4/EjecutarProcesosEntrada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosSalida">
+      <soap12:operation soapAction="http://tempuri.org/IProcesosN4/EjecutarProcesosSalida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearError">
+      <soap12:operation soapAction="http://tempuri.org/IError/CrearError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarPreGate">
+      <soap12:operation soapAction="http://tempuri.org/IPreGate/ValidarPreGate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarEntradaQuiosco">
+      <soap12:operation soapAction="http://tempuri.org/IPreGate/ValidarEntradaQuiosco" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTag">
+      <soap12:operation soapAction="http://tempuri.org/ITag/ObtenerTag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarProceso">
+      <soap12:operation soapAction="http://tempuri.org/ITransaccionQuiosco/RegistrarProceso" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutenticarAccion">
+      <soap12:operation soapAction="http://tempuri.org/ILoginBase/AutenticarAccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAplicacion">
+      <soap12:operation soapAction="http://tempuri.org/IComunKiosco/ObtenerAplicacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerMensajesErrores">
+      <soap12:operation soapAction="http://tempuri.org/IComunKiosco/ObtenerMensajesErrores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerQuiosco">
+      <soap12:operation soapAction="http://tempuri.org/IComunKiosco/ObtenerQuiosco" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDepot">
+      <soap12:operation soapAction="http://tempuri.org/IComunKiosco/ObtenerDepot" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioTransaction">
+    <wsdl:port name="WSHttpBinding_IServicioTransaction" binding="tns:WSHttpBinding_IServicioTransaction">
+      <soap12:address location="http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://cgdes13:8080/Transaction.Servicios/ServicioTransaction.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Interfaces" />
+  <xs:complexType name="ArrayOfKeyValueOflongTupleOfTipoTicketshortatrcOtZyU6ho3Bhd">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOflongTupleOfTipoTicketshortatrcOtZyU6ho3Bhd">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:long" />
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="Value" nillable="true" type="q1:TupleOfTipoTicketshortatrcOtZy" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOflongTupleOfTipoTicketshortatrcOtZyU6ho3Bhd" nillable="true" type="tns:ArrayOfKeyValueOflongTupleOfTipoTicketshortatrcOtZyU6ho3Bhd" />
+  <xs:complexType name="ArrayOflong">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="long" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOflong" nillable="true" type="tns:ArrayOflong" />
+  <xs:complexType name="ArrayOfKeyValueOflongTupleOflongshortU6ho3Bhd">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOflongTupleOflongshortU6ho3Bhd">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:long" />
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="Value" nillable="true" type="q2:TupleOflongshort" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOflongTupleOflongshortU6ho3Bhd" nillable="true" type="tns:ArrayOfKeyValueOflongTupleOflongshortU6ho3Bhd" />
+  <xs:complexType name="ArrayOfKeyValueOfBusquedaTicketReportestringrqM_SKFRX">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfBusquedaTicketReportestringrqM_SKFRX">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Interfaces" name="Key" type="q3:BusquedaTicketReporte" />
+            <xs:element name="Value" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfBusquedaTicketReportestringrqM_SKFRX" nillable="true" type="tns:ArrayOfKeyValueOfBusquedaTicketReportestringrqM_SKFRX" />
+  <xs:complexType name="ArrayOfKeyValueOfBusquedaReporteTransaccionesstringrqM_SKFRX">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfBusquedaReporteTransaccionesstringrqM_SKFRX">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Console.Aplicacion.Interfaces" name="Key" type="q4:BusquedaReporteTransacciones" />
+            <xs:element name="Value" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfBusquedaReporteTransaccionesstringrqM_SKFRX" nillable="true" type="tns:ArrayOfKeyValueOfBusquedaReporteTransaccionesstringrqM_SKFRX" />
+</xs:schema>

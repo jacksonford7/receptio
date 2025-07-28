@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+      type="RECEPTIO.CapaServicioDistribuidos.ServicioAnunciante.Aspectos.ThrowsException, RECEPTIO.CapaServicioDistribuidos.ServicioAnunciante">
+  </object>
+  
+  <object id="AdministradorProblema" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaDominio.Console.ServiciosDominio.ServicioProblema, RECEPTIO.CapaDominio.Console.ServiciosDominio">
+        <constructor-arg ref="RepositorioProcess"/>
+        <constructor-arg ref="RepositorioUserSession"/>
+        <constructor-arg ref="RepositorioTroubleTicket"/>
+        <constructor-arg ref="RepositorioError"/>
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+
+  <object name ="RepositorioProcess" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioProcess, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioUserSession" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioUserSession, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioTroubleTicket" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioTroubleTicket, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioError" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioError, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+</objects>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f95e8d54-6807-4a24-8880-7e909ae05fca" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.2.3:10080/apex/services/argoservice?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ArgoService.wsdl" MetadataType="Wsdl" ID="20c34fb3-2fc6-41d0-8715-c4799e010bdc" SourceId="1" SourceUrl="http://172.16.2.3:10080/apex/services/argoservice?wsdl" />
+    <MetadataFile FileName="common-types.xsd" MetadataType="Schema" ID="e8d044e2-0693-4f3f-993a-c0cb562564a7" SourceId="1" SourceUrl="http://172.16.2.3:10080/apex/schema/common-types.xsd" />
+    <MetadataFile FileName="argo-types.xsd" MetadataType="Schema" ID="530e536d-b828-4e1d-89c9-8798786c5324" SourceId="1" SourceUrl="http://172.16.2.3:10080/apex/schema/argo-types.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

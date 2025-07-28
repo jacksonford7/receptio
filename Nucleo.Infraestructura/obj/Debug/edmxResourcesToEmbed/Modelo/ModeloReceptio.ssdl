@@ -1,0 +1,1482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModeloReceptio.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACTIONS">
+    <Key>
+      <PropertyRef Name="ACTION_ID" />
+    </Key>
+    <Property Name="ACTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ACTION_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ACTION_DATE" Type="datetime" Nullable="false" />
+    <Property Name="TT_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="APPLICATIONS">
+    <Key>
+      <PropertyRef Name="APPLICATION_ID" />
+    </Key>
+    <Property Name="APPLICATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="VERSION" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="PATH" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AUTO_TROUBLE_REASONS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAPTION" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BREAK_TYPES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BREAKS">
+    <Key>
+      <PropertyRef Name="BREAK_ID" />
+    </Key>
+    <Property Name="BREAK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="START_BREAK_DATE" Type="datetime" Nullable="false" />
+    <Property Name="FINISH_BREAK_DATE" Type="datetime" />
+    <Property Name="BREAK_TYPE_ID" Type="tinyint" Nullable="false" />
+    <Property Name="USER_SESSION_ID" Type="bigint" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BY_PASS_AUDITS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
+    <Property Name="FIELD" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OLD_VALUE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NEW_VALUE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TTU_ID" Type="int" Nullable="false" />
+    <Property Name="BY_PASS_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BY_PASSES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REASON" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IS_ENABLED" Type="bit" Nullable="false" />
+    <Property Name="PRE_GATE_PRE_GATE_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTAINERS">
+    <Key>
+      <PropertyRef Name="CONTAINER_ID" />
+    </Key>
+    <Property Name="CONTAINER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NUMBER" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="PRE_GATE_DETAIL_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DAMAGES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DAMAGE_TYPE" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="COMPONENT" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SEVERITY" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LOCATION" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="QUANTITY" Type="smallint" Nullable="false" />
+    <Property Name="NOTES" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CONTAINER_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DEPOT">
+    <Key>
+      <PropertyRef Name="ID_DEPOT" />
+    </Key>
+    <Property Name="ID_DEPOT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NOTES" Type="varchar(max)" />
+    <Property Name="ACTIVE" Type="bit" />
+    <Property Name="AUXILIAR_STOCK" Type="int" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DEVICES">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IP" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="ZONE_ID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ERRORS">
+    <Key>
+      <PropertyRef Name="ERROR_ID" />
+    </Key>
+    <Property Name="ERROR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="THROW_ON" Type="datetime" Nullable="false" />
+    <Property Name="MESSAGE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DETAILS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="APPLICATION_ID" Type="int" Nullable="false" />
+    <Property Name="TYPE_ERROR_ID" Type="int" Nullable="false" />
+    <Property Name="IP_SOURCE" Type="nvarchar" MaxLength="75" />
+  </EntityType>
+  <EntityType Name="KIOSK_TRANSACTIONS">
+    <Key>
+      <PropertyRef Name="TRANSACTION_ID" />
+    </Key>
+    <Property Name="TRANSACTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IS_OK" Type="bit" Nullable="false" />
+    <Property Name="START_DATE" Type="datetime" Nullable="false" />
+    <Property Name="END_DATE" Type="datetime" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="KIOSK_ID" Type="smallint" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="KIOSKS">
+    <Key>
+      <PropertyRef Name="KIOSK_ID" />
+    </Key>
+    <Property Name="KIOSK_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IP" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="ZONE_ID" Type="smallint" Nullable="false" />
+    <Property Name="IS_IN" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LIFT_UP_BARRIERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
+    <Property Name="REASON" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KIOSK_ID" Type="smallint" Nullable="false" />
+    <Property Name="TTU_ID" Type="int" Nullable="false" />
+    <Property Name="PREGATE_ID" Type="bigint" />
+    <Property Name="MOTIVE_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="LINE">
+    <Key>
+      <PropertyRef Name="ID_LINE" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="250" />
+    <Property Name="MAIL_STOCK" Type="nvarchar" MaxLength="100" />
+    <Property Name="STOCK" Type="int" />
+    <Property Name="NOTES" Type="varchar(max)" />
+    <Property Name="ACTIVE" Type="bit" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+    <Property Name="ID_LINE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LINE_DEPOTS">
+    <Key>
+      <PropertyRef Name="ID_LINE" />
+      <PropertyRef Name="ID_DEPOT" />
+      <PropertyRef Name="ACTIVE" />
+    </Key>
+    <Property Name="ID_LINE_DEPO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_LINE" Type="int" Nullable="false" />
+    <Property Name="ID_DEPOT" Type="int" Nullable="false" />
+    <Property Name="ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATE_USER" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+    <Property Name="MOD_DATE" Type="datetime" />
+    <Property Name="MOD_USER" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MESSAGES">
+    <Key>
+      <PropertyRef Name="MESSAGE_ID" />
+    </Key>
+    <Property Name="MESSAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_MESSAGE" Type="nvarchar" MaxLength="512" Nullable="false" />
+    <Property Name="TROUBLE_DESK_MESSAGE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DETAILS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TYPE" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="ATTEMPTS" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MOTIVES">
+    <Key>
+      <PropertyRef Name="MOTIVE_ID" />
+    </Key>
+    <Property Name="MOTIVE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="TYPE" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRE_GATE_DETAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TRANSACTION_NUMBER" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="TRANSACTION_TYPE_ID" Type="smallint" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="bigint" Nullable="false" />
+    <Property Name="STATUS" Type="nchar" MaxLength="1" />
+    <Property Name="DOCUMENT_ID" Type="varchar" MaxLength="100" />
+    <Property Name="REFERENCE_ID" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PRE_GATES">
+    <Key>
+      <PropertyRef Name="PRE_GATE_ID" />
+    </Key>
+    <Property Name="PRE_GATE_ID" Type="bigint" Nullable="false" />
+    <Property Name="CREATION_DATE" Type="datetime" Nullable="false" />
+    <Property Name="USER" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DRIVER_ID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="TRUCK_LICENCE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="DEVICE_ID" Type="int" Nullable="false" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="CONCURRENCY" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="PRE_GATE_ID_REF" Type="bigint" />
+  </EntityType>
+  <EntityType Name="PROCESSES">
+    <Key>
+      <PropertyRef Name="PROCESS_ID" />
+    </Key>
+    <Property Name="PROCESS_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STEP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="STEP_DATE" Type="datetime" Nullable="false" />
+    <Property Name="IS_OK" Type="bit" Nullable="false" />
+    <Property Name="RESPONSE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="TRANSACTION_ID" Type="int" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REASSIGNMENT_MOTIVES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAPTION" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REASSIGNMENTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
+    <Property Name="USER_SESSION_ID" Type="bigint" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="USER" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="MOTIVE_ID" Type="int" Nullable="false" />
+    <Property Name="TT_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REPRINTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
+    <Property Name="TTU_ID" Type="int" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="bigint" Nullable="false" />
+    <Property Name="KIOSK_ID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SEALS">
+    <Key>
+      <PropertyRef Name="SEAL_ID" />
+    </Key>
+    <Property Name="SEAL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CAPTION" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="VALUE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CONTAINER_ID" Type="int" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SENSOR_KIOSK_TRANSACTIONS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VALUE" Type="bit" Nullable="false" />
+    <Property Name="SENSOR_ID" Type="smallint" Nullable="false" />
+    <Property Name="TRANSACTION_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SENSORS">
+    <Key>
+      <PropertyRef Name="SENSOR_ID" />
+    </Key>
+    <Property Name="SENSOR_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STOCK_OPERATION">
+    <Key>
+      <PropertyRef Name="ID_OPERATION" />
+    </Key>
+    <Property Name="ID_OPERATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OPERATION" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="MULTIPLIER" Type="int" />
+    <Property Name="NOTES" Type="varchar(max)" />
+    <Property Name="ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="CREATE_USER" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+    <Property Name="MOD_DATE" Type="datetime" />
+    <Property Name="MOD_USER" Type="varchar" MaxLength="50" />
+    <Property Name="SCREEN" Type="bit" />
+  </EntityType>
+  <EntityType Name="STOCK_REGISTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID_LINE" Type="int" Nullable="false" />
+    <Property Name="ID_DEPOT" Type="int" Nullable="false" />
+    <Property Name="ID_OPERATION" Type="int" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="bigint" />
+    <Property Name="PRE_GATE_DETAILS_ID" Type="bigint" />
+    <Property Name="OPERATION_USER" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OPERATION_OBJETC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OPERATION_NOTES" Type="varchar" MaxLength="500" />
+    <Property Name="QTY" Type="int" Nullable="false" />
+    <Property Name="MULTIPLIER" Type="int" Nullable="false" />
+    <Property Name="ACTIVE" Type="bit" />
+    <Property Name="CREATE_DATE" Type="datetime" />
+    <Property Name="CREATE_YEAR" Type="int" />
+    <Property Name="CREATE_MONTH" Type="int" />
+    <Property Name="CREATE_WEEK" Type="int" />
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="REGISTER_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SUB_MOTIVES">
+    <Key>
+      <PropertyRef Name="SUB_MOTIVE_ID" />
+    </Key>
+    <Property Name="SUB_MOTIVE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="MOTIVES_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TOS_PROCCESSES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STEP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="STEP_DATE" Type="datetime" Nullable="false" />
+    <Property Name="IS_OK" Type="bit" Nullable="false" />
+    <Property Name="RESPONSE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="bigint" Nullable="false" />
+    <Property Name="MOBILE_TROUBLE_TICKET_TT_ID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="TRANSACTION_TYPES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODE" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TROUBLE_DESK_USERS">
+    <Key>
+      <PropertyRef Name="TTU_ID" />
+    </Key>
+    <Property Name="TTU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LAST_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="USER_NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IS_TD" Type="bit" Nullable="false" />
+    <Property Name="IS_SUPERVISOR" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TROUBLE_TICKETS">
+    <Key>
+      <PropertyRef Name="TT_ID" />
+    </Key>
+    <Property Name="TT_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CREATION_DATE" Type="datetime" Nullable="false" />
+    <Property Name="ACCEPTANCE_DATE" Type="datetime" />
+    <Property Name="FINISH_DATE" Type="datetime" />
+    <Property Name="NOTES" Type="nvarchar(max)" />
+    <Property Name="IS_CANCEL" Type="bit" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+    <Property Name="ASSIGNMENT_DATE" Type="datetime" />
+    <Property Name="CANCEL_USER" Type="nvarchar" MaxLength="20" />
+    <Property Name="CANCEL_DATE" Type="datetime" />
+    <Property Name="SUBMOTIVE_ID" Type="int" />
+    <Property Name="MOTIVE_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET">
+    <Key>
+      <PropertyRef Name="TT_ID" />
+    </Key>
+    <Property Name="REASON_ID" Type="int" Nullable="false" />
+    <Property Name="USER_SESSION_ID" Type="bigint" Nullable="false" />
+    <Property Name="TT_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <Key>
+      <PropertyRef Name="TT_ID" />
+    </Key>
+    <Property Name="USER_SESSION_ID" Type="bigint" />
+    <Property Name="TT_ID" Type="bigint" Nullable="false" />
+    <Property Name="ERROR_ERROR_ID" Type="int" Nullable="false" />
+    <Property Name="ZONE_ID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+    <Key>
+      <PropertyRef Name="TT_ID" />
+    </Key>
+    <Property Name="USER_SESSION_ID" Type="bigint" />
+    <Property Name="TT_ID" Type="bigint" Nullable="false" />
+    <Property Name="MESSAGE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZONE_ID" Type="smallint" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+    <Key>
+      <PropertyRef Name="TT_ID" />
+    </Key>
+    <Property Name="USER_SESSION_ID" Type="bigint" />
+    <Property Name="TT_ID" Type="bigint" Nullable="false" />
+    <Property Name="PROCESS_PROCESS_ID" Type="bigint" Nullable="false" />
+    <Property Name="IS_SUSPENDED" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TYPE_ERRORS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USER_SESSIONS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="START_SESSION__DATE" Type="datetime" Nullable="false" />
+    <Property Name="FINISH_SESSION_DATE" Type="datetime" />
+    <Property Name="DEVICE_ID" Type="int" Nullable="false" />
+    <Property Name="TTU_ID" Type="int" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ZONES">
+    <Key>
+      <PropertyRef Name="ZONE_ID" />
+    </Key>
+    <Property Name="ZONE_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ZONETRANSACTION_TYPE">
+    <Key>
+      <PropertyRef Name="ZONES_ZONE_ID" />
+      <PropertyRef Name="TRANSACTION_TYPES_ID" />
+    </Key>
+    <Property Name="ZONES_ZONE_ID" Type="smallint" Nullable="false" />
+    <Property Name="TRANSACTION_TYPES_ID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__LINE_DEPO__ID_DE__4E1E9780">
+    <End Role="DEPOT" Type="Self.DEPOT" Multiplicity="1" />
+    <End Role="LINE_DEPOTS" Type="Self.LINE_DEPOTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPOT">
+        <PropertyRef Name="ID_DEPOT" />
+      </Principal>
+      <Dependent Role="LINE_DEPOTS">
+        <PropertyRef Name="ID_DEPOT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LINE_DEPO__ID_LI__4D2A7347">
+    <End Role="LINE" Type="Self.LINE" Multiplicity="1" />
+    <End Role="LINE_DEPOTS" Type="Self.LINE_DEPOTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LINE">
+        <PropertyRef Name="ID_LINE" />
+      </Principal>
+      <Dependent Role="LINE_DEPOTS">
+        <PropertyRef Name="ID_LINE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOCK_REG__ID_DE__59904A2C">
+    <End Role="DEPOT" Type="Self.DEPOT" Multiplicity="1" />
+    <End Role="STOCK_REGISTER" Type="Self.STOCK_REGISTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPOT">
+        <PropertyRef Name="ID_DEPOT" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="ID_DEPOT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOCK_REG__ID_LI__589C25F3">
+    <End Role="LINE" Type="Self.LINE" Multiplicity="1" />
+    <End Role="STOCK_REGISTER" Type="Self.STOCK_REGISTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LINE">
+        <PropertyRef Name="ID_LINE" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="ID_LINE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOCK_REG__ID_OP__5A846E65">
+    <End Role="STOCK_OPERATION" Type="Self.STOCK_OPERATION" Multiplicity="1" />
+    <End Role="STOCK_REGISTER" Type="Self.STOCK_REGISTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STOCK_OPERATION">
+        <PropertyRef Name="ID_OPERATION" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="ID_OPERATION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ACTIONPROCESS_TROUBLE_TICKET">
+    <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Multiplicity="1" />
+    <End Role="ACTIONS" Type="Self.ACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="ACTIONS">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET">
+    <End Role="AUTO_TROUBLE_REASONS" Type="Self.AUTO_TROUBLE_REASONS" Multiplicity="1" />
+    <End Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTO_TROUBLE_REASONS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET">
+        <PropertyRef Name="REASON_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AUTO_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+    <End Role="TROUBLE_TICKETS" Type="Self.TROUBLE_TICKETS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_TICKETS">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AUTO_TROUBLE_TICKETUSER_SESSION">
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="1" />
+    <End Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSIONS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BREAK_TYPEBREAK">
+    <End Role="BREAK_TYPES" Type="Self.BREAK_TYPES" Multiplicity="1" />
+    <End Role="BREAKS" Type="Self.BREAKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BREAK_TYPES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BREAKS">
+        <PropertyRef Name="BREAK_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BY_PASSBY_PASS_AUDIT">
+    <End Role="BY_PASSES" Type="Self.BY_PASSES" Multiplicity="1" />
+    <End Role="BY_PASS_AUDITS" Type="Self.BY_PASS_AUDITS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BY_PASSES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BY_PASS_AUDITS">
+        <PropertyRef Name="BY_PASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_APP_TRANSACTION_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+    <End Role="TROUBLE_TICKETS" Type="Self.TROUBLE_TICKETS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_TICKETS">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTAINERDAMAGE">
+    <End Role="CONTAINERS" Type="Self.CONTAINERS" Multiplicity="1" />
+    <End Role="DAMAGES" Type="Self.DAMAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTAINERS">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Principal>
+      <Dependent Role="DAMAGES">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTAINERSEAL">
+    <End Role="CONTAINERS" Type="Self.CONTAINERS" Multiplicity="1" />
+    <End Role="SEALS" Type="Self.SEALS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTAINERS">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Principal>
+      <Dependent Role="SEALS">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DEVICEUSER_SESSION">
+    <End Role="DEVICES" Type="Self.DEVICES" Multiplicity="1" />
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEVICES">
+        <PropertyRef Name="DEVICE_ID" />
+      </Principal>
+      <Dependent Role="USER_SESSIONS">
+        <PropertyRef Name="DEVICE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DEVICEZONE">
+    <End Role="ZONES" Type="Self.ZONES" Multiplicity="1" />
+    <End Role="DEVICES" Type="Self.DEVICES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZONES">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="DEVICES">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ERRORAPPLICATION">
+    <End Role="APPLICATIONS" Type="Self.APPLICATIONS" Multiplicity="1" />
+    <End Role="ERRORS" Type="Self.ERRORS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="APPLICATIONS">
+        <PropertyRef Name="APPLICATION_ID" />
+      </Principal>
+      <Dependent Role="ERRORS">
+        <PropertyRef Name="APPLICATION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <End Role="ERRORS" Type="Self.ERRORS" Multiplicity="1" />
+    <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ERRORS">
+        <PropertyRef Name="ERROR_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+        <PropertyRef Name="ERROR_ERROR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIOSK_TRANSACTIONKIOSK">
+    <End Role="KIOSKS" Type="Self.KIOSKS" Multiplicity="1" />
+    <End Role="KIOSK_TRANSACTIONS" Type="Self.KIOSK_TRANSACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSKS">
+        <PropertyRef Name="KIOSK_ID" />
+      </Principal>
+      <Dependent Role="KIOSK_TRANSACTIONS">
+        <PropertyRef Name="KIOSK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIOSK_TRANSACTIONPROCESS">
+    <End Role="KIOSK_TRANSACTIONS" Type="Self.KIOSK_TRANSACTIONS" Multiplicity="1" />
+    <End Role="PROCESSES" Type="Self.PROCESSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSK_TRANSACTIONS">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Principal>
+      <Dependent Role="PROCESSES">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION">
+    <End Role="KIOSK_TRANSACTIONS" Type="Self.KIOSK_TRANSACTIONS" Multiplicity="1" />
+    <End Role="SENSOR_KIOSK_TRANSACTIONS" Type="Self.SENSOR_KIOSK_TRANSACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSK_TRANSACTIONS">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Principal>
+      <Dependent Role="SENSOR_KIOSK_TRANSACTIONS">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIOSKLIFT_UP_BARRIER">
+    <End Role="KIOSKS" Type="Self.KIOSKS" Multiplicity="1" />
+    <End Role="LIFT_UP_BARRIERS" Type="Self.LIFT_UP_BARRIERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSKS">
+        <PropertyRef Name="KIOSK_ID" />
+      </Principal>
+      <Dependent Role="LIFT_UP_BARRIERS">
+        <PropertyRef Name="KIOSK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIOSKZONE">
+    <End Role="ZONES" Type="Self.ZONES" Multiplicity="1" />
+    <End Role="KIOSKS" Type="Self.KIOSKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZONES">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="KIOSKS">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MOBILE_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+    <End Role="TROUBLE_TICKETS" Type="Self.TROUBLE_TICKETS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_TICKETS">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MOBILE_TROUBLE_TICKETTOS_PROCCESS">
+    <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Multiplicity="0..1" />
+    <End Role="TOS_PROCCESSES" Type="Self.TOS_PROCCESSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="TOS_PROCCESSES">
+        <PropertyRef Name="MOBILE_TROUBLE_TICKET_TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MOBILE_TROUBLE_TICKETZONE">
+    <End Role="ZONES" Type="Self.ZONES" Multiplicity="1" />
+    <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZONES">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MOTIVESUB_MOTIVE">
+    <End Role="MOTIVES" Type="Self.MOTIVES" Multiplicity="1" />
+    <End Role="SUB_MOTIVES" Type="Self.SUB_MOTIVES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOTIVES">
+        <PropertyRef Name="MOTIVE_ID" />
+      </Principal>
+      <Dependent Role="SUB_MOTIVES">
+        <PropertyRef Name="MOTIVES_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRE_GATE_DETAILCONTAINER">
+    <End Role="PRE_GATE_DETAILS" Type="Self.PRE_GATE_DETAILS" Multiplicity="1" />
+    <End Role="CONTAINERS" Type="Self.CONTAINERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE_DETAILS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONTAINERS">
+        <PropertyRef Name="PRE_GATE_DETAIL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRE_GATEBY_PASS">
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="1" />
+    <End Role="BY_PASSES" Type="Self.BY_PASSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="BY_PASSES">
+        <PropertyRef Name="PRE_GATE_PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRE_GATEDEVICE">
+    <End Role="DEVICES" Type="Self.DEVICES" Multiplicity="1" />
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEVICES">
+        <PropertyRef Name="DEVICE_ID" />
+      </Principal>
+      <Dependent Role="PRE_GATES">
+        <PropertyRef Name="DEVICE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRE_GATEKIOSK_TRANSACTION">
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="0..1" />
+    <End Role="KIOSK_TRANSACTIONS" Type="Self.KIOSK_TRANSACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="KIOSK_TRANSACTIONS">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRE_GATEPRE_GATE_DETAIL">
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="1" />
+    <End Role="PRE_GATE_DETAILS" Type="Self.PRE_GATE_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="PRE_GATE_DETAILS">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="0..1" />
+    <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROCESS_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+    <End Role="TROUBLE_TICKETS" Type="Self.TROUBLE_TICKETS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_TICKETS">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROCESS_TROUBLE_TICKETREASSIGNMENT">
+    <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Multiplicity="1" />
+    <End Role="REASSIGNMENTS" Type="Self.REASSIGNMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="REASSIGNMENTS">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROCESSMESSAGE">
+    <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="1" />
+    <End Role="PROCESSES" Type="Self.PROCESSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGES">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Principal>
+      <Dependent Role="PROCESSES">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROCESSPROCESS_TROUBLE_TICKET">
+    <End Role="PROCESSES" Type="Self.PROCESSES" Multiplicity="1" />
+    <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROCESSES">
+        <PropertyRef Name="PROCESS_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="PROCESS_PROCESS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REASSIGNMENTREASSIGNMENT_MOTIVE">
+    <End Role="REASSIGNMENT_MOTIVES" Type="Self.REASSIGNMENT_MOTIVES" Multiplicity="1" />
+    <End Role="REASSIGNMENTS" Type="Self.REASSIGNMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REASSIGNMENT_MOTIVES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REASSIGNMENTS">
+        <PropertyRef Name="MOTIVE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REASSIGNMENTUSER_SESSION">
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="1" />
+    <End Role="REASSIGNMENTS" Type="Self.REASSIGNMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSIONS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REASSIGNMENTS">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REPRINTKIOSK">
+    <End Role="KIOSKS" Type="Self.KIOSKS" Multiplicity="1" />
+    <End Role="REPRINTS" Type="Self.REPRINTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSKS">
+        <PropertyRef Name="KIOSK_ID" />
+      </Principal>
+      <Dependent Role="REPRINTS">
+        <PropertyRef Name="KIOSK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REPRINTPRE_GATE">
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="1" />
+    <End Role="REPRINTS" Type="Self.REPRINTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="REPRINTS">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REPRINTTROUBLE_DESK_USER">
+    <End Role="TROUBLE_DESK_USERS" Type="Self.TROUBLE_DESK_USERS" Multiplicity="1" />
+    <End Role="REPRINTS" Type="Self.REPRINTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USERS">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="REPRINTS">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SENSORSENSOR_KIOSK_TRANSACTION">
+    <End Role="SENSORS" Type="Self.SENSORS" Multiplicity="1" />
+    <End Role="SENSOR_KIOSK_TRANSACTIONS" Type="Self.SENSOR_KIOSK_TRANSACTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SENSORS">
+        <PropertyRef Name="SENSOR_ID" />
+      </Principal>
+      <Dependent Role="SENSOR_KIOSK_TRANSACTIONS">
+        <PropertyRef Name="SENSOR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TOS_PROCCESSPRE_GATE">
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="1" />
+    <End Role="TOS_PROCCESSES" Type="Self.TOS_PROCCESSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="TOS_PROCCESSES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_TYPEPRE_GATE_DETAIL">
+    <End Role="TRANSACTION_TYPES" Type="Self.TRANSACTION_TYPES" Multiplicity="1" />
+    <End Role="PRE_GATE_DETAILS" Type="Self.PRE_GATE_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANSACTION_TYPES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRE_GATE_DETAILS">
+        <PropertyRef Name="TRANSACTION_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TROUBLE_DESK_USERBY_PASS_AUDIT">
+    <End Role="TROUBLE_DESK_USERS" Type="Self.TROUBLE_DESK_USERS" Multiplicity="1" />
+    <End Role="BY_PASS_AUDITS" Type="Self.BY_PASS_AUDITS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USERS">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="BY_PASS_AUDITS">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TROUBLE_DESK_USERLIFT_UP_BARRIER">
+    <End Role="TROUBLE_DESK_USERS" Type="Self.TROUBLE_DESK_USERS" Multiplicity="1" />
+    <End Role="LIFT_UP_BARRIERS" Type="Self.LIFT_UP_BARRIERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USERS">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="LIFT_UP_BARRIERS">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TROUBLE_DESK_USERUSER_SESSION">
+    <End Role="TROUBLE_DESK_USERS" Type="Self.TROUBLE_DESK_USERS" Multiplicity="1" />
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USERS">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="USER_SESSIONS">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TYPE_ERRORERROR">
+    <End Role="TYPE_ERRORS" Type="Self.TYPE_ERRORS" Multiplicity="1" />
+    <End Role="ERRORS" Type="Self.ERRORS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TYPE_ERRORS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ERRORS">
+        <PropertyRef Name="TYPE_ERROR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_SESSIONBREAK">
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="1" />
+    <End Role="BREAKS" Type="Self.BREAKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSIONS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BREAKS">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="0..1" />
+    <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSIONS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_SESSIONMOBILE_TROUBLE_TICKET">
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="0..1" />
+    <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSIONS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_SESSIONPROCESS_TROUBLE_TICKET">
+    <End Role="USER_SESSIONS" Type="Self.USER_SESSIONS" Multiplicity="0..1" />
+    <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSIONS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <End Role="ZONES" Type="Self.ZONES" Multiplicity="1" />
+    <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Type="Self.TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZONES">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ZONETRANSACTION_TYPE_TRANSACTION_TYPE">
+    <End Role="TRANSACTION_TYPES" Type="Self.TRANSACTION_TYPES" Multiplicity="1" />
+    <End Role="ZONETRANSACTION_TYPE" Type="Self.ZONETRANSACTION_TYPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANSACTION_TYPES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ZONETRANSACTION_TYPE">
+        <PropertyRef Name="TRANSACTION_TYPES_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ZONETRANSACTION_TYPE_ZONE">
+    <End Role="ZONES" Type="Self.ZONES" Multiplicity="1" />
+    <End Role="ZONETRANSACTION_TYPE" Type="Self.ZONETRANSACTION_TYPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZONES">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="ZONETRANSACTION_TYPE">
+        <PropertyRef Name="ZONES_ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STOCK_PREGATE_COST">
+    <End Role="PRE_GATES" Type="Self.PRE_GATES" Multiplicity="0..1" />
+    <End Role="STOCK_REGISTER" Type="Self.STOCK_REGISTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATES">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="mb_add_ecuapass_transaccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CODIGO_CARGA" Type="bigint" Mode="In" />
+    <Parameter Name="CODIGO_TIPO_CARGA" Type="varchar" Mode="In" />
+    <Parameter Name="OBJETO_SOLICITA" Type="varchar" Mode="In" />
+    <Parameter Name="USUARIO_SOLICITA" Type="char" Mode="In" />
+    <Parameter Name="CONTENEDOR" Type="varchar" Mode="In" />
+    <Parameter Name="MRN" Type="varchar" Mode="In" />
+    <Parameter Name="MSN" Type="varchar" Mode="In" />
+    <Parameter Name="HSN" Type="varchar" Mode="In" />
+    <Parameter Name="NUMERO_ENTREGA" Type="varchar" Mode="In" />
+    <Parameter Name="COMENTARIOS" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="mb_get_ecuapass_message_pass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ref_num" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="mb_get_gkey_cont" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="lv_CONTENEDOR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="mb_get_gkey_cont_mty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="lv_CONTENEDOR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="mb_get_gkey_cont_yard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="lv_CONTENEDOR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="mb_get_status_n4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PRE_GATE" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="mb_get_status_n4_placa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PLACA" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="mb_get_valida_smdt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ref_num" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="mb_get_validaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="i_opcion" Type="varchar" Mode="In" />
+    <Parameter Name="i_StrValor" Type="varchar" Mode="In" />
+    <Parameter Name="i_IntValor" Type="int" Mode="In" />
+    <Parameter Name="i_BigintValor" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="mb_secuencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="mb_set_estate_smdt_transaccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="key" Type="varchar" Mode="In" />
+    <Parameter Name="user" Type="varchar" Mode="In" />
+    <Parameter Name="causa" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ModeloReceptioStoreContainer">
+    <EntitySet Name="ACTIONS" EntityType="Self.ACTIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="APPLICATIONS" EntityType="Self.APPLICATIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AUTO_TROUBLE_REASONS" EntityType="Self.AUTO_TROUBLE_REASONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BREAK_TYPES" EntityType="Self.BREAK_TYPES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BREAKS" EntityType="Self.BREAKS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BY_PASS_AUDITS" EntityType="Self.BY_PASS_AUDITS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BY_PASSES" EntityType="Self.BY_PASSES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTAINERS" EntityType="Self.CONTAINERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DAMAGES" EntityType="Self.DAMAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEPOT" EntityType="Self.DEPOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEVICES" EntityType="Self.DEVICES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ERRORS" EntityType="Self.ERRORS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KIOSK_TRANSACTIONS" EntityType="Self.KIOSK_TRANSACTIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KIOSKS" EntityType="Self.KIOSKS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LIFT_UP_BARRIERS" EntityType="Self.LIFT_UP_BARRIERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LINE" EntityType="Self.LINE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LINE_DEPOTS" EntityType="Self.LINE_DEPOTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MESSAGES" EntityType="Self.MESSAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MOTIVES" EntityType="Self.MOTIVES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRE_GATE_DETAILS" EntityType="Self.PRE_GATE_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRE_GATES" EntityType="Self.PRE_GATES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROCESSES" EntityType="Self.PROCESSES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REASSIGNMENT_MOTIVES" EntityType="Self.REASSIGNMENT_MOTIVES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REASSIGNMENTS" EntityType="Self.REASSIGNMENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REPRINTS" EntityType="Self.REPRINTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SEALS" EntityType="Self.SEALS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SENSOR_KIOSK_TRANSACTIONS" EntityType="Self.SENSOR_KIOSK_TRANSACTIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SENSORS" EntityType="Self.SENSORS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STOCK_OPERATION" EntityType="Self.STOCK_OPERATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STOCK_REGISTER" EntityType="Self.STOCK_REGISTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUB_MOTIVES" EntityType="Self.SUB_MOTIVES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TOS_PROCCESSES" EntityType="Self.TOS_PROCCESSES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRANSACTION_TYPES" EntityType="Self.TRANSACTION_TYPES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TROUBLE_DESK_USERS" EntityType="Self.TROUBLE_DESK_USERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TROUBLE_TICKETS" EntityType="Self.TROUBLE_TICKETS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" EntityType="Self.TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntityType="Self.TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" EntityType="Self.TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" EntityType="Self.TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TYPE_ERRORS" EntityType="Self.TYPE_ERRORS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_SESSIONS" EntityType="Self.USER_SESSIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZONES" EntityType="Self.ZONES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ZONETRANSACTION_TYPE" EntityType="Self.ZONETRANSACTION_TYPE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__LINE_DEPO__ID_DE__4E1E9780" Association="Self.FK__LINE_DEPO__ID_DE__4E1E9780">
+      <End Role="DEPOT" EntitySet="DEPOT" />
+      <End Role="LINE_DEPOTS" EntitySet="LINE_DEPOTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LINE_DEPO__ID_LI__4D2A7347" Association="Self.FK__LINE_DEPO__ID_LI__4D2A7347">
+      <End Role="LINE" EntitySet="LINE" />
+      <End Role="LINE_DEPOTS" EntitySet="LINE_DEPOTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOCK_REG__ID_DE__59904A2C" Association="Self.FK__STOCK_REG__ID_DE__59904A2C">
+      <End Role="DEPOT" EntitySet="DEPOT" />
+      <End Role="STOCK_REGISTER" EntitySet="STOCK_REGISTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOCK_REG__ID_LI__589C25F3" Association="Self.FK__STOCK_REG__ID_LI__589C25F3">
+      <End Role="LINE" EntitySet="LINE" />
+      <End Role="STOCK_REGISTER" EntitySet="STOCK_REGISTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOCK_REG__ID_OP__5A846E65" Association="Self.FK__STOCK_REG__ID_OP__5A846E65">
+      <End Role="STOCK_OPERATION" EntitySet="STOCK_OPERATION" />
+      <End Role="STOCK_REGISTER" EntitySet="STOCK_REGISTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ACTIONPROCESS_TROUBLE_TICKET" Association="Self.FK_ACTIONPROCESS_TROUBLE_TICKET">
+      <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" />
+      <End Role="ACTIONS" EntitySet="ACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET" Association="Self.FK_AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET">
+      <End Role="AUTO_TROUBLE_REASONS" EntitySet="AUTO_TROUBLE_REASONS" />
+      <End Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AUTO_TROUBLE_TICKET_inherits_TROUBLE_TICKET" Association="Self.FK_AUTO_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+      <End Role="TROUBLE_TICKETS" EntitySet="TROUBLE_TICKETS" />
+      <End Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AUTO_TROUBLE_TICKETUSER_SESSION" Association="Self.FK_AUTO_TROUBLE_TICKETUSER_SESSION">
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+      <End Role="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_AUTO_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BREAK_TYPEBREAK" Association="Self.FK_BREAK_TYPEBREAK">
+      <End Role="BREAK_TYPES" EntitySet="BREAK_TYPES" />
+      <End Role="BREAKS" EntitySet="BREAKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BY_PASSBY_PASS_AUDIT" Association="Self.FK_BY_PASSBY_PASS_AUDIT">
+      <End Role="BY_PASSES" EntitySet="BY_PASSES" />
+      <End Role="BY_PASS_AUDITS" EntitySet="BY_PASS_AUDITS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_APP_TRANSACTION_TROUBLE_TICKET_inherits_TROUBLE_TICKET" Association="Self.FK_CLIENT_APP_TRANSACTION_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+      <End Role="TROUBLE_TICKETS" EntitySet="TROUBLE_TICKETS" />
+      <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTAINERDAMAGE" Association="Self.FK_CONTAINERDAMAGE">
+      <End Role="CONTAINERS" EntitySet="CONTAINERS" />
+      <End Role="DAMAGES" EntitySet="DAMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTAINERSEAL" Association="Self.FK_CONTAINERSEAL">
+      <End Role="CONTAINERS" EntitySet="CONTAINERS" />
+      <End Role="SEALS" EntitySet="SEALS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DEVICEUSER_SESSION" Association="Self.FK_DEVICEUSER_SESSION">
+      <End Role="DEVICES" EntitySet="DEVICES" />
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DEVICEZONE" Association="Self.FK_DEVICEZONE">
+      <End Role="ZONES" EntitySet="ZONES" />
+      <End Role="DEVICES" EntitySet="DEVICES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ERRORAPPLICATION" Association="Self.FK_ERRORAPPLICATION">
+      <End Role="APPLICATIONS" EntitySet="APPLICATIONS" />
+      <End Role="ERRORS" EntitySet="ERRORS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET" Association="Self.FK_ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+      <End Role="ERRORS" EntitySet="ERRORS" />
+      <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KIOSK_TRANSACTIONKIOSK" Association="Self.FK_KIOSK_TRANSACTIONKIOSK">
+      <End Role="KIOSKS" EntitySet="KIOSKS" />
+      <End Role="KIOSK_TRANSACTIONS" EntitySet="KIOSK_TRANSACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KIOSK_TRANSACTIONPROCESS" Association="Self.FK_KIOSK_TRANSACTIONPROCESS">
+      <End Role="KIOSK_TRANSACTIONS" EntitySet="KIOSK_TRANSACTIONS" />
+      <End Role="PROCESSES" EntitySet="PROCESSES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION" Association="Self.FK_KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION">
+      <End Role="KIOSK_TRANSACTIONS" EntitySet="KIOSK_TRANSACTIONS" />
+      <End Role="SENSOR_KIOSK_TRANSACTIONS" EntitySet="SENSOR_KIOSK_TRANSACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KIOSKLIFT_UP_BARRIER" Association="Self.FK_KIOSKLIFT_UP_BARRIER">
+      <End Role="KIOSKS" EntitySet="KIOSKS" />
+      <End Role="LIFT_UP_BARRIERS" EntitySet="LIFT_UP_BARRIERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KIOSKZONE" Association="Self.FK_KIOSKZONE">
+      <End Role="ZONES" EntitySet="ZONES" />
+      <End Role="KIOSKS" EntitySet="KIOSKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MOBILE_TROUBLE_TICKET_inherits_TROUBLE_TICKET" Association="Self.FK_MOBILE_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+      <End Role="TROUBLE_TICKETS" EntitySet="TROUBLE_TICKETS" />
+      <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MOBILE_TROUBLE_TICKETTOS_PROCCESS" Association="Self.FK_MOBILE_TROUBLE_TICKETTOS_PROCCESS">
+      <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" />
+      <End Role="TOS_PROCCESSES" EntitySet="TOS_PROCCESSES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MOBILE_TROUBLE_TICKETZONE" Association="Self.FK_MOBILE_TROUBLE_TICKETZONE">
+      <End Role="ZONES" EntitySet="ZONES" />
+      <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MOTIVESUB_MOTIVE" Association="Self.FK_MOTIVESUB_MOTIVE">
+      <End Role="MOTIVES" EntitySet="MOTIVES" />
+      <End Role="SUB_MOTIVES" EntitySet="SUB_MOTIVES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRE_GATE_DETAILCONTAINER" Association="Self.FK_PRE_GATE_DETAILCONTAINER">
+      <End Role="PRE_GATE_DETAILS" EntitySet="PRE_GATE_DETAILS" />
+      <End Role="CONTAINERS" EntitySet="CONTAINERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRE_GATEBY_PASS" Association="Self.FK_PRE_GATEBY_PASS">
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+      <End Role="BY_PASSES" EntitySet="BY_PASSES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRE_GATEDEVICE" Association="Self.FK_PRE_GATEDEVICE">
+      <End Role="DEVICES" EntitySet="DEVICES" />
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRE_GATEKIOSK_TRANSACTION" Association="Self.FK_PRE_GATEKIOSK_TRANSACTION">
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+      <End Role="KIOSK_TRANSACTIONS" EntitySet="KIOSK_TRANSACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRE_GATEPRE_GATE_DETAIL" Association="Self.FK_PRE_GATEPRE_GATE_DETAIL">
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+      <End Role="PRE_GATE_DETAILS" EntitySet="PRE_GATE_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Association="Self.FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+      <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROCESS_TROUBLE_TICKET_inherits_TROUBLE_TICKET" Association="Self.FK_PROCESS_TROUBLE_TICKET_inherits_TROUBLE_TICKET">
+      <End Role="TROUBLE_TICKETS" EntitySet="TROUBLE_TICKETS" />
+      <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROCESS_TROUBLE_TICKETREASSIGNMENT" Association="Self.FK_PROCESS_TROUBLE_TICKETREASSIGNMENT">
+      <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" />
+      <End Role="REASSIGNMENTS" EntitySet="REASSIGNMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROCESSMESSAGE" Association="Self.FK_PROCESSMESSAGE">
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+      <End Role="PROCESSES" EntitySet="PROCESSES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROCESSPROCESS_TROUBLE_TICKET" Association="Self.FK_PROCESSPROCESS_TROUBLE_TICKET">
+      <End Role="PROCESSES" EntitySet="PROCESSES" />
+      <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REASSIGNMENTREASSIGNMENT_MOTIVE" Association="Self.FK_REASSIGNMENTREASSIGNMENT_MOTIVE">
+      <End Role="REASSIGNMENT_MOTIVES" EntitySet="REASSIGNMENT_MOTIVES" />
+      <End Role="REASSIGNMENTS" EntitySet="REASSIGNMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REASSIGNMENTUSER_SESSION" Association="Self.FK_REASSIGNMENTUSER_SESSION">
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+      <End Role="REASSIGNMENTS" EntitySet="REASSIGNMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REPRINTKIOSK" Association="Self.FK_REPRINTKIOSK">
+      <End Role="KIOSKS" EntitySet="KIOSKS" />
+      <End Role="REPRINTS" EntitySet="REPRINTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REPRINTPRE_GATE" Association="Self.FK_REPRINTPRE_GATE">
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+      <End Role="REPRINTS" EntitySet="REPRINTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REPRINTTROUBLE_DESK_USER" Association="Self.FK_REPRINTTROUBLE_DESK_USER">
+      <End Role="TROUBLE_DESK_USERS" EntitySet="TROUBLE_DESK_USERS" />
+      <End Role="REPRINTS" EntitySet="REPRINTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SENSORSENSOR_KIOSK_TRANSACTION" Association="Self.FK_SENSORSENSOR_KIOSK_TRANSACTION">
+      <End Role="SENSORS" EntitySet="SENSORS" />
+      <End Role="SENSOR_KIOSK_TRANSACTIONS" EntitySet="SENSOR_KIOSK_TRANSACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TOS_PROCCESSPRE_GATE" Association="Self.FK_TOS_PROCCESSPRE_GATE">
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+      <End Role="TOS_PROCCESSES" EntitySet="TOS_PROCCESSES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_TYPEPRE_GATE_DETAIL" Association="Self.FK_TRANSACTION_TYPEPRE_GATE_DETAIL">
+      <End Role="TRANSACTION_TYPES" EntitySet="TRANSACTION_TYPES" />
+      <End Role="PRE_GATE_DETAILS" EntitySet="PRE_GATE_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TROUBLE_DESK_USERBY_PASS_AUDIT" Association="Self.FK_TROUBLE_DESK_USERBY_PASS_AUDIT">
+      <End Role="TROUBLE_DESK_USERS" EntitySet="TROUBLE_DESK_USERS" />
+      <End Role="BY_PASS_AUDITS" EntitySet="BY_PASS_AUDITS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TROUBLE_DESK_USERLIFT_UP_BARRIER" Association="Self.FK_TROUBLE_DESK_USERLIFT_UP_BARRIER">
+      <End Role="TROUBLE_DESK_USERS" EntitySet="TROUBLE_DESK_USERS" />
+      <End Role="LIFT_UP_BARRIERS" EntitySet="LIFT_UP_BARRIERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TROUBLE_DESK_USERUSER_SESSION" Association="Self.FK_TROUBLE_DESK_USERUSER_SESSION">
+      <End Role="TROUBLE_DESK_USERS" EntitySet="TROUBLE_DESK_USERS" />
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TYPE_ERRORERROR" Association="Self.FK_TYPE_ERRORERROR">
+      <End Role="TYPE_ERRORS" EntitySet="TYPE_ERRORS" />
+      <End Role="ERRORS" EntitySet="ERRORS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_SESSIONBREAK" Association="Self.FK_USER_SESSIONBREAK">
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+      <End Role="BREAKS" EntitySet="BREAKS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET" Association="Self.FK_USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+      <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_SESSIONMOBILE_TROUBLE_TICKET" Association="Self.FK_USER_SESSIONMOBILE_TROUBLE_TICKET">
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+      <End Role="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_SESSIONPROCESS_TROUBLE_TICKET" Association="Self.FK_USER_SESSIONPROCESS_TROUBLE_TICKET">
+      <End Role="USER_SESSIONS" EntitySet="USER_SESSIONS" />
+      <End Role="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_PROCESS_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET" Association="Self.FK_ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+      <End Role="ZONES" EntitySet="ZONES" />
+      <End Role="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS_CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZONETRANSACTION_TYPE_TRANSACTION_TYPE" Association="Self.FK_ZONETRANSACTION_TYPE_TRANSACTION_TYPE">
+      <End Role="TRANSACTION_TYPES" EntitySet="TRANSACTION_TYPES" />
+      <End Role="ZONETRANSACTION_TYPE" EntitySet="ZONETRANSACTION_TYPE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZONETRANSACTION_TYPE_ZONE" Association="Self.FK_ZONETRANSACTION_TYPE_ZONE">
+      <End Role="ZONES" EntitySet="ZONES" />
+      <End Role="ZONETRANSACTION_TYPE" EntitySet="ZONETRANSACTION_TYPE" />
+    </AssociationSet>
+    <AssociationSet Name="STOCK_PREGATE_COST" Association="Self.STOCK_PREGATE_COST">
+      <End Role="PRE_GATES" EntitySet="PRE_GATES" />
+      <End Role="STOCK_REGISTER" EntitySet="STOCK_REGISTER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

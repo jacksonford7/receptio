@@ -1,0 +1,8 @@
+D:\Proyect\RECEPTIO\Nucleo.Entidades\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.dll
+D:\Proyect\RECEPTIO\Nucleo.Entidades\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.pdb
+D:\Proyect\RECEPTIO\Nucleo.Entidades\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.dll.CodeAnalysisLog.xml
+D:\Proyect\RECEPTIO\Nucleo.Entidades\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.dll.lastcodeanalysissucceeded
+D:\Proyect\RECEPTIO\Nucleo.Entidades\obj\Debug\Nucleo.Entidades.csproj.AssemblyReference.cache
+D:\Proyect\RECEPTIO\Nucleo.Entidades\obj\Debug\Nucleo.Entidades.csproj.CoreCompileInputs.cache
+D:\Proyect\RECEPTIO\Nucleo.Entidades\obj\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.dll
+D:\Proyect\RECEPTIO\Nucleo.Entidades\obj\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.pdb

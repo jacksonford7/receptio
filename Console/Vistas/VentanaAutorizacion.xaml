@@ -1,0 +1,44 @@
+﻿<ContentDialog
+    x:Class="Console.Vistas.VentanaAutorizacion"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:local="using:Console.Convertidores"
+    mc:Ignorable="d"
+    FontFamily="Console" Foreground="#344955"
+    Title="{x:Bind ViewModel.Titulo}"
+    PrimaryButtonText="Aceptar"
+    SecondaryButtonText="Cancelar"
+    IsPrimaryButtonEnabled="{x:Bind ViewModel.EstaHabilitadoBoton, Mode=OneWay}"
+    PrimaryButtonCommand="{x:Bind ViewModel.ComandoAceptar}">
+
+    <ContentDialog.Resources>
+        <local:Entero x:Key="ConvertidorEntero"/>
+    </ContentDialog.Resources>
+    
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="PreGate:" VerticalAlignment="Center" />
+                <TextBox TabIndex="1" Text="{x:Bind ViewModel.IdPreGate, Mode=TwoWay, Converter={StaticResource ConvertidorEntero}}" Width="180" Margin="35,10,-19,0" MaxLength="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Motivo :" VerticalAlignment="Center" />
+                <ComboBox HorizontalAlignment="Left" Height="32" Margin="35,10,-19,0" Name="cmbMotivo" ItemsSource="{x:Bind ViewModel.Motivos, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.MotivoSeleccionado, Mode=TwoWay}" DisplayMemberPath="NAME" Width="180" TabIndex="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Detalle :" VerticalAlignment="Center" />
+                <TextBox HorizontalAlignment="Left" Height="80" Margin="35,10,-19,0" TextWrapping="Wrap" Text="{x:Bind ViewModel.Motivo, Mode=TwoWay}" VerticalAlignment="Top" Width="180" TabIndex="3" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Usuario:" VerticalAlignment="Center" />
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="35,10,-19,0" TextWrapping="NoWrap" Text="{x:Bind ViewModel.Usuario, Mode=TwoWay}" VerticalAlignment="Top" Width="180" TabIndex="4" MaxLength="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Contraseña:" VerticalAlignment="Center" />
+                <PasswordBox Password="{x:Bind ViewModel.Contrasena, Mode=TwoWay}" Height="23" Name="PswContrasena" HorizontalAlignment="Left" Margin="10,10,-18,0" VerticalAlignment="Top" Width="180" TabIndex="5" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</ContentDialog>

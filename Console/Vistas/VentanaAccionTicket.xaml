@@ -1,0 +1,24 @@
+﻿<ContentDialog
+    x:Class="Console.Vistas.VentanaAccionTicket"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    FontFamily="Console" Foreground="#344955"
+    Title="Acciones Realizadas"
+    PrimaryButtonText="Aceptar">
+
+    <Grid>
+        <controls:DataGrid Height="200" Margin="12" CanUserResizeColumns="False" CanUserSortColumns="False" 
+                                   AlternatingRowBackground="LightGray" CanUserReorderColumns="False" AutoGenerateColumns="False" 
+                                   VerticalScrollBarVisibility="Auto" GridLinesVisibility="All" HeadersVisibility="Column" 
+                                   ItemsSource="{x:Bind ViewModel.Acciones, Mode=OneWay}">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="NOMBRE ACCION" Width="150" Binding="{Binding ACTION_NAME}" FontSize="12" IsReadOnly ="True"/>
+                <controls:DataGridTextColumn Header="FECHA" Width="150" Binding="{Binding ACTION_DATE}" FontSize="12" IsReadOnly ="True"/>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+    </Grid>
+</ContentDialog>

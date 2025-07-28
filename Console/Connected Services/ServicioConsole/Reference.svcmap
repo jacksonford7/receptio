@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="44b19507-d3c2-4c26-b785-bb2a062bde3b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cgdes19:1700/Console/ServicioConsole.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioConsole.xsd" MetadataType="Schema" ID="a3f5155a-a475-48ed-82cb-0d0a3ad0afba" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServicioConsole1.xsd" MetadataType="Schema" ID="dc82ca65-2ccb-4362-8cf0-9fc554725571" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioConsole.disco" MetadataType="Disco" ID="419d3d4d-2a51-4089-974f-289e09d87a54" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?disco" />
+    <MetadataFile FileName="ServicioConsole2.xsd" MetadataType="Schema" ID="72b18b26-9ea9-4b7a-8ac6-80c493df0a8b" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicioConsole3.xsd" MetadataType="Schema" ID="9124df84-addf-4229-90a8-cb77d3856d22" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServicioConsole.wsdl" MetadataType="Wsdl" ID="363b17f6-a9c0-415f-baca-b24612145795" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?wsdl" />
+    <MetadataFile FileName="ServicioConsole4.xsd" MetadataType="Schema" ID="46564975-7107-4ba1-b8df-b7c5b136f5c7" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServicioConsole5.xsd" MetadataType="Schema" ID="b72d9680-5e17-4f6e-b620-40535cd80632" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioConsole6.xsd" MetadataType="Schema" ID="d0b982b6-ca78-4fd9-85ca-3a784132622e" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioConsole7.xsd" MetadataType="Schema" ID="9983dfef-f3e8-4269-94cb-5d9fa0edcae0" SourceId="1" SourceUrl="http://cgdes19:1700/Console/ServicioConsole.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ValidationService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_get_door_pass_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_door_pass" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_door_pass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_door_passResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_date_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_date" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_date_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_dateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_status_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_status" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_statusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_ticket_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_ticket" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_ticket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_ticketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_truck_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_truck" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_truck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_truckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ckeck_pass_driver_InputMessage">
+    <wsdl:part name="parameters" element="tns:ckeck_pass_driver" />
+  </wsdl:message>
+  <wsdl:message name="IService_ckeck_pass_driver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ckeck_pass_driverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_ridt_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_ridt" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_ridt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_ridtResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_transaction_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_transaction" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_pass_transaction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_pass_transactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_pass_unit_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_pass_unit" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_pass_unit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_pass_unitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_pass_container_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_pass_container" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_pass_container_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_pass_containerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_cntr_status_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_cntr_status" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_cntr_status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_cntr_statusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_impediments_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_impediments" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_impediments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_impedimentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_aisv_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_aisv" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_aisv_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_aisvResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_aisv_by_number_InputMessage">
+    <wsdl:part name="parameters" element="tns:find_aisv_by_number" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_aisv_by_number_OutputMessage">
+    <wsdl:part name="parameters" element="tns:find_aisv_by_numberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_aisv_by_container_InputMessage">
+    <wsdl:part name="parameters" element="tns:find_aisv_by_container" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_aisv_by_container_OutputMessage">
+    <wsdl:part name="parameters" element="tns:find_aisv_by_containerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_aisv_container_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_aisv_container" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_aisv_container_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_aisv_containerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_driver_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_driver" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_driver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_driverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_truck_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_truck" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_truck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_truckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_status_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_status" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_statusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_preadvice_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_preadvice" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_aisv_preadvice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_aisv_preadviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_set_aisv_fcl_seals_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_aisv_fcl_seals" />
+  </wsdl:message>
+  <wsdl:message name="IService_set_aisv_fcl_seals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_aisv_fcl_sealsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_set_aisv_mty_seals_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_aisv_mty_seals" />
+  </wsdl:message>
+  <wsdl:message name="IService_set_aisv_mty_seals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_aisv_mty_sealsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_driver_expo_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_driver_expo" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_driver_expo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_driver_expoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_truck_expo_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_truck_expo" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_truck_expo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_truck_expoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_transaction_by_driver_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_transaction_by_driver" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_transaction_by_driver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_transaction_by_driverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_transaction_by_truck_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_transaction_by_truck" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_transaction_by_truck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_transaction_by_truckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_transaction_by_container_InputMessage">
+    <wsdl:part name="parameters" element="tns:check_transaction_by_container" />
+  </wsdl:message>
+  <wsdl:message name="IService_check_transaction_by_container_OutputMessage">
+    <wsdl:part name="parameters" element="tns:check_transaction_by_containerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_set_impo_fcl_seals_InputMessage">
+    <wsdl:part name="parameters" element="tns:set_impo_fcl_seals" />
+  </wsdl:message>
+  <wsdl:message name="IService_set_impo_fcl_seals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:set_impo_fcl_sealsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_impo_cntr_pre_out_InputMessage">
+    <wsdl:part name="parameters" element="tns:find_impo_cntr_pre_out" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_impo_cntr_pre_out_OutputMessage">
+    <wsdl:part name="parameters" element="tns:find_impo_cntr_pre_outResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_mty_InputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_mty" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_mty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_mtyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_mty_desist_InputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_mty_desist" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_mty_desist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_mty_desistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_fcl_InputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_fcl" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_fcl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_fclResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_fcl_by_gkey_InputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_fcl_by_gkey" />
+  </wsdl:message>
+  <wsdl:message name="IService_find_expo_cntr_fcl_by_gkey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:find_expo_cntr_fcl_by_gkeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_edo_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_edo_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_edo_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_edo_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_device_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_device_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_device_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_device_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_kiosko_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_kiosko_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_kiosko_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_kiosko_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_transaction_types_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_transaction_types_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_transaction_types_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_transaction_types_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_driver_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_driver_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_driver_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_driver_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_seals_colors_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_seals_colors" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_seals_colors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_seals_colorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_damage_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_damage_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_damage_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_damage_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_component_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_component_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_component_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_component_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_save_tablet_transaction_InputMessage">
+    <wsdl:part name="parameters" element="tns:save_tablet_transaction" />
+  </wsdl:message>
+  <wsdl:message name="IService_save_tablet_transaction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:save_tablet_transactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_save_tablet_transaction_return_InputMessage">
+    <wsdl:part name="parameters" element="tns:save_tablet_transaction_return" />
+  </wsdl:message>
+  <wsdl:message name="IService_save_tablet_transaction_return_OutputMessage">
+    <wsdl:part name="parameters" element="tns:save_tablet_transaction_returnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_update_pregate_transaction_InputMessage">
+    <wsdl:part name="parameters" element="tns:update_pregate_transaction" />
+  </wsdl:message>
+  <wsdl:message name="IService_update_pregate_transaction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:update_pregate_transactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_edo_data_validation_InputMessage">
+    <wsdl:part name="parameters" element="tns:edo_data_validation" />
+  </wsdl:message>
+  <wsdl:message name="IService_edo_data_validation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:edo_data_validationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_edo_control_list_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_edo_control_list" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_edo_control_list_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_edo_control_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_find_pass_InputMessage">
+    <wsdl:part name="parameters" element="tns:vip_find_pass" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_find_pass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:vip_find_passResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_validate_date_InputMessage">
+    <wsdl:part name="parameters" element="tns:vip_validate_date" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_validate_date_OutputMessage">
+    <wsdl:part name="parameters" element="tns:vip_validate_dateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_validate_truck_InputMessage">
+    <wsdl:part name="parameters" element="tns:vip_validate_truck" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_validate_truck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:vip_validate_truckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_validate_driver_InputMessage">
+    <wsdl:part name="parameters" element="tns:vip_validate_driver" />
+  </wsdl:message>
+  <wsdl:message name="IService_vip_validate_driver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:vip_validate_driverResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_transaction_types_provider_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_transaction_types_provider" />
+  </wsdl:message>
+  <wsdl:message name="IService_get_transaction_types_provider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_transaction_types_providerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_sav_validation_InputMessage">
+    <wsdl:part name="parameters" element="tns:sav_validation" />
+  </wsdl:message>
+  <wsdl:message name="IService_sav_validation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:sav_validationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="get_door_pass">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_door_pass" message="tns:IService_get_door_pass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_door_passResponse" message="tns:IService_get_door_pass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_date">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_pass_date" message="tns:IService_check_pass_date_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_pass_dateResponse" message="tns:IService_check_pass_date_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_status">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_pass_status" message="tns:IService_check_pass_status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_pass_statusResponse" message="tns:IService_check_pass_status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_ticket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_pass_ticket" message="tns:IService_check_pass_ticket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_pass_ticketResponse" message="tns:IService_check_pass_ticket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_truck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_pass_truck" message="tns:IService_check_pass_truck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_pass_truckResponse" message="tns:IService_check_pass_truck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ckeck_pass_driver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ckeck_pass_driver" message="tns:IService_ckeck_pass_driver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ckeck_pass_driverResponse" message="tns:IService_ckeck_pass_driver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_ridt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_pass_ridt" message="tns:IService_check_pass_ridt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_pass_ridtResponse" message="tns:IService_check_pass_ridt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_transaction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_pass_transaction" message="tns:IService_check_pass_transaction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_pass_transactionResponse" message="tns:IService_check_pass_transaction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_pass_unit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_pass_unit" message="tns:IService_get_pass_unit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_pass_unitResponse" message="tns:IService_get_pass_unit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_pass_container">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_pass_container" message="tns:IService_get_pass_container_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_pass_containerResponse" message="tns:IService_get_pass_container_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_cntr_status">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_cntr_status" message="tns:IService_check_cntr_status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_cntr_statusResponse" message="tns:IService_check_cntr_status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_impediments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_impediments" message="tns:IService_check_impediments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_impedimentsResponse" message="tns:IService_check_impediments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_aisv">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_aisv" message="tns:IService_get_aisv_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_aisvResponse" message="tns:IService_get_aisv_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="find_aisv_by_number">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/find_aisv_by_number" message="tns:IService_find_aisv_by_number_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/find_aisv_by_numberResponse" message="tns:IService_find_aisv_by_number_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="find_aisv_by_container">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/find_aisv_by_container" message="tns:IService_find_aisv_by_container_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/find_aisv_by_containerResponse" message="tns:IService_find_aisv_by_container_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_aisv_container">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_aisv_container" message="tns:IService_get_aisv_container_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_aisv_containerResponse" message="tns:IService_get_aisv_container_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_driver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_aisv_driver" message="tns:IService_check_aisv_driver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_aisv_driverResponse" message="tns:IService_check_aisv_driver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_truck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_aisv_truck" message="tns:IService_check_aisv_truck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_aisv_truckResponse" message="tns:IService_check_aisv_truck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_status">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_aisv_status" message="tns:IService_check_aisv_status_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_aisv_statusResponse" message="tns:IService_check_aisv_status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_preadvice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_aisv_preadvice" message="tns:IService_check_aisv_preadvice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_aisv_preadviceResponse" message="tns:IService_check_aisv_preadvice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_aisv_fcl_seals">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/set_aisv_fcl_seals" message="tns:IService_set_aisv_fcl_seals_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/set_aisv_fcl_sealsResponse" message="tns:IService_set_aisv_fcl_seals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_aisv_mty_seals">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/set_aisv_mty_seals" message="tns:IService_set_aisv_mty_seals_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/set_aisv_mty_sealsResponse" message="tns:IService_set_aisv_mty_seals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_driver_expo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_driver_expo" message="tns:IService_check_driver_expo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_driver_expoResponse" message="tns:IService_check_driver_expo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_truck_expo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_truck_expo" message="tns:IService_check_truck_expo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_truck_expoResponse" message="tns:IService_check_truck_expo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_transaction_by_driver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_transaction_by_driver" message="tns:IService_check_transaction_by_driver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_transaction_by_driverResponse" message="tns:IService_check_transaction_by_driver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_transaction_by_truck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_transaction_by_truck" message="tns:IService_check_transaction_by_truck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_transaction_by_truckResponse" message="tns:IService_check_transaction_by_truck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="check_transaction_by_container">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/check_transaction_by_container" message="tns:IService_check_transaction_by_container_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/check_transaction_by_containerResponse" message="tns:IService_check_transaction_by_container_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="set_impo_fcl_seals">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/set_impo_fcl_seals" message="tns:IService_set_impo_fcl_seals_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/set_impo_fcl_sealsResponse" message="tns:IService_set_impo_fcl_seals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="find_impo_cntr_pre_out">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/find_impo_cntr_pre_out" message="tns:IService_find_impo_cntr_pre_out_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/find_impo_cntr_pre_outResponse" message="tns:IService_find_impo_cntr_pre_out_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_mty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/find_expo_cntr_mty" message="tns:IService_find_expo_cntr_mty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/find_expo_cntr_mtyResponse" message="tns:IService_find_expo_cntr_mty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_mty_desist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/find_expo_cntr_mty_desist" message="tns:IService_find_expo_cntr_mty_desist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/find_expo_cntr_mty_desistResponse" message="tns:IService_find_expo_cntr_mty_desist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_fcl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/find_expo_cntr_fcl" message="tns:IService_find_expo_cntr_fcl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/find_expo_cntr_fclResponse" message="tns:IService_find_expo_cntr_fcl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_fcl_by_gkey">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/find_expo_cntr_fcl_by_gkey" message="tns:IService_find_expo_cntr_fcl_by_gkey_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/find_expo_cntr_fcl_by_gkeyResponse" message="tns:IService_find_expo_cntr_fcl_by_gkey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_edo_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_edo_list" message="tns:IService_get_edo_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_edo_listResponse" message="tns:IService_get_edo_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_device_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_device_list" message="tns:IService_get_device_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_device_listResponse" message="tns:IService_get_device_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_kiosko_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_kiosko_list" message="tns:IService_get_kiosko_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_kiosko_listResponse" message="tns:IService_get_kiosko_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_transaction_types_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_transaction_types_list" message="tns:IService_get_transaction_types_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_transaction_types_listResponse" message="tns:IService_get_transaction_types_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_driver_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_driver_list" message="tns:IService_get_driver_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_driver_listResponse" message="tns:IService_get_driver_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_seals_colors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_seals_colors" message="tns:IService_get_seals_colors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_seals_colorsResponse" message="tns:IService_get_seals_colors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_damage_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_damage_list" message="tns:IService_get_damage_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_damage_listResponse" message="tns:IService_get_damage_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_component_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_component_list" message="tns:IService_get_component_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_component_listResponse" message="tns:IService_get_component_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="save_tablet_transaction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/save_tablet_transaction" message="tns:IService_save_tablet_transaction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/save_tablet_transactionResponse" message="tns:IService_save_tablet_transaction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="save_tablet_transaction_return">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/save_tablet_transaction_return" message="tns:IService_save_tablet_transaction_return_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/save_tablet_transaction_returnResponse" message="tns:IService_save_tablet_transaction_return_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="update_pregate_transaction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/update_pregate_transaction" message="tns:IService_update_pregate_transaction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/update_pregate_transactionResponse" message="tns:IService_update_pregate_transaction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="edo_data_validation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/edo_data_validation" message="tns:IService_edo_data_validation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/edo_data_validationResponse" message="tns:IService_edo_data_validation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_edo_control_list">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_edo_control_list" message="tns:IService_get_edo_control_list_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_edo_control_listResponse" message="tns:IService_get_edo_control_list_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="vip_find_pass">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/vip_find_pass" message="tns:IService_vip_find_pass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/vip_find_passResponse" message="tns:IService_vip_find_pass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="vip_validate_date">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/vip_validate_date" message="tns:IService_vip_validate_date_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/vip_validate_dateResponse" message="tns:IService_vip_validate_date_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="vip_validate_truck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/vip_validate_truck" message="tns:IService_vip_validate_truck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/vip_validate_truckResponse" message="tns:IService_vip_validate_truck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="vip_validate_driver">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/vip_validate_driver" message="tns:IService_vip_validate_driver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/vip_validate_driverResponse" message="tns:IService_vip_validate_driver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_transaction_types_provider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/get_transaction_types_provider" message="tns:IService_get_transaction_types_provider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/get_transaction_types_providerResponse" message="tns:IService_get_transaction_types_provider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="sav_validation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/sav_validation" message="tns:IService_sav_validation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/sav_validationResponse" message="tns:IService_sav_validation_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="get_door_pass">
+      <soap:operation soapAction="http://tempuri.org/IService/get_door_pass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_date">
+      <soap:operation soapAction="http://tempuri.org/IService/check_pass_date" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_status">
+      <soap:operation soapAction="http://tempuri.org/IService/check_pass_status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_ticket">
+      <soap:operation soapAction="http://tempuri.org/IService/check_pass_ticket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_truck">
+      <soap:operation soapAction="http://tempuri.org/IService/check_pass_truck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ckeck_pass_driver">
+      <soap:operation soapAction="http://tempuri.org/IService/ckeck_pass_driver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_ridt">
+      <soap:operation soapAction="http://tempuri.org/IService/check_pass_ridt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_pass_transaction">
+      <soap:operation soapAction="http://tempuri.org/IService/check_pass_transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_pass_unit">
+      <soap:operation soapAction="http://tempuri.org/IService/get_pass_unit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_pass_container">
+      <soap:operation soapAction="http://tempuri.org/IService/get_pass_container" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_cntr_status">
+      <soap:operation soapAction="http://tempuri.org/IService/check_cntr_status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_impediments">
+      <soap:operation soapAction="http://tempuri.org/IService/check_impediments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_aisv">
+      <soap:operation soapAction="http://tempuri.org/IService/get_aisv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find_aisv_by_number">
+      <soap:operation soapAction="http://tempuri.org/IService/find_aisv_by_number" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find_aisv_by_container">
+      <soap:operation soapAction="http://tempuri.org/IService/find_aisv_by_container" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_aisv_container">
+      <soap:operation soapAction="http://tempuri.org/IService/get_aisv_container" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_driver">
+      <soap:operation soapAction="http://tempuri.org/IService/check_aisv_driver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_truck">
+      <soap:operation soapAction="http://tempuri.org/IService/check_aisv_truck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_status">
+      <soap:operation soapAction="http://tempuri.org/IService/check_aisv_status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_aisv_preadvice">
+      <soap:operation soapAction="http://tempuri.org/IService/check_aisv_preadvice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_aisv_fcl_seals">
+      <soap:operation soapAction="http://tempuri.org/IService/set_aisv_fcl_seals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_aisv_mty_seals">
+      <soap:operation soapAction="http://tempuri.org/IService/set_aisv_mty_seals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_driver_expo">
+      <soap:operation soapAction="http://tempuri.org/IService/check_driver_expo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_truck_expo">
+      <soap:operation soapAction="http://tempuri.org/IService/check_truck_expo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_transaction_by_driver">
+      <soap:operation soapAction="http://tempuri.org/IService/check_transaction_by_driver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_transaction_by_truck">
+      <soap:operation soapAction="http://tempuri.org/IService/check_transaction_by_truck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_transaction_by_container">
+      <soap:operation soapAction="http://tempuri.org/IService/check_transaction_by_container" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="set_impo_fcl_seals">
+      <soap:operation soapAction="http://tempuri.org/IService/set_impo_fcl_seals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find_impo_cntr_pre_out">
+      <soap:operation soapAction="http://tempuri.org/IService/find_impo_cntr_pre_out" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_mty">
+      <soap:operation soapAction="http://tempuri.org/IService/find_expo_cntr_mty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_mty_desist">
+      <soap:operation soapAction="http://tempuri.org/IService/find_expo_cntr_mty_desist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_fcl">
+      <soap:operation soapAction="http://tempuri.org/IService/find_expo_cntr_fcl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="find_expo_cntr_fcl_by_gkey">
+      <soap:operation soapAction="http://tempuri.org/IService/find_expo_cntr_fcl_by_gkey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_edo_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_edo_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_device_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_device_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_kiosko_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_kiosko_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_transaction_types_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_transaction_types_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_driver_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_driver_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_seals_colors">
+      <soap:operation soapAction="http://tempuri.org/IService/get_seals_colors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_damage_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_damage_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_component_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_component_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="save_tablet_transaction">
+      <soap:operation soapAction="http://tempuri.org/IService/save_tablet_transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="save_tablet_transaction_return">
+      <soap:operation soapAction="http://tempuri.org/IService/save_tablet_transaction_return" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update_pregate_transaction">
+      <soap:operation soapAction="http://tempuri.org/IService/update_pregate_transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="edo_data_validation">
+      <soap:operation soapAction="http://tempuri.org/IService/edo_data_validation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_edo_control_list">
+      <soap:operation soapAction="http://tempuri.org/IService/get_edo_control_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vip_find_pass">
+      <soap:operation soapAction="http://tempuri.org/IService/vip_find_pass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vip_validate_date">
+      <soap:operation soapAction="http://tempuri.org/IService/vip_validate_date" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vip_validate_truck">
+      <soap:operation soapAction="http://tempuri.org/IService/vip_validate_truck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vip_validate_driver">
+      <soap:operation soapAction="http://tempuri.org/IService/vip_validate_driver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_transaction_types_provider">
+      <soap:operation soapAction="http://tempuri.org/IService/get_transaction_types_provider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sav_validation">
+      <soap:operation soapAction="http://tempuri.org/IService/sav_validation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ValidationService">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://cgint04:50502/WS_RECEPTIOValidaciones/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

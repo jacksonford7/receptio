@@ -1,0 +1,1439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModeloReceptio" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ModeloReceptioContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PRE_GATES" EntityType="ModeloReceptio.PRE_GATE" />
+    <EntitySet Name="CONTAINERS" EntityType="ModeloReceptio.CONTAINER" />
+    <EntitySet Name="SEALS" EntityType="ModeloReceptio.SEAL" />
+    <AssociationSet Name="CONTAINERSEAL" Association="ModeloReceptio.CONTAINERSEAL">
+      <End Role="CONTAINER" EntitySet="CONTAINERS" />
+      <End Role="SEAL" EntitySet="SEALS" />
+    </AssociationSet>
+    <EntitySet Name="KIOSK_TRANSACTIONS" EntityType="ModeloReceptio.KIOSK_TRANSACTION" />
+    <EntitySet Name="PROCESSES" EntityType="ModeloReceptio.PROCESS" />
+    <AssociationSet Name="KIOSK_TRANSACTIONPROCESS" Association="ModeloReceptio.KIOSK_TRANSACTIONPROCESS">
+      <End Role="KIOSK_TRANSACTION" EntitySet="KIOSK_TRANSACTIONS" />
+      <End Role="PROCESS" EntitySet="PROCESSES" />
+    </AssociationSet>
+    <EntitySet Name="ZONES" EntityType="ModeloReceptio.ZONE" />
+    <EntitySet Name="KIOSKS" EntityType="ModeloReceptio.KIOSK" />
+    <AssociationSet Name="KIOSKZONE" Association="ModeloReceptio.KIOSKZONE">
+      <End Role="KIOSK" EntitySet="KIOSKS" />
+      <End Role="ZONE" EntitySet="ZONES" />
+    </AssociationSet>
+    <AssociationSet Name="KIOSK_TRANSACTIONKIOSK" Association="ModeloReceptio.KIOSK_TRANSACTIONKIOSK">
+      <End Role="KIOSK_TRANSACTION" EntitySet="KIOSK_TRANSACTIONS" />
+      <End Role="KIOSK" EntitySet="KIOSKS" />
+    </AssociationSet>
+    <EntitySet Name="TROUBLE_TICKETS" EntityType="ModeloReceptio.TROUBLE_TICKET" />
+    <EntitySet Name="TROUBLE_DESK_USERS" EntityType="ModeloReceptio.TROUBLE_DESK_USER" />
+    <EntitySet Name="DEVICES" EntityType="ModeloReceptio.DEVICE" />
+    <AssociationSet Name="DEVICEZONE" Association="ModeloReceptio.DEVICEZONE">
+      <End Role="DEVICE" EntitySet="DEVICES" />
+      <End Role="ZONE" EntitySet="ZONES" />
+    </AssociationSet>
+    <EntitySet Name="USER_SESSIONS" EntityType="ModeloReceptio.USER_SESSION" />
+    <AssociationSet Name="DEVICEUSER_SESSION" Association="ModeloReceptio.DEVICEUSER_SESSION">
+      <End Role="DEVICE" EntitySet="DEVICES" />
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+    </AssociationSet>
+    <AssociationSet Name="TROUBLE_DESK_USERUSER_SESSION" Association="ModeloReceptio.TROUBLE_DESK_USERUSER_SESSION">
+      <End Role="TROUBLE_DESK_USER" EntitySet="TROUBLE_DESK_USERS" />
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+    </AssociationSet>
+    <EntitySet Name="BREAKS" EntityType="ModeloReceptio.BREAK" />
+    <EntitySet Name="BREAK_TYPES" EntityType="ModeloReceptio.BREAK_TYPE" />
+    <AssociationSet Name="BREAK_TYPEBREAK" Association="ModeloReceptio.BREAK_TYPEBREAK">
+      <End Role="BREAK_TYPE" EntitySet="BREAK_TYPES" />
+      <End Role="BREAK" EntitySet="BREAKS" />
+    </AssociationSet>
+    <AssociationSet Name="USER_SESSIONBREAK" Association="ModeloReceptio.USER_SESSIONBREAK">
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+      <End Role="BREAK" EntitySet="BREAKS" />
+    </AssociationSet>
+    <EntitySet Name="REASSIGNMENTS" EntityType="ModeloReceptio.REASSIGNMENT" />
+    <AssociationSet Name="REASSIGNMENTUSER_SESSION" Association="ModeloReceptio.REASSIGNMENTUSER_SESSION">
+      <End Role="REASSIGNMENT" EntitySet="REASSIGNMENTS" />
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+    </AssociationSet>
+    <EntitySet Name="MESSAGES" EntityType="ModeloReceptio.MESSAGE" />
+    <AssociationSet Name="PROCESSMESSAGE" Association="ModeloReceptio.PROCESSMESSAGE">
+      <End Role="PROCESS" EntitySet="PROCESSES" />
+      <End Role="MESSAGE" EntitySet="MESSAGES" />
+    </AssociationSet>
+    <EntitySet Name="REASSIGNMENT_MOTIVES" EntityType="ModeloReceptio.REASSIGNMENT_MOTIVE" />
+    <AssociationSet Name="REASSIGNMENTREASSIGNMENT_MOTIVE" Association="ModeloReceptio.REASSIGNMENTREASSIGNMENT_MOTIVE">
+      <End Role="REASSIGNMENT" EntitySet="REASSIGNMENTS" />
+      <End Role="REASSIGNMENT_MOTIVE" EntitySet="REASSIGNMENT_MOTIVES" />
+    </AssociationSet>
+    <EntitySet Name="AUTO_TROUBLE_REASONS" EntityType="ModeloReceptio.AUTO_TROUBLE_REASON" />
+    <AssociationSet Name="AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET" Association="ModeloReceptio.AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET">
+      <End Role="AUTO_TROUBLE_REASON" EntitySet="AUTO_TROUBLE_REASONS" />
+      <End Role="AUTO_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <AssociationSet Name="AUTO_TROUBLE_TICKETUSER_SESSION" Association="ModeloReceptio.AUTO_TROUBLE_TICKETUSER_SESSION">
+      <End Role="AUTO_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+    </AssociationSet>
+    <EntitySet Name="ERRORS" EntityType="ModeloReceptio.ERROR" />
+    <EntitySet Name="APPLICATIONS" EntityType="ModeloReceptio.APPLICATION" />
+    <AssociationSet Name="ERRORAPPLICATION" Association="ModeloReceptio.ERRORAPPLICATION">
+      <End Role="ERROR" EntitySet="ERRORS" />
+      <End Role="APPLICATION" EntitySet="APPLICATIONS" />
+    </AssociationSet>
+    <EntitySet Name="TYPE_ERRORS" EntityType="ModeloReceptio.TYPE_ERROR" />
+    <AssociationSet Name="TYPE_ERRORERROR" Association="ModeloReceptio.TYPE_ERRORERROR">
+      <End Role="TYPE_ERROR" EntitySet="TYPE_ERRORS" />
+      <End Role="ERROR" EntitySet="ERRORS" />
+    </AssociationSet>
+    <EntitySet Name="PRE_GATE_DETAILS" EntityType="ModeloReceptio.PRE_GATE_DETAIL" />
+    <EntitySet Name="DAMAGES" EntityType="ModeloReceptio.DAMAGE" />
+    <AssociationSet Name="CONTAINERDAMAGE" Association="ModeloReceptio.CONTAINERDAMAGE">
+      <End Role="CONTAINER" EntitySet="CONTAINERS" />
+      <End Role="DAMAGE" EntitySet="DAMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="PROCESSPROCESS_TROUBLE_TICKET" Association="ModeloReceptio.PROCESSPROCESS_TROUBLE_TICKET">
+      <End Role="PROCESS" EntitySet="PROCESSES" />
+      <End Role="PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <AssociationSet Name="USER_SESSIONPROCESS_TROUBLE_TICKET" Association="ModeloReceptio.USER_SESSIONPROCESS_TROUBLE_TICKET">
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+      <End Role="PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <AssociationSet Name="PROCESS_TROUBLE_TICKETREASSIGNMENT" Association="ModeloReceptio.PROCESS_TROUBLE_TICKETREASSIGNMENT">
+      <End Role="PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+      <End Role="REASSIGNMENT" EntitySet="REASSIGNMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="USER_SESSIONMOBILE_TROUBLE_TICKET" Association="ModeloReceptio.USER_SESSIONMOBILE_TROUBLE_TICKET">
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+      <End Role="MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <AssociationSet Name="PRE_GATE_DETAILCONTAINER" Association="ModeloReceptio.PRE_GATE_DETAILCONTAINER">
+      <End Role="PRE_GATE_DETAIL" EntitySet="PRE_GATE_DETAILS" />
+      <End Role="CONTAINER" EntitySet="CONTAINERS" />
+    </AssociationSet>
+    <EntitySet Name="TRANSACTION_TYPES" EntityType="ModeloReceptio.TRANSACTION_TYPE" />
+    <AssociationSet Name="TRANSACTION_TYPEPRE_GATE_DETAIL" Association="ModeloReceptio.TRANSACTION_TYPEPRE_GATE_DETAIL">
+      <End Role="TRANSACTION_TYPE" EntitySet="TRANSACTION_TYPES" />
+      <End Role="PRE_GATE_DETAIL" EntitySet="PRE_GATE_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="PRE_GATEDEVICE" Association="ModeloReceptio.PRE_GATEDEVICE">
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+      <End Role="DEVICE" EntitySet="DEVICES" />
+    </AssociationSet>
+    <AssociationSet Name="PRE_GATEPRE_GATE_DETAIL" Association="ModeloReceptio.PRE_GATEPRE_GATE_DETAIL">
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+      <End Role="PRE_GATE_DETAIL" EntitySet="PRE_GATE_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET" Association="ModeloReceptio.ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+      <End Role="ERROR" EntitySet="ERRORS" />
+      <End Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <AssociationSet Name="USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET" Association="ModeloReceptio.USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+      <End Role="USER_SESSION" EntitySet="USER_SESSIONS" />
+      <End Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <AssociationSet Name="ZONETRANSACTION_TYPE" Association="ModeloReceptio.ZONETRANSACTION_TYPE">
+      <End Role="ZONE" EntitySet="ZONES" />
+      <End Role="TRANSACTION_TYPE" EntitySet="TRANSACTION_TYPES" />
+    </AssociationSet>
+    <AssociationSet Name="PRE_GATEKIOSK_TRANSACTION" Association="ModeloReceptio.PRE_GATEKIOSK_TRANSACTION">
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+      <End Role="KIOSK_TRANSACTION" EntitySet="KIOSK_TRANSACTIONS" />
+    </AssociationSet>
+    <EntitySet Name="ACTIONS" EntityType="ModeloReceptio.ACTION" />
+    <AssociationSet Name="ACTIONPROCESS_TROUBLE_TICKET" Association="ModeloReceptio.ACTIONPROCESS_TROUBLE_TICKET">
+      <End Role="ACTION" EntitySet="ACTIONS" />
+      <End Role="PROCESS_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <AssociationSet Name="ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET" Association="ModeloReceptio.ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+      <End Role="ZONE" EntitySet="ZONES" />
+      <End Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <EntitySet Name="TOS_PROCCESSES" EntityType="ModeloReceptio.TOS_PROCCESS" />
+    <AssociationSet Name="TOS_PROCCESSPRE_GATE" Association="ModeloReceptio.TOS_PROCCESSPRE_GATE">
+      <End Role="TOS_PROCCESS" EntitySet="TOS_PROCCESSES" />
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+    </AssociationSet>
+    <AssociationSet Name="MOBILE_TROUBLE_TICKETTOS_PROCCESS" Association="ModeloReceptio.MOBILE_TROUBLE_TICKETTOS_PROCCESS">
+      <End Role="MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+      <End Role="TOS_PROCCESS" EntitySet="TOS_PROCCESSES" />
+    </AssociationSet>
+    <EntitySet Name="SENSORS" EntityType="ModeloReceptio.SENSOR" />
+    <EntitySet Name="SENSOR_KIOSK_TRANSACTIONS" EntityType="ModeloReceptio.SENSOR_KIOSK_TRANSACTION" />
+    <AssociationSet Name="SENSORSENSOR_KIOSK_TRANSACTION" Association="ModeloReceptio.SENSORSENSOR_KIOSK_TRANSACTION">
+      <End Role="SENSOR" EntitySet="SENSORS" />
+      <End Role="SENSOR_KIOSK_TRANSACTION" EntitySet="SENSOR_KIOSK_TRANSACTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION" Association="ModeloReceptio.KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION">
+      <End Role="KIOSK_TRANSACTION" EntitySet="KIOSK_TRANSACTIONS" />
+      <End Role="SENSOR_KIOSK_TRANSACTION" EntitySet="SENSOR_KIOSK_TRANSACTIONS" />
+    </AssociationSet>
+    <EntitySet Name="LIFT_UP_BARRIERS" EntityType="ModeloReceptio.LIFT_UP_BARRIER" />
+    <AssociationSet Name="KIOSKLIFT_UP_BARRIER" Association="ModeloReceptio.KIOSKLIFT_UP_BARRIER">
+      <End Role="KIOSK" EntitySet="KIOSKS" />
+      <End Role="LIFT_UP_BARRIER" EntitySet="LIFT_UP_BARRIERS" />
+    </AssociationSet>
+    <AssociationSet Name="TROUBLE_DESK_USERLIFT_UP_BARRIER" Association="ModeloReceptio.TROUBLE_DESK_USERLIFT_UP_BARRIER">
+      <End Role="TROUBLE_DESK_USER" EntitySet="TROUBLE_DESK_USERS" />
+      <End Role="LIFT_UP_BARRIER" EntitySet="LIFT_UP_BARRIERS" />
+    </AssociationSet>
+    <AssociationSet Name="MOBILE_TROUBLE_TICKETZONE" Association="ModeloReceptio.MOBILE_TROUBLE_TICKETZONE">
+      <End Role="MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+      <End Role="ZONE" EntitySet="ZONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Association="ModeloReceptio.FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+      <End Role="MOBILE_TROUBLE_TICKET" EntitySet="TROUBLE_TICKETS" />
+    </AssociationSet>
+    <EntitySet Name="REPRINTS" EntityType="ModeloReceptio.REPRINT" />
+    <AssociationSet Name="REPRINTTROUBLE_DESK_USER" Association="ModeloReceptio.REPRINTTROUBLE_DESK_USER">
+      <End Role="REPRINT" EntitySet="REPRINTS" />
+      <End Role="TROUBLE_DESK_USER" EntitySet="TROUBLE_DESK_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="REPRINTPRE_GATE" Association="ModeloReceptio.REPRINTPRE_GATE">
+      <End Role="REPRINT" EntitySet="REPRINTS" />
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+    </AssociationSet>
+    <AssociationSet Name="REPRINTKIOSK" Association="ModeloReceptio.REPRINTKIOSK">
+      <End Role="REPRINT" EntitySet="REPRINTS" />
+      <End Role="KIOSK" EntitySet="KIOSKS" />
+    </AssociationSet>
+    <EntitySet Name="BY_PASSES" EntityType="ModeloReceptio.BY_PASS" />
+    <EntitySet Name="BY_PASS_AUDITS" EntityType="ModeloReceptio.BY_PASS_AUDIT" />
+    <AssociationSet Name="TROUBLE_DESK_USERBY_PASS_AUDIT" Association="ModeloReceptio.TROUBLE_DESK_USERBY_PASS_AUDIT">
+      <End Role="TROUBLE_DESK_USER" EntitySet="TROUBLE_DESK_USERS" />
+      <End Role="BY_PASS_AUDIT" EntitySet="BY_PASS_AUDITS" />
+    </AssociationSet>
+    <AssociationSet Name="BY_PASSBY_PASS_AUDIT" Association="ModeloReceptio.BY_PASSBY_PASS_AUDIT">
+      <End Role="BY_PASS" EntitySet="BY_PASSES" />
+      <End Role="BY_PASS_AUDIT" EntitySet="BY_PASS_AUDITS" />
+    </AssociationSet>
+    <AssociationSet Name="PRE_GATEBY_PASS" Association="ModeloReceptio.PRE_GATEBY_PASS">
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+      <End Role="BY_PASS" EntitySet="BY_PASSES" />
+    </AssociationSet>
+    <EntitySet Name="DEPOT" EntityType="ModeloReceptio.DEPOT" />
+    <EntitySet Name="LINE" EntityType="ModeloReceptio.LINE" />
+    <EntitySet Name="LINE_DEPOTS" EntityType="ModeloReceptio.LINE_DEPOTS" />
+    <EntitySet Name="STOCK_OPERATION" EntityType="ModeloReceptio.STOCK_OPERATION" />
+    <EntitySet Name="STOCK_REGISTER" EntityType="ModeloReceptio.STOCK_REGISTER" />
+    <AssociationSet Name="FK__LINE_DEPO__ID_DE__6F357288" Association="ModeloReceptio.FK__LINE_DEPO__ID_DE__6F357288">
+      <End Role="DEPOT" EntitySet="DEPOT" />
+      <End Role="LINE_DEPOTS" EntitySet="LINE_DEPOTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOCK_REG__ID_DE__79B300FB" Association="ModeloReceptio.FK__STOCK_REG__ID_DE__79B300FB">
+      <End EntitySet="DEPOT" Role="DEPOT" />
+      <End EntitySet="STOCK_REGISTER" Role="STOCK_REGISTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LINE_DEPO__ID_LI__6E414E4F" Association="ModeloReceptio.FK__LINE_DEPO__ID_LI__6E414E4F">
+      <End Role="LINE" EntitySet="LINE" />
+      <End Role="LINE_DEPOTS" EntitySet="LINE_DEPOTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOCK_REG__ID_LI__78BEDCC2" Association="ModeloReceptio.FK__STOCK_REG__ID_LI__78BEDCC2">
+      <End EntitySet="LINE" Role="LINE" />
+      <End EntitySet="STOCK_REGISTER" Role="STOCK_REGISTER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOCK_REG__ID_OP__7AA72534" Association="ModeloReceptio.FK__STOCK_REG__ID_OP__7AA72534">
+      <End EntitySet="STOCK_OPERATION" Role="STOCK_OPERATION" />
+      <End EntitySet="STOCK_REGISTER" Role="STOCK_REGISTER" />
+    </AssociationSet>
+    <EntitySet Name="MOTIVES" EntityType="ModeloReceptio.MOTIVE" />
+    <EntitySet Name="SUB_MOTIVES" EntityType="ModeloReceptio.SUB_MOTIVE" />
+    <AssociationSet Name="MOTIVESUB_MOTIVE" Association="ModeloReceptio.MOTIVESUB_MOTIVE">
+      <End Role="MOTIVE" EntitySet="MOTIVES" />
+      <End Role="SUB_MOTIVE" EntitySet="SUB_MOTIVES" />
+    </AssociationSet>
+    <AssociationSet Name="STOCK_PREGATE_COST" Association="ModeloReceptio.STOCK_PREGATE_COST">
+      <End Role="PRE_GATE" EntitySet="PRE_GATES" />
+      <End Role="STOCK_REGISTER" EntitySet="STOCK_REGISTER" />
+    </AssociationSet>
+    <FunctionImport Name="mb_add_ecuapass_transaccion" ReturnType="Collection(ModeloReceptio.mb_add_ecuapass_transaccion_Result)">
+      <Parameter Name="CODIGO_CARGA" Mode="In" Type="Int64" />
+      <Parameter Name="CODIGO_TIPO_CARGA" Mode="In" Type="String" />
+      <Parameter Name="OBJETO_SOLICITA" Mode="In" Type="String" />
+      <Parameter Name="USUARIO_SOLICITA" Mode="In" Type="String" />
+      <Parameter Name="CONTENEDOR" Mode="In" Type="String" />
+      <Parameter Name="MRN" Mode="In" Type="String" />
+      <Parameter Name="MSN" Mode="In" Type="String" />
+      <Parameter Name="HSN" Mode="In" Type="String" />
+      <Parameter Name="NUMERO_ENTREGA" Mode="In" Type="String" />
+      <Parameter Name="COMENTARIOS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_ecuapass_message_pass" ReturnType="Collection(ModeloReceptio.mb_get_ecuapass_message_pass_Result)">
+      <Parameter Name="ref_num" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_gkey_cont" ReturnType="Collection(Int64)">
+      <Parameter Name="lv_CONTENEDOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_gkey_cont_mty" ReturnType="Collection(Int64)">
+      <Parameter Name="lv_CONTENEDOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_gkey_cont_yard" ReturnType="Collection(Int64)">
+      <Parameter Name="lv_CONTENEDOR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_status_n4" ReturnType="Collection(String)">
+      <Parameter Name="PRE_GATE" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_status_n4_placa" ReturnType="Collection(String)">
+      <Parameter Name="PLACA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_valida_smdt" ReturnType="Collection(ModeloReceptio.mb_get_valida_smdt_Result)">
+      <Parameter Name="ref_num" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="mb_get_validaciones" ReturnType="Collection(String)">
+      <Parameter Name="i_opcion" Mode="In" Type="String" />
+      <Parameter Name="i_StrValor" Mode="In" Type="String" />
+      <Parameter Name="i_IntValor" Mode="In" Type="Int32" />
+      <Parameter Name="i_BigintValor" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="mb_secuencia" ReturnType="Collection(Int64)" />
+    <FunctionImport Name="mb_set_estate_smdt_transaccion" ReturnType="Collection(Byte)">
+      <Parameter Name="key" Mode="In" Type="String" />
+      <Parameter Name="user" Mode="In" Type="String" />
+      <Parameter Name="causa" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="PRE_GATE">
+    <Key>
+      <PropertyRef Name="PRE_GATE_ID" />
+    </Key>
+    <Property Name="PRE_GATE_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="CREATION_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="USER" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <Property Name="DRIVER_ID" Type="String" Nullable="false" FixedLength="false" MaxLength="15" Unicode="true" />
+    <Property Name="TRUCK_LICENCE" Type="String" Nullable="false" FixedLength="false" MaxLength="10" Unicode="true" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DEVICE" Relationship="ModeloReceptio.PRE_GATEDEVICE" FromRole="PRE_GATE" ToRole="DEVICE" />
+    <Property Name="DEVICE_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRE_GATE_DETAILS" Relationship="ModeloReceptio.PRE_GATEPRE_GATE_DETAIL" FromRole="PRE_GATE" ToRole="PRE_GATE_DETAIL" />
+    <NavigationProperty Name="KIOSK_TRANSACTIONS" Relationship="ModeloReceptio.PRE_GATEKIOSK_TRANSACTION" FromRole="PRE_GATE" ToRole="KIOSK_TRANSACTION" />
+    <Property Name="STATUS" Type="String" Nullable="false" FixedLength="false" MaxLength="1" Unicode="true" />
+    <Property Name="CONCURRENCY" Type="Binary" Nullable="false" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" FixedLength="true" MaxLength="8" />
+    <NavigationProperty Name="TOS_PROCCESSES" Relationship="ModeloReceptio.TOS_PROCCESSPRE_GATE" FromRole="PRE_GATE" ToRole="TOS_PROCCESS" />
+    <NavigationProperty Name="TROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" Relationship="ModeloReceptio.FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" FromRole="PRE_GATE" ToRole="MOBILE_TROUBLE_TICKET" />
+    <NavigationProperty Name="REPRINTS" Relationship="ModeloReceptio.REPRINTPRE_GATE" FromRole="PRE_GATE" ToRole="REPRINT" />
+    <NavigationProperty Name="BY_PASS" Relationship="ModeloReceptio.PRE_GATEBY_PASS" FromRole="PRE_GATE" ToRole="BY_PASS" />
+    <Property Name="PRE_GATE_ID_REF" Type="Int64" Nullable="true" />
+    <NavigationProperty Name="STOCK_REGISTER" Relationship="ModeloReceptio.STOCK_PREGATE_COST" FromRole="PRE_GATE" ToRole="STOCK_REGISTER" />
+  </EntityType>
+  <EntityType Name="CONTAINER">
+    <Key>
+      <PropertyRef Name="CONTAINER_ID" />
+    </Key>
+    <Property Name="CONTAINER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NUMBER" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <NavigationProperty Name="SEALS" Relationship="ModeloReceptio.CONTAINERSEAL" FromRole="CONTAINER" ToRole="SEAL" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DAMAGES" Relationship="ModeloReceptio.CONTAINERDAMAGE" FromRole="CONTAINER" ToRole="DAMAGE" />
+    <NavigationProperty Name="PRE_GATE_DETAIL" Relationship="ModeloReceptio.PRE_GATE_DETAILCONTAINER" FromRole="CONTAINER" ToRole="PRE_GATE_DETAIL" />
+    <Property Name="PRE_GATE_DETAIL_ID" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SEAL">
+    <Key>
+      <PropertyRef Name="SEAL_ID" />
+    </Key>
+    <Property Name="SEAL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CAPTION" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <Property Name="VALUE" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <NavigationProperty Name="CONTAINER" Relationship="ModeloReceptio.CONTAINERSEAL" FromRole="SEAL" ToRole="CONTAINER" />
+    <Property Name="CONTAINER_ID" Type="Int32" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="CONTAINERSEAL">
+    <End Type="ModeloReceptio.CONTAINER" Role="CONTAINER" Multiplicity="1" />
+    <End Type="ModeloReceptio.SEAL" Role="SEAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTAINER">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Principal>
+      <Dependent Role="SEAL">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="KIOSK_TRANSACTION">
+    <Key>
+      <PropertyRef Name="TRANSACTION_ID" />
+    </Key>
+    <Property Name="TRANSACTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IS_OK" Type="Boolean" Nullable="false" />
+    <Property Name="START_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="END_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PROCESSES" Relationship="ModeloReceptio.KIOSK_TRANSACTIONPROCESS" FromRole="KIOSK_TRANSACTION" ToRole="PROCESS" />
+    <NavigationProperty Name="KIOSK" Relationship="ModeloReceptio.KIOSK_TRANSACTIONKIOSK" FromRole="KIOSK_TRANSACTION" ToRole="KIOSK" />
+    <Property Name="KIOSK_ID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="PRE_GATE" Relationship="ModeloReceptio.PRE_GATEKIOSK_TRANSACTION" FromRole="KIOSK_TRANSACTION" ToRole="PRE_GATE" />
+    <Property Name="PRE_GATE_ID" Type="Int64" Nullable="true" />
+    <NavigationProperty Name="SENSOR_KIOSK_TRANSACTIONS" Relationship="ModeloReceptio.KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION" FromRole="KIOSK_TRANSACTION" ToRole="SENSOR_KIOSK_TRANSACTION" />
+  </EntityType>
+  <EntityType Name="PROCESS">
+    <Key>
+      <PropertyRef Name="PROCESS_ID" />
+    </Key>
+    <Property Name="PROCESS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STEP" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <Property Name="STEP_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IS_OK" Type="Boolean" Nullable="false" />
+    <Property Name="RESPONSE" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KIOSK_TRANSACTION" Relationship="ModeloReceptio.KIOSK_TRANSACTIONPROCESS" FromRole="PROCESS" ToRole="KIOSK_TRANSACTION" />
+    <Property Name="TRANSACTION_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MESSAGE" Relationship="ModeloReceptio.PROCESSMESSAGE" FromRole="PROCESS" ToRole="MESSAGE" />
+    <Property Name="MESSAGE_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PROCESS_TROUBLE_TICKET" Relationship="ModeloReceptio.PROCESSPROCESS_TROUBLE_TICKET" FromRole="PROCESS" ToRole="PROCESS_TROUBLE_TICKET" />
+  </EntityType>
+  <Association Name="KIOSK_TRANSACTIONPROCESS">
+    <End Type="ModeloReceptio.KIOSK_TRANSACTION" Role="KIOSK_TRANSACTION" Multiplicity="1" />
+    <End Type="ModeloReceptio.PROCESS" Role="PROCESS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSK_TRANSACTION">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Principal>
+      <Dependent Role="PROCESS">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ZONE">
+    <Key>
+      <PropertyRef Name="ZONE_ID" />
+    </Key>
+    <Property Name="ZONE_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="KIOSKS" Relationship="ModeloReceptio.KIOSKZONE" FromRole="ZONE" ToRole="KIOSK" />
+    <NavigationProperty Name="DEVICES" Relationship="ModeloReceptio.DEVICEZONE" FromRole="ZONE" ToRole="DEVICE" />
+    <NavigationProperty Name="TRANSACTION_TYPES" Relationship="ModeloReceptio.ZONETRANSACTION_TYPE" FromRole="ZONE" ToRole="TRANSACTION_TYPE" />
+    <NavigationProperty Name="CLIENT_APP_TRANSACTION_TROUBLE_TICKETS" Relationship="ModeloReceptio.ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET" FromRole="ZONE" ToRole="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+    <NavigationProperty Name="MOBILE_TROUBLE_TICKETS" Relationship="ModeloReceptio.MOBILE_TROUBLE_TICKETZONE" FromRole="ZONE" ToRole="MOBILE_TROUBLE_TICKET" />
+  </EntityType>
+  <EntityType Name="KIOSK">
+    <Key>
+      <PropertyRef Name="KIOSK_ID" />
+    </Key>
+    <Property Name="KIOSK_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="IP" Type="String" Nullable="false" FixedLength="false" MaxLength="75" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ZONE" Relationship="ModeloReceptio.KIOSKZONE" FromRole="KIOSK" ToRole="ZONE" />
+    <Property Name="ZONE_ID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="KIOSK_TRANSACTIONS" Relationship="ModeloReceptio.KIOSK_TRANSACTIONKIOSK" FromRole="KIOSK" ToRole="KIOSK_TRANSACTION" />
+    <Property Name="IS_IN" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="LIFT_UP_BARRIERS" Relationship="ModeloReceptio.KIOSKLIFT_UP_BARRIER" FromRole="KIOSK" ToRole="LIFT_UP_BARRIER" />
+    <NavigationProperty Name="REPRINTS" Relationship="ModeloReceptio.REPRINTKIOSK" FromRole="KIOSK" ToRole="REPRINT" />
+  </EntityType>
+  <Association Name="KIOSKZONE">
+    <End Type="ModeloReceptio.KIOSK" Role="KIOSK" Multiplicity="*" />
+    <End Type="ModeloReceptio.ZONE" Role="ZONE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ZONE">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="KIOSK">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KIOSK_TRANSACTIONKIOSK">
+    <End Type="ModeloReceptio.KIOSK_TRANSACTION" Role="KIOSK_TRANSACTION" Multiplicity="*" />
+    <End Type="ModeloReceptio.KIOSK" Role="KIOSK" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSK">
+        <PropertyRef Name="KIOSK_ID" />
+      </Principal>
+      <Dependent Role="KIOSK_TRANSACTION">
+        <PropertyRef Name="KIOSK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TROUBLE_TICKET">
+    <Key>
+      <PropertyRef Name="TT_ID" />
+    </Key>
+    <Property Name="TT_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CREATION_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ACCEPTANCE_DATE" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="FINISH_DATE" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="NOTES" Type="String" FixedLength="false" Nullable="true" MaxLength="Max" Unicode="true" />
+    <Property Name="IS_CANCEL" Type="Boolean" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <Property Name="ASSIGNMENT_DATE" Type="DateTime" Nullable="true" Precision="3" />
+    <Property Name="CANCEL_USER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="true" />
+    <Property Name="CANCEL_DATE" Type="DateTime" Precision="3" Nullable="true" />
+    <Property Name="SUBMOTIVE_ID" Type="Int32" Nullable="true" />
+    <Property Name="MOTIVE_ID" Type="Int32" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TROUBLE_DESK_USER">
+    <Key>
+      <PropertyRef Name="TTU_ID" />
+    </Key>
+    <Property Name="TTU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIRST_NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="100" Unicode="true" />
+    <Property Name="LAST_NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="100" Unicode="true" />
+    <Property Name="USER_NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="EMAIL" Type="String" Nullable="false" FixedLength="false" MaxLength="50" Unicode="true" />
+    <NavigationProperty Name="USER_SESSIONS" Relationship="ModeloReceptio.TROUBLE_DESK_USERUSER_SESSION" FromRole="TROUBLE_DESK_USER" ToRole="USER_SESSION" />
+    <Property Name="IS_TD" Type="Boolean" Nullable="false" />
+    <Property Name="IS_SUPERVISOR" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="LIFT_UP_BARRIERS" Relationship="ModeloReceptio.TROUBLE_DESK_USERLIFT_UP_BARRIER" FromRole="TROUBLE_DESK_USER" ToRole="LIFT_UP_BARRIER" />
+    <NavigationProperty Name="REPRINTS" Relationship="ModeloReceptio.REPRINTTROUBLE_DESK_USER" FromRole="TROUBLE_DESK_USER" ToRole="REPRINT" />
+    <NavigationProperty Name="BY_PASS_AUDITS" Relationship="ModeloReceptio.TROUBLE_DESK_USERBY_PASS_AUDIT" FromRole="TROUBLE_DESK_USER" ToRole="BY_PASS_AUDIT" />
+  </EntityType>
+  <EntityType Name="DEVICE">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IP" Type="String" Nullable="false" FixedLength="false" MaxLength="75" Unicode="true" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ZONE" Relationship="ModeloReceptio.DEVICEZONE" FromRole="DEVICE" ToRole="ZONE" />
+    <Property Name="ZONE_ID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="USER_SESSIONS" Relationship="ModeloReceptio.DEVICEUSER_SESSION" FromRole="DEVICE" ToRole="USER_SESSION" />
+    <NavigationProperty Name="PRE_GATES" Relationship="ModeloReceptio.PRE_GATEDEVICE" FromRole="DEVICE" ToRole="PRE_GATE" />
+  </EntityType>
+  <Association Name="DEVICEZONE">
+    <End Type="ModeloReceptio.DEVICE" Role="DEVICE" Multiplicity="*" />
+    <End Type="ModeloReceptio.ZONE" Role="ZONE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ZONE">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="DEVICE">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="USER_SESSION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="START_SESSION__DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FINISH_SESSION_DATE" Type="DateTime" Nullable="true" Precision="3" />
+    <NavigationProperty Name="DEVICE" Relationship="ModeloReceptio.DEVICEUSER_SESSION" FromRole="USER_SESSION" ToRole="DEVICE" />
+    <Property Name="DEVICE_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TROUBLE_DESK_USER" Relationship="ModeloReceptio.TROUBLE_DESK_USERUSER_SESSION" FromRole="USER_SESSION" ToRole="TROUBLE_DESK_USER" />
+    <Property Name="TTU_ID" Type="Int32" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BREAKS" Relationship="ModeloReceptio.USER_SESSIONBREAK" FromRole="USER_SESSION" ToRole="BREAK" />
+    <NavigationProperty Name="REASSIGNMENTS" Relationship="ModeloReceptio.REASSIGNMENTUSER_SESSION" FromRole="USER_SESSION" ToRole="REASSIGNMENT" />
+    <NavigationProperty Name="AUTO_TROUBLE_TICKETS" Relationship="ModeloReceptio.AUTO_TROUBLE_TICKETUSER_SESSION" FromRole="USER_SESSION" ToRole="AUTO_TROUBLE_TICKET" />
+    <NavigationProperty Name="PROCESS_TROUBLE_TICKETS" Relationship="ModeloReceptio.USER_SESSIONPROCESS_TROUBLE_TICKET" FromRole="USER_SESSION" ToRole="PROCESS_TROUBLE_TICKET" />
+    <NavigationProperty Name="MOBILE_TROUBLE_TICKETS" Relationship="ModeloReceptio.USER_SESSIONMOBILE_TROUBLE_TICKET" FromRole="USER_SESSION" ToRole="MOBILE_TROUBLE_TICKET" />
+    <NavigationProperty Name="CLIENT_APP_TRANSACTION_TROUBLE_TICKETS" Relationship="ModeloReceptio.USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET" FromRole="USER_SESSION" ToRole="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+  </EntityType>
+  <Association Name="DEVICEUSER_SESSION">
+    <End Type="ModeloReceptio.DEVICE" Role="DEVICE" Multiplicity="1" />
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEVICE">
+        <PropertyRef Name="DEVICE_ID" />
+      </Principal>
+      <Dependent Role="USER_SESSION">
+        <PropertyRef Name="DEVICE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TROUBLE_DESK_USERUSER_SESSION">
+    <End Type="ModeloReceptio.TROUBLE_DESK_USER" Role="TROUBLE_DESK_USER" Multiplicity="1" />
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USER">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="USER_SESSION">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BREAK">
+    <Key>
+      <PropertyRef Name="BREAK_ID" />
+    </Key>
+    <Property Name="BREAK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="START_BREAK_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FINISH_BREAK_DATE" Type="DateTime" Nullable="true" Precision="3" />
+    <NavigationProperty Name="BREAK_TYPE" Relationship="ModeloReceptio.BREAK_TYPEBREAK" FromRole="BREAK" ToRole="BREAK_TYPE" />
+    <Property Name="BREAK_TYPE_ID" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="USER_SESSION" Relationship="ModeloReceptio.USER_SESSIONBREAK" FromRole="BREAK" ToRole="USER_SESSION" />
+    <Property Name="USER_SESSION_ID" Type="Int64" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BREAK_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="50" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BREAKS" Relationship="ModeloReceptio.BREAK_TYPEBREAK" FromRole="BREAK_TYPE" ToRole="BREAK" />
+  </EntityType>
+  <Association Name="BREAK_TYPEBREAK">
+    <End Type="ModeloReceptio.BREAK_TYPE" Role="BREAK_TYPE" Multiplicity="1" />
+    <End Type="ModeloReceptio.BREAK" Role="BREAK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BREAK_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BREAK">
+        <PropertyRef Name="BREAK_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USER_SESSIONBREAK">
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="1" />
+    <End Type="ModeloReceptio.BREAK" Role="BREAK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BREAK">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="REASSIGNMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="USER_SESSION" Relationship="ModeloReceptio.REASSIGNMENTUSER_SESSION" FromRole="REASSIGNMENT" ToRole="USER_SESSION" />
+    <Property Name="USER_SESSION_ID" Type="Int64" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <Property Name="USER" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <NavigationProperty Name="REASSIGNMENT_MOTIVE" Relationship="ModeloReceptio.REASSIGNMENTREASSIGNMENT_MOTIVE" FromRole="REASSIGNMENT" ToRole="REASSIGNMENT_MOTIVE" />
+    <Property Name="MOTIVE_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PROCESS_TROUBLE_TICKET" Relationship="ModeloReceptio.PROCESS_TROUBLE_TICKETREASSIGNMENT" FromRole="REASSIGNMENT" ToRole="PROCESS_TROUBLE_TICKET" />
+    <Property Name="TT_ID" Type="Int64" Nullable="false" />
+  </EntityType>
+  <Association Name="REASSIGNMENTUSER_SESSION">
+    <End Type="ModeloReceptio.REASSIGNMENT" Role="REASSIGNMENT" Multiplicity="*" />
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REASSIGNMENT">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MESSAGE">
+    <Key>
+      <PropertyRef Name="MESSAGE_ID" />
+    </Key>
+    <Property Name="MESSAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_MESSAGE" Type="String" Nullable="false" FixedLength="false" MaxLength="512" Unicode="true" />
+    <Property Name="TROUBLE_DESK_MESSAGE" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <Property Name="DETAILS" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <Property Name="TYPE" Type="String" Nullable="false" FixedLength="false" MaxLength="1" Unicode="true" />
+    <NavigationProperty Name="PROCESSES" Relationship="ModeloReceptio.PROCESSMESSAGE" FromRole="MESSAGE" ToRole="PROCESS" />
+    <Property Name="ATTEMPTS" Type="Byte" Nullable="false" />
+  </EntityType>
+  <Association Name="PROCESSMESSAGE">
+    <End Type="ModeloReceptio.PROCESS" Role="PROCESS" Multiplicity="*" />
+    <End Type="ModeloReceptio.MESSAGE" Role="MESSAGE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGE">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Principal>
+      <Dependent Role="PROCESS">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="REASSIGNMENT_MOTIVE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CAPTION" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="REASSIGNMENTS" Relationship="ModeloReceptio.REASSIGNMENTREASSIGNMENT_MOTIVE" FromRole="REASSIGNMENT_MOTIVE" ToRole="REASSIGNMENT" />
+  </EntityType>
+  <Association Name="REASSIGNMENTREASSIGNMENT_MOTIVE">
+    <End Type="ModeloReceptio.REASSIGNMENT" Role="REASSIGNMENT" Multiplicity="*" />
+    <End Type="ModeloReceptio.REASSIGNMENT_MOTIVE" Role="REASSIGNMENT_MOTIVE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="REASSIGNMENT_MOTIVE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REASSIGNMENT">
+        <PropertyRef Name="MOTIVE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AUTO_TROUBLE_TICKET" BaseType="ModeloReceptio.TROUBLE_TICKET">
+    <NavigationProperty Name="AUTO_TROUBLE_REASON" Relationship="ModeloReceptio.AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET" FromRole="AUTO_TROUBLE_TICKET" ToRole="AUTO_TROUBLE_REASON" />
+    <Property Name="REASON_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="USER_SESSION" Relationship="ModeloReceptio.AUTO_TROUBLE_TICKETUSER_SESSION" FromRole="AUTO_TROUBLE_TICKET" ToRole="USER_SESSION" />
+    <Property Name="USER_SESSION_ID" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AUTO_TROUBLE_REASON">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CAPTION" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AUTO_TROUBLE_TICKETS" Relationship="ModeloReceptio.AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET" FromRole="AUTO_TROUBLE_REASON" ToRole="AUTO_TROUBLE_TICKET" />
+  </EntityType>
+  <Association Name="AUTO_TROUBLE_REASONAUTO_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.AUTO_TROUBLE_REASON" Role="AUTO_TROUBLE_REASON" Multiplicity="1" />
+    <End Type="ModeloReceptio.AUTO_TROUBLE_TICKET" Role="AUTO_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTO_TROUBLE_REASON">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AUTO_TROUBLE_TICKET">
+        <PropertyRef Name="REASON_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTO_TROUBLE_TICKETUSER_SESSION">
+    <End Type="ModeloReceptio.AUTO_TROUBLE_TICKET" Role="AUTO_TROUBLE_TICKET" Multiplicity="*" />
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AUTO_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ERROR">
+    <Key>
+      <PropertyRef Name="ERROR_ID" />
+    </Key>
+    <Property Name="ERROR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="THROW_ON" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MESSAGE" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <Property Name="DETAILS" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <NavigationProperty Name="APPLICATION" Relationship="ModeloReceptio.ERRORAPPLICATION" FromRole="ERROR" ToRole="APPLICATION" />
+    <Property Name="APPLICATION_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TYPE_ERROR" Relationship="ModeloReceptio.TYPE_ERRORERROR" FromRole="ERROR" ToRole="TYPE_ERROR" />
+    <Property Name="TYPE_ERROR_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Relationship="ModeloReceptio.ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET" FromRole="ERROR" ToRole="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" />
+    <Property Name="IP_SOURCE" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="APPLICATION">
+    <Key>
+      <PropertyRef Name="APPLICATION_ID" />
+    </Key>
+    <Property Name="APPLICATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ERRORS" Relationship="ModeloReceptio.ERRORAPPLICATION" FromRole="APPLICATION" ToRole="ERROR" />
+    <Property Name="VERSION" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PATH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="ERRORAPPLICATION">
+    <End Type="ModeloReceptio.ERROR" Role="ERROR" Multiplicity="*" />
+    <End Type="ModeloReceptio.APPLICATION" Role="APPLICATION" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="APPLICATION">
+        <PropertyRef Name="APPLICATION_ID" />
+      </Principal>
+      <Dependent Role="ERROR">
+        <PropertyRef Name="APPLICATION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TYPE_ERROR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <NavigationProperty Name="ERRORS" Relationship="ModeloReceptio.TYPE_ERRORERROR" FromRole="TYPE_ERROR" ToRole="ERROR" />
+  </EntityType>
+  <Association Name="TYPE_ERRORERROR">
+    <End Type="ModeloReceptio.TYPE_ERROR" Role="TYPE_ERROR" Multiplicity="1" />
+    <End Type="ModeloReceptio.ERROR" Role="ERROR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TYPE_ERROR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ERROR">
+        <PropertyRef Name="TYPE_ERROR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PRE_GATE_DETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TRANSACTION_NUMBER" Type="String" FixedLength="false" MaxLength="50" Unicode="true" Nullable="false" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CONTAINERS" Relationship="ModeloReceptio.PRE_GATE_DETAILCONTAINER" FromRole="PRE_GATE_DETAIL" ToRole="CONTAINER" />
+    <NavigationProperty Name="TRANSACTION_TYPE" Relationship="ModeloReceptio.TRANSACTION_TYPEPRE_GATE_DETAIL" FromRole="PRE_GATE_DETAIL" ToRole="TRANSACTION_TYPE" />
+    <Property Name="TRANSACTION_TYPE_ID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="PRE_GATE" Relationship="ModeloReceptio.PRE_GATEPRE_GATE_DETAIL" FromRole="PRE_GATE_DETAIL" ToRole="PRE_GATE" />
+    <Property Name="PRE_GATE_ID" Type="Int64" Nullable="false" />
+    <Property Name="STATUS" Type="String" FixedLength="true" MaxLength="1" Nullable="true" Unicode="true" />
+    <Property Name="DOCUMENT_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="REFERENCE_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DAMAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DAMAGE_TYPE" Type="String" Nullable="false" FixedLength="false" MaxLength="15" Unicode="true" />
+    <Property Name="COMPONENT" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <Property Name="SEVERITY" Type="String" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+    <Property Name="LOCATION" Type="String" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true" />
+    <Property Name="QUANTITY" Type="Int16" Nullable="false" />
+    <Property Name="NOTES" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <NavigationProperty Name="CONTAINER" Relationship="ModeloReceptio.CONTAINERDAMAGE" FromRole="DAMAGE" ToRole="CONTAINER" />
+    <Property Name="CONTAINER_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="CONTAINERDAMAGE">
+    <End Type="ModeloReceptio.CONTAINER" Role="CONTAINER" Multiplicity="1" />
+    <End Type="ModeloReceptio.DAMAGE" Role="DAMAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTAINER">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Principal>
+      <Dependent Role="DAMAGE">
+        <PropertyRef Name="CONTAINER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PROCESS_TROUBLE_TICKET" BaseType="ModeloReceptio.TROUBLE_TICKET">
+    <NavigationProperty Name="PROCESS" Relationship="ModeloReceptio.PROCESSPROCESS_TROUBLE_TICKET" FromRole="PROCESS_TROUBLE_TICKET" ToRole="PROCESS" />
+    <NavigationProperty Name="USER_SESSION" Relationship="ModeloReceptio.USER_SESSIONPROCESS_TROUBLE_TICKET" FromRole="PROCESS_TROUBLE_TICKET" ToRole="USER_SESSION" />
+    <Property Name="USER_SESSION_ID" Type="Int64" Nullable="true" />
+    <NavigationProperty Name="REASSIGNMENTS" Relationship="ModeloReceptio.PROCESS_TROUBLE_TICKETREASSIGNMENT" FromRole="PROCESS_TROUBLE_TICKET" ToRole="REASSIGNMENT" />
+    <NavigationProperty Name="ACTIONS" Relationship="ModeloReceptio.ACTIONPROCESS_TROUBLE_TICKET" FromRole="PROCESS_TROUBLE_TICKET" ToRole="ACTION" />
+    <Property Name="IS_SUSPENDED" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="PROCESSPROCESS_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.PROCESS" Role="PROCESS" Multiplicity="1" />
+    <End Type="ModeloReceptio.PROCESS_TROUBLE_TICKET" Role="PROCESS_TROUBLE_TICKET" Multiplicity="0..1" />
+  </Association>
+  <Association Name="USER_SESSIONPROCESS_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="0..1" />
+    <End Type="ModeloReceptio.PROCESS_TROUBLE_TICKET" Role="PROCESS_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PROCESS_TROUBLE_TICKETREASSIGNMENT">
+    <End Type="ModeloReceptio.PROCESS_TROUBLE_TICKET" Role="PROCESS_TROUBLE_TICKET" Multiplicity="1" />
+    <End Type="ModeloReceptio.REASSIGNMENT" Role="REASSIGNMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="REASSIGNMENT">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MOBILE_TROUBLE_TICKET" BaseType="ModeloReceptio.TROUBLE_TICKET">
+    <NavigationProperty Name="USER_SESSION" Relationship="ModeloReceptio.USER_SESSIONMOBILE_TROUBLE_TICKET" FromRole="MOBILE_TROUBLE_TICKET" ToRole="USER_SESSION" />
+    <Property Name="USER_SESSION_ID" Type="Int64" Nullable="true" />
+    <NavigationProperty Name="TOS_PROCCESS" Relationship="ModeloReceptio.MOBILE_TROUBLE_TICKETTOS_PROCCESS" FromRole="MOBILE_TROUBLE_TICKET" ToRole="TOS_PROCCESS" />
+    <Property Name="MESSAGE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ZONE" Relationship="ModeloReceptio.MOBILE_TROUBLE_TICKETZONE" FromRole="MOBILE_TROUBLE_TICKET" ToRole="ZONE" />
+    <Property Name="ZONE_ID" Type="Int16" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="Int64" />
+    <NavigationProperty Name="PRE_GATES" Relationship="ModeloReceptio.FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET" FromRole="MOBILE_TROUBLE_TICKET" ToRole="PRE_GATE" />
+  </EntityType>
+  <Association Name="USER_SESSIONMOBILE_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="0..1" />
+    <End Type="ModeloReceptio.MOBILE_TROUBLE_TICKET" Role="MOBILE_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRE_GATE_DETAILCONTAINER">
+    <End Type="ModeloReceptio.PRE_GATE_DETAIL" Role="PRE_GATE_DETAIL" Multiplicity="1" />
+    <End Type="ModeloReceptio.CONTAINER" Role="CONTAINER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE_DETAIL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONTAINER">
+        <PropertyRef Name="PRE_GATE_DETAIL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TRANSACTION_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CODE" Type="String" Nullable="false" FixedLength="false" MaxLength="7" Unicode="true" />
+    <Property Name="DESCRIPTION" Type="String" Nullable="false" FixedLength="false" MaxLength="255" Unicode="true" />
+    <NavigationProperty Name="PRE_GATE_DETAILS" Relationship="ModeloReceptio.TRANSACTION_TYPEPRE_GATE_DETAIL" FromRole="TRANSACTION_TYPE" ToRole="PRE_GATE_DETAIL" />
+    <NavigationProperty Name="ZONES" Relationship="ModeloReceptio.ZONETRANSACTION_TYPE" FromRole="TRANSACTION_TYPE" ToRole="ZONE" />
+  </EntityType>
+  <Association Name="TRANSACTION_TYPEPRE_GATE_DETAIL">
+    <End Type="ModeloReceptio.TRANSACTION_TYPE" Role="TRANSACTION_TYPE" Multiplicity="1" />
+    <End Type="ModeloReceptio.PRE_GATE_DETAIL" Role="PRE_GATE_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANSACTION_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRE_GATE_DETAIL">
+        <PropertyRef Name="TRANSACTION_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRE_GATEDEVICE">
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="*" />
+    <End Type="ModeloReceptio.DEVICE" Role="DEVICE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="DEVICE">
+        <PropertyRef Name="DEVICE_ID" />
+      </Principal>
+      <Dependent Role="PRE_GATE">
+        <PropertyRef Name="DEVICE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRE_GATEPRE_GATE_DETAIL">
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="1" />
+    <End Type="ModeloReceptio.PRE_GATE_DETAIL" Role="PRE_GATE_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="PRE_GATE_DETAIL">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" BaseType="ModeloReceptio.TROUBLE_TICKET">
+    <NavigationProperty Name="ERROR" Relationship="ModeloReceptio.ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET" FromRole="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" ToRole="ERROR" />
+    <NavigationProperty Name="USER_SESSION" Relationship="ModeloReceptio.USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET" FromRole="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" ToRole="USER_SESSION" />
+    <Property Name="USER_SESSION_ID" Type="Int64" Nullable="true" />
+    <NavigationProperty Name="ZONE" Relationship="ModeloReceptio.ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET" FromRole="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" ToRole="ZONE" />
+    <Property Name="ZONE_ID" Type="Int16" Nullable="false" />
+  </EntityType>
+  <Association Name="ERRORCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.ERROR" Role="ERROR" Multiplicity="1" />
+    <End Type="ModeloReceptio.CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Multiplicity="0..1" />
+  </Association>
+  <Association Name="USER_SESSIONCLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.USER_SESSION" Role="USER_SESSION" Multiplicity="0..1" />
+    <End Type="ModeloReceptio.CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER_SESSION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+        <PropertyRef Name="USER_SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ZONETRANSACTION_TYPE">
+    <End Type="ModeloReceptio.ZONE" Role="ZONE" Multiplicity="*" />
+    <End Type="ModeloReceptio.TRANSACTION_TYPE" Role="TRANSACTION_TYPE" Multiplicity="*" />
+  </Association>
+  <Association Name="PRE_GATEKIOSK_TRANSACTION">
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="0..1" />
+    <End Type="ModeloReceptio.KIOSK_TRANSACTION" Role="KIOSK_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="KIOSK_TRANSACTION">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ACTION">
+    <Key>
+      <PropertyRef Name="ACTION_ID" />
+    </Key>
+    <Property Name="ACTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ACTION_NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <Property Name="ACTION_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PROCESS_TROUBLE_TICKET" Relationship="ModeloReceptio.ACTIONPROCESS_TROUBLE_TICKET" FromRole="ACTION" ToRole="PROCESS_TROUBLE_TICKET" />
+    <Property Name="TT_ID" Type="Int64" Nullable="false" />
+  </EntityType>
+  <Association Name="ACTIONPROCESS_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.ACTION" Role="ACTION" Multiplicity="*" />
+    <End Type="ModeloReceptio.PROCESS_TROUBLE_TICKET" Role="PROCESS_TROUBLE_TICKET" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PROCESS_TROUBLE_TICKET">
+        <PropertyRef Name="TT_ID" />
+      </Principal>
+      <Dependent Role="ACTION">
+        <PropertyRef Name="TT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ZONECLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.ZONE" Role="ZONE" Multiplicity="1" />
+    <End Type="ModeloReceptio.CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ZONE">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_APP_TRANSACTION_TROUBLE_TICKET">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TOS_PROCCESS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STEP" Type="String" Nullable="false" FixedLength="false" MaxLength="20" Unicode="true" />
+    <Property Name="STEP_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IS_OK" Type="Boolean" Nullable="false" />
+    <Property Name="RESPONSE" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <Property Name="IS_RECYCLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PRE_GATE" Relationship="ModeloReceptio.TOS_PROCCESSPRE_GATE" FromRole="TOS_PROCCESS" ToRole="PRE_GATE" />
+    <Property Name="PRE_GATE_ID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="MOBILE_TROUBLE_TICKET" Relationship="ModeloReceptio.MOBILE_TROUBLE_TICKETTOS_PROCCESS" FromRole="TOS_PROCCESS" ToRole="MOBILE_TROUBLE_TICKET" />
+  </EntityType>
+  <Association Name="TOS_PROCCESSPRE_GATE">
+    <End Type="ModeloReceptio.TOS_PROCCESS" Role="TOS_PROCCESS" Multiplicity="*" />
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="TOS_PROCCESS">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MOBILE_TROUBLE_TICKETTOS_PROCCESS">
+    <End Type="ModeloReceptio.MOBILE_TROUBLE_TICKET" Role="MOBILE_TROUBLE_TICKET" Multiplicity="0..1" />
+    <End Type="ModeloReceptio.TOS_PROCCESS" Role="TOS_PROCCESS" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="SENSOR">
+    <Key>
+      <PropertyRef Name="SENSOR_ID" />
+    </Key>
+    <Property Name="SENSOR_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="100" Unicode="true" />
+    <NavigationProperty Name="SENSOR_KIOSK_TRANSACTIONS" Relationship="ModeloReceptio.SENSORSENSOR_KIOSK_TRANSACTION" FromRole="SENSOR" ToRole="SENSOR_KIOSK_TRANSACTION" />
+  </EntityType>
+  <EntityType Name="SENSOR_KIOSK_TRANSACTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VALUE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SENSOR" Relationship="ModeloReceptio.SENSORSENSOR_KIOSK_TRANSACTION" FromRole="SENSOR_KIOSK_TRANSACTION" ToRole="SENSOR" />
+    <Property Name="SENSOR_ID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="KIOSK_TRANSACTION" Relationship="ModeloReceptio.KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION" FromRole="SENSOR_KIOSK_TRANSACTION" ToRole="KIOSK_TRANSACTION" />
+    <Property Name="TRANSACTION_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="SENSORSENSOR_KIOSK_TRANSACTION">
+    <End Type="ModeloReceptio.SENSOR" Role="SENSOR" Multiplicity="1" />
+    <End Type="ModeloReceptio.SENSOR_KIOSK_TRANSACTION" Role="SENSOR_KIOSK_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SENSOR">
+        <PropertyRef Name="SENSOR_ID" />
+      </Principal>
+      <Dependent Role="SENSOR_KIOSK_TRANSACTION">
+        <PropertyRef Name="SENSOR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KIOSK_TRANSACTIONSENSOR_KIOSK_TRANSACTION">
+    <End Type="ModeloReceptio.KIOSK_TRANSACTION" Role="KIOSK_TRANSACTION" Multiplicity="1" />
+    <End Type="ModeloReceptio.SENSOR_KIOSK_TRANSACTION" Role="SENSOR_KIOSK_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSK_TRANSACTION">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Principal>
+      <Dependent Role="SENSOR_KIOSK_TRANSACTION">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LIFT_UP_BARRIER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="REASON" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <NavigationProperty Name="KIOSK" Relationship="ModeloReceptio.KIOSKLIFT_UP_BARRIER" FromRole="LIFT_UP_BARRIER" ToRole="KIOSK" />
+    <Property Name="KIOSK_ID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="TROUBLE_DESK_USER" Relationship="ModeloReceptio.TROUBLE_DESK_USERLIFT_UP_BARRIER" FromRole="LIFT_UP_BARRIER" ToRole="TROUBLE_DESK_USER" />
+    <Property Name="TTU_ID" Type="Int32" Nullable="false" />
+    <Property Name="PREGATE_ID" Type="Int64" Nullable="true" />
+    <Property Name="MOTIVE_ID" Type="Int32" Nullable="true" />
+  </EntityType>
+  <Association Name="KIOSKLIFT_UP_BARRIER">
+    <End Type="ModeloReceptio.KIOSK" Role="KIOSK" Multiplicity="1" />
+    <End Type="ModeloReceptio.LIFT_UP_BARRIER" Role="LIFT_UP_BARRIER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSK">
+        <PropertyRef Name="KIOSK_ID" />
+      </Principal>
+      <Dependent Role="LIFT_UP_BARRIER">
+        <PropertyRef Name="KIOSK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TROUBLE_DESK_USERLIFT_UP_BARRIER">
+    <End Type="ModeloReceptio.TROUBLE_DESK_USER" Role="TROUBLE_DESK_USER" Multiplicity="1" />
+    <End Type="ModeloReceptio.LIFT_UP_BARRIER" Role="LIFT_UP_BARRIER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USER">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="LIFT_UP_BARRIER">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MOBILE_TROUBLE_TICKETZONE">
+    <End Type="ModeloReceptio.MOBILE_TROUBLE_TICKET" Role="MOBILE_TROUBLE_TICKET" Multiplicity="*" />
+    <End Type="ModeloReceptio.ZONE" Role="ZONE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ZONE">
+        <PropertyRef Name="ZONE_ID" />
+      </Principal>
+      <Dependent Role="MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="ZONE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRE_GATETROUBLE_TICKETS_MOBILE_TROUBLE_TICKET">
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="0..1" />
+    <End Type="ModeloReceptio.MOBILE_TROUBLE_TICKET" Role="MOBILE_TROUBLE_TICKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="MOBILE_TROUBLE_TICKET">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="REPRINT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TROUBLE_DESK_USER" Relationship="ModeloReceptio.REPRINTTROUBLE_DESK_USER" FromRole="REPRINT" ToRole="TROUBLE_DESK_USER" />
+    <Property Name="TTU_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRE_GATE" Relationship="ModeloReceptio.REPRINTPRE_GATE" FromRole="REPRINT" ToRole="PRE_GATE" />
+    <Property Name="PRE_GATE_ID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="KIOSK" Relationship="ModeloReceptio.REPRINTKIOSK" FromRole="REPRINT" ToRole="KIOSK" />
+    <Property Name="KIOSK_ID" Type="Int16" Nullable="false" />
+  </EntityType>
+  <Association Name="REPRINTTROUBLE_DESK_USER">
+    <End Type="ModeloReceptio.REPRINT" Role="REPRINT" Multiplicity="*" />
+    <End Type="ModeloReceptio.TROUBLE_DESK_USER" Role="TROUBLE_DESK_USER" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USER">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="REPRINT">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REPRINTPRE_GATE">
+    <End Type="ModeloReceptio.REPRINT" Role="REPRINT" Multiplicity="*" />
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="REPRINT">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REPRINTKIOSK">
+    <End Type="ModeloReceptio.REPRINT" Role="REPRINT" Multiplicity="*" />
+    <End Type="ModeloReceptio.KIOSK" Role="KIOSK" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="KIOSK">
+        <PropertyRef Name="KIOSK_ID" />
+      </Principal>
+      <Dependent Role="REPRINT">
+        <PropertyRef Name="KIOSK_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BY_PASS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REASON" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <Property Name="IS_ENABLED" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BY_PASS_AUDITS" Relationship="ModeloReceptio.BY_PASSBY_PASS_AUDIT" FromRole="BY_PASS" ToRole="BY_PASS_AUDIT" />
+    <NavigationProperty Name="PRE_GATE" Relationship="ModeloReceptio.PRE_GATEBY_PASS" FromRole="BY_PASS" ToRole="PRE_GATE" />
+  </EntityType>
+  <EntityType Name="BY_PASS_AUDIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FIELD" Type="String" Nullable="false" FixedLength="false" MaxLength="50" Unicode="true" />
+    <Property Name="OLD_VALUE" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <Property Name="NEW_VALUE" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+    <NavigationProperty Name="TROUBLE_DESK_USER" Relationship="ModeloReceptio.TROUBLE_DESK_USERBY_PASS_AUDIT" FromRole="BY_PASS_AUDIT" ToRole="TROUBLE_DESK_USER" />
+    <Property Name="TTU_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BY_PASS" Relationship="ModeloReceptio.BY_PASSBY_PASS_AUDIT" FromRole="BY_PASS_AUDIT" ToRole="BY_PASS" />
+    <Property Name="BY_PASS_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="TROUBLE_DESK_USERBY_PASS_AUDIT">
+    <End Type="ModeloReceptio.TROUBLE_DESK_USER" Role="TROUBLE_DESK_USER" Multiplicity="1" />
+    <End Type="ModeloReceptio.BY_PASS_AUDIT" Role="BY_PASS_AUDIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TROUBLE_DESK_USER">
+        <PropertyRef Name="TTU_ID" />
+      </Principal>
+      <Dependent Role="BY_PASS_AUDIT">
+        <PropertyRef Name="TTU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BY_PASSBY_PASS_AUDIT">
+    <End Type="ModeloReceptio.BY_PASS" Role="BY_PASS" Multiplicity="1" />
+    <End Type="ModeloReceptio.BY_PASS_AUDIT" Role="BY_PASS_AUDIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BY_PASS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BY_PASS_AUDIT">
+        <PropertyRef Name="BY_PASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRE_GATEBY_PASS">
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="1" />
+    <End Type="ModeloReceptio.BY_PASS" Role="BY_PASS" Multiplicity="0..1" />
+  </Association>
+  <EntityType Name="DEPOT">
+    <Key>
+      <PropertyRef Name="ID_DEPOT" />
+    </Key>
+    <Property Name="ID_DEPOT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <Property Name="AUXILIAR_STOCK" Type="Int32" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="LINE_DEPOTS" Relationship="ModeloReceptio.FK__LINE_DEPO__ID_DE__6F357288" FromRole="DEPOT" ToRole="LINE_DEPOTS" />
+    <NavigationProperty Name="STOCK_REGISTER" Relationship="ModeloReceptio.FK__STOCK_REG__ID_DE__79B300FB" FromRole="DEPOT" ToRole="STOCK_REGISTER" />
+  </EntityType>
+  <EntityType Name="LINE">
+    <Key>
+      <PropertyRef Name="ID_LINE" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MAIL_STOCK" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="STOCK" Type="Int32" />
+    <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ID_LINE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="LINE_DEPOTS" Relationship="ModeloReceptio.FK__LINE_DEPO__ID_LI__6E414E4F" FromRole="LINE" ToRole="LINE_DEPOTS" />
+    <NavigationProperty Name="STOCK_REGISTER" Relationship="ModeloReceptio.FK__STOCK_REG__ID_LI__78BEDCC2" FromRole="LINE" ToRole="STOCK_REGISTER" />
+  </EntityType>
+  <EntityType Name="LINE_DEPOTS">
+    <Key>
+      <PropertyRef Name="ID_LINE" />
+      <PropertyRef Name="ID_DEPOT" />
+      <PropertyRef Name="ACTIVE" />
+    </Key>
+    <Property Name="ID_LINE_DEPO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_LINE" Type="Int32" Nullable="false" />
+    <Property Name="ID_DEPOT" Type="Int32" Nullable="false" />
+    <Property Name="ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATE_USER" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MOD_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MOD_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DEPOT" Relationship="ModeloReceptio.FK__LINE_DEPO__ID_DE__6F357288" FromRole="LINE_DEPOTS" ToRole="DEPOT" />
+    <NavigationProperty Name="LINE" Relationship="ModeloReceptio.FK__LINE_DEPO__ID_LI__6E414E4F" FromRole="LINE_DEPOTS" ToRole="LINE" />
+  </EntityType>
+  <EntityType Name="STOCK_OPERATION">
+    <Key>
+      <PropertyRef Name="ID_OPERATION" />
+    </Key>
+    <Property Name="ID_OPERATION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OPERATION" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="MULTIPLIER" Type="Int32" />
+    <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="CREATE_USER" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MOD_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MOD_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="STOCK_REGISTER" Relationship="ModeloReceptio.FK__STOCK_REG__ID_OP__7AA72534" FromRole="STOCK_OPERATION" ToRole="STOCK_REGISTER" />
+    <Property Name="SCREEN" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="STOCK_REGISTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID_LINE" Type="Int32" Nullable="false" />
+    <Property Name="ID_DEPOT" Type="Int32" Nullable="false" />
+    <Property Name="ID_OPERATION" Type="Int32" Nullable="false" />
+    <Property Name="PRE_GATE_ID" Type="Int64" />
+    <Property Name="PRE_GATE_DETAILS_ID" Type="Int64" />
+    <Property Name="OPERATION_USER" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OPERATION_OBJETC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OPERATION_NOTES" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="QTY" Type="Int32" Nullable="false" />
+    <Property Name="MULTIPLIER" Type="Int32" Nullable="false" />
+    <Property Name="ACTIVE" Type="Boolean" />
+    <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATE_YEAR" Type="Int32" />
+    <Property Name="CREATE_MONTH" Type="Int32" />
+    <Property Name="CREATE_WEEK" Type="Int32" />
+    <NavigationProperty Name="DEPOT" Relationship="ModeloReceptio.FK__STOCK_REG__ID_DE__79B300FB" FromRole="STOCK_REGISTER" ToRole="DEPOT" />
+    <NavigationProperty Name="LINE" Relationship="ModeloReceptio.FK__STOCK_REG__ID_LI__78BEDCC2" FromRole="STOCK_REGISTER" ToRole="LINE" />
+    <NavigationProperty Name="STOCK_OPERATION" Relationship="ModeloReceptio.FK__STOCK_REG__ID_OP__7AA72534" FromRole="STOCK_REGISTER" ToRole="STOCK_OPERATION" />
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="REGISTER_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PRE_GATES" Relationship="ModeloReceptio.STOCK_PREGATE_COST" FromRole="STOCK_REGISTER" ToRole="PRE_GATE" />
+  </EntityType>
+  <Association Name="FK__LINE_DEPO__ID_DE__6F357288">
+    <End Type="ModeloReceptio.DEPOT" Role="DEPOT" Multiplicity="1" />
+    <End Type="ModeloReceptio.LINE_DEPOTS" Role="LINE_DEPOTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPOT">
+        <PropertyRef Name="ID_DEPOT" />
+      </Principal>
+      <Dependent Role="LINE_DEPOTS">
+        <PropertyRef Name="ID_DEPOT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOCK_REG__ID_DE__79B300FB">
+    <End Type="ModeloReceptio.DEPOT" Multiplicity="1" Role="DEPOT" />
+    <End Type="ModeloReceptio.STOCK_REGISTER" Multiplicity="*" Role="STOCK_REGISTER" />
+    <ReferentialConstraint>
+      <Principal Role="DEPOT">
+        <PropertyRef Name="ID_DEPOT" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="ID_DEPOT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LINE_DEPO__ID_LI__6E414E4F">
+    <End Type="ModeloReceptio.LINE" Role="LINE" Multiplicity="1" />
+    <End Type="ModeloReceptio.LINE_DEPOTS" Role="LINE_DEPOTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LINE">
+        <PropertyRef Name="ID_LINE" />
+      </Principal>
+      <Dependent Role="LINE_DEPOTS">
+        <PropertyRef Name="ID_LINE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOCK_REG__ID_LI__78BEDCC2">
+    <End Type="ModeloReceptio.LINE" Multiplicity="1" Role="LINE" />
+    <End Type="ModeloReceptio.STOCK_REGISTER" Multiplicity="*" Role="STOCK_REGISTER" />
+    <ReferentialConstraint>
+      <Principal Role="LINE">
+        <PropertyRef Name="ID_LINE" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="ID_LINE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOCK_REG__ID_OP__7AA72534">
+    <End Type="ModeloReceptio.STOCK_OPERATION" Multiplicity="1" Role="STOCK_OPERATION" />
+    <End Type="ModeloReceptio.STOCK_REGISTER" Multiplicity="*" Role="STOCK_REGISTER" />
+    <ReferentialConstraint>
+      <Principal Role="STOCK_OPERATION">
+        <PropertyRef Name="ID_OPERATION" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="ID_OPERATION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MOTIVE">
+    <Key>
+      <PropertyRef Name="MOTIVE_ID" />
+    </Key>
+    <Property Name="MOTIVE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" FixedLength="false" MaxLength="100" Unicode="false" />
+    <Property Name="ACTIVE" Type="Boolean" Nullable="false" />
+    <Property Name="TYPE" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="SUB_MOTIVES" Relationship="ModeloReceptio.MOTIVESUB_MOTIVE" FromRole="MOTIVE" ToRole="SUB_MOTIVE" />
+  </EntityType>
+  <EntityType Name="SUB_MOTIVE">
+    <Key>
+      <PropertyRef Name="SUB_MOTIVE_ID" />
+    </Key>
+    <Property Name="SUB_MOTIVE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ACTIVE" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MOTIVE" Relationship="ModeloReceptio.MOTIVESUB_MOTIVE" FromRole="SUB_MOTIVE" ToRole="MOTIVE" />
+    <Property Name="MOTIVES_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="MOTIVESUB_MOTIVE">
+    <End Type="ModeloReceptio.MOTIVE" Role="MOTIVE" Multiplicity="1" />
+    <End Type="ModeloReceptio.SUB_MOTIVE" Role="SUB_MOTIVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOTIVE">
+        <PropertyRef Name="MOTIVE_ID" />
+      </Principal>
+      <Dependent Role="SUB_MOTIVE">
+        <PropertyRef Name="MOTIVES_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STOCK_PREGATE_COST">
+    <End Type="ModeloReceptio.PRE_GATE" Role="PRE_GATE" Multiplicity="0..1" />
+    <End Type="ModeloReceptio.STOCK_REGISTER" Role="STOCK_REGISTER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRE_GATE">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Principal>
+      <Dependent Role="STOCK_REGISTER">
+        <PropertyRef Name="PRE_GATE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="mb_add_ecuapass_transaccion_Result">
+    <Property Type="Decimal" Name="code" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="String" Name="message" Nullable="false" MaxLength="2" />
+  </ComplexType>
+  <ComplexType Name="mb_get_ecuapass_message_pass_Result">
+    <Property Type="String" Name="CODIGO_TRANSACCION" Nullable="false" MaxLength="30" />
+    <Property Type="Int64" Name="CODIGO_SOLICITUD_TRANSACCION" Nullable="false" />
+    <Property Type="Decimal" Name="id" Nullable="false" Precision="2" Scale="0" />
+    <Property Type="String" Name="mensaje" Nullable="false" MaxLength="2000" />
+  </ComplexType>
+  <ComplexType Name="mb_get_valida_smdt_Result">
+    <Property Type="Int32" Name="code" Nullable="false" />
+    <Property Type="String" Name="message" Nullable="false" MaxLength="1" />
+  </ComplexType>
+</Schema>

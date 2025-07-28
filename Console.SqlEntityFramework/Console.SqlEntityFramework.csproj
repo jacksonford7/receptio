@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{72C90548-F80D-429A-96B2-D985F1180C04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework</RootNamespace>
+    <AssemblyName>RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\RepositorioAction.cs" />
+    <Compile Include="Repositorios\RepositorioAduana.cs" />
+    <Compile Include="Repositorios\RepositorioAutoTroubleReason.cs" />
+    <Compile Include="Repositorios\RepositorioBreak.cs" />
+    <Compile Include="Repositorios\RepositorioBreakType.cs" />
+    <Compile Include="Repositorios\RepositorioByPass.cs" />
+    <Compile Include="Repositorios\RepositorioDevice.cs" />
+    <Compile Include="Repositorios\RepositorioKioskTransaction.cs" />
+    <Compile Include="Repositorios\RepositorioLiftBarrier.cs" />
+    <Compile Include="Repositorios\RepositorioMotive.cs" />
+    <Compile Include="Repositorios\RepositorioProcess.cs" />
+    <Compile Include="Repositorios\RepositorioReassignmentMotive.cs" />
+    <Compile Include="Repositorios\RepositorioReprinter.cs" />
+    <Compile Include="Repositorios\RepositorioSubMotive.cs" />
+    <Compile Include="Repositorios\RepositorioTransactionType.cs" />
+    <Compile Include="Repositorios\RepositorioTroubleTicket.cs" />
+    <Compile Include="Repositorios\RepositorioUserSession.cs" />
+    <Compile Include="Repositorios\RepositorioZone.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Console.Dominio\Console.Dominio.csproj">
+      <Project>{aac94944-7022-40a6-8eec-7aeb71648916}</Project>
+      <Name>Console.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nucleo.Dominio\Nucleo.Dominio.csproj">
+      <Project>{ec3d24bb-661a-435c-9536-9de2d1d80505}</Project>
+      <Name>Nucleo.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nucleo.Entidades\Nucleo.Entidades.csproj">
+      <Project>{a8f85d9a-c8fd-4956-ad20-389636b2fa6f}</Project>
+      <Name>Nucleo.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nucleo.Infraestructura\Nucleo.Infraestructura.csproj">
+      <Project>{845db8be-78c6-4e2b-bd21-1e21e1d4c0e3}</Project>
+      <Name>Nucleo.Infraestructura</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

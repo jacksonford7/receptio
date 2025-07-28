@@ -1,0 +1,11 @@
+D:\Proyect\RECEPTIO\Nucleo.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.dll
+D:\Proyect\RECEPTIO\Nucleo.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.pdb
+D:\Proyect\RECEPTIO\Nucleo.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.dll.CodeAnalysisLog.xml
+D:\Proyect\RECEPTIO\Nucleo.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.dll.lastcodeanalysissucceeded
+D:\Proyect\RECEPTIO\Nucleo.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.dll
+D:\Proyect\RECEPTIO\Nucleo.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Entidades.pdb
+D:\Proyect\RECEPTIO\Nucleo.Dominio\obj\Debug\Nucleo.Dominio.csproj.AssemblyReference.cache
+D:\Proyect\RECEPTIO\Nucleo.Dominio\obj\Debug\Nucleo.Dominio.csproj.CoreCompileInputs.cache
+D:\Proyect\RECEPTIO\Nucleo.Dominio\obj\Debug\Nucleo.D.FBF498FE.Up2Date
+D:\Proyect\RECEPTIO\Nucleo.Dominio\obj\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.dll
+D:\Proyect\RECEPTIO\Nucleo.Dominio\obj\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.pdb

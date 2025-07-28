@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="753761ab-020c-4677-8f35-bb41720904ca" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cgint04:50502/WS_RECEPTIOAnuncianteProblema/ServicioAnuncianteProblema.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioAnuncianteProblema1.disco" MetadataType="Disco" ID="94960347-b5d7-43d5-8ac2-cd55d59d276f" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOAnuncianteProblema/ServicioAnuncianteProblema.svc?disco" />
+    <MetadataFile FileName="ServicioAnuncianteProblema1.wsdl" MetadataType="Wsdl" ID="36e0445b-b788-4cd2-8e90-c2027962df50" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOAnuncianteProblema/ServicioAnuncianteProblema.svc?wsdl" />
+    <MetadataFile FileName="ServicioAnuncianteProblema2.xsd" MetadataType="Schema" ID="297fd820-e91a-43ad-9d7a-c5435ac9a6a0" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOAnuncianteProblema/ServicioAnuncianteProblema.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioAnuncianteProblema3.xsd" MetadataType="Schema" ID="911f21ff-b3f9-48eb-aef9-46e209767ddb" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOAnuncianteProblema/ServicioAnuncianteProblema.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

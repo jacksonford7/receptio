@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" />
+  <xs:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+  <xs:complexType name="DatosN4">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CedulaChofer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCompania" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdPreGate" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NumerosTransacciones" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="PlacaVehiculo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosN4" nillable="true" type="tns:DatosN4" />
+  <xs:complexType name="RespuestaProceso">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" base="q2:Respuesta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdTosProcess" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RespuestaProceso" nillable="true" type="tns:RespuestaProceso" />
+  <xs:complexType name="DatosDeliveryImportBrbkCfs">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DatosN4">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Bl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Qty" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosDeliveryImportBrbkCfs" nillable="true" type="tns:DatosDeliveryImportBrbkCfs" />
+  <xs:complexType name="DatosReceiveExport">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DatosN4">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DataContenedores" nillable="true" type="tns:ArrayOfDatosContenedor" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosReceiveExport" nillable="true" type="tns:DatosReceiveExport" />
+  <xs:complexType name="ArrayOfDatosContenedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DatosContenedor" nillable="true" type="tns:DatosContenedor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDatosContenedor" nillable="true" type="tns:ArrayOfDatosContenedor" />
+  <xs:complexType name="DatosContenedor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Aisv" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" minOccurs="0" name="Contenedor" nillable="true" type="q3:CONTAINER" />
+      <xs:element minOccurs="0" name="Iso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Linea" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tamano" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoCarga" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatosContenedor" nillable="true" type="tns:DatosContenedor" />
+  <xs:complexType name="DatosReceiveExportBrBk">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DatosN4">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Bl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+          <xs:element minOccurs="0" name="Dae" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Ip" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Notas" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="VeeselVisit" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosReceiveExportBrBk" nillable="true" type="tns:DatosReceiveExportBrBk" />
+  <xs:complexType name="DatosReceiveExportBanano">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DatosReceiveExportBrBk">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DatosReceiveExportBanano" nillable="true" type="tns:DatosReceiveExportBanano" />
+</xs:schema>

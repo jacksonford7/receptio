@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioMobile" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Mobile.Aplicacion.Contratos" />
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaAplicacion.Nucleo.Aplicacion.Contratos" />
+      <xsd:import schemaLocation="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosDeliveryImportFull_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosDeliveryImportFull" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosDeliveryImportFull_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosDeliveryImportFullResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosDeliveryImportBrBkCfs_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosDeliveryImportBrBkCfs" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosDeliveryImportBrBkCfs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosDeliveryImportBrBkCfsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosReceiveExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosReceiveExport" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosReceiveExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosReceiveExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosReceiveExportBrBk_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosReceiveExportBrBk" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosReceiveExportBrBk_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosReceiveExportBrBkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosReceiveExportBanano_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosReceiveExportBanano" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosReceiveExportBanano_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosReceiveExportBananoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_LiberarHold_InputMessage">
+    <wsdl:part name="parameters" element="tns:LiberarHold" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_LiberarHold_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LiberarHoldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_CambiarHold_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarHold" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_CambiarHold_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarHoldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosDeliveryImportMTYBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosDeliveryImportMTYBooking" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_EjecutarProcesosDeliveryImportMTYBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EjecutarProcesosDeliveryImportMTYBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_ObtenerZonaConTiposTransacciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerZonaConTiposTransacciones" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_ObtenerZonaConTiposTransacciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerZonaConTiposTransaccionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_ObtenerDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDevice" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_ObtenerDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_CrearError_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearError" />
+  </wsdl:message>
+  <wsdl:message name="IServicioMobile_CrearError_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearErrorResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioMobile">
+    <wsdl:operation name="EjecutarProcesosDeliveryImportFull">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportFull" message="tns:IServicioMobile_EjecutarProcesosDeliveryImportFull_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportFullResponse" message="tns:IServicioMobile_EjecutarProcesosDeliveryImportFull_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosDeliveryImportBrBkCfs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportBrBkCfs" message="tns:IServicioMobile_EjecutarProcesosDeliveryImportBrBkCfs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportBrBkCfsResponse" message="tns:IServicioMobile_EjecutarProcesosDeliveryImportBrBkCfs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosReceiveExport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExport" message="tns:IServicioMobile_EjecutarProcesosReceiveExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExportResponse" message="tns:IServicioMobile_EjecutarProcesosReceiveExport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosReceiveExportBrBk">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExportBrBk" message="tns:IServicioMobile_EjecutarProcesosReceiveExportBrBk_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExportBrBkResponse" message="tns:IServicioMobile_EjecutarProcesosReceiveExportBrBk_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosReceiveExportBanano">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExportBanano" message="tns:IServicioMobile_EjecutarProcesosReceiveExportBanano_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExportBananoResponse" message="tns:IServicioMobile_EjecutarProcesosReceiveExportBanano_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LiberarHold">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/LiberarHold" message="tns:IServicioMobile_LiberarHold_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/LiberarHoldResponse" message="tns:IServicioMobile_LiberarHold_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarHold">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/CambiarHold" message="tns:IServicioMobile_CambiarHold_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/CambiarHoldResponse" message="tns:IServicioMobile_CambiarHold_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosDeliveryImportMTYBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportMTYBooking" message="tns:IServicioMobile_EjecutarProcesosDeliveryImportMTYBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportMTYBookingResponse" message="tns:IServicioMobile_EjecutarProcesosDeliveryImportMTYBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerZonaConTiposTransacciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPrincipal/ObtenerZonaConTiposTransacciones" message="tns:IServicioMobile_ObtenerZonaConTiposTransacciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPrincipal/ObtenerZonaConTiposTransaccionesResponse" message="tns:IServicioMobile_ObtenerZonaConTiposTransacciones_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDevice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPrincipal/ObtenerDevice" message="tns:IServicioMobile_ObtenerDevice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPrincipal/ObtenerDeviceResponse" message="tns:IServicioMobile_ObtenerDevice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearError">
+      <wsdl:input wsaw:Action="http://tempuri.org/IError/CrearError" message="tns:IServicioMobile_CrearError_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IError/CrearErrorResponse" message="tns:IServicioMobile_CrearError_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioMobile" type="tns:IServicioMobile">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EjecutarProcesosDeliveryImportFull">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportFull" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosDeliveryImportBrBkCfs">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportBrBkCfs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosReceiveExport">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosReceiveExportBrBk">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExportBrBk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosReceiveExportBanano">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/EjecutarProcesosReceiveExportBanano" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LiberarHold">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/LiberarHold" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarHold">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/CambiarHold" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EjecutarProcesosDeliveryImportMTYBooking">
+      <soap:operation soapAction="http://tempuri.org/IProcesoN4/EjecutarProcesosDeliveryImportMTYBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerZonaConTiposTransacciones">
+      <soap:operation soapAction="http://tempuri.org/IPrincipal/ObtenerZonaConTiposTransacciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDevice">
+      <soap:operation soapAction="http://tempuri.org/IPrincipal/ObtenerDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearError">
+      <soap:operation soapAction="http://tempuri.org/IError/CrearError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioMobile">
+    <wsdl:port name="BasicHttpBinding_IServicioMobile" binding="tns:BasicHttpBinding_IServicioMobile">
+      <soap:address location="http://cgint04:50502/WS_RECEPTIOMobile/ServicioMobile.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VentanaPrincipalViewModel" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/RECEPTIO.CapaDominio.Nucleo.Entidades" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IContrato_EstadoImpresora_InputMessage">
+    <wsdl:part name="parameters" element="tns:EstadoImpresora" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_EstadoImpresora_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EstadoImpresoraResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_EstadoAntena_InputMessage">
+    <wsdl:part name="parameters" element="tns:EstadoAntena" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_EstadoAntena_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EstadoAntenaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_EstadoBarrera_InputMessage">
+    <wsdl:part name="parameters" element="tns:EstadoBarrera" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_EstadoBarrera_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EstadoBarreraResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_AbrirBarreraLider_InputMessage">
+    <wsdl:part name="parameters" element="tns:AbrirBarreraLider" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_AbrirBarreraLider_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AbrirBarreraLiderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_AbrirBarreraTroubleDesk_InputMessage">
+    <wsdl:part name="parameters" element="tns:AbrirBarreraTroubleDesk" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_AbrirBarreraTroubleDesk_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AbrirBarreraTroubleDeskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_IrHomeQuiosco_InputMessage">
+    <wsdl:part name="parameters" element="tns:IrHomeQuiosco" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_IrHomeQuiosco_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IrHomeQuioscoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_ReimprimirTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReimprimirTicket" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_ReimprimirTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReimprimirTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_ReimprimirCualquierTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReimprimirCualquierTicket" />
+  </wsdl:message>
+  <wsdl:message name="IContrato_ReimprimirCualquierTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReimprimirCualquierTicketResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IContrato">
+    <wsdl:operation name="EstadoImpresora">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/EstadoImpresora" message="tns:IContrato_EstadoImpresora_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/EstadoImpresoraResponse" message="tns:IContrato_EstadoImpresora_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EstadoAntena">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/EstadoAntena" message="tns:IContrato_EstadoAntena_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/EstadoAntenaResponse" message="tns:IContrato_EstadoAntena_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EstadoBarrera">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/EstadoBarrera" message="tns:IContrato_EstadoBarrera_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/EstadoBarreraResponse" message="tns:IContrato_EstadoBarrera_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AbrirBarreraLider">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/AbrirBarreraLider" message="tns:IContrato_AbrirBarreraLider_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/AbrirBarreraLiderResponse" message="tns:IContrato_AbrirBarreraLider_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AbrirBarreraTroubleDesk">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/AbrirBarreraTroubleDesk" message="tns:IContrato_AbrirBarreraTroubleDesk_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/AbrirBarreraTroubleDeskResponse" message="tns:IContrato_AbrirBarreraTroubleDesk_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IrHomeQuiosco">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/IrHomeQuiosco" message="tns:IContrato_IrHomeQuiosco_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/IrHomeQuioscoResponse" message="tns:IContrato_IrHomeQuiosco_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReimprimirTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/ReimprimirTicket" message="tns:IContrato_ReimprimirTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/ReimprimirTicketResponse" message="tns:IContrato_ReimprimirTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReimprimirCualquierTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContrato/ReimprimirCualquierTicket" message="tns:IContrato_ReimprimirCualquierTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContrato/ReimprimirCualquierTicketResponse" message="tns:IContrato_ReimprimirCualquierTicket_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IContrato" type="tns:IContrato">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EstadoImpresora">
+      <soap:operation soapAction="http://tempuri.org/IContrato/EstadoImpresora" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EstadoAntena">
+      <soap:operation soapAction="http://tempuri.org/IContrato/EstadoAntena" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EstadoBarrera">
+      <soap:operation soapAction="http://tempuri.org/IContrato/EstadoBarrera" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbrirBarreraLider">
+      <soap:operation soapAction="http://tempuri.org/IContrato/AbrirBarreraLider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbrirBarreraTroubleDesk">
+      <soap:operation soapAction="http://tempuri.org/IContrato/AbrirBarreraTroubleDesk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IrHomeQuiosco">
+      <soap:operation soapAction="http://tempuri.org/IContrato/IrHomeQuiosco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReimprimirTicket">
+      <soap:operation soapAction="http://tempuri.org/IContrato/ReimprimirTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReimprimirCualquierTicket">
+      <soap:operation soapAction="http://tempuri.org/IContrato/ReimprimirCualquierTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VentanaPrincipalViewModel">
+    <wsdl:port name="BasicHttpBinding_IContrato" binding="tns:BasicHttpBinding_IContrato">
+      <soap:address location="http://localhost:17101/ServicioTransactionQuiosco/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RECEPTIO.CapaServiciosDistribuidos.Console.Servicios.ServicioConsole" CodeBehind="ServicioConsole.svc.cs" %>

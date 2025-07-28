@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+        type="RECEPTIO.CapaServiciosDistribuidos.Console.Servicios.Aspectos.ThrowsException, RECEPTIO.CapaServiciosDistribuidos.Console.Servicios">
+  </object>
+
+  <object id="AdministradorSupervisor" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaDominio.Console.ServiciosDominio.ServicioSupervisor, RECEPTIO.CapaDominio.Console.ServiciosDominio">
+        <constructor-arg ref="RepositorioTroubleTicket"/>
+        <constructor-arg ref="RepositorioZone"/>
+        <constructor-arg ref="RepositorioUserSession"/>
+        <constructor-arg ref="RepositorioReassignmentMotive"/>
+        <constructor-arg ref="RepositorioQuiosco"/>
+        <constructor-arg ref="RepositorioLiftBarrier"/>
+        <constructor-arg ref="RepositorioAction"/>
+        <constructor-arg ref="RepositorioPreGate"/>
+        <constructor-arg ref="RepositorioDevice"/>
+        <constructor-arg ref="RepositorioTransactionType"/>
+        <constructor-arg ref="RepositorioReprinter"/>
+        <constructor-arg ref="RepositorioByPass"/>
+        <constructor-arg ref="RepositorioStockRegister"/>
+        <constructor-arg ref="RepositorioMotive"/>
+        <constructor-arg ref="RepositorioSubMotive"/>
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+  
+  <object name ="RepositorioTroubleTicket" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioTroubleTicket, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioZone" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioZone, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioUserSession" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioUserSession, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioReassignmentMotive" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioReassignmentMotive, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioQuiosco" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioQuiosco, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioLiftBarrier" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioLiftBarrier, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioAction" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioAction, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioPreGate" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioPreGate, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioDevice" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioDevice, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioTransactionType" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioTransactionType, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioReprinter" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioReprinter, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioByPass" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioByPass, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioStockRegister" type="RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura.RepositorioStockRegister, RECEPTIO.CapaInfraestructura.Nucleo.Infraestructura"/>
+  <object name ="RepositorioMotive" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioMotive, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+  <object name ="RepositorioSubMotive" type="RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework.Repositorios.RepositorioSubMotive, RECEPTIO.CapaInfraestructura.Console.SqlEntityFramework"/>
+</objects>

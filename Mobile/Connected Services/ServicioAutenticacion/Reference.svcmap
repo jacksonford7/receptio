@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c29faa22-f26f-46f7-a8db-fb4841a49ded" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cgint04:50502/WS_RECEPTIOConsole/ServicioLoginMobile.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioLoginMobile3.xsd" MetadataType="Schema" ID="2b88e89b-0689-4b78-9b8c-61a647d63626" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOConsole/ServicioLoginMobile.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioLoginMobile1.disco" MetadataType="Disco" ID="5cd2f93c-dbd7-412d-9552-2e2b59a99bfc" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOConsole/ServicioLoginMobile.svc?disco" />
+    <MetadataFile FileName="ServicioLoginMobile1.wsdl" MetadataType="Wsdl" ID="7db27573-61f7-4829-9a64-f6c93dc18b99" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOConsole/ServicioLoginMobile.svc?wsdl" />
+    <MetadataFile FileName="ServicioLoginMobile4.xsd" MetadataType="Schema" ID="8ad1dd78-f04a-4e87-af89-0cc4d055194f" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOConsole/ServicioLoginMobile.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioLoginMobile5.xsd" MetadataType="Schema" ID="05960e5f-3e22-4a23-9d4b-ed2d2a86282c" SourceId="1" SourceUrl="http://cgint04:50502/WS_RECEPTIOConsole/ServicioLoginMobile.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

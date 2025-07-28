@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:aop="http://www.springframework.net/aop">
+
+  <object id="throwsException"
+        type="RECEPTIO.CapaServiciosDistribuidos.Mobile.Servicios.Aspectos.ThrowsException, RECEPTIO.CapaServiciosDistribuidos.Mobile.Servicios">
+  </object>
+
+  <object id="AdministradorProcesoN4" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target">
+      <object type="RECEPTIO.CapaDominio.Mobile.ServiciosDominio.ServicioProcesoN4, RECEPTIO.CapaDominio.Mobile.ServiciosDominio">
+        <constructor-arg ref="RepositorioTosProccess"/>
+        <constructor-arg ref="Conector"/>
+      </object>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>throwsException</value>
+      </list>
+    </property>
+  </object>
+  
+  <object name ="RepositorioTosProccess" type="RECEPTIO.CapaInfraestructura.Mobile.SqlEntityFramework.Repositorios.RepositorioTosProccess, RECEPTIO.CapaInfraestructura.Mobile.SqlEntityFramework"/>
+  <object name ="Conector" type="RECEPTIO.CapaDominio.Nucleo.ServiciosDominio.N4.AuthenticationWebservice, RECEPTIO.CapaDominio.Nucleo.ServiciosDominio"/>
+</objects>

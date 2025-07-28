@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files\microsoft visual studio\2022\community\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="17.0">
+ <Namespaces>
+  <Namespace Name="RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros">
+   <Messages>
+    <Message Id="RECEPTIO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="85" Level="Error">Corrija el uso de mayúsculas y minúsculas en 'RECEPTIO' en el nombre del espacio de nombres 'RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros' cambiándolo a 'Receptio'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="RECEPTIO.CapaDominio.Nucleo.Dominio.Repositorio">
+   <Messages>
+    <Message Id="RECEPTIO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="85" Level="Error">Corrija el uso de mayúsculas y minúsculas en 'RECEPTIO' en el nombre del espacio de nombres 'RECEPTIO.CapaDominio.Nucleo.Dominio.Repositorio' cambiándolo a 'Receptio'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+ </Namespaces>
+ <Targets>
+  <Target Name="D:\Proyect\RECEPTIO\Nucleo.Dominio\bin\Debug\RECEPTIO.CapaDominio.Nucleo.Dominio.dll">
+   <Modules>
+    <Module Name="receptio.capadominio.nucleo.dominio.dll">
+     <Messages>
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Firme 'RECEPTIO.CapaDominio.Nucleo.Dominio.dll' con una clave de nombre seguro.</Issue>
+      </Message>
+      <Message Id="RECEPTIO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+       <Issue Name="Assembly" Certainty="85" Level="Error">Corrija el uso de mayúsculas y minúsculas en 'RECEPTIO' en el nombre del ensamblado 'RECEPTIO.CapaDominio.Nucleo.Dominio.dll' cambiándolo a 'Receptio'.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error">Marque 'RECEPTIO.CapaDominio.Nucleo.Dominio.dll' con CLSCompliant(true) porque expone tipos visibles externamente.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros">
+       <Types>
+        <Type Name="ExpressionBuilder" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#And`1(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,System.Boolean&gt;&gt;,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,System.Boolean&gt;&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="17">Considere el uso de un diseño donde 'ExpressionBuilder.And&lt;T&gt;(this Expression&lt;Func&lt;T, bool&gt;&gt;, Expression&lt;Func&lt;T, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="17">Considere el uso de un diseño donde 'ExpressionBuilder.And&lt;T&gt;(this Expression&lt;Func&lt;T, bool&gt;&gt;, Expression&lt;Func&lt;T, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="17">Considere el uso de un diseño donde 'ExpressionBuilder.And&lt;T&gt;(this Expression&lt;Func&lt;T, bool&gt;&gt;, Expression&lt;Func&lt;T, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Compose`1(System.Linq.Expressions.Expression`1&lt;!!0&gt;,System.Linq.Expressions.Expression`1&lt;!!0&gt;,System.Func`3&lt;System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="10">Considere cambiar el tipo de parámetro 'first' en 'ExpressionBuilder.Compose&lt;T&gt;(this Expression&lt;T&gt;, Expression&lt;T&gt;, Func&lt;Expression, Expression, Expression&gt;)' de 'Expression&lt;T&gt;' al tipo base 'LambdaExpression'. Parece que este método sólo requiere los miembros de clase base en la implementación. Suprima esta infracción si hay una razón de peso que requiere el tipo más derivado en la signatura del método.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="11">En el método 'ExpressionBuilder.Compose&lt;T&gt;(this Expression&lt;T&gt;, Expression&lt;T&gt;, Func&lt;Expression, Expression, Expression&gt;)' visible externamente, valide el parámetro 'first' antes de usarlo.</Issue>
+            </Message>
+            <Message Id="2" TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="13">En el método 'ExpressionBuilder.Compose&lt;T&gt;(this Expression&lt;T&gt;, Expression&lt;T&gt;, Func&lt;Expression, Expression, Expression&gt;)' visible externamente, valide el parámetro 'merge' antes de usarlo.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Or`1(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,System.Boolean&gt;&gt;,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,System.Boolean&gt;&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="22">Considere el uso de un diseño donde 'ExpressionBuilder.Or&lt;T&gt;(this Expression&lt;Func&lt;T, bool&gt;&gt;, Expression&lt;Func&lt;T, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="22">Considere el uso de un diseño donde 'ExpressionBuilder.Or&lt;T&gt;(this Expression&lt;Func&lt;T, bool&gt;&gt;, Expression&lt;Func&lt;T, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="ExpressionBuilder.cs" Line="22">Considere el uso de un diseño donde 'ExpressionBuilder.Or&lt;T&gt;(this Expression&lt;Func&lt;T, bool&gt;&gt;, Expression&lt;Func&lt;T, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="FiltroDirecto`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!0,System.Boolean&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="FiltroDirecto.cs" Line="10">Considere el uso de un diseño donde 'FiltroDirecto&lt;TEntity&gt;.FiltroDirecto(Expression&lt;Func&lt;TEntity, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;TEntity, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="FiltroNot`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!0,System.Boolean&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="FiltroNot.cs" Line="19">Considere el uso de un diseño donde 'FiltroNot&lt;TEntity&gt;.FiltroNot(Expression&lt;Func&lt;TEntity, bool&gt;&gt;)' no anide el tipo genérico 'Expression&lt;Func&lt;TEntity, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Filtros`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#op_BitwiseAnd(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.Filtros`1&lt;!0&gt;,RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.Filtros`1&lt;!0&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+             <Issue Certainty="50" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="Filtros.cs" Line="11">Proporcione un método con nombre 'BitwiseAnd' como texto alternativo descriptivo para el operador 'Filtros&lt;TEntity&gt;.operator &amp;(Filtros&lt;TEntity&gt;, Filtros&lt;TEntity&gt;)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#op_BitwiseOr(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.Filtros`1&lt;!0&gt;,RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.Filtros`1&lt;!0&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+             <Issue Certainty="50" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="Filtros.cs" Line="16">Proporcione un método con nombre 'BitwiseOr' como texto alternativo descriptivo para el operador 'Filtros&lt;TEntity&gt;.operator |(Filtros&lt;TEntity&gt;, Filtros&lt;TEntity&gt;)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#op_False(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.Filtros`1&lt;!0&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+             <Issue Name="Property" Certainty="50" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="Filtros.cs" Line="26">Proporcione una propiedad con nombre 'IsTrue' como texto alternativo descriptivo para el operador 'Filtros&lt;TEntity&gt;.operator false(Filtros&lt;TEntity&gt;)'.</Issue>
+            </Message>
+            <Message Id="specification" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="Filtros.cs" Line="26">Nunca se usa el parámetro 'specification' de 'Filtros&lt;TEntity&gt;.operator false(Filtros&lt;TEntity&gt;)'. Quite el parámetro o utilícelo en el cuerpo del método.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#op_LogicalNot(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.Filtros`1&lt;!0&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+             <Issue Certainty="50" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="Filtros.cs" Line="21">Proporcione un método con nombre 'LogicalNot' como texto alternativo descriptivo para el operador 'Filtros&lt;TEntity&gt;.operator !(Filtros&lt;TEntity&gt;)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#op_True(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.Filtros`1&lt;!0&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+             <Issue Name="Property" Certainty="50" Level="Error" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="Filtros.cs" Line="31">Proporcione una propiedad con nombre 'IsTrue' como texto alternativo descriptivo para el operador 'Filtros&lt;TEntity&gt;.operator true(Filtros&lt;TEntity&gt;)'.</Issue>
+            </Message>
+            <Message Id="specification" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="D:\Proyect\RECEPTIO\Nucleo.Dominio\Filtros" File="Filtros.cs" Line="31">Nunca se usa el parámetro 'specification' de 'Filtros&lt;TEntity&gt;.operator true(Filtros&lt;TEntity&gt;)'. Quite el parámetro o utilícelo en el cuerpo del método.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IFiltros`1" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SastifechoPor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError">Considere el uso de un diseño donde 'IFiltros&lt;TEntity&gt;.SastifechoPor()' no anide el tipo genérico 'Expression&lt;Func&lt;TEntity, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="RECEPTIO.CapaDominio.Nucleo.Dominio.Repositorio">
+       <Types>
+        <Type Name="IRepositorio`1" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ObtenerObjetosPorPagineo`1(RECEPTIO.CapaDominio.Nucleo.Dominio.Filtros.IFiltros`1&lt;!0&gt;,System.Int32,System.Int32,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!0,!!0&gt;&gt;,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError">Considere el uso de un diseño donde 'IRepositorio&lt;TEntity&gt;.ObtenerObjetosPorPagineo&lt;S&gt;(IFiltros&lt;TEntity&gt;, int, int, Expression&lt;Func&lt;TEntity, S&gt;&gt;, bool)' no anide el tipo genérico 'Expression&lt;Func&lt;TEntity, S&gt;&gt;'.</Issue>
+            </Message>
+            <Message Id="S" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+             <Issue Name="MethodTypeParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning">En el método 'IRepositorio&lt;TEntity&gt;.ObtenerObjetosPorPagineo&lt;S&gt;(IFiltros&lt;TEntity&gt;, int, int, Expression&lt;Func&lt;TEntity, S&gt;&gt;, bool)', considere proporcionar un nombre más significativo que el nombre del parámetro de tipo genérico 'S'.</Issue>
+            </Message>
+            <Message Id="T" TypeName="IdentifiersShouldHaveCorrectPrefix" Category="Microsoft.Naming" CheckId="CA1715" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="NonBreaking">
+             <Issue Name="MethodTypeParameter" Certainty="95" Level="Error">En el método 'IRepositorio&lt;TEntity&gt;.ObtenerObjetosPorPagineo&lt;S&gt;(IFiltros&lt;TEntity&gt;, int, int, Expression&lt;Func&lt;TEntity, S&gt;&gt;, bool)', ponga el prefijo 'T' al nombre del parámetro de tipo genérico 'S'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IRepositorioApplication" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Defina un atributo personalizado para reemplazar 'IRepositorioApplication'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IRepositorioDepot" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Defina un atributo personalizado para reemplazar 'IRepositorioDepot'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IRepositorioError" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ObtenerValidacionesGenerales(System.String,System.String,System.Int32,System.Int64)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="bigint" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', corrija el uso de mayúsculas y minúsculas en 'bigint' en el nombre del parámetro 'i_bigintValor' cambiándolo a 'Bigint'.</Issue>
+            </Message>
+            <Message Id="opcion" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', corrija el uso de mayúsculas y minúsculas en 'opcion' en el nombre del parámetro 'i_opcion' cambiándolo a 'Opcion'.</Issue>
+            </Message>
+            <Message Id="str" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', corrija el uso de mayúsculas y minúsculas en 'str' en el nombre del parámetro '_i_strValor' cambiándolo a 'Str'.</Issue>
+            </Message>
+            <Message Id="int" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="LanguageSpecificMemberParameter" Certainty="75" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', considere reemplazar el identificador del tipo de datos específico del lenguaje 'Int' en el nombre del parámetro 'i_IntValor' por un término más genérico, como 'value'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro '_i_strValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro 'i_IntValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro 'i_bigintValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioError.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro 'i_opcion'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IRepositorioMensaje" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Defina un atributo personalizado para reemplazar 'IRepositorioMensaje'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IRepositorioN4" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#EstaEnPatioContenedor(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="En" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Corrija el uso de mayúsculas y minúsculas en 'En' en el nombre del miembro 'IRepositorioN4.EstaEnPatioContenedor(string)' cambiándolo a 'EN'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TieneTransaccionActiva(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Tv" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error">En el miembro 'IRepositorioN4.TieneTransaccionActiva(string)', corrija el uso de mayúsculas y minúsculas en 'Tv' en el nombre del parámetro 'gosTvKey' cambiándolo a 'TV'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IRepositorioPreGate" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ObtenerValidacionesGenerales(System.String,System.String,System.Int32,System.Int64)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="bigint" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', corrija el uso de mayúsculas y minúsculas en 'bigint' en el nombre del parámetro 'i_bigintValor' cambiándolo a 'Bigint'.</Issue>
+            </Message>
+            <Message Id="opcion" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', corrija el uso de mayúsculas y minúsculas en 'opcion' en el nombre del parámetro 'i_opcion' cambiándolo a 'Opcion'.</Issue>
+            </Message>
+            <Message Id="str" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="85" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', corrija el uso de mayúsculas y minúsculas en 'str' en el nombre del parámetro '_i_strValor' cambiándolo a 'Str'.</Issue>
+            </Message>
+            <Message Id="int" TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="LanguageSpecificMemberParameter" Certainty="75" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', considere reemplazar el identificador del tipo de datos específico del lenguaje 'Int' en el nombre del parámetro 'i_IntValor' por un término más genérico, como 'value'.</Issue>
+            </Message>
+            <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro '_i_strValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro 'i_IntValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro 'i_bigintValor'.</Issue>
+             <Issue Name="MemberParameter" Certainty="95" Level="Error">En el miembro 'IRepositorioPreGate.ObtenerValidacionesGenerales(string, string, int, long)', quite los caracteres de subrayado del nombre del parámetro 'i_opcion'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IRepositorioQuiosco" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Defina un atributo personalizado para reemplazar 'IRepositorioQuiosco'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IRepositorioStockRegister" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Defina un atributo personalizado para reemplazar 'IRepositorioStockRegister'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IRepositorioTransaccionQuiosco" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Defina un atributo personalizado para reemplazar 'IRepositorioTransaccionQuiosco'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IRepositorioTroubleDeskUser" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2025-07-28 16:14:41Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Defina un atributo personalizado para reemplazar 'IRepositorioTroubleDeskUser'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+   <Name>Los ensamblados deben tener nombres seguros válidos</Name>
+   <Description>Puede que el ensamblado no tenga un nombre seguro, que no sea válido o que éste sea válido únicamente por la configuración del equipo. No se puede implementar el ensamblado en este estado. Las causas más probables son: 1) El contenido del ensamblado se modificó después de firmarlo. 2) Error en el proceso de firma. 3) El ensamblado se firmó con retraso. 4) Existía una clave del Registro que permitió que se realizara la comprobación (de lo contrario no se hubiera realizado).</Description>
+   <Resolution Name="NoStrongName">Firme {0} con una clave de nombre seguro.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182127.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040">
+   <Name>Evitar interfaces vacías</Name>
+   <Description>Las interfaces están diseñadas para contener miembros que especifiquen una serie de comportamientos. Para marcar o etiquetar una clase, utilice un atributo en lugar de una interfaz vacía.</Description>
+   <Resolution Name="Default">Defina un atributo personalizado para reemplazar {0}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182128.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011">
+   <Name>Considere pasar los tipos base como parámetros</Name>
+   <Description>Si utiliza los tipos base como parámetros de métodos se mejora la reutilización de estos métodos si sólo utiliza métodos y propiedades de la clase base del parámetro. Por ejemplo: utilizar una secuencia en lugar de FileStream como un parámetro únicamente cuando se llama a Stream.Read(), hace que el método funcione en todos los tipos de secuencias, en lugar de funcionar únicamente en secuencias de archivos.</Description>
+   <Resolution Name="Default">Considere cambiar el tipo de parámetro {0} en {1} de {2} al tipo base {3}. Parece que este método sólo requiere los miembros de clase base en la implementación. Suprima esta infracción si hay una razón de peso que requiere el tipo más derivado en la signatura del método.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/3hk32yyz.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
+   <Name>No anidar tipos genéricos en signaturas de miembro</Name>
+   <Description>Evite utilizar API que requieran que los usuarios inicien un tipo genérico con otro tipo genérico como argumento de tipo. La sintaxis sería demasiado complicada.</Description>
+   <Resolution Name="Default">Considere el uso de un diseño donde {0} no anide el tipo genérico {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182144.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+   <Name>Los identificadores deberían utilizar las mayúsculas y minúsculas correctamente</Name>
+   <Description>Los identificadores de tipo, espacio de nombres y miembro usan las mayúsculas y minúsculas como en Pascal. Los identificadores de parámetro usan las mayúsculas y minúsculas como en Camel. Los acrónimos de dos letras en estos identificadores deben ir en mayúsculas; por ejemplo, use System.IO en lugar de System.Io. Los acrónimos de tres o más letras deben usar las mayúsculas y minúsculas como en Pascal; por ejemplo, use System.Xml en lugar de System.XML. La convención de mayúsculas y minúsculas Pascal pone en mayúscula la primera letra de cada palabra, como en BackColor. La convención de mayúsculas y minúsculas Camel pone en minúscula la primera letra de la primera palabra y, en mayúscula, la primera letra de las palabras siguientes, como en backgroundColor. Si bien puede ser una práctica común para algunos acrónimos de dos letras no ponerlos totalmente en mayúsculas, no se deben excluir las infracciones de esta regla por esta razón. Por ejemplo, 'DbConnection', es común pero incorrecto; use DBConnection. Una infracción de esta regla puede ser necesaria por compatibilidad con esquemas de símbolos no administrados existentes. En general, sin embargo, estos símbolos no deberían estar visibles fuera del ensamblado que los usa.</Description>
+   <Resolution Name="Assembly">Corrija el uso de mayúsculas y minúsculas en '{0}' en el nombre del ensamblado {1} cambiándolo a '{2}'.</Resolution>
+   <Resolution Name="Member">Corrija el uso de mayúsculas y minúsculas en '{0}' en el nombre del miembro {1} cambiándolo a '{2}'.</Resolution>
+   <Resolution Name="MemberParameter">En el miembro {0}, corrija el uso de mayúsculas y minúsculas en '{1}' en el nombre del parámetro {2} cambiándolo a '{3}'.</Resolution>
+   <Resolution Name="Namespace">Corrija el uso de mayúsculas y minúsculas en '{0}' en el nombre del espacio de nombres '{1}' cambiándolo a '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182240.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="85">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+   <Name>Los identificadores deberían tener la ortografía correcta</Name>
+   <Description>Las palabras individuales que componen un identificador no se deberían abreviar y deberían tener la ortografía correcta. Si esta regla genera un falso positivo en un término que se debería reconocer, agregue la palabra al diccionario personalizado FxCop.</Description>
+   <Resolution Name="MethodTypeParameterMoreMeaningfulName">En el método {0}, considere proporcionar un nombre más significativo que el nombre del parámetro de tipo genérico {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264492.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldHaveCorrectPrefix" Category="Microsoft.Naming" CheckId="CA1715">
+   <Name>Los identificadores deberían tener el prefijo correcto</Name>
+   <Description>Ponga la letra 'I' como prefijo a los nombres de interfaz para indicar que el tipo es una interfaz, como IFormattable. Ponga la letra 'T' como prefijo a los nombres de parámetro de tipo genérico y deles nombres descriptivos, como Diccionario&lt;TKey, TValue&gt;, a menos que una sola 'T' sea totalmente explicativa, como Colección&lt;T&gt;. Use las mayúsculas y  minúsculas como en Pascal para los nombres de interfaz y de parámetros de tipo. Use las abreviaciones con moderación. No use el carácter de subrayado. No use nombres similares cuando defina un par clase/interfaz donde la clase es una implementación estándar de la interfaz. Los nombres deben diferir sólo en la letra I usada como prefijo en el nombre de interfaz, como Component e IComponent.</Description>
+   <Resolution Name="MethodTypeParameter">En el método {0}, ponga el prefijo 'T' al nombre del parámetro de tipo genérico {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182243.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldNotContainTypeNames" Category="Microsoft.Naming" CheckId="CA1720">
+   <Name>Los identificadores no deben contener nombres de tipo</Name>
+   <Description>Evite el uso de nombres de tipo específicos del lenguaje en parámetros y miembros, así como identificadores de tipo de datos en parámetros. Los nombres de tipo pueden no ser intuitivos para todos los desarrolladores. Se recomienda seleccionar un nombre genérico, como 'value', en su lugar. Si esto no es suficiente, procure usar el nombre de tipo que se define en la biblioteca de .NET Framework y evite totalmente los nombres de tipo específicos del lenguaje. Algunos ejemplos de nombres de tipo específicos de C# son 'float' (use 'Single' si un nombre genérico no es suficiente) y 'ulong' (use 'UInt64' si un nombre genérico no es suficiente).</Description>
+   <Resolution Name="LanguageSpecificMemberParameter">En el miembro {0}, considere reemplazar el identificador del tipo de datos específico del lenguaje '{1}' en el nombre del parámetro {2} por un término más genérico, como 'value'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb531486.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707">
+   <Name>Los identificadores no deberían contener subrayado</Name>
+   <Description>No utilice subrayado al especificar identificadores. Algunos identificadores de Visual Studio generados para aplicaciones contienen caracteres de subrayado. En general, se deberían evitar los caracteres de subrayado en identificadores públicos.</Description>
+   <Resolution Name="MemberParameter">En el miembro {0}, quite los caracteres de subrayado del nombre del parámetro {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182245.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+   <Name>Marque los ensamblados con CLSCompliantAttribute</Name>
+   <Description>Los ensamblados deben establecer explícitamente ser conformes a CLS usando el atributo CLSCompliant. Un ensamblado sin este atributo no es conforme a CLS. Los ensamblados, módulos y tipos pueden ser conformes a CLS incluso si alguna parte del ensamblado, módulo o tipo no son conformes a CLS. Se aplican las siguientes reglas: 1) Si el elemento está marcado como CLSCompliant, cualquier miembro no compatible debe tener el atributo CLSCompliant presente con el argumento establecido como false. 2) Se debe proporcionar un miembro alternativo conforme a CLS comparable con cada miembro que no sea conforme a CLS.</Description>
+   <Resolution Name="Default">Marque {0} con CLSCompliant(true) porque expone tipos visibles externamente.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182156.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225">
+   <Name>Las sobrecargas del operador tienen alternativas con nombre</Name>
+   <Description>Cuando vuelva a definir operadores, implemente los métodos con nombre para proporcionar acceso a la funcionalidad del operador para idiomas que no admitan la sobrecarga del operador. Por ejemplo, la funcionalidad del operador '+' debe estar también accesible al usar el método 'Add'.</Description>
+   <Resolution Name="Default">Proporcione un método con nombre '{0}' como texto alternativo descriptivo para el operador {1}.</Resolution>
+   <Resolution Name="Property">Proporcione una propiedad con nombre '{0}' como texto alternativo descriptivo para el operador {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182355.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
+   <Name>Revisar parámetros sin utilizar</Name>
+   <Description>Revise los parámetros de los métodos no virtuales que no se usan en el cuerpo del método para asegurar que no existe corrección al error de acceso a los mismos. Los parámetros sin usar conllevan un costo por mantenimiento y rendimiento. Algunas veces la infracción de esta regla puede señalar un error de implementación en el método (por ejemplo el parámetro debe haberse usado en el cuerpo del método). Excluya las advertencias de esta regla si el parámetro debe existir por compatibilidad con versiones anteriores.</Description>
+   <Resolution Name="Default">Nunca se usa el parámetro {0} de {1}. Quite el parámetro o utilícelo en el cuerpo del método.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182268.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="Validar argumentos de métodos públicos" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Validar argumentos de métodos públicos</Name>
+   <Description>Todos los argumentos de referencia pasados a métodos visibles externamente deben comprobarse para ver si son NULL (Nothing en VB). Si procede, produzca una excepción System.ArgumentNullException cuando el argumento sea NULL.</Description>
+   <Resolution Name="Default">En el método {0} visible externamente, valide el parámetro '{1}' antes de usarlo.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="17.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Categoría</String>
+  <String Key="Certainty">Certeza</String>
+  <String Key="CollapseAll">Contraer todo</String>
+  <String Key="CheckId">Comprobar id.</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">errores</String>
+  <String Key="ExpandAll">Expandir todo</String>
+  <String Key="Help">Ayuda</String>
+  <String Key="Line">Línea</String>
+  <String Key="Messages">mensajes</String>
+  <String Key="LocationNotStoredInPdb">[Ubicación no almacenada en Pdb]</String>
+  <String Key="Project">Proyecto</String>
+  <String Key="Resolution">Resolución</String>
+  <String Key="Rule">Regla</String>
+  <String Key="RuleFile">Archivo de regla</String>
+  <String Key="RuleDescription">Descripción de la regla</String>
+  <String Key="Source">Origen</String>
+  <String Key="Status">Estado</String>
+  <String Key="Target">Círculos concéntricos</String>
+  <String Key="Warning">Advertencia</String>
+  <String Key="Warnings">advertencias</String>
+  <String Key="ReportTitle">Informe de Code Analysis</String>
+ </Localized>
+</FxCopReport>

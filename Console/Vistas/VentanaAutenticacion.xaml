@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="Console.Vistas.VentanaAutenticacion"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" FontFamily="Console" Foreground="#344955"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="160" Width="240">
+
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Imagenes/Usuario.png" Height="23" Width="23" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="TxtUsuario" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="NoWrap" Text="{x:Bind _viewModel.Usuario, Mode=TwoWay}" VerticalAlignment="Top" Width="160" TabIndex="0" MaxLength="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Imagenes/Contrasena.png" Height="23" Width="23" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <PasswordBox Password="{x:Bind _viewModel.Contrasena, Mode=TwoWay}" Height="23" Name="PswContrasena" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="160" TabIndex="1" KeyDown="PswContrasenaKeyDown"/>
+            </StackPanel>
+            <Button ClickMode="Press" HorizontalAlignment="Left" Margin="43,10,0,0" VerticalAlignment="Top" Width="161" Height="30" TabIndex="2" Command="{x:Bind _viewModel.ComandoLogin}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Login" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20"/>
+                        <Image Source="/Imagenes/Login.png" Margin="5,5,0,0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <ProgressRing Margin="0,5,0,0" IsActive="{x:Bind _viewModel.EstaOcupado, Mode=OneWay}" Height="25" Width="200" />
+        </StackPanel>
+    </Grid>
+</Page>

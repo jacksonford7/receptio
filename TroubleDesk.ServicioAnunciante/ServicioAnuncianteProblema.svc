@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RECEPTIO.CapaServicioDistribuidos.TroubleDesk.ServicioAnunciante.ServicioAnuncianteProblema" CodeBehind="ServicioAnuncianteProblema.svc.cs" %>
