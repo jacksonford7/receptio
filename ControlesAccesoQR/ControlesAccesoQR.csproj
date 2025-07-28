@@ -73,5 +73,11 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UI.MVVM\UI.MVVM.csproj">
+      <Project>{52a38e46-a67d-4268-8846-557a4f711e57}</Project>
+      <Name>UI.MVVM</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
