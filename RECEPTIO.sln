@@ -96,6 +96,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.UsbRelay", "UI.UsbRelay\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.ImpresoraZebra", "UI.ImpresoraZebra\UI.ImpresoraZebra.csproj", "{3F7AE242-AF74-40BD-B253-6A5042205F0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlesAccesoQR", "ControlesAccesoQR\ControlesAccesoQR.csproj", "{3CF64816-F151-4A56-98F3-2FD3F6D8DD63}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Nucleo.Infraestructura", "Tests.Nucleo.Infraestructura\Tests.Nucleo.Infraestructura.csproj", "{1FA1DC91-0B0C-43E5-B7B0-3D0D057EF243}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Nucleo.ServiciosDominio", "Tests.Nucleo.ServiciosDominio\Tests.Nucleo.ServiciosDominio.csproj", "{024DF157-3FB3-45AF-BDF0-2C060A8C7615}"
@@ -746,6 +748,22 @@ Global
 		{3F7AE242-AF74-40BD-B253-6A5042205F0A}.Release|x64.Build.0 = Release|x64
 		{3F7AE242-AF74-40BD-B253-6A5042205F0A}.Release|x86.ActiveCfg = Release|Any CPU
 		{3F7AE242-AF74-40BD-B253-6A5042205F0A}.Release|x86.Build.0 = Release|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|ARM.ActiveCfg = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|ARM.Build.0 = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|x64.ActiveCfg = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|x64.Build.0 = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|x86.ActiveCfg = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Debug|x86.Build.0 = Debug|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|Any CPU.Build.0 = Release|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|ARM.ActiveCfg = Release|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|ARM.Build.0 = Release|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|x64.ActiveCfg = Release|x64
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|x64.Build.0 = Release|x64
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|x86.ActiveCfg = Release|Any CPU
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63}.Release|x86.Build.0 = Release|Any CPU
 		{1FA1DC91-0B0C-43E5-B7B0-3D0D057EF243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1FA1DC91-0B0C-43E5-B7B0-3D0D057EF243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FA1DC91-0B0C-43E5-B7B0-3D0D057EF243}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -1173,6 +1191,7 @@ Global
 		{E6FF1973-1177-4FF0-A954-7AA7A423DC1C} = {F0C47F82-E70A-4FE1-9FE2-E147B33E5EDB}
 		{D6747E2B-C549-4F2A-92E8-9323AC68C60C} = {F0C47F82-E70A-4FE1-9FE2-E147B33E5EDB}
 		{3F7AE242-AF74-40BD-B253-6A5042205F0A} = {F0C47F82-E70A-4FE1-9FE2-E147B33E5EDB}
+                {3CF64816-F151-4A56-98F3-2FD3F6D8DD63} = {F0C47F82-E70A-4FE1-9FE2-E147B33E5EDB}
 		{1FA1DC91-0B0C-43E5-B7B0-3D0D057EF243} = {6D3BD8E3-1FD3-42B9-8E81-8176912555FD}
 		{024DF157-3FB3-45AF-BDF0-2C060A8C7615} = {84D5899B-D2D0-42FF-B469-FD871192AFC8}
 		{EA3179EF-1CFD-4980-B403-9F3D2377AA48} = {F0C47F82-E70A-4FE1-9FE2-E147B33E5EDB}
@@ -1218,7 +1237,7 @@ Global
 		SolutionGuid = {6482C79A-ED9C-440A-8DDB-85E73FE10CFD}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 53
+		SccNumberOfProjects = 54
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://desarrolloitcgsa.visualstudio.com/
 		SccLocalPath0 = .
@@ -1430,5 +1449,9 @@ Global
 		SccProjectTopLevelParentUniqueName52 = RECEPTIO.sln
 		SccProjectName52 = TransactionDepot.Servicios
 		SccLocalPath52 = TransactionDepot.Servicios
+                SccProjectUniqueName53 = ControlesAccesoQR\ControlesAccesoQR.csproj
+                SccProjectTopLevelParentUniqueName53 = RECEPTIO.sln
+                SccProjectName53 = ControlesAccesoQR
+                SccLocalPath53 = ControlesAccesoQR
 	EndGlobalSection
 EndGlobal
