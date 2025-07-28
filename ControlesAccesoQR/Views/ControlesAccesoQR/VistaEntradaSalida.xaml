@@ -1,20 +1,35 @@
 <UserControl x:Class="ControlesAccesoQR.Views.ControlesAccesoQR.VistaEntradaSalida"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:conv="clr-namespace:System.Windows.Controls;assembly=PresentationFramework">
+             xmlns:conv="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             FontFamily="Microsoft Sans Serif">
     <UserControl.Resources>
-        <conv:BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <conv:BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <LinearGradientBrush x:Key="StandardBackground" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+            <GradientStop Color="#FFFFFF" Offset="0" />
+            <GradientStop Color="#FFFFFF" Offset="0.567" />
+        </LinearGradientBrush>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#EF6C00" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
     </UserControl.Resources>
-    <StackPanel Margin="20">
-        <Button Content="Escanear QR" Command="{Binding EscanearQrCommand}" Width="150" Margin="0,0,0,10"/>
-        <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5"/>
-        <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5"/>
-        <TextBlock Text="{Binding Patente, StringFormat=Patente: {0}}" Margin="0,0,0,10"/>
-        <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10"/>
-        <StackPanel Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}">
-            <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0}}" Margin="0,0,0,5"/>
-            <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5"/>
-            <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180"/>
+    <Grid Background="{StaticResource StandardBackground}">
+        <StackPanel Margin="20">
+            <Button Content="Escanear QR" Command="{Binding EscanearQrCommand}" Width="150" Margin="0,0,0,10" />
+            <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
+            <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
+            <TextBlock Text="{Binding Patente, StringFormat=Patente: {0}}" Margin="0,0,0,10" />
+            <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10" />
+            <StackPanel Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0}}" Margin="0,0,0,5" />
+                <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />
+                <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </UserControl>
