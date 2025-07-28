@@ -1,0 +1,39 @@
+# Archivos de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Archivos binarios y de compilación
+bin/
+obj/
+
+# Archivos de publicación
+publish/
+*.publishsettings
+
+# Paquetes NuGet
+*.nupkg
+packages/
+
+# Archivos de log y configuración local
+*.log
+appsettings.*.json
+
+# Archivos del sistema operativo
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
+
+# Archivos temporales
+*.tmp
+*.bak
+*.old
+*.swp
+
+# Rider/JetBrains
+.idea/
+*.sln.iml
+
+# Otros
+.env
