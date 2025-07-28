@@ -62,6 +62,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transaction", "Transaction\
 		{50202ADB-074F-4968-AD7F-E43A9857CDA2} = {50202ADB-074F-4968-AD7F-E43A9857CDA2}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlesAccesoQR", "ControlesAccesoQR\ControlesAccesoQR.csproj", "{C84C32F9-0000-4000-8000-000000000001}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TroubleDeskContrato", "TroubleDeskContrato\TroubleDeskContrato.csproj", "{BD346F16-3EE5-4842-A2FA-C209A1E560A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.SqlEntityFramework", "Mobile.SqlEntityFramework\Mobile.SqlEntityFramework.csproj", "{B5E5DB62-4FA1-4159-B92B-7DA08428D57D}"
@@ -1430,5 +1432,9 @@ Global
 		SccProjectTopLevelParentUniqueName52 = RECEPTIO.sln
 		SccProjectName52 = TransactionDepot.Servicios
 		SccLocalPath52 = TransactionDepot.Servicios
+                SccProjectUniqueName53 = ControlesAccesoQR\ControlesAccesoQR.csproj
+                SccProjectTopLevelParentUniqueName53 = RECEPTIO.sln
+                SccProjectName53 = ControlesAccesoQR
+                SccLocalPath53 = ControlesAccesoQR
 	EndGlobalSection
 EndGlobal
