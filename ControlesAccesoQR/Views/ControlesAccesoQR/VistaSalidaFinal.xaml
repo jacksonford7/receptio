@@ -1,0 +1,20 @@
+<UserControl x:Class="ControlesAccesoQR.Views.ControlesAccesoQR.VistaSalidaFinal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:System.Windows.Controls;assembly=PresentationFramework">
+    <UserControl.Resources>
+        <conv:BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+    <StackPanel Margin="20">
+        <Button Content="Escanear QR de Salida" Command="{Binding EscanearQrSalidaCommand}" Width="180" Margin="0,0,0,10"/>
+        <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5"/>
+        <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5"/>
+        <TextBlock Text="{Binding Patente, StringFormat=Patente: {0}}" Margin="0,0,0,10"/>
+        <DataGrid ItemsSource="{Binding Contenedores}" AutoGenerateColumns="True" Height="100" Margin="0,0,0,10"/>
+        <Button Content="Finalizar" Command="{Binding FinalizarCommand}" Width="120" Margin="0,0,0,10"/>
+        <StackPanel Visibility="{Binding SalidaFinalizada, Converter={StaticResource BoolToVis}}">
+            <TextBlock Text="{Binding HoraSalida, StringFormat=Hora de salida: {0}}" Margin="0,0,0,5"/>
+            <Button Content="Imprimir Salida" Command="{Binding ImprimirSalidaCommand}" Width="150"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

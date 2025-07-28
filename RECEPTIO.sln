@@ -286,6 +286,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionDepot.Servicios"
 		{50202ADB-074F-4968-AD7F-E43A9857CDA2} = {50202ADB-074F-4968-AD7F-E43A9857CDA2}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlesAccesoQR", "ControlesAccesoQR\ControlesAccesoQR.csproj", "{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1218,7 +1220,7 @@ Global
 		SolutionGuid = {6482C79A-ED9C-440A-8DDB-85E73FE10CFD}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 53
+		SccNumberOfProjects = 54
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://desarrolloitcgsa.visualstudio.com/
 		SccLocalPath0 = .
@@ -1430,5 +1432,9 @@ Global
 		SccProjectTopLevelParentUniqueName52 = RECEPTIO.sln
 		SccProjectName52 = TransactionDepot.Servicios
 		SccLocalPath52 = TransactionDepot.Servicios
+                SccProjectUniqueName53 = ControlesAccesoQR\ControlesAccesoQR.csproj
+                SccProjectTopLevelParentUniqueName53 = RECEPTIO.sln
+                SccProjectName53 = ControlesAccesoQR
+                SccLocalPath53 = ControlesAccesoQR
 	EndGlobalSection
 EndGlobal
