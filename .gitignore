@@ -37,3 +37,10 @@ desktop.ini
 
 # Otros
 .env
+
+
+# Ignorar configuración de Visual Studio
+.vs/
+
+# Ignorar carpetas obj generadas por cada proyecto
+**/obj/
