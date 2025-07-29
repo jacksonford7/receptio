@@ -37,9 +37,9 @@ namespace ControlesAccesoQR.accesoDatos
                     {
                         info = new PasePuertaInfo
                         {
-                            Nombre = reader["Chofer"].ToString(),
-                            Empresa = reader["Empresa"].ToString(),
-                            Patente = reader["Patente"].ToString()
+                            Nombre = reader["ChoferID"].ToString(),
+                            Empresa = reader["EmpresaTransporteID"].ToString(),
+                           
                         };
                     }
                 }
