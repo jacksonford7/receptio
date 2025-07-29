@@ -7,18 +7,19 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
     public class VistaEntradaSalidaViewModel : ViewModelBase
     {
-        private string _nombre;
-        private string _empresa;
+        private string _choferId;
+        private string _empresaTransporteId;
         private string _patente;
         private string _horaLlegada;
         private bool _ingresoRealizado;
         private string _qrImagePath;
         private string _qrIngresado;
 
+
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
 
-        public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
-        public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); } }
+        public string ChoferId { get => _choferId; set { _choferId = value; OnPropertyChanged(nameof(ChoferId)); } }
+        public string EmpresaTransporteId { get => _empresaTransporteId; set { _empresaTransporteId = value; OnPropertyChanged(nameof(EmpresaTransporteId)); } }
         public string Patente { get => _patente; set { _patente = value; OnPropertyChanged(nameof(Patente)); } }
         public string HoraLlegada { get => _horaLlegada; set { _horaLlegada = value; OnPropertyChanged(nameof(HoraLlegada)); } }
         public bool IngresoRealizado { get => _ingresoRealizado; set { _ingresoRealizado = value; OnPropertyChanged(nameof(IngresoRealizado)); } }
@@ -44,9 +45,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             var datos = _dataAccess.ObtenerChoferEmpresaPorPase(QrIngresado);
             if (datos != null)
             {
-                Nombre = datos.Nombre;
-                Empresa = datos.Empresa;
-                Patente = datos.Patente;
+
+                ChoferId = datos.ChoferID;
+                EmpresaTransporteId = datos.EmpresaTransporteID;
+ente = datos.Patente;
             }
         }
 
