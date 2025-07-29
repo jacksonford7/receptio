@@ -21,12 +21,13 @@
     <Grid Background="{StaticResource StandardBackground}">
         <StackPanel Margin="20">
             <Button Content="Escanear QR de Salida" Command="{Binding EscanearQrSalidaCommand}" Width="180" Margin="0,0,0,10" />
+            <TextBox Text="{Binding QrLeido, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,0,10" />
+            <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Patente, StringFormat=Patente: {0}}" Margin="0,0,0,10" />
             <DataGrid ItemsSource="{Binding Contenedores}" AutoGenerateColumns="True" Height="100" Margin="0,0,0,10" />
-            <Button Content="Finalizar" Command="{Binding FinalizarCommand}" Width="120" Margin="0,0,0,10" />
-            <StackPanel Visibility="{Binding SalidaFinalizada, Converter={StaticResource BoolToVis}}">
+            <StackPanel Visibility="{Binding SalidaRegistrada, Converter={StaticResource BoolToVis}}">
                 <TextBlock Text="{Binding HoraSalida, StringFormat=Hora de salida: {0}}" Margin="0,0,0,5" />
                 <Button Content="Imprimir Salida" Command="{Binding ImprimirSalidaCommand}" Width="150" />
             </StackPanel>
