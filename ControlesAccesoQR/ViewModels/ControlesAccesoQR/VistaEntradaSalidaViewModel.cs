@@ -46,8 +46,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             var datos = _dataAccess.ObtenerChoferEmpresaPorPase(NumeroPase);
             if (datos != null)
             {
-                Nombre = datos.Nombre;
-                Empresa = datos.Empresa;
+                Nombre = datos.ChoferNombre;
+                Empresa = datos.EmpresaNombre;
                 Patente = datos.Patente;
             }
         }
