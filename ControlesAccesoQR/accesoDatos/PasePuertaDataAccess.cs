@@ -7,23 +7,30 @@ namespace ControlesAccesoQR.accesoDatos
 {
     public class PasePuertaInfo
     {
-        public string Nombre { get; set; }
-        public string Empresa { get; set; }
+        public string ChoferID { get; set; }
+        public string EmpresaTransporteID { get; set; }
+        public string ChoferNombre { get; set; }
+        public string EmpresaNombre { get; set; }
         public string Patente { get; set; }
     }
 
     public class PasePuertaDataAccess
     {
         private readonly string _connectionString;
+        private readonly string _extendedConnectionString;
 
         public PasePuertaDataAccess()
         {
             _connectionString = ConfigurationManager.ConnectionStrings["midle"].ConnectionString;
+            _extendedConnectionString = ConfigurationManager.ConnectionStrings["bill"].ConnectionString;
         }
 
         public PasePuertaInfo ObtenerChoferEmpresaPorPase(string numeroPase)
         {
             PasePuertaInfo info = null;
+            string choferId = null;
+            string empresaId = null;
+
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("[vhs].[obtener_chofer_empresa_por_pase]", connection))
             {
@@ -35,15 +42,55 @@ namespace ControlesAccesoQR.accesoDatos
                 {
                     if (reader.Read())
                     {
+                        choferId = reader["ChoferID"].ToString();
+                        empresaId = reader["EmpresaTransporteID"].ToString();
+
                         info = new PasePuertaInfo
                         {
-                            Nombre = reader["ChoferID"].ToString(),
-                            Empresa = reader["EmpresaTransporteID"].ToString(),
-                           
+                            ChoferID = choferId,
+                            EmpresaTransporteID = empresaId,
+                            Patente = reader["Patente"].ToString()
                         };
                     }
                 }
             }
+
+            if (info == null)
+                return null;
+
+            using (var connection = new SqlConnection(_extendedConnectionString))
+            using (var command = new SqlCommand("[Bill].[compania_lista]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@EmpresaTransporteID", empresaId);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        info.EmpresaNombre = reader["razon_social"].ToString();
+                    }
+                }
+            }
+
+            using (var connection = new SqlConnection(_extendedConnectionString))
+            using (var command = new SqlCommand("[Bill].[choferes_empresa_lista]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@EmpresaTransporteID", empresaId);
+                command.Parameters.AddWithValue("@ChoferID", choferId);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        info.ChoferNombre = reader["nombres"].ToString();
+                    }
+                }
+            }
+
             return info;
         }
 
