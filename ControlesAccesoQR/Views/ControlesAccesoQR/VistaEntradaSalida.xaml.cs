@@ -19,7 +19,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
             {
                 if (DataContext is VistaEntradaSalidaViewModel vm)
                 {
-                    vm.QrIngresado = dialogo.NumeroPase;
+                    vm.NumeroPase = dialogo.NumeroPase;
                     if (vm.EscanearQrCommand.CanExecute(null))
                         vm.EscanearQrCommand.Execute(null);
                 }

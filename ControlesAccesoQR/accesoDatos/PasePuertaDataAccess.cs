@@ -46,5 +46,36 @@ namespace ControlesAccesoQR.accesoDatos
             }
             return info;
         }
+
+        public class ActualizarFechaLlegadaResult
+        {
+            public int PasePuertaID { get; set; }
+            public DateTime FechaHoraLlegada { get; set; }
+        }
+
+        public ActualizarFechaLlegadaResult ActualizarFechaLlegada(string numeroPase)
+        {
+            ActualizarFechaLlegadaResult result = null;
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("[vhs].[actualizar_fecha_llegada]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@NumeroPase", numeroPase);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = new ActualizarFechaLlegadaResult
+                        {
+                            PasePuertaID = Convert.ToInt32(reader["PasePuertaID"]),
+                            FechaHoraLlegada = Convert.ToDateTime(reader["FechaHoraLlegada"])
+                        };
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
