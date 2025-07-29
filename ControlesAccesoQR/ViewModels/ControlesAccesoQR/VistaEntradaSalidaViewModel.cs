@@ -15,6 +15,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _qrImagePath;
         private string _qrIngresado;
 
+
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
 
         public string ChoferId { get => _choferId; set { _choferId = value; OnPropertyChanged(nameof(ChoferId)); } }
@@ -44,9 +45,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             var datos = _dataAccess.ObtenerChoferEmpresaPorPase(QrIngresado);
             if (datos != null)
             {
+
                 ChoferId = datos.ChoferID;
                 EmpresaTransporteId = datos.EmpresaTransporteID;
-                Patente = datos.Patente;
+ente = datos.Patente;
             }
         }
 

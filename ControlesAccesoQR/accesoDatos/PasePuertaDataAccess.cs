@@ -7,8 +7,10 @@ namespace ControlesAccesoQR.accesoDatos
 {
     public class PasePuertaInfo
     {
+
         public string ChoferID { get; set; }
         public string EmpresaTransporteID { get; set; }
+
         public string Patente { get; set; }
     }
 
@@ -37,9 +39,11 @@ namespace ControlesAccesoQR.accesoDatos
                     {
                         info = new PasePuertaInfo
                         {
+
                             ChoferID = reader["ChoferID"].ToString(),
                             EmpresaTransporteID = reader["EmpresaTransporteID"].ToString(),
-                            Patente = reader["Patente"].ToString()
+
+                      
                         };
                     }
                 }
