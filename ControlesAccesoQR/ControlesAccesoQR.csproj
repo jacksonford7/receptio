@@ -32,6 +32,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -44,11 +45,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <None Include="App.config" />
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ControlesAccesoQR\DialogoQr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -68,9 +74,13 @@
     <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
       <DependentUpon>VistaEntradaSalida.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ControlesAccesoQR\DialogoQr.xaml.cs">
+      <DependentUpon>DialogoQr.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ControlesAccesoQR\VistaSalidaFinal.xaml.cs">
       <DependentUpon>VistaSalidaFinal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="accesoDatos\PasePuertaDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
