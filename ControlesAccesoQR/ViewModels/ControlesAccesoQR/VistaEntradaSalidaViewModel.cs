@@ -1,24 +1,29 @@
 using System;
 using System.Windows.Input;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
+using ControlesAccesoQR.accesoDatos;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
     public class VistaEntradaSalidaViewModel : ViewModelBase
     {
-        private string _nombre;
-        private string _empresa;
+        private string _choferId;
+        private string _empresaTransporteId;
         private string _patente;
         private string _horaLlegada;
         private bool _ingresoRealizado;
         private string _qrImagePath;
+        private string _qrIngresado;
 
-        public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
-        public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); } }
+        private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
+
+        public string ChoferId { get => _choferId; set { _choferId = value; OnPropertyChanged(nameof(ChoferId)); } }
+        public string EmpresaTransporteId { get => _empresaTransporteId; set { _empresaTransporteId = value; OnPropertyChanged(nameof(EmpresaTransporteId)); } }
         public string Patente { get => _patente; set { _patente = value; OnPropertyChanged(nameof(Patente)); } }
         public string HoraLlegada { get => _horaLlegada; set { _horaLlegada = value; OnPropertyChanged(nameof(HoraLlegada)); } }
         public bool IngresoRealizado { get => _ingresoRealizado; set { _ingresoRealizado = value; OnPropertyChanged(nameof(IngresoRealizado)); } }
         public string QrImagePath { get => _qrImagePath; set { _qrImagePath = value; OnPropertyChanged(nameof(QrImagePath)); } }
+        public string QrIngresado { get => _qrIngresado; set { _qrIngresado = value; OnPropertyChanged(nameof(QrIngresado)); } }
 
         public ICommand EscanearQrCommand { get; }
         public ICommand IngresarCommand { get; }
@@ -33,10 +38,16 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         private void EscanearQr()
         {
-            // Simulación de escaneo
-            Nombre = "Transportista Demo";
-            Empresa = "Empresa Demo";
-            Patente = "ABC123";
+            if (string.IsNullOrWhiteSpace(QrIngresado))
+                return;
+
+            var datos = _dataAccess.ObtenerChoferEmpresaPorPase(QrIngresado);
+            if (datos != null)
+            {
+                ChoferId = datos.ChoferID;
+                EmpresaTransporteId = datos.EmpresaTransporteID;
+                Patente = datos.Patente;
+            }
         }
 
         private void Ingresar()
