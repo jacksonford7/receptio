@@ -26,7 +26,7 @@
             <TextBlock Text="{Binding Patente, StringFormat=Patente: {0}}" Margin="0,0,0,10" />
             <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10" />
             <StackPanel Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}">
-                <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0}}" Margin="0,0,0,5" />
+                <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
                 <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />
                 <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" />
             </StackPanel>
