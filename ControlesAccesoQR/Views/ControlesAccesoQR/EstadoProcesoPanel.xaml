@@ -4,47 +4,116 @@
              xmlns:models="clr-namespace:ControlesAccesoQR.Models"
              FontFamily="Microsoft Sans Serif">
     <UserControl.Resources>
-        <DataTemplate x:Key="EnEsperaTemplate">
-            <Border Background="#FF9800" Padding="10">
-                <TextBlock Text="📥 Esperando escaneo..." Foreground="White" FontSize="24" TextAlignment="Center"/>
-            </Border>
-        </DataTemplate>
-        <DataTemplate x:Key="IngresoTemplate">
-            <Border Background="#4CAF50" Padding="10">
-                <StackPanel>
-                    <TextBlock Text="✅ Ingreso registrado" FontSize="24" Foreground="White" Margin="0,0,0,5" />
-                    <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" Foreground="White" />
-                    <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" Foreground="White" />
-                    <TextBlock Text="{Binding PaseActual.FechaHoraLlegada, StringFormat=Llegada: {0:G}}" Foreground="White" />
-                </StackPanel>
-            </Border>
-        </DataTemplate>
-        <DataTemplate x:Key="SalidaTemplate">
-            <Border Background="#8BC34A" Padding="10">
-                <StackPanel>
-                    <TextBlock Text="✅ Proceso completado" FontSize="24" Foreground="White" Margin="0,0,0,5" />
-                    <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" Foreground="White" />
-                    <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" Foreground="White" />
-                    <TextBlock Text="{Binding PaseActual.FechaHoraSalida, StringFormat=Salida: {0:G}}" Foreground="White" />
-                </StackPanel>
-            </Border>
-        </DataTemplate>
+        <!-- Colores base -->
+        <SolidColorBrush x:Key="ColorActualEscaneo" Color="#FF9800"/>
+        <SolidColorBrush x:Key="ColorActualIngreso" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="ColorActualSalida" Color="#8BC34A"/>
+        <SolidColorBrush x:Key="ColorCompletado" Color="#C8E6C9"/>
+        <SolidColorBrush x:Key="ColorPendiente" Color="#E0E0E0"/>
     </UserControl.Resources>
-    <Grid>
-        <ContentControl>
-            <ContentControl.Style>
-                <Style TargetType="ContentControl">
-                    <Setter Property="ContentTemplate" Value="{StaticResource EnEsperaTemplate}" />
+
+    <StackPanel>
+        <!-- Paso Escaneo -->
+        <Border Padding="10" Margin="0,0,0,5">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="{StaticResource ColorPendiente}"/>
                     <Style.Triggers>
+                        <!-- Estado actual -->
+                        <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.EnEspera}">
+                            <Setter Property="Background" Value="{StaticResource ColorActualEscaneo}"/>
+                        </DataTrigger>
+                        <!-- Completado -->
                         <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource IngresoTemplate}" />
+                            <Setter Property="Background" Value="{StaticResource ColorCompletado}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource SalidaTemplate}" />
+                            <Setter Property="Background" Value="{StaticResource ColorCompletado}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </ContentControl.Style>
-        </ContentControl>
-    </Grid>
+            </Border.Style>
+            <TextBlock FontSize="24" Foreground="White">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="📥 Escaneo"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
+                                <Setter Property="Text" Value="✅ Escaneo completo"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                                <Setter Property="Text" Value="✅ Escaneo completo"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Border>
+
+        <!-- Paso Ingreso -->
+        <Border Padding="10" Margin="0,0,0,5">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="{StaticResource ColorPendiente}"/>
+                    <Style.Triggers>
+                        <!-- Paso actual -->
+                        <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
+                            <Setter Property="Background" Value="{StaticResource ColorActualIngreso}"/>
+                        </DataTrigger>
+                        <!-- Completado -->
+                        <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                            <Setter Property="Background" Value="{StaticResource ColorCompletado}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock FontSize="24" Foreground="White">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="⏳ Ingreso pendiente"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
+                                <Setter Property="Text" Value="✅ Ingreso registrado"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                                <Setter Property="Text" Value="✅ Ingreso registrado"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Border>
+
+        <!-- Paso Salida -->
+        <Border Padding="10">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="{StaticResource ColorPendiente}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                            <Setter Property="Background" Value="{StaticResource ColorActualSalida}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                            <Setter Property="Background" Value="{StaticResource ColorCompletado}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock FontSize="24" Foreground="White">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="⏳ Salida pendiente"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                                <Setter Property="Text" Value="✅ Salida registrada"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                                <Setter Property="Text" Value="✅ Salida registrada"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Border>
+    </StackPanel>
 </UserControl>
