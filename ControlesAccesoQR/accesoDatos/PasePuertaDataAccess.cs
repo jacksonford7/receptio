@@ -129,6 +129,9 @@ namespace ControlesAccesoQR.accesoDatos
         {
             public int PasePuertaID { get; set; }
             public DateTime FechaHoraSalida { get; set; }
+            public string ChoferNombre { get; set; }
+            public string EmpresaNombre { get; set; }
+            public string Patente { get; set; }
         }
 
         public ActualizarFechaSalidaResult ActualizarFechaSalida(string numeroPase)
@@ -153,6 +156,18 @@ namespace ControlesAccesoQR.accesoDatos
                     }
                 }
             }
+
+            if (result != null)
+            {
+                var info = ObtenerChoferEmpresaPorPase(numeroPase);
+                if (info != null)
+                {
+                    result.ChoferNombre = info.ChoferNombre;
+                    result.EmpresaNombre = info.EmpresaNombre;
+                    result.Patente = info.Patente;
+                }
+            }
+
             return result;
         }
     }
