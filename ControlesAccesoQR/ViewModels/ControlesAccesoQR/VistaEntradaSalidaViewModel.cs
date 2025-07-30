@@ -4,6 +4,7 @@ using System.Windows.Input;
 using QRCoder;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 using ControlesAccesoQR.accesoDatos;
+using ControlesAccesoQR.Models;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
@@ -18,6 +19,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _numeroPase;
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
+        private readonly MainWindowViewModel _mainViewModel;
 
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
         public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); } }
@@ -31,8 +33,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public ICommand IngresarCommand { get; }
         public ICommand ImprimirQrCommand { get; }
 
-        public VistaEntradaSalidaViewModel()
+        public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             EscanearQrCommand = new RelayCommand(EscanearQr);
             IngresarCommand = new RelayCommand(Ingresar);
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
@@ -77,6 +80,16 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             }
 
             IngresoRealizado = true;
+
+            _mainViewModel.PaseActual = new PaseProcesoModel
+            {
+                NombreChofer = Nombre,
+                Placa = Patente,
+                FechaHoraLlegada = HoraLlegada,
+                NumeroPase = NumeroPase,
+                Estado = EstadoProceso.IngresoRegistrado
+            };
+            _mainViewModel.EstadoProceso = EstadoProceso.IngresoRegistrado;
         }
 
         private void ImprimirQr()
