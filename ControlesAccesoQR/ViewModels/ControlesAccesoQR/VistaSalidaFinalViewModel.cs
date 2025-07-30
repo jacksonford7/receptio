@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ControlesAccesoQR.accesoDatos;
+using ControlesAccesoQR.Models;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
@@ -16,6 +17,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _qrLeido;
         private string _mensajeError;
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
+        private readonly MainWindowViewModel _mainViewModel;
 
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
         public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); } }
@@ -39,8 +41,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public ICommand EscanearQrSalidaCommand { get; }
         public ICommand ImprimirSalidaCommand { get; }
 
-        public VistaSalidaFinalViewModel()
+        public VistaSalidaFinalViewModel(MainWindowViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             EscanearQrSalidaCommand = new RelayCommand(EscanearQrSalida);
             ImprimirSalidaCommand = new RelayCommand(ImprimirSalida);
 
@@ -81,6 +84,17 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Nombre = resultado.ChoferNombre;
                 Empresa = resultado.EmpresaNombre;
                 Patente = resultado.Patente;
+
+                _mainViewModel.PaseActual = new PaseProcesoModel
+                {
+                    NombreChofer = Nombre,
+                    Placa = Patente,
+                    FechaHoraSalida = resultado.FechaHoraSalida,
+                    NumeroPase = resultado.NumeroPase,
+                    Estado = EstadoProceso.SalidaRegistrada
+                };
+                _mainViewModel.EstadoProceso = EstadoProceso.SalidaRegistrada;
+                _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
             }
         }
 

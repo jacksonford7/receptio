@@ -1,0 +1,46 @@
+<UserControl x:Class="ControlesAccesoQR.Views.ControlesAccesoQR.EstadoProcesoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:ControlesAccesoQR.Models"
+             FontFamily="Microsoft Sans Serif">
+    <UserControl.Resources>
+        <DataTemplate x:Key="EnEsperaTemplate">
+            <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="📥 Esperando escaneo..." FontSize="20" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="IngresoTemplate">
+            <StackPanel Margin="10">
+                <TextBlock Text="✅ Ingreso registrado" FontSize="20" Margin="0,0,0,5" />
+                <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" />
+                <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" />
+                <TextBlock Text="{Binding PaseActual.FechaHoraLlegada, StringFormat=Llegada: {0:G}}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="SalidaTemplate">
+            <StackPanel Margin="10">
+                <TextBlock Text="✅ Salida registrada" FontSize="20" Margin="0,0,0,5" />
+                <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" />
+                <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" />
+                <TextBlock Text="{Binding PaseActual.FechaHoraSalida, StringFormat=Salida: {0:G}}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <ContentControl>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="ContentTemplate" Value="{StaticResource EnEsperaTemplate}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource IngresoTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource SalidaTemplate}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </Grid>
+</UserControl>
