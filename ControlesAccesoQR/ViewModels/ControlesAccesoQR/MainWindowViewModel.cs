@@ -12,6 +12,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private readonly Frame _frame;
 
         private EstadoProceso _estadoProceso = EstadoProceso.EnEspera;
+        private EstadoProceso _ultimoEstadoVisible = EstadoProceso.EnEspera;
         private PaseProcesoModel _paseActual;
 
         public ICommand MostrarEntradaSalidaCommand { get; }
@@ -20,7 +21,19 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public EstadoProceso EstadoProceso
         {
             get => _estadoProceso;
-            set { _estadoProceso = value; OnPropertyChanged(nameof(EstadoProceso)); }
+            set
+            {
+                _estadoProceso = value;
+                OnPropertyChanged(nameof(EstadoProceso));
+                if (value != EstadoProceso.EnEspera)
+                    UltimoEstadoVisible = value;
+            }
+        }
+
+        public EstadoProceso UltimoEstadoVisible
+        {
+            get => _ultimoEstadoVisible;
+            private set { _ultimoEstadoVisible = value; OnPropertyChanged(nameof(UltimoEstadoVisible)); }
         }
 
         public PaseProcesoModel PaseActual
@@ -49,7 +62,6 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public async Task ReiniciarDespuesDeSalidaAsync()
         {
             await Task.Delay(5000);
-            PaseActual = null;
             EstadoProceso = EstadoProceso.EnEspera;
         }
     }

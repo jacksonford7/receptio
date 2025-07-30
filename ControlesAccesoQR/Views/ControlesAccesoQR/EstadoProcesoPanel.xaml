@@ -5,25 +5,29 @@
              FontFamily="Microsoft Sans Serif">
     <UserControl.Resources>
         <DataTemplate x:Key="EnEsperaTemplate">
-            <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="📥 Esperando escaneo..." FontSize="20" />
-            </StackPanel>
+            <Border Background="#FF9800" Padding="10">
+                <TextBlock Text="📥 Esperando escaneo..." Foreground="White" FontSize="24" TextAlignment="Center"/>
+            </Border>
         </DataTemplate>
         <DataTemplate x:Key="IngresoTemplate">
-            <StackPanel Margin="10">
-                <TextBlock Text="✅ Ingreso registrado" FontSize="20" Margin="0,0,0,5" />
-                <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" />
-                <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" />
-                <TextBlock Text="{Binding PaseActual.FechaHoraLlegada, StringFormat=Llegada: {0:G}}" />
-            </StackPanel>
+            <Border Background="#4CAF50" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="✅ Ingreso registrado" FontSize="24" Foreground="White" Margin="0,0,0,5" />
+                    <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" Foreground="White" />
+                    <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" Foreground="White" />
+                    <TextBlock Text="{Binding PaseActual.FechaHoraLlegada, StringFormat=Llegada: {0:G}}" Foreground="White" />
+                </StackPanel>
+            </Border>
         </DataTemplate>
         <DataTemplate x:Key="SalidaTemplate">
-            <StackPanel Margin="10">
-                <TextBlock Text="✅ Salida registrada" FontSize="20" Margin="0,0,0,5" />
-                <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" />
-                <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" />
-                <TextBlock Text="{Binding PaseActual.FechaHoraSalida, StringFormat=Salida: {0:G}}" />
-            </StackPanel>
+            <Border Background="#8BC34A" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="✅ Proceso completado" FontSize="24" Foreground="White" Margin="0,0,0,5" />
+                    <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" Foreground="White" />
+                    <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" Foreground="White" />
+                    <TextBlock Text="{Binding PaseActual.FechaHoraSalida, StringFormat=Salida: {0:G}}" Foreground="White" />
+                </StackPanel>
+            </Border>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -32,10 +36,10 @@
                 <Style TargetType="ContentControl">
                     <Setter Property="ContentTemplate" Value="{StaticResource EnEsperaTemplate}" />
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
+                        <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
                             <Setter Property="ContentTemplate" Value="{StaticResource IngresoTemplate}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
+                        <DataTrigger Binding="{Binding UltimoEstadoVisible}" Value="{x:Static models:EstadoProceso.SalidaRegistrada}">
                             <Setter Property="ContentTemplate" Value="{StaticResource SalidaTemplate}" />
                         </DataTrigger>
                     </Style.Triggers>
