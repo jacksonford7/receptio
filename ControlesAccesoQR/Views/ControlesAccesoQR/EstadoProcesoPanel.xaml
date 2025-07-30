@@ -5,25 +5,35 @@
              FontFamily="Microsoft Sans Serif">
     <UserControl.Resources>
         <DataTemplate x:Key="EnEsperaTemplate">
-            <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="📥 Esperando escaneo..." FontSize="20" />
-            </StackPanel>
+            <Border Background="#FF9800" Padding="20" CornerRadius="10" BorderBrush="White" BorderThickness="2">
+                <TextBlock Text="📥 Esperando escaneo..." Foreground="White" FontSize="24" TextAlignment="Center" />
+            </Border>
         </DataTemplate>
         <DataTemplate x:Key="IngresoTemplate">
-            <StackPanel Margin="10">
-                <TextBlock Text="✅ Ingreso registrado" FontSize="20" Margin="0,0,0,5" />
-                <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" />
-                <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" />
-                <TextBlock Text="{Binding PaseActual.FechaHoraLlegada, StringFormat=Llegada: {0:G}}" />
-            </StackPanel>
+            <Border Background="#4CAF50" Padding="20" CornerRadius="10" BorderBrush="White" BorderThickness="2">
+                <StackPanel>
+                    <TextBlock Text="✅ Ingreso registrado" Foreground="White" FontSize="24" TextAlignment="Center" />
+                    <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" Foreground="White" FontSize="16" />
+                    <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" Foreground="White" FontSize="16" />
+                    <TextBlock Text="{Binding PaseActual.FechaHoraLlegada, StringFormat=Llegada: {0:G}}" Foreground="White" FontSize="16" />
+                    <TextBlock Text="🕓 Esperando salida..." Foreground="White" FontSize="16" Margin="0,10,0,0" />
+                </StackPanel>
+            </Border>
         </DataTemplate>
         <DataTemplate x:Key="SalidaTemplate">
-            <StackPanel Margin="10">
-                <TextBlock Text="✅ Salida registrada" FontSize="20" Margin="0,0,0,5" />
-                <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" />
-                <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" />
-                <TextBlock Text="{Binding PaseActual.FechaHoraSalida, StringFormat=Salida: {0:G}}" />
-            </StackPanel>
+            <Border Background="#8BC34A" Padding="20" CornerRadius="10" BorderBrush="White" BorderThickness="2">
+                <StackPanel>
+                    <TextBlock Text="✅ Salida registrada" Foreground="White" FontSize="24" TextAlignment="Center" />
+                    <TextBlock Text="{Binding PaseActual.NombreChofer, StringFormat=Nombre: {0}}" Foreground="White" FontSize="16" />
+                    <TextBlock Text="{Binding PaseActual.Placa, StringFormat=Placa: {0}}" Foreground="White" FontSize="16" />
+                    <TextBlock Text="{Binding PaseActual.FechaHoraSalida, StringFormat=Salida: {0:G}}" Foreground="White" FontSize="16" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="CompletadoTemplate">
+            <Border Background="#8BC34A" Padding="20" CornerRadius="10" BorderBrush="White" BorderThickness="2">
+                <TextBlock Text="✅ Proceso completado" Foreground="White" FontSize="24" TextAlignment="Center" />
+            </Border>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -32,6 +42,13 @@
                 <Style TargetType="ContentControl">
                     <Setter Property="ContentTemplate" Value="{StaticResource EnEsperaTemplate}" />
                     <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.EnEspera}" />
+                                <Condition Binding="{Binding UltimoEstadoCompletado}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="ContentTemplate" Value="{StaticResource CompletadoTemplate}" />
+                        </MultiDataTrigger>
                         <DataTrigger Binding="{Binding EstadoProceso}" Value="{x:Static models:EstadoProceso.IngresoRegistrado}">
                             <Setter Property="ContentTemplate" Value="{StaticResource IngresoTemplate}" />
                         </DataTrigger>

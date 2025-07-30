@@ -13,6 +13,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         private EstadoProceso _estadoProceso = EstadoProceso.EnEspera;
         private PaseProcesoModel _paseActual;
+        private bool _ultimoEstadoCompletado;
 
         public ICommand MostrarEntradaSalidaCommand { get; }
         public ICommand MostrarSalidaFinalCommand { get; }
@@ -27,6 +28,12 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             get => _paseActual;
             set { _paseActual = value; OnPropertyChanged(nameof(PaseActual)); }
+        }
+
+        public bool UltimoEstadoCompletado
+        {
+            get => _ultimoEstadoCompletado;
+            set { _ultimoEstadoCompletado = value; OnPropertyChanged(nameof(UltimoEstadoCompletado)); }
         }
 
         public MainWindowViewModel(Frame frame)
@@ -50,6 +57,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             await Task.Delay(5000);
             PaseActual = null;
+            UltimoEstadoCompletado = true;
             EstadoProceso = EstadoProceso.EnEspera;
         }
     }

@@ -46,6 +46,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             if (string.IsNullOrWhiteSpace(NumeroPase))
                 return;
 
+            _mainViewModel.UltimoEstadoCompletado = false;
+
             var datos = _dataAccess.ObtenerChoferEmpresaPorPase(NumeroPase);
             if (datos != null)
             {
@@ -80,6 +82,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             }
 
             IngresoRealizado = true;
+
+            _mainViewModel.UltimoEstadoCompletado = false;
 
             _mainViewModel.PaseActual = new PaseProcesoModel
             {

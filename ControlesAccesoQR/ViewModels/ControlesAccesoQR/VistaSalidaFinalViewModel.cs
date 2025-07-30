@@ -93,6 +93,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     NumeroPase = resultado.NumeroPase,
                     Estado = EstadoProceso.SalidaRegistrada
                 };
+                _mainViewModel.UltimoEstadoCompletado = false;
                 _mainViewModel.EstadoProceso = EstadoProceso.SalidaRegistrada;
                 _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
             }
