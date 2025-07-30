@@ -49,7 +49,7 @@ namespace ControlesAccesoQR.accesoDatos
                         {
                             ChoferID = choferId,
                             EmpresaTransporteID = empresaId,
-                            Patente = reader["Patente"].ToString()
+                           
                         };
                     }
                 }
@@ -62,7 +62,7 @@ namespace ControlesAccesoQR.accesoDatos
             using (var command = new SqlCommand("[Bill].[compania_lista]", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@EmpresaTransporteID", empresaId);
+                command.Parameters.AddWithValue("@pista", empresaId);
 
                 connection.Open();
                 using (var reader = command.ExecuteReader())
@@ -78,8 +78,8 @@ namespace ControlesAccesoQR.accesoDatos
             using (var command = new SqlCommand("[Bill].[choferes_empresa_lista]", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@EmpresaTransporteID", empresaId);
-                command.Parameters.AddWithValue("@ChoferID", choferId);
+                command.Parameters.AddWithValue("@empresa_id", empresaId);
+                command.Parameters.AddWithValue("@pista", choferId);
 
                 connection.Open();
                 using (var reader = command.ExecuteReader())

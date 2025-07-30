@@ -23,7 +23,7 @@
             <Button Content="Escanear QR" Command="{Binding EscanearQrCommand}" Width="150" Margin="0,0,0,10" Click="EscanearQrButton_Click" />
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
-            <TextBlock Text="{Binding Patente, StringFormat=Patente: {0}}" Margin="0,0,0,10" />
+           
             <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10" />
             <StackPanel Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}">
                 <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
