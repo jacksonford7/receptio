@@ -132,7 +132,13 @@ namespace ControlesAccesoQR.accesoDatos
             public string ChoferNombre { get; set; }
             public string EmpresaNombre { get; set; }
             public string Patente { get; set; }
+
+            public string NumeroPase { get; set; }
+
+            
         }
+
+
 
         public ActualizarFechaSalidaResult ActualizarFechaSalida(string numeroPase)
         {
@@ -151,15 +157,17 @@ namespace ControlesAccesoQR.accesoDatos
                         result = new ActualizarFechaSalidaResult
                         {
                             PasePuertaID = Convert.ToInt32(reader["PasePuertaID"]),
-                            FechaHoraSalida = Convert.ToDateTime(reader["FechaHoraSalida"])
+                            FechaHoraSalida = Convert.ToDateTime(reader["FechaHoraSalida"]),
+                            NumeroPase = Convert.ToString(reader["NumeroPase"])
                         };
+
                     }
                 }
             }
 
             if (result != null)
             {
-                var info = ObtenerChoferEmpresaPorPase(numeroPase);
+                var info = ObtenerChoferEmpresaPorPase(result.NumeroPase);
                 if (info != null)
                 {
                     result.ChoferNombre = info.ChoferNombre;
