@@ -78,6 +78,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             {
                 HoraSalida = resultado.FechaHoraSalida.ToString("HH:mm");
                 SalidaRegistrada = true;
+                Nombre = resultado.ChoferNombre;
+                Empresa = resultado.EmpresaNombre;
+                Patente = resultado.Patente;
             }
         }
 
