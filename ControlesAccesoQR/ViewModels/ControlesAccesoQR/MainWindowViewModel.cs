@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,6 +15,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private EstadoProceso _estadoProceso = EstadoProceso.EnEspera;
         private EstadoProceso _ultimoEstadoVisible = EstadoProceso.EnEspera;
         private PaseProcesoModel _paseActual;
+        public ObservableCollection<Proceso> Procesos { get; } = new ObservableCollection<Proceso>();
 
         public ICommand MostrarEntradaSalidaCommand { get; }
         public ICommand MostrarSalidaFinalCommand { get; }

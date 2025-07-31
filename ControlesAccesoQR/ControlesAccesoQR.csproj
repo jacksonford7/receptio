@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ControlesAccesoQR\DialogoHuella.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ControlesAccesoQR\EstadoProcesoPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,8 +85,13 @@
     <Compile Include="ViewModels\ControlesAccesoQR\VistaSalidaFinalViewModel.cs" />
     <Compile Include="Models\EstadoProceso.cs" />
     <Compile Include="Models\PaseProcesoModel.cs" />
+    <Compile Include="Models\Proceso.cs" />
+    <Compile Include="ViewModels\ControlesAccesoQR\HuellaViewModel.cs" />
     <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
       <DependentUpon>VistaEntradaSalida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControlesAccesoQR\DialogoHuella.xaml.cs">
+      <DependentUpon>DialogoHuella.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlesAccesoQR\DialogoQr.xaml.cs">
       <DependentUpon>DialogoQr.xaml</DependentUpon>
@@ -100,6 +109,14 @@
     <ProjectReference Include="..\UI.MVVM\UI.MVVM.csproj">
       <Project>{52a38e46-a67d-4268-8846-557a4f711e57}</Project>
       <Name>UI.MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI.Interfaces\UI.Interfaces.csproj">
+      <Project>{F6B15A8C-E38D-49AD-A26D-D244F026C380}</Project>
+      <Name>UI.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI.Biometrico\UI.Biometrico.csproj">
+      <Project>{B53650CC-3048-47F1-AF71-13A7E08A8B44}</Project>
+      <Name>UI.Biometrico</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
