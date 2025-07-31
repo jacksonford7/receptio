@@ -24,7 +24,7 @@
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
            
-            <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10" />
+            <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10" Click="IngresarButton_Click" />
             <StackPanel Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}">
                 <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
                 <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />

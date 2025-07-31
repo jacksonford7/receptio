@@ -21,6 +21,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly MainWindowViewModel _mainViewModel;
 
+        public MainWindowViewModel MainViewModel => _mainViewModel;
+        public string ChoferID { get => _choferId; set { _choferId = value; OnPropertyChanged(nameof(ChoferID)); } }
+        private string _choferId;
+
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
         public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); } }
         public string Patente { get => _patente; set { _patente = value; OnPropertyChanged(nameof(Patente)); } }
@@ -52,6 +56,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Nombre = datos.ChoferNombre;
                 Empresa = datos.EmpresaNombre;
                 Patente = datos.Patente;
+                ChoferID = datos.ChoferID;
             }
         }
 
@@ -87,9 +92,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Placa = Patente,
                 FechaHoraLlegada = HoraLlegada,
                 NumeroPase = NumeroPase,
-                Estado = EstadoProceso.IngresoRegistrado
+                Estado = EstadoProceso.EnEspera
             };
-            _mainViewModel.EstadoProceso = EstadoProceso.IngresoRegistrado;
         }
 
         private void ImprimirQr()
