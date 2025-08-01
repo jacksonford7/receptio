@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using ControlesAccesoQR.Views.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
+using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
@@ -12,27 +13,27 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
     {
         private readonly Frame _frame;
 
-        private EstadoProceso _estadoProceso = EstadoProceso.EnEspera;
-        private EstadoProceso _ultimoEstadoVisible = EstadoProceso.EnEspera;
+        private EstadoProcesoEnum _estadoProceso = EstadoProcesoEnum.EnEspera;
+        private EstadoProcesoEnum _ultimoEstadoVisible = EstadoProcesoEnum.EnEspera;
         private PaseProcesoModel _paseActual;
         public ObservableCollection<Proceso> Procesos { get; } = new ObservableCollection<Proceso>();
 
         public ICommand MostrarEntradaSalidaCommand { get; }
         public ICommand MostrarSalidaFinalCommand { get; }
 
-        public EstadoProceso EstadoProceso
+        public EstadoProcesoEnum EstadoProceso
         {
             get => _estadoProceso;
             set
             {
                 _estadoProceso = value;
                 OnPropertyChanged(nameof(EstadoProceso));
-                if (value != EstadoProceso.EnEspera)
+                if (value != EstadoProcesoEnum.EnEspera)
                     UltimoEstadoVisible = value;
             }
         }
 
-        public EstadoProceso UltimoEstadoVisible
+        public EstadoProcesoEnum UltimoEstadoVisible
         {
             get => _ultimoEstadoVisible;
             private set { _ultimoEstadoVisible = value; OnPropertyChanged(nameof(UltimoEstadoVisible)); }
@@ -64,7 +65,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public async Task ReiniciarDespuesDeSalidaAsync()
         {
             await Task.Delay(5000);
-            EstadoProceso = EstadoProceso.EnEspera;
+            EstadoProceso = EstadoProcesoEnum.EnEspera;
         }
     }
 }

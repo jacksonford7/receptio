@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
+using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
@@ -91,9 +92,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     Placa = Patente,
                     FechaHoraSalida = resultado.FechaHoraSalida,
                     NumeroPase = resultado.NumeroPase,
-                    Estado = EstadoProceso.SalidaRegistrada
+                    Estado = EstadoProcesoEnum.SalidaRegistrada
                 };
-                _mainViewModel.EstadoProceso = EstadoProceso.SalidaRegistrada;
+                _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
                 _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
             }
         }
