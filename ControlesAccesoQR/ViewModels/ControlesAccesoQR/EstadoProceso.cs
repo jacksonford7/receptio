@@ -10,7 +10,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
     /// Base para los pasos del flujo de ingreso/salida.
     /// Replica la estructura de Transaction.EstadoProceso de manera simplificada.
     /// </summary>
-    internal abstract class EstadoProceso : ViewModelBase
+    public abstract class EstadoProceso : ViewModelBase
     {
         private string _mensaje;
         private string _titulo;
