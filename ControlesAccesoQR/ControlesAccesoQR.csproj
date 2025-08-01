@@ -50,6 +50,7 @@
     </ApplicationDefinition>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Resource Include="Springs\SpringAntena.xml" />
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +87,8 @@
     <Compile Include="Models\EstadoProceso.cs" />
     <Compile Include="Models\PaseProcesoModel.cs" />
     <Compile Include="Models\Proceso.cs" />
+    <Compile Include="ViewModels\ControlesAccesoQR\EstadoProceso.cs" />
+    <Compile Include="ViewModels\ControlesAccesoQR\PaginaRfidViewModel.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\HuellaViewModel.cs" />
     <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
       <DependentUpon>VistaEntradaSalida.xaml</DependentUpon>
@@ -117,6 +120,10 @@
     <ProjectReference Include="..\UI.Biometrico\UI.Biometrico.csproj">
       <Project>{B53650CC-3048-47F1-AF71-13A7E08A8B44}</Project>
       <Name>UI.Biometrico</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI.RFID_CHAFON\UI.RFID_CHAFON.csproj">
+      <Project>{BA2425BF-27F3-4272-A4F0-3EFCAB31FAFA}</Project>
+      <Name>UI.RFID_CHAFON</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -178,5 +178,18 @@ namespace ControlesAccesoQR.accesoDatos
 
             return result;
         }
+
+        public string ObtenerTagRfidPorPlaca(string placa)
+        {
+            using (var connection = new SqlConnection(_extendedConnectionString))
+            using (var command = new SqlCommand("[Bill].[obtener_tag_por_placa]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@placa", placa);
+                connection.Open();
+                var valor = command.ExecuteScalar();
+                return valor == null ? null : valor.ToString();
+            }
+        }
     }
 }
