@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
 using ControlesAccesoQR.Views.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
+using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
 
 namespace ControlesAccesoQR.Views.ControlesAccesoQR
 {
