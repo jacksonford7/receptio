@@ -112,6 +112,10 @@
     <Compile Include="Models\PaseProcesoModel.cs" />
     <Compile Include="Models\Proceso.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\EstadoProceso.cs" />
+    <Compile Include="ViewModels\ControlesAccesoQR\EstadoEnEspera.cs" />
+    <Compile Include="ViewModels\ControlesAccesoQR\EstadoIngresoRegistrado.cs" />
+    <Compile Include="ViewModels\ControlesAccesoQR\EstadoSalidaRegistrada.cs" />
+    <Compile Include="ViewModels\ControlesAccesoQR\EstadoProceso.Estaticos.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\PaginaRfidViewModel.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\HuellaViewModel.cs" />
     <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
