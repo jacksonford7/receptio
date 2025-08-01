@@ -79,7 +79,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             _antena.DesconectarAntena();
         }
 
-        protected override void CambiarEstado()
+        internal override void CambiarEstado()
         {
             // Se podr\u00eda avanzar a otro paso si existiera.
         }
