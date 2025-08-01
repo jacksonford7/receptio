@@ -47,5 +47,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         internal abstract void EstablecerControles(MainWindowViewModel viewModel);
         internal abstract void CambiarEstado();
+
+        internal static EstadoProceso EnEspera => new EstadoEnEspera();
+        internal static EstadoProceso IngresoRegistrado => new EstadoIngresoRegistrado();
+        internal static EstadoProceso SalidaRegistrada => new EstadoSalidaRegistrada();
     }
 }
