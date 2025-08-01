@@ -5,7 +5,9 @@ using QRCoder;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
-using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
+
+using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
+
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
@@ -93,7 +95,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Placa = Patente,
                 FechaHoraLlegada = HoraLlegada,
                 NumeroPase = NumeroPase,
-                Estado = EstadoProcesoEnum.EnEspera
+
+                Estado = EstadoProcesoTipo.EnEspera
+
             };
         }
 

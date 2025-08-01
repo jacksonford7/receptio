@@ -4,7 +4,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using ControlesAccesoQR.Views.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
-using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
+
+using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
+
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
