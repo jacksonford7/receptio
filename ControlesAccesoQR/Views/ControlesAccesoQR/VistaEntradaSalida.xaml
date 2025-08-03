@@ -21,12 +21,12 @@
     </UserControl.Resources>
     <Grid Background="{StaticResource StandardBackground}">
         <StackPanel Margin="20" HorizontalAlignment="Center">
-            <TextBlock Text="INGRESO DE CÉDULA"
+            <TextBlock Text="INGRESO DE NÚMERO DE PASE"
                        FontSize="36"
                        FontWeight="Bold"
                        TextAlignment="Center"
                        Margin="0,0,0,10" />
-            <TextBlock Text="Digite el número de cédula del conductor y luego presione el botón verde OK."
+            <TextBlock Text="Digite el número de pase del conductor y luego presione el botón verde OK."
                        TextWrapping="Wrap"
                        TextAlignment="Center"
                        Margin="0,0,0,20" />
