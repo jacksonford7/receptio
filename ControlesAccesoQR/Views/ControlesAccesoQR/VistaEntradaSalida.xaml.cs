@@ -48,7 +48,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                         });
 
                         if (hv.HuellaValida)
-                            vm.MainViewModel.EstadoProceso = EstadoProceso.IngresoRegistrado;
+                            vm.MainViewModel.EstadoProceso = Models.EstadoProceso.IngresoRegistrado;
                     }
                 }
             }
