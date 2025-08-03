@@ -20,7 +20,8 @@
     </UserControl.Resources>
     <Grid Background="{StaticResource StandardBackground}">
         <StackPanel Margin="20">
-            <Button Content="Escanear QR" Command="{Binding EscanearQrCommand}" Width="150" Margin="0,0,0,10" Click="EscanearQrButton_Click" />
+            <Button Content="Escanear QR" Command="{Binding EscanearQrCommand}" Width="150" Margin="0,0,0,10" />
+            <TextBox x:Name="NumeroPaseTextBox" Text="{Binding NumeroPase, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,0,10" Loaded="NumeroPaseTextBox_Loaded" />
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
            

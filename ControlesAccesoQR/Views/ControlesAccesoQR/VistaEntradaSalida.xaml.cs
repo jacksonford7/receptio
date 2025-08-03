@@ -1,7 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
-using ControlesAccesoQR.Views.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
 using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
 
@@ -12,20 +11,6 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
         public VistaEntradaSalida()
         {
             InitializeComponent();
-        }
-
-        private void EscanearQrButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dialogo = new DialogoQr { Owner = Window.GetWindow(this) };
-            if (dialogo.ShowDialog() == true)
-            {
-                if (DataContext is VistaEntradaSalidaViewModel vm)
-                {
-                    vm.NumeroPase = dialogo.NumeroPase;
-                    if (vm.EscanearQrCommand.CanExecute(null))
-                        vm.EscanearQrCommand.Execute(null);
-                }
-            }
         }
 
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +37,11 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                     }
                 }
             }
+        }
+
+        private void NumeroPaseTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).Focus();
         }
     }
 }

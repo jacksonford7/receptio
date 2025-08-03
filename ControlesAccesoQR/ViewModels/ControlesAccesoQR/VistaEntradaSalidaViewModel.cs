@@ -34,7 +34,16 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public DateTime HoraLlegada { get => _horaLlegada; set { _horaLlegada = value; OnPropertyChanged(nameof(HoraLlegada)); } }
         public bool IngresoRealizado { get => _ingresoRealizado; set { _ingresoRealizado = value; OnPropertyChanged(nameof(IngresoRealizado)); } }
         public string QrImagePath { get => _qrImagePath; set { _qrImagePath = value; OnPropertyChanged(nameof(QrImagePath)); } }
-        public string NumeroPase { get => _numeroPase; set { _numeroPase = value; OnPropertyChanged(nameof(NumeroPase)); } }
+        public string NumeroPase
+        {
+            get => _numeroPase;
+            set
+            {
+                _numeroPase = value;
+                OnPropertyChanged(nameof(NumeroPase));
+                EscanearQr();
+            }
+        }
 
         public ICommand EscanearQrCommand { get; }
         public ICommand IngresarCommand { get; }
