@@ -1,0 +1,26 @@
+<UserControl x:Class="ControlesAccesoQR.UserControls.TecladoNumerico"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <StackPanel>
+            <TextBox x:Name="InputTextBox"
+                     Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <UniformGrid Rows="4" Columns="3" Margin="0,10,0,10">
+                <Button Content="1" Click="Numero_Click" Margin="2"/>
+                <Button Content="2" Click="Numero_Click" Margin="2"/>
+                <Button Content="3" Click="Numero_Click" Margin="2"/>
+                <Button Content="4" Click="Numero_Click" Margin="2"/>
+                <Button Content="5" Click="Numero_Click" Margin="2"/>
+                <Button Content="6" Click="Numero_Click" Margin="2"/>
+                <Button Content="7" Click="Numero_Click" Margin="2"/>
+                <Button Content="8" Click="Numero_Click" Margin="2"/>
+                <Button Content="9" Click="Numero_Click" Margin="2"/>
+                <Button Content="Limpiar" Click="Limpiar_Click" Margin="2"/>
+                <Button Content="0" Click="Numero_Click" Margin="2"/>
+                <Button Content="Borrar" Click="Borrar_Click" Margin="2"/>
+            </UniformGrid>
+            <Button Content="OK" Click="Ok_Click" Margin="0,0,0,10"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

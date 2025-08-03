@@ -79,6 +79,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\TecladoNumerico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,9 @@
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TecladoNumerico.xaml.cs">
+      <DependentUpon>TecladoNumerico.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ControlesAccesoQR\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\VistaEntradaSalidaViewModel.cs" />

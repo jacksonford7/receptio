@@ -19,7 +19,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private DateTime _horaLlegada;
         private bool _ingresoRealizado;
         private string _qrImagePath;
-        private string _numeroPase;
+        private string _codigoQR;
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly MainWindowViewModel _mainViewModel;
@@ -34,14 +34,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public DateTime HoraLlegada { get => _horaLlegada; set { _horaLlegada = value; OnPropertyChanged(nameof(HoraLlegada)); } }
         public bool IngresoRealizado { get => _ingresoRealizado; set { _ingresoRealizado = value; OnPropertyChanged(nameof(IngresoRealizado)); } }
         public string QrImagePath { get => _qrImagePath; set { _qrImagePath = value; OnPropertyChanged(nameof(QrImagePath)); } }
-        public string NumeroPase
+        public string CodigoQR
         {
-            get => _numeroPase;
+            get => _codigoQR;
             set
             {
-                _numeroPase = value;
-                OnPropertyChanged(nameof(NumeroPase));
-                EscanearQr();
+                _codigoQR = value;
+                OnPropertyChanged(nameof(CodigoQR));
             }
         }
 
@@ -59,10 +58,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         private void EscanearQr()
         {
-            if (string.IsNullOrWhiteSpace(NumeroPase))
+            if (string.IsNullOrWhiteSpace(CodigoQR))
                 return;
 
-            var datos = _dataAccess.ObtenerChoferEmpresaPorPase(NumeroPase);
+            var datos = _dataAccess.ObtenerChoferEmpresaPorPase(CodigoQR);
             if (datos != null)
             {
                 Nombre = datos.ChoferNombre;
@@ -74,16 +73,16 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         private void Ingresar()
         {
-            if (string.IsNullOrWhiteSpace(NumeroPase))
+            if (string.IsNullOrWhiteSpace(CodigoQR))
                 return;
 
-            var resultado = _dataAccess.ActualizarFechaLlegada(NumeroPase);
+            var resultado = _dataAccess.ActualizarFechaLlegada(CodigoQR);
             if (resultado == null)
                 return;
 
             HoraLlegada = resultado.FechaHoraLlegada;
 
-            var qrText = $"{NumeroPase}|{resultado.FechaHoraLlegada:yyyy-MM-dd HH:mm:ss}";
+            var qrText = $"{CodigoQR}|{resultado.FechaHoraLlegada:yyyy-MM-dd HH:mm:ss}";
             using (var generator = new QRCodeGenerator())
             {
                 var data = generator.CreateQrCode(qrText, QRCodeGenerator.ECCLevel.Q);
@@ -103,7 +102,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 NombreChofer = Nombre,
                 Placa = Patente,
                 FechaHoraLlegada = HoraLlegada,
-                NumeroPase = NumeroPase,
+                NumeroPase = CodigoQR,
 
                 Estado = EstadoProcesoTipo.EnEspera
 

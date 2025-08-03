@@ -39,9 +39,5 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
             }
         }
 
-        private void NumeroPaseTextBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            ((TextBox)sender).Focus();
-        }
     }
 }

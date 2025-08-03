@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:conv="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             xmlns:uc="clr-namespace:ControlesAccesoQR.UserControls"
              FontFamily="Microsoft Sans Serif">
     <UserControl.Resources>
         <conv:BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -20,8 +21,7 @@
     </UserControl.Resources>
     <Grid Background="{StaticResource StandardBackground}">
         <StackPanel Margin="20">
-            <Button Content="Escanear QR" Command="{Binding EscanearQrCommand}" Width="150" Margin="0,0,0,10" />
-            <TextBox x:Name="NumeroPaseTextBox" Text="{Binding NumeroPase, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="0,0,0,10" Loaded="NumeroPaseTextBox_Loaded" />
+            <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}" ComandoOk="{Binding EscanearQrCommand}" Margin="0,0,0,10" />
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
            
