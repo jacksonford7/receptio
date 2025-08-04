@@ -2,7 +2,9 @@ using ControlesAccesoQR.accesoDatos;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using Spring.Context.Support;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
@@ -31,6 +33,29 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             EsVisibleBoton = Visibility.Collapsed;
             var ctx = new XmlApplicationContext("~/Springs/SpringAntena.xml");
             _antena = (IAntena)ctx["AdministradorAntena"];
+        }
+
+        /// <summary>
+        /// Ejecuta la validación RFID en segundo plano y devuelve el resultado
+        /// de forma asíncrona para no bloquear el hilo de UI.
+        /// </summary>
+        /// <param name="viewModel">ViewModel principal para registrar el proceso.</param>
+        /// <returns>true si el tag leído es válido.</returns>
+        public Task<bool> LeerTagAsync(MainWindowViewModel viewModel)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            RunWorkerCompletedEventHandler handler = null;
+            handler = (s, e) =>
+            {
+                tcs.SetResult(RfidValido);
+                Worker.DoWork -= IniciarHilo;
+                Worker.RunWorkerCompleted -= handler;
+            };
+
+            Worker.RunWorkerCompleted += handler;
+            EstablecerControles(viewModel);
+            return tcs.Task;
         }
 
         internal override void EstablecerControles(MainWindowViewModel viewModel)
