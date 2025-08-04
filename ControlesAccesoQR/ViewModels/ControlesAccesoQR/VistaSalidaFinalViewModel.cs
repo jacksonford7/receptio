@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ControlesAccesoQR.accesoDatos;
@@ -16,7 +15,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _patente;
         private string _horaSalida;
         private bool _salidaRegistrada;
-        private string _qrLeido;
+        private string _numeroPaseSalida;
         private string _mensajeError;
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly MainWindowViewModel _mainViewModel;
@@ -26,59 +25,33 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public string Patente { get => _patente; set { _patente = value; OnPropertyChanged(nameof(Patente)); } }
         public string HoraSalida { get => _horaSalida; set { _horaSalida = value; OnPropertyChanged(nameof(HoraSalida)); } }
         public bool SalidaRegistrada { get => _salidaRegistrada; set { _salidaRegistrada = value; OnPropertyChanged(nameof(SalidaRegistrada)); } }
-        public string QrLeido
-        {
-            get => _qrLeido;
-            set
-            {
-                _qrLeido = value;
-                OnPropertyChanged(nameof(QrLeido));
-                ProcesarQr();
-            }
-        }
+        public string NumeroPaseSalida { get => _numeroPaseSalida; set { _numeroPaseSalida = value; OnPropertyChanged(nameof(NumeroPaseSalida)); } }
         public string MensajeError { get => _mensajeError; set { _mensajeError = value; OnPropertyChanged(nameof(MensajeError)); } }
 
         public ObservableCollection<string> Contenedores { get; } = new ObservableCollection<string>();
 
-        public ICommand EscanearQrSalidaCommand { get; }
+        public ICommand ProcesarSalidaCommand { get; }
         public ICommand ImprimirSalidaCommand { get; }
 
         public VistaSalidaFinalViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            EscanearQrSalidaCommand = new RelayCommand(EscanearQrSalida);
+            ProcesarSalidaCommand = new RelayCommand(ProcesarSalida);
             ImprimirSalidaCommand = new RelayCommand(ImprimirSalida);
 
             Contenedores.Add("CONT-001");
             Contenedores.Add("CONT-002");
         }
 
-        private void EscanearQrSalida()
-        {
-            // Simulación de escaneo
-            Nombre = "Transportista Demo";
-            Empresa = "Empresa Demo";
-            Patente = "ABC123";
-        }
-
-        private void ProcesarQr()
+        private void ProcesarSalida()
         {
             MensajeError = string.Empty;
             SalidaRegistrada = false;
 
-            if (string.IsNullOrWhiteSpace(QrLeido))
+            if (string.IsNullOrWhiteSpace(NumeroPaseSalida))
                 return;
 
-            if (!QrLeido.Contains("|"))
-            {
-                MensajeError = "Formato de QR inválido";
-                return;
-            }
-
-            var partes = QrLeido.Split('|');
-            var numeroPase = partes[0];
-
-            var resultado = _dataAccess.ActualizarFechaSalida(numeroPase);
+            var resultado = _dataAccess.ActualizarFechaSalida(NumeroPaseSalida);
             if (resultado != null)
             {
                 HoraSalida = resultado.FechaHoraSalida.ToString("HH:mm");
@@ -94,11 +67,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     FechaHoraSalida = resultado.FechaHoraSalida,
                     NumeroPase = resultado.NumeroPase,
 
-                    Estado = EstadoProcesoEnum.SalidaRegistrada
+                    Estado = EstadoProcesoEnum.SalidaRegistrada,
 
                 };
                 _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
                 _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
+            }
+            else
+            {
+                MensajeError = "Número de pase inválido";
             }
         }
 
@@ -108,3 +85,4 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         }
     }
 }
+
