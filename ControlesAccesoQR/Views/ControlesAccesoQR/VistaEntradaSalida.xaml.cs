@@ -13,7 +13,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
             InitializeComponent();
         }
 
-        private void IngresarButton_Click(object sender, RoutedEventArgs e)
+        private async void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is VistaEntradaSalidaViewModel vm)
             {
@@ -33,7 +33,12 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                         });
 
                         if (hv.HuellaValida)
+                        {
                             vm.MainViewModel.EstadoProceso = Models.EstadoProceso.IngresoRegistrado;
+                            var rfidOk = await vm.ValidarRfidAsync();
+                            if (!rfidOk)
+                                MessageBox.Show(vm.RfidMensaje, "RFID", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
             }

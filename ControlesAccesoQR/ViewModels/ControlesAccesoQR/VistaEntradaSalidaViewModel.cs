@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using QRCoder;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
@@ -20,6 +21,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private bool _ingresoRealizado;
         private string _qrImagePath;
         private string _codigoQR;
+        private string _rfidMensaje;
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly MainWindowViewModel _mainViewModel;
@@ -42,6 +44,12 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 _codigoQR = value;
                 OnPropertyChanged(nameof(CodigoQR));
             }
+        }
+
+        public string RfidMensaje
+        {
+            get => _rfidMensaje;
+            private set { _rfidMensaje = value; OnPropertyChanged(nameof(RfidMensaje)); }
         }
 
         public ICommand EscanearQrCommand { get; }
@@ -112,6 +120,31 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private void ImprimirQr()
         {
             // Lógica de impresión pendiente
+        }
+
+        /// <summary>
+        /// Ejecuta la validación del tag RFID de manera asíncrona.
+        /// </summary>
+        /// <returns>true si el tag leído es válido.</returns>
+        public async Task<bool> ValidarRfidAsync()
+        {
+            var rfidVm = new PaginaRfidViewModel(Patente);
+            bool resultado = await rfidVm.LeerTagAsync(_mainViewModel);
+            RfidMensaje = rfidVm.Mensaje;
+
+            _mainViewModel.Procesos.Add(new Proceso
+            {
+                STEP = "RFID",
+                RESPONSE = rfidVm.Mensaje,
+                MESSAGE_ID = resultado ? 1 : 0
+            });
+
+            if (resultado)
+                _mainViewModel.MostrarSalidaFinalCommand.Execute(null);
+            else
+                _mainViewModel.EstadoProceso = EstadoProcesoTipo.EnEspera;
+
+            return resultado;
         }
     }
 }
