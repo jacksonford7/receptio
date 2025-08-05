@@ -1,6 +1,7 @@
 using ControlesAccesoQR.accesoDatos;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using Spring.Context.Support;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -31,8 +32,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             _placa = placa;
             Titulo = "LECTURA RFID";
             EsVisibleBoton = Visibility.Collapsed;
-            var ctx = new XmlApplicationContext("~/Springs/SpringAntena.xml");
-            _antena = (IAntena)ctx["AdministradorAntena"];
+            try
+            {
+                var ctx = new XmlApplicationContext(@"..\..\..\Transaction\Springs\SpringAntena.xml");
+                _antena = (IAntena)ctx["AdministradorAntena"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar configuración desde Transaction: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>
