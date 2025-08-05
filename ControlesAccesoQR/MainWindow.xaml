@@ -27,6 +27,9 @@
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
                 <Button Content="Entrada" Command="{Binding MostrarEntradaSalidaCommand}" Margin="0,0,10,0" />
                 <Button Content="Salida Final" Command="{Binding MostrarSalidaFinalCommand}" />
+                <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="20">
+                    <Run Text="Kiosko: "/><Run Text="{Binding NumeroKiosco}" />
+                </TextBlock>
             </StackPanel>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
         </DockPanel>
