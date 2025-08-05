@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
@@ -6,9 +8,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Views.ControlesAccesoQR;
 
+using EstadoPanel = ControlesAccesoQR.Estados.EstadoProceso;
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;
@@ -25,8 +29,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private EstadoProcesoEnum _ultimoEstadoVisible = EstadoProcesoEnum.EnEspera;
         private PaseProcesoModel _paseActual;
         private string _numeroKiosco;
+        private EstadoPanel _estadoActual = EstadoPanel.Huella;
+        private string _fechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+        private readonly DispatcherTimer _reloj = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
 
         public ObservableCollection<Proceso> Procesos { get; } = new ObservableCollection<Proceso>();
+
+        public IEnumerable<EstadoPanel> Estados { get; } = Enum.GetValues(typeof(EstadoPanel)).Cast<EstadoPanel>();
 
         public ICommand MostrarEntradaSalidaCommand { get; }
         public ICommand MostrarSalidaFinalCommand { get; }
@@ -35,6 +44,18 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             get => _numeroKiosco;
             private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
+        }
+
+        public EstadoPanel EstadoActual
+        {
+            get => _estadoActual;
+            set { _estadoActual = value; OnPropertyChanged(nameof(EstadoActual)); }
+        }
+
+        public string FechaHora
+        {
+            get => _fechaHora;
+            private set { _fechaHora = value; OnPropertyChanged(nameof(FechaHora)); }
         }
 
         public EstadoProcesoEnum EstadoProceso
@@ -66,6 +87,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             _frame = frame;
             MostrarEntradaSalidaCommand = new RelayCommand(MostrarEntradaSalida);
             MostrarSalidaFinalCommand = new RelayCommand(MostrarSalidaFinal);
+
+            _reloj.Tick += (s, e) => FechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            _reloj.Start();
 
             ObtenerQuiosco();
         }

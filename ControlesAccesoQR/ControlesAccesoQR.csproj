@@ -133,6 +133,8 @@
     <Compile Include="ViewModels\ControlesAccesoQR\EstadoProceso.Estaticos.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\PaginaRfidViewModel.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\HuellaViewModel.cs" />
+    <Compile Include="Estados\EstadoProceso.cs" />
+    <Compile Include="Converters\EqualityConverter.cs" />
     <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
       <DependentUpon>VistaEntradaSalida.xaml</DependentUpon>
     </Compile>
