@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="accesoDatos\PasePuertaDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Connected Services\ServicioComunKiosco\Reference.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UI.MVVM\UI.MVVM.csproj">

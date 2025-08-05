@@ -1,9 +1,13 @@
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ControlesAccesoQR.Views.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
+using ControlesAccesoQR.ServicioComunKiosco;
+using ControlesAccesoQR.Views.ControlesAccesoQR;
 
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
@@ -18,6 +22,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private EstadoProcesoEnum _estadoProceso = EstadoProcesoEnum.EnEspera;
         private EstadoProcesoEnum _ultimoEstadoVisible = EstadoProcesoEnum.EnEspera;
         private PaseProcesoModel _paseActual;
+        private string _numeroKiosco;
         public ObservableCollection<Proceso> Procesos { get; } = new ObservableCollection<Proceso>();
 
         public ICommand MostrarEntradaSalidaCommand { get; }
@@ -47,11 +52,18 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             set { _paseActual = value; OnPropertyChanged(nameof(PaseActual)); }
         }
 
+        public string NumeroKiosco
+        {
+            get => _numeroKiosco;
+            private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
+        }
+
         public MainWindowViewModel(Frame frame)
         {
             _frame = frame;
             MostrarEntradaSalidaCommand = new RelayCommand(MostrarEntradaSalida);
             MostrarSalidaFinalCommand = new RelayCommand(MostrarSalidaFinal);
+            ObtenerQuiosco();
         }
 
         private void MostrarEntradaSalida()
@@ -68,6 +80,29 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             await Task.Delay(5000);
             EstadoProceso = EstadoProcesoEnum.EnEspera;
+        }
+
+        private void ObtenerQuiosco()
+        {
+            string ip = ConfigurationManager.AppSettings["IP_LOCAL"];
+            if (string.IsNullOrWhiteSpace(ip))
+            {
+                ip = Dns.GetHostEntry(Dns.GetHostName()).AddressList[1].ToString();
+            }
+
+            using (var servicio = new ServicioComunKioscoClient())
+            {
+                var kiosco = servicio.ObtenerQuiosco(ip);
+                if (kiosco == null || !kiosco.IS_ACTIVE)
+                {
+                    MessageBox.Show($"No existe un kiosco activo para la ip: {ip}", "ControlesAccesoQR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Application.Current.Shutdown();
+                    return;
+                }
+
+                var partes = kiosco.NAME?.Split(' ');
+                NumeroKiosco = (partes != null && partes.Length > 1) ? partes[1] : kiosco.NAME;
+            }
         }
     }
 }
