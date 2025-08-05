@@ -25,6 +25,7 @@
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Column="0">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
+                <TextBlock Text="{Binding NumeroKiosco}" FontSize="20" Margin="0,0,20,0" VerticalAlignment="Center" />
                 <Button Content="Entrada" Command="{Binding MostrarEntradaSalidaCommand}" Margin="0,0,10,0" />
                 <Button Content="Salida Final" Command="{Binding MostrarSalidaFinalCommand}" />
             </StackPanel>
