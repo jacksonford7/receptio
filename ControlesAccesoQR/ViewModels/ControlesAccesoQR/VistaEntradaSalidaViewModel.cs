@@ -90,6 +90,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             HoraLlegada = resultado.FechaHoraLlegada;
 
+            ActualizarEstado("I");
+
             var qrText = $"{CodigoQR}|{resultado.FechaHoraLlegada:yyyy-MM-dd HH:mm:ss}";
             using (var generator = new QRCodeGenerator())
             {
@@ -115,6 +117,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Estado = EstadoProcesoTipo.EnEspera
 
             };
+        }
+
+        public void ActualizarEstado(string estado)
+        {
+            if (string.IsNullOrWhiteSpace(CodigoQR))
+                return;
+
+            _ = _dataAccess.ActualizarEstado(CodigoQR, estado);
         }
 
         private void ImprimirQr()

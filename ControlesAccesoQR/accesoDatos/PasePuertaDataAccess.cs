@@ -179,6 +179,47 @@ namespace ControlesAccesoQR.accesoDatos
             return result;
         }
 
+        public class ActualizarEstadoResult
+        {
+            public int PasePuertaID { get; set; }
+            public string NumeroPase { get; set; }
+            public string Estado { get; set; }
+            public DateTime FechaCreacion { get; set; }
+            public DateTime? FechaActualizacion { get; set; }
+        }
+
+        public ActualizarEstadoResult ActualizarEstado(string numeroPase, string estado)
+        {
+            ActualizarEstadoResult result = null;
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("[vhs].[actualizar_estado_pase]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@NumeroPase", numeroPase);
+                command.Parameters.AddWithValue("@Estado", estado);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = new ActualizarEstadoResult
+                        {
+                            PasePuertaID = Convert.ToInt32(reader["PasePuertaID"]),
+                            NumeroPase = Convert.ToString(reader["NumeroPase"]),
+                            Estado = Convert.ToString(reader["Estado"]),
+                            FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]),
+                            FechaActualizacion = reader["FechaActualizacion"] == DBNull.Value
+                                ? (DateTime?)null
+                                : Convert.ToDateTime(reader["FechaActualizacion"])
+                        };
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public string ObtenerTagRfidPorPlaca(string placa)
         {
             using (var connection = new SqlConnection(_extendedConnectionString))

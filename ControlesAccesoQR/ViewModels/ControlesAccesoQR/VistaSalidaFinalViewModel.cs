@@ -60,6 +60,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Empresa = resultado.EmpresaNombre;
                 Patente = resultado.Patente;
 
+                _dataAccess.ActualizarEstado(NumeroPaseSalida, "S");
+
                 _mainViewModel.PaseActual = new PaseProcesoModel
                 {
                     NombreChofer = Nombre,

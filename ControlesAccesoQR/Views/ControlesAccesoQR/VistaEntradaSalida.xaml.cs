@@ -34,6 +34,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 
                         if (hv.HuellaValida)
                         {
+                            vm.ActualizarEstado("H");
                             vm.MainViewModel.EstadoProceso = Models.EstadoProceso.IngresoRegistrado;
                             var rfidOk = await vm.ValidarRfidAsync();
                             if (!rfidOk)
