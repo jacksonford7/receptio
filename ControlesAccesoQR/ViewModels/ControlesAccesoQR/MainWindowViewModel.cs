@@ -1,13 +1,19 @@
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ControlesAccesoQR.Views.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
+using ControlesAccesoQR.Views.ControlesAccesoQR;
 
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;
+using Transaction.ServicioTransaction;
+using ServicioComunKioscoClient = Transaction.ServicioTransaction.ServicioTransactionClient;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
@@ -18,10 +24,18 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private EstadoProcesoEnum _estadoProceso = EstadoProcesoEnum.EnEspera;
         private EstadoProcesoEnum _ultimoEstadoVisible = EstadoProcesoEnum.EnEspera;
         private PaseProcesoModel _paseActual;
+        private string _numeroKiosco;
+
         public ObservableCollection<Proceso> Procesos { get; } = new ObservableCollection<Proceso>();
 
         public ICommand MostrarEntradaSalidaCommand { get; }
         public ICommand MostrarSalidaFinalCommand { get; }
+
+        public string NumeroKiosco
+        {
+            get => _numeroKiosco;
+            private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
+        }
 
         public EstadoProcesoEnum EstadoProceso
         {
@@ -52,6 +66,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             _frame = frame;
             MostrarEntradaSalidaCommand = new RelayCommand(MostrarEntradaSalida);
             MostrarSalidaFinalCommand = new RelayCommand(MostrarSalidaFinal);
+
+            ObtenerQuiosco();
         }
 
         private void MostrarEntradaSalida()
@@ -68,6 +84,31 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             await Task.Delay(5000);
             EstadoProceso = EstadoProcesoEnum.EnEspera;
+        }
+
+        private void ObtenerQuiosco()
+        {
+            var ipLocal = ConfigurationManager.AppSettings["IP_LOCAL"];
+
+            if (string.IsNullOrWhiteSpace(ipLocal))
+            {
+                var host = Dns.GetHostEntry(Dns.GetHostName());
+                if (host.AddressList.Length > 1)
+                    ipLocal = host.AddressList[1].ToString();
+            }
+
+            using (var cliente = new ServicioComunKioscoClient())
+            {
+                var kiosco = cliente.ObtenerQuiosco(ipLocal);
+                if (kiosco == null || !kiosco.IS_ACTIVE)
+                {
+                    MessageBox.Show("El quiosco no está disponible", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Application.Current.Shutdown();
+                    return;
+                }
+
+                NumeroKiosco = kiosco.NAME?.Split(' ').ElementAtOrDefault(1);
+            }
         }
     }
 }
