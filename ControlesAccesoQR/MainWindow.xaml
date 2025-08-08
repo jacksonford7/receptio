@@ -113,12 +113,9 @@
                     <TextBlock Text="Kiosco" FontSize="40" Foreground="#191007" TextAlignment="Center" />
                     <TextBlock Text="{Binding NumeroKiosco}" FontSize="120" Foreground="White" Background="#EF6C00" TextAlignment="Center" Margin="0,0,0,10"/>
                     <TextBlock Text="{Binding FechaHora}" FontSize="24" Foreground="#191007" TextAlignment="Center" />
-                    <Image Source="/Assets/logo.png"
-                           Height="100"
-                           Stretch="Uniform"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Margin="0,10,0,0"/>
+                    <Border Height="100" Background="Gray" Margin="0,10,0,0">
+                        <TextBlock Text="Logo" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    </Border>
                 </StackPanel>
             </DockPanel>
         </Border>
