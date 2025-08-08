@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Data" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -157,6 +158,7 @@
     <Compile Include="Views\ControlesAccesoQR\EstadoProcesoPanel.xaml.cs">
       <DependentUpon>EstadoProcesoPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Impresion\ImprimirTicketQr.cs" />
     <Compile Include="accesoDatos\PasePuertaDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -168,6 +170,10 @@
     <ProjectReference Include="..\UI.Interfaces\UI.Interfaces.csproj">
       <Project>{F6B15A8C-E38D-49AD-A26D-D244F026C380}</Project>
       <Name>UI.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI.ImpresoraZebra\UI.ImpresoraZebra.csproj">
+      <Project>{3F7AE242-AF74-40BD-B253-6A5042205F0A}</Project>
+      <Name>UI.ImpresoraZebra</Name>
     </ProjectReference>
     <ProjectReference Include="..\UI.Biometrico\UI.Biometrico.csproj">
       <Project>{B53650CC-3048-47F1-AF71-13A7E08A8B44}</Project>
