@@ -1,9 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRCoder;
+using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
+using Spring.Context.Support;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
 
@@ -138,14 +142,58 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         /// <returns>true si el tag leído es válido.</returns>
         public async Task<bool> ValidarRfidAsync()
         {
-            var rfidVm = new PaginaRfidViewModel(Patente);
-            bool resultado = await rfidVm.LeerTagAsync(_mainViewModel);
-            RfidMensaje = rfidVm.Mensaje;
+            bool resultado = false;
+            IAntena antena = null;
+            try
+            {
+                var tagEsperado = _dataAccess.ObtenerTagRfidPorPlaca(Patente);
+                if (string.IsNullOrWhiteSpace(tagEsperado))
+                {
+                    RfidMensaje = "No existe tag en BD";
+                    return false;
+                }
+
+                var ctx = new XmlApplicationContext("~/Springs/SpringAntena.xml");
+                antena = (IAntena)ctx["AdministradorAntena"];
+                if (!antena.ConectarAntena())
+                {
+                    RfidMensaje = "No se pudo conectar a la antena RFID";
+                    return false;
+                }
+
+                antena.IniciarLectura();
+                await Task.Delay(1000);
+                List<string> tags = antena.ObtenerTagsLeidos();
+
+                if (tags == null || !tags.Any())
+                {
+                    RfidMensaje = "No se leyó ningún tag";
+                }
+                else if (tags.Contains(tagEsperado))
+                {
+                    RfidMensaje = "Tag leído válido";
+                    resultado = true;
+                }
+                else
+                {
+                    RfidMensaje = "Tag leído no coincide";
+                }
+            }
+            catch (Exception ex)
+            {
+                RfidMensaje = ex.Message;
+            }
+            finally
+            {
+                antena?.TerminarLectura();
+                antena?.DesconectarAntena();
+                antena?.Dispose();
+            }
 
             _mainViewModel.Procesos.Add(new Proceso
             {
                 STEP = "RFID",
-                RESPONSE = rfidVm.Mensaje,
+                RESPONSE = RfidMensaje,
                 MESSAGE_ID = resultado ? 1 : 0
             });
 
