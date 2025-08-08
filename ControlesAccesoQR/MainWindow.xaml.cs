@@ -10,5 +10,11 @@ namespace ControlesAccesoQR
             InitializeComponent();
             DataContext = new MainWindowViewModel(MainFrame);
         }
+
+        private void AbrirRfIdTest_Click(object sender, RoutedEventArgs e)
+        {
+            var ventana = new RFIDTestWindow();
+            ventana.Show();
+        }
     }
 }
