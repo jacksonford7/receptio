@@ -84,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RFIDTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\TecladoNumerico.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +120,9 @@
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFIDTestWindow.xaml.cs">
+      <DependentUpon>RFIDTestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TecladoNumerico.xaml.cs">
       <DependentUpon>TecladoNumerico.xaml</DependentUpon>
