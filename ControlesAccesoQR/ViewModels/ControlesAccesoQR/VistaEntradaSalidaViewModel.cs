@@ -7,9 +7,12 @@ using System.Windows.Input;
 using QRCoder;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
+using RECEPTIO.CapaPresentacion.UI.Interfaces.Impresora;
+using RECEPTIO.CapaPresentacion.UI.ImpresoraZebra;
 using Spring.Context.Support;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
+using ControlesAccesoQR.Impresion;
 
 using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
 
@@ -133,7 +136,26 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         private void ImprimirQr()
         {
-            // Lógica de impresión pendiente
+            if (string.IsNullOrWhiteSpace(CodigoQR))
+                return;
+
+            var datos = new DatosTicketQr
+            {
+                Contenedor = "CONT-001",
+                Booking = "BOOK-001",
+                Cliente = Empresa,
+                Chofer = Nombre
+            };
+
+            IEstadoImpresora estadoImpresora = new EstadoImpresora();
+            var mensajes = estadoImpresora.VerEstado();
+            if (mensajes.Item1.Any())
+                return;
+
+            using (var ticket = new ImprimirTicketSalidaQr(CodigoQR, datos))
+            {
+                ticket.Imprimir();
+            }
         }
 
         /// <summary>
