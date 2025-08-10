@@ -21849,11 +21849,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyect\\RECEPTIO\\Console\\Console.csproj",
+      "projectUniqueName": "D:\\Proyect\\RECEPTIOgit\\Console\\Console.csproj",
       "projectName": "Console",
-      "projectPath": "D:\\Proyect\\RECEPTIO\\Console\\Console.csproj",
+      "projectPath": "D:\\Proyect\\RECEPTIOgit\\Console\\Console.csproj",
       "packagesPath": "C:\\Users\\jrodriguez\\.nuget\\packages\\",
-      "outputPath": "D:\\Proyect\\RECEPTIO\\Console\\obj\\",
+      "outputPath": "D:\\Proyect\\RECEPTIOgit\\Console\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "UsingMicrosoftNETSdk": false,
@@ -21875,8 +21875,8 @@
       "frameworks": {
         "uap10.0.16299": {
           "projectReferences": {
-            "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj": {
-              "projectPath": "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj"
+            "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj": {
+              "projectPath": "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj"
             }
           }
         }

@@ -21848,11 +21848,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyect\\RECEPTIO\\Mobile\\Mobile.csproj",
+      "projectUniqueName": "D:\\Proyect\\RECEPTIOgit\\Mobile\\Mobile.csproj",
       "projectName": "Mobile",
-      "projectPath": "D:\\Proyect\\RECEPTIO\\Mobile\\Mobile.csproj",
+      "projectPath": "D:\\Proyect\\RECEPTIOgit\\Mobile\\Mobile.csproj",
       "packagesPath": "C:\\Users\\jrodriguez\\.nuget\\packages\\",
-      "outputPath": "D:\\Proyect\\RECEPTIO\\Mobile\\obj\\",
+      "outputPath": "D:\\Proyect\\RECEPTIOgit\\Mobile\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "UsingMicrosoftNETSdk": false,
@@ -21874,8 +21874,8 @@
       "frameworks": {
         "uap10.0.16299": {
           "projectReferences": {
-            "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj": {
-              "projectPath": "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj"
+            "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj": {
+              "projectPath": "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj"
             }
           }
         }

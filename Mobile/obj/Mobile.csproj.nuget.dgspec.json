@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Proyect\\RECEPTIO\\Mobile\\Mobile.csproj": {}
+    "D:\\Proyect\\RECEPTIOgit\\Mobile\\Mobile.csproj": {}
   },
   "projects": {
-    "D:\\Proyect\\RECEPTIO\\Mobile\\Mobile.csproj": {
+    "D:\\Proyect\\RECEPTIOgit\\Mobile\\Mobile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Proyect\\RECEPTIO\\Mobile\\Mobile.csproj",
+        "projectUniqueName": "D:\\Proyect\\RECEPTIOgit\\Mobile\\Mobile.csproj",
         "projectName": "Mobile",
-        "projectPath": "D:\\Proyect\\RECEPTIO\\Mobile\\Mobile.csproj",
+        "projectPath": "D:\\Proyect\\RECEPTIOgit\\Mobile\\Mobile.csproj",
         "packagesPath": "C:\\Users\\jrodriguez\\.nuget\\packages\\",
-        "outputPath": "D:\\Proyect\\RECEPTIO\\Mobile\\obj\\",
+        "outputPath": "D:\\Proyect\\RECEPTIOgit\\Mobile\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "UsingMicrosoftNETSdk": false,
@@ -33,8 +33,8 @@
         "frameworks": {
           "uap10.0.16299": {
             "projectReferences": {
-              "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj": {
-                "projectPath": "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj"
+              "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj": {
+                "projectPath": "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj"
               }
             }
           }
@@ -100,14 +100,14 @@
         }
       }
     },
-    "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj": {
+    "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj",
+        "projectUniqueName": "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj",
         "projectName": "RECEPTIO.CapaPresentacion.UWP.MVVM",
-        "projectPath": "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\UWP.MVVM.csproj",
+        "projectPath": "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\UWP.MVVM.csproj",
         "packagesPath": "C:\\Users\\jrodriguez\\.nuget\\packages\\",
-        "outputPath": "D:\\Proyect\\RECEPTIO\\UWP.MVVM\\obj\\",
+        "outputPath": "D:\\Proyect\\RECEPTIOgit\\UWP.MVVM\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "UsingMicrosoftNETSdk": false,

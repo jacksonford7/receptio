@@ -1,15 +1,100 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Proyect\\RECEPTIO\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Proyect\\RECEPTIOgit\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\accesodatos\\pasepuertadataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\accesodatos\\pasepuertadataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|d:\\proyect\\receptiogit\\controlesaccesoqr\\viewmodels\\controlesaccesoqr\\vistaentradasalidaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\viewmodels\\controlesaccesoqr\\vistaentradasalidaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\viewmodels\\controlesaccesoqr\\vistasalidafinalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\viewmodels\\controlesaccesoqr\\vistasalidafinalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\views\\controlesaccesoqr\\vistaentradasalida.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\views\\controlesaccesoqr\\vistaentradasalida.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|d:\\proyect\\receptiogit\\controlesaccesoqr\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\views\\controlesaccesoqr\\estadoprocesopanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\views\\controlesaccesoqr\\estadoprocesopanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\views\\controlesaccesoqr\\vistaentradasalida.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\views\\controlesaccesoqr\\vistaentradasalida.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\rfidtestwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\rfidtestwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\springs\\springantena.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\springs\\springantena.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\viewmodels\\controlesaccesoqr\\paginarfidviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\viewmodels\\controlesaccesoqr\\paginarfidviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|D:\\Proyect\\RECEPTIOgit\\transaction\\viewmodels\\ventanaprincipalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|solutionrelative:transaction\\viewmodels\\ventanaprincipalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\viewmodels\\controlesaccesoqr\\estadoenespera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\viewmodels\\controlesaccesoqr\\estadoenespera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\viewmodels\\controlesaccesoqr\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\viewmodels\\controlesaccesoqr\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|D:\\Proyect\\RECEPTIOgit\\transaction\\springs\\springantena.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|solutionrelative:transaction\\springs\\springantena.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\viewmodels\\controlesaccesoqr\\huellaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\viewmodels\\controlesaccesoqr\\huellaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|D:\\Proyect\\RECEPTIOgit\\controlesaccesoqr\\usercontrols\\tecladonumerico.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EA03C535-BAC7-4EEB-A08D-AADF56A48FF3}|ControlesAccesoQR\\ControlesAccesoQR.csproj|solutionrelative:controlesaccesoqr\\usercontrols\\tecladonumerico.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|D:\\Proyect\\RECEPTIOgit\\transaction\\views\\ventanaprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|solutionrelative:transaction\\views\\ventanaprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|D:\\Proyect\\RECEPTIOgit\\transaction\\views\\ventanaautorizacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|solutionrelative:transaction\\views\\ventanaautorizacion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|D:\\Proyect\\RECEPTIOgit\\transaction\\views\\splash.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|solutionrelative:transaction\\views\\splash.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|D:\\Proyect\\RECEPTIOgit\\transaction\\views\\paginamultiuso.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B9BE0650-8694-479A-AC4C-CCA08EB74828}|Transaction\\Transaction.csproj|solutionrelative:transaction\\views\\paginamultiuso.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 278,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +107,264 @@
             {
               "$type": "Bookmark",
               "Name": "ST:11:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VistaEntradaSalidaViewModel.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaEntradaSalidaViewModel.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaEntradaSalidaViewModel.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaEntradaSalidaViewModel.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaEntradaSalidaViewModel.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAmwIAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T17:47:08.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\App.config",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\App.config",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\App.config",
+              "RelativeToolTip": "ControlesAccesoQR\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-08-05T16:23:42.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SpringAntena.xml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Springs\\SpringAntena.xml",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\Springs\\SpringAntena.xml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Springs\\SpringAntena.xml",
+              "RelativeToolTip": "ControlesAccesoQR\\Springs\\SpringAntena.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-08-04T15:33:48.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "VentanaPrincipalViewModel.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\Transaction\\ViewModels\\VentanaPrincipalViewModel.cs",
+              "RelativeDocumentMoniker": "Transaction\\ViewModels\\VentanaPrincipalViewModel.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\Transaction\\ViewModels\\VentanaPrincipalViewModel.cs",
+              "RelativeToolTip": "Transaction\\ViewModels\\VentanaPrincipalViewModel.cs",
+              "ViewState": "AgIAAOcBAAAAAAAAAAAAAO8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T18:59:24.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EstadoProcesoPanel.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Views\\ControlesAccesoQR\\EstadoProcesoPanel.xaml",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\Views\\ControlesAccesoQR\\EstadoProcesoPanel.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Views\\ControlesAccesoQR\\EstadoProcesoPanel.xaml",
+              "RelativeToolTip": "ControlesAccesoQR\\Views\\ControlesAccesoQR\\EstadoProcesoPanel.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-31T17:47:37.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VistaEntradaSalida.xaml.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAEwCYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T20:17:10.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PasePuertaDataAccess.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\accesoDatos\\PasePuertaDataAccess.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\accesoDatos\\PasePuertaDataAccess.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\accesoDatos\\PasePuertaDataAccess.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\accesoDatos\\PasePuertaDataAccess.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAA4wJAAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T17:45:54.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VistaSalidaFinalViewModel.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaSalidaFinalViewModel.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaSalidaFinalViewModel.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaSalidaFinalViewModel.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\VistaSalidaFinalViewModel.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAADkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T21:28:53.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VistaEntradaSalida.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml",
+              "RelativeToolTip": "ControlesAccesoQR\\Views\\ControlesAccesoQR\\VistaEntradaSalida.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-31T17:47:43.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\MainWindow.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\MainWindow.xaml",
+              "RelativeToolTip": "ControlesAccesoQR\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-10T21:53:25.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RFIDTestWindow.xaml.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\RFIDTestWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\RFIDTestWindow.xaml.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\RFIDTestWindow.xaml.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\RFIDTestWindow.xaml.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAADwvxoAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T14:57:01.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SpringAntena.xml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Springs\\SpringAntena.xml",
+              "RelativeDocumentMoniker": "Transaction\\Springs\\SpringAntena.xml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Springs\\SpringAntena.xml",
+              "RelativeToolTip": "Transaction\\Springs\\SpringAntena.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-08-04T20:06:08.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PaginaMultiuso.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\PaginaMultiuso.xaml",
+              "RelativeDocumentMoniker": "Transaction\\Views\\PaginaMultiuso.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\PaginaMultiuso.xaml",
+              "RelativeToolTip": "Transaction\\Views\\PaginaMultiuso.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-28T20:51:29.735Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "VentanaAutorizacion.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\VentanaAutorizacion.xaml",
+              "RelativeDocumentMoniker": "Transaction\\Views\\VentanaAutorizacion.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\VentanaAutorizacion.xaml",
+              "RelativeToolTip": "Transaction\\Views\\VentanaAutorizacion.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-28T20:52:00.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "VentanaPrincipal.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\VentanaPrincipal.xaml",
+              "RelativeDocumentMoniker": "Transaction\\Views\\VentanaPrincipal.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\VentanaPrincipal.xaml",
+              "RelativeToolTip": "Transaction\\Views\\VentanaPrincipal.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-28T20:51:54.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Splash.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\Splash.xaml",
+              "RelativeDocumentMoniker": "Transaction\\Views\\Splash.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\Transaction\\Views\\Splash.xaml",
+              "RelativeToolTip": "Transaction\\Views\\Splash.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-07-28T20:51:32.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PaginaRfidViewModel.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\PaginaRfidViewModel.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\PaginaRfidViewModel.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\PaginaRfidViewModel.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\PaginaRfidViewModel.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAmwCAAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T20:47:57.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MainWindowViewModel.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\MainWindowViewModel.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\MainWindowViewModel.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\MainWindowViewModel.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\MainWindowViewModel.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAIwFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T16:08:19.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "EstadoEnEspera.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\EstadoEnEspera.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\EstadoEnEspera.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\EstadoEnEspera.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\EstadoEnEspera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T15:39:59.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HuellaViewModel.cs",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\HuellaViewModel.cs",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\HuellaViewModel.cs",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\HuellaViewModel.cs",
+              "RelativeToolTip": "ControlesAccesoQR\\ViewModels\\ControlesAccesoQR\\HuellaViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T18:58:10.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "TecladoNumerico.xaml",
+              "DocumentMoniker": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\UserControls\\TecladoNumerico.xaml",
+              "RelativeDocumentMoniker": "ControlesAccesoQR\\UserControls\\TecladoNumerico.xaml",
+              "ToolTip": "D:\\Proyect\\RECEPTIOgit\\ControlesAccesoQR\\UserControls\\TecladoNumerico.xaml",
+              "RelativeToolTip": "ControlesAccesoQR\\UserControls\\TecladoNumerico.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-03T23:47:22.347Z",
+              "EditorCaption": ""
             }
           ]
         }

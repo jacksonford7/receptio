@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qbgrWBPLW8g=",
+  "dgSpecHash": "r0xE7Vmwxmo=",
   "success": true,
-  "projectFilePath": "D:\\Proyect\\RECEPTIO\\Console\\Console.csproj",
+  "projectFilePath": "D:\\Proyect\\RECEPTIOgit\\Console\\Console.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jrodriguez\\.nuget\\packages\\colorcode.core\\2.0.5\\colorcode.core.2.0.5.nupkg.sha512",
     "C:\\Users\\jrodriguez\\.nuget\\packages\\colorcode.uwp\\2.0.5\\colorcode.uwp.2.0.5.nupkg.sha512",
