@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using ControlesAccesoQR;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
 using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
@@ -22,23 +23,42 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 
                 if (!string.IsNullOrWhiteSpace(vm.ChoferID))
                 {
-                    var dialogo = new DialogoHuella { Owner = Window.GetWindow(this), DataContext = new HuellaViewModel(vm.ChoferID) };
-                    if (dialogo.ShowDialog() == true && dialogo.DataContext is HuellaViewModel hv)
+                    if (DevBypass.IsDevKiosk)
                     {
+                        MessageBox.Show("Huella validada"); // BYPASS CGDE041
                         vm.MainViewModel.Procesos.Add(new Proceso
                         {
                             STEP = "HUELLA",
-                            RESPONSE = hv.Resultado,
-                            MESSAGE_ID = hv.HuellaValida ? 1 : 0
+                            RESPONSE = "BYPASS CGDE041",
+                            MESSAGE_ID = 1
                         });
 
-                        if (hv.HuellaValida)
+                        vm.ActualizarEstado("H");
+                        vm.MainViewModel.EstadoProceso = Models.EstadoProceso.IngresoRegistrado;
+                        var rfidOk = await vm.ValidarRfidAsync();
+                        if (!rfidOk)
+                            MessageBox.Show(vm.RfidMensaje, "RFID", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        var dialogo = new DialogoHuella { Owner = Window.GetWindow(this), DataContext = new HuellaViewModel(vm.ChoferID) };
+                        if (dialogo.ShowDialog() == true && dialogo.DataContext is HuellaViewModel hv)
                         {
-                            vm.ActualizarEstado("H");
-                            vm.MainViewModel.EstadoProceso = Models.EstadoProceso.IngresoRegistrado;
-                            var rfidOk = await vm.ValidarRfidAsync();
-                            if (!rfidOk)
-                                MessageBox.Show(vm.RfidMensaje, "RFID", MessageBoxButton.OK, MessageBoxImage.Error);
+                            vm.MainViewModel.Procesos.Add(new Proceso
+                            {
+                                STEP = "HUELLA",
+                                RESPONSE = hv.Resultado,
+                                MESSAGE_ID = hv.HuellaValida ? 1 : 0
+                            });
+
+                            if (hv.HuellaValida)
+                            {
+                                vm.ActualizarEstado("H");
+                                vm.MainViewModel.EstadoProceso = Models.EstadoProceso.IngresoRegistrado;
+                                var rfidOk = await vm.ValidarRfidAsync();
+                                if (!rfidOk)
+                                    MessageBox.Show(vm.RfidMensaje, "RFID", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                     }
                 }

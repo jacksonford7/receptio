@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using ControlesAccesoQR;
 using System.Windows.Input;
 using QRCoder;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
@@ -147,6 +149,12 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Chofer = Nombre
             };
 
+            if (DevBypass.IsDevKiosk)
+            {
+                MessageBox.Show("Impresión simulada (CGDE041)"); // BYPASS CGDE041
+                return;
+            }
+
             IEstadoImpresora estadoImpresora = new EstadoImpresora();
             var mensajes = estadoImpresora.VerEstado();
             if (mensajes.Item1.Any())
@@ -166,50 +174,60 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             bool resultado = false;
             IAntena antena = null;
-            try
+
+            if (DevBypass.IsDevKiosk)
             {
-                var tagEsperado = _dataAccess.ObtenerTagRfidPorPlaca(Patente);
-                if (string.IsNullOrWhiteSpace(tagEsperado))
-                {
-                    RfidMensaje = "No existe tag en BD";
-                    return false;
-                }
-
-                var ctx = new XmlApplicationContext("~/Springs/SpringAntena.xml");
-                antena = (IAntena)ctx["AdministradorAntena"];
-                if (!antena.ConectarAntena())
-                {
-                    RfidMensaje = "No se pudo conectar a la antena RFID";
-                    return false;
-                }
-
-                antena.IniciarLectura();
-                await Task.Delay(1000);
-                List<string> tags = antena.ObtenerTagsLeidos();
-
-                if (tags == null || !tags.Any())
-                {
-                    RfidMensaje = "No se leyó ningún tag";
-                }
-                else if (tags.Contains(tagEsperado))
-                {
-                    RfidMensaje = "Tag leído válido";
-                    resultado = true;
-                }
-                else
-                {
-                    RfidMensaje = "Tag leído no coincide";
-                }
+                MessageBox.Show("RFID detectado"); // BYPASS CGDE041
+                RfidMensaje = "Tag leído válido";
+                resultado = true;
             }
-            catch (Exception ex)
+            else
             {
-                RfidMensaje = ex.Message;
-            }
-            finally
-            {
-                antena?.TerminarLectura();
-                antena?.DesconectarAntena();
-                antena?.Dispose();
+                try
+                {
+                    var tagEsperado = _dataAccess.ObtenerTagRfidPorPlaca(Patente);
+                    if (string.IsNullOrWhiteSpace(tagEsperado))
+                    {
+                        RfidMensaje = "No existe tag en BD";
+                        return false;
+                    }
+
+                    var ctx = new XmlApplicationContext("~/Springs/SpringAntena.xml");
+                    antena = (IAntena)ctx["AdministradorAntena"];
+                    if (!antena.ConectarAntena())
+                    {
+                        RfidMensaje = "No se pudo conectar a la antena RFID";
+                        return false;
+                    }
+
+                    antena.IniciarLectura();
+                    await Task.Delay(1000);
+                    List<string> tags = antena.ObtenerTagsLeidos();
+
+                    if (tags == null || !tags.Any())
+                    {
+                        RfidMensaje = "No se leyó ningún tag";
+                    }
+                    else if (tags.Contains(tagEsperado))
+                    {
+                        RfidMensaje = "Tag leído válido";
+                        resultado = true;
+                    }
+                    else
+                    {
+                        RfidMensaje = "Tag leído no coincide";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    RfidMensaje = ex.Message;
+                }
+                finally
+                {
+                    antena?.TerminarLectura();
+                    antena?.DesconectarAntena();
+                    antena?.Dispose();
+                }
             }
 
             _mainViewModel.Procesos.Add(new Proceso
