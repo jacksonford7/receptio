@@ -194,7 +194,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 EstadoActual = result.Estado;
                 CodigoQR = result.PasePuertaID.ToString();
                 UltimaActualizacion = result.FechaActualizacion;
-                _mainViewModel.EstadoProcesoActual = _mainViewModel.MapEstadoToProceso(result.Estado);
+                EstadoPanelEvents.RaiseEstadoCodigoCambiado(result.Estado);
                 return true;
             }
             catch (SqlException ex)
