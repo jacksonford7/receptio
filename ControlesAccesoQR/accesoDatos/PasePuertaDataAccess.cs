@@ -233,12 +233,12 @@ namespace ControlesAccesoQR.accesoDatos
                         result = new ActualizarEstadoResult
                         {
                             PasePuertaID = Convert.ToInt32(reader["PasePuertaID"]),
-                            NumeroPase = Convert.ToString(reader["NumeroPase"]),
+                            //NumeroPase = Convert.ToString(reader["NumeroPase"]),
                             Estado = Convert.ToString(reader["Estado"]),
                             FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]),
-                            FechaActualizacion = reader["FechaActualizacion"] == DBNull.Value
-                                ? (DateTime?)null
-                                : Convert.ToDateTime(reader["FechaActualizacion"])
+                            //FechaActualizacion = reader["FechaActualizacion"] == DBNull.Value
+                            //    ? (DateTime?)null
+                            //    : Convert.ToDateTime(reader["FechaActualizacion"])
                         };
                     }
                 }

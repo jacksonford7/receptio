@@ -131,7 +131,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 return;
 
             HoraLlegada = resultado.FechaHoraLlegada;
-
+            NumeroPaseEscaneado = CodigoQR;
             // Guardar el QR original por referencia
             if (string.IsNullOrWhiteSpace(NumeroPaseEscaneado))
                 NumeroPaseEscaneado = CodigoQR;
@@ -192,7 +192,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 }
 
                 EstadoActual = result.Estado;
-                CodigoQR = result.NumeroPase;
+                CodigoQR = result.PasePuertaID.ToString();
                 UltimaActualizacion = result.FechaActualizacion;
                 _mainViewModel.EstadoProcesoActual = _mainViewModel.MapEstadoToProceso(result.Estado);
                 return true;

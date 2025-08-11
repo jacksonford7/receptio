@@ -25,6 +25,8 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                 if (!vm.IngresoRealizado)
                     return;
 
+                vm.ChoferID = "1";
+
                 if (!string.IsNullOrWhiteSpace(vm.ChoferID))
                 {
                     if (DevBypass.IsDevKiosk)

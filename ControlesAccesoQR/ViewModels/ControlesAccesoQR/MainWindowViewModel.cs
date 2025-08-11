@@ -137,13 +137,19 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public EstadoPanel MapEstadoToProceso(string codigo)
         {
-            return codigo switch
+            if (string.IsNullOrWhiteSpace(codigo))
+                return EstadoPanel.Pase;
+
+            var c = codigo.Trim().ToUpperInvariant();
+
+            switch (c)
             {
-                "H" => EstadoPanel.Huella,
-                "R" => EstadoPanel.Tag,
-                "P" => EstadoPanel.Ticket,
-                _ => EstadoPanel.Pase
-            };
+                case "H": return EstadoPanel.Huella;
+                case "R": return EstadoPanel.Tag;
+                case "P": return EstadoPanel.Ticket;
+                default: return EstadoPanel.Pase;
+            }
         }
+
     }
 }
