@@ -56,7 +56,7 @@
                                         <DataTrigger.Binding>
                                             <MultiBinding Converter="{StaticResource EqualityConverter}">
                                                 <Binding/>
-                                                <Binding Path="EstadoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
+                                                <Binding Path="EstadoProcesoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
                                             </MultiBinding>
                                         </DataTrigger.Binding>
                                         <Setter Property="TextElement.Foreground" Value="White"/>
@@ -71,7 +71,7 @@
                                     <Grid.Background>
                                         <MultiBinding Converter="{StaticResource EqualityConverter}">
                                             <Binding/>
-                                            <Binding Path="EstadoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
+                                            <Binding Path="EstadoProcesoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
                                         </MultiBinding>
                                     </Grid.Background>
                                     <Grid.ColumnDefinitions>

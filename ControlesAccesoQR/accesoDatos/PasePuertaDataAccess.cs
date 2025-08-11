@@ -182,6 +182,7 @@ namespace ControlesAccesoQR.accesoDatos
             return result;
         }
 
+        [Obsolete("Usar ActualizarEstadoAsync")]
         public ActualizarEstadoResult ActualizarEstado(string numeroPase, string estado)
         {
             ActualizarEstadoResult result = null;

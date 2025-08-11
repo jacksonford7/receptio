@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Threading;
@@ -43,14 +44,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public VistaSalidaFinalViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            ProcesarSalidaCommand = new RelayCommand(ProcesarSalida);
+            ProcesarSalidaCommand = new AsyncRelayCommand(ProcesarSalidaAsync);
             ImprimirSalidaCommand = new RelayCommand(ImprimirSalida);
 
             Contenedores.Add("CONT-001");
             Contenedores.Add("CONT-002");
         }
 
-        private async void ProcesarSalida()
+        private async Task ProcesarSalidaAsync()
         {
             MensajeError = string.Empty;
             SalidaRegistrada = false;
@@ -70,8 +71,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 try
                 {
                     var estado = await _estadoService.ActualizarAsync(NumeroPaseSalida, "S");
-                    if (estado != null)
-                        NumeroPaseSalida = estado.NumeroPase;
+                    if (estado == null)
+                    {
+                        if (DevBypass.IsDevKiosk)
+                            MessageBox.Show("El pase no existe o el SP no devolvió filas");
+                        else
+                            Console.WriteLine("ActualizarEstadoAsync retornó null");
+                        return;
+                    }
+                    NumeroPaseSalida = estado.NumeroPase;
                 }
                 catch (SqlException ex)
                 {
@@ -79,6 +87,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                         MessageBox.Show(ex.Message);
                     else
                         Console.WriteLine(ex);
+                    return;
                 }
                 catch (TimeoutException ex)
                 {
@@ -86,6 +95,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                         MessageBox.Show(ex.Message);
                     else
                         Console.WriteLine(ex);
+                    return;
                 }
 
                 _mainViewModel.PaseActual = new PaseProcesoModel

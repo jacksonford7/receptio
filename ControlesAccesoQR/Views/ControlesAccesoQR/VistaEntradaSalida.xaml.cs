@@ -19,20 +19,25 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
         {
             if (DataContext is VistaEntradaSalidaViewModel vm)
             {
-                if (vm.IngresarCommand.CanExecute(null))
-                    vm.IngresarCommand.Execute(null);
+                if (vm.IngresarCommand is AsyncRelayCommand arc && arc.CanExecute(null))
+                    await arc.ExecuteAsync();
+
+                if (!vm.IngresoRealizado)
+                    return;
 
                 if (!string.IsNullOrWhiteSpace(vm.ChoferID))
                 {
                     if (DevBypass.IsDevKiosk)
                     {
                         await CompletarValidacionHuellaAsync(vm, "BYPASS CGDE041", 1);
+                        if (!await vm.ActualizarEstadoAsync("H"))
+                            return;
                         MessageBox.Show("Huella validada");
-                        await vm.ActualizarEstadoAsync("H");
 
                         await CompletarLecturaRfidAsync(vm, "TAG_SIMULADO");
+                        if (!await vm.ActualizarEstadoAsync("R"))
+                            return;
                         MessageBox.Show("RFID detectado");
-                        await vm.ActualizarEstadoAsync("R");
                         return;
                     }
 
@@ -43,9 +48,11 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 
                         if (hv.HuellaValida)
                         {
-                            await vm.ActualizarEstadoAsync("H");
+                            if (!await vm.ActualizarEstadoAsync("H"))
+                                return;
                             await CompletarLecturaRfidAsync(vm, null);
-                            await vm.ActualizarEstadoAsync("R");
+                            if (!await vm.ActualizarEstadoAsync("R"))
+                                return;
                         }
                     }
                 }
@@ -59,13 +66,15 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                 if (DevBypass.IsDevKiosk)
                 {
                     await CompletarImpresionAsync(vm);
+                    if (!await vm.ActualizarEstadoAsync("P"))
+                        return;
                     MessageBox.Show("Impresión simulada (CGDE041)");
-                    await vm.ActualizarEstadoAsync("P");
                     return;
                 }
 
                 await CompletarImpresionAsync(vm);
-                await vm.ActualizarEstadoAsync("P");
+                if (!await vm.ActualizarEstadoAsync("P"))
+                    return;
                 LimpiarFormularioPostProceso();
             }
         }
