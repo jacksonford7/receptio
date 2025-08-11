@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Views.ControlesAccesoQR;
+using ControlesAccesoQR.Servicios;
 
 using EstadoPanel = ControlesAccesoQR.Estados.EstadoProceso;
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
@@ -29,7 +30,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private EstadoProcesoEnum _ultimoEstadoVisible = EstadoProcesoEnum.EnEspera;
         private PaseProcesoModel _paseActual;
         private string _numeroKiosco;
-        private EstadoPanel _estadoProcesoActual = EstadoPanel.Pase;
+        private EstadoPanel _estadoPanelActual = EstadoPanel.Pase;
         private string _fechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         private readonly DispatcherTimer _reloj = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
 
@@ -46,10 +47,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
         }
 
-        public EstadoPanel EstadoProcesoActual
+        public EstadoPanel EstadoPanelActual
         {
-            get => _estadoProcesoActual;
-            set { _estadoProcesoActual = value; OnPropertyChanged(nameof(EstadoProcesoActual)); }
+            get => _estadoPanelActual;
+            private set
+            {
+                if (_estadoPanelActual == value) return;
+                _estadoPanelActual = value;
+                OnPropertyChanged(nameof(EstadoPanelActual));
+            }
         }
 
         public string FechaHora
@@ -90,6 +96,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             _reloj.Tick += (s, e) => FechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             _reloj.Start();
+
+            EstadoPanelEvents.EstadoCodigoCambiado += OnEstadoCodigoCambiado;
 
             ObtenerQuiosco();
         }
@@ -149,6 +157,27 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 case "P": return EstadoPanel.Ticket;
                 default: return EstadoPanel.Pase;
             }
+        }
+
+        public void SetEstadoDesdeCodigo(string codigo)
+        {
+            var nuevo = MapEstadoToProceso(codigo);
+            if (nuevo == _estadoPanelActual) return;
+
+            var disp = System.Windows.Application.Current?.Dispatcher;
+            if (disp != null && !disp.CheckAccess())
+            {
+                disp.Invoke(new Action(() => EstadoPanelActual = nuevo));
+            }
+            else
+            {
+                EstadoPanelActual = nuevo;
+            }
+        }
+
+        private void OnEstadoCodigoCambiado(string codigo)
+        {
+            SetEstadoDesdeCodigo(codigo);
         }
 
     }
