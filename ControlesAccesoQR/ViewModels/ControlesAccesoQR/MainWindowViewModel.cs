@@ -30,7 +30,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private EstadoProcesoEnum _ultimoEstadoVisible = EstadoProcesoEnum.EnEspera;
         private PaseProcesoModel _paseActual;
         private string _numeroKiosco;
-        private EstadoPanel _estadoPanelActual = EstadoPanel.Pase;
+        private EstadoPanel _estadoActual = EstadoPanel.Pase;
+        private readonly ISet<EstadoPanel> _estadosCompletados = new HashSet<EstadoPanel>();
         private string _fechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         private readonly DispatcherTimer _reloj = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
 
@@ -47,16 +48,18 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
         }
 
-        public EstadoPanel EstadoPanelActual
+        public EstadoPanel EstadoActual
         {
-            get => _estadoPanelActual;
-            private set
+            get => _estadoActual;
+            set
             {
-                if (_estadoPanelActual == value) return;
-                _estadoPanelActual = value;
-                OnPropertyChanged(nameof(EstadoPanelActual));
+                if (_estadoActual == value) return;
+                _estadoActual = value;
+                OnPropertyChanged(nameof(EstadoActual));
             }
         }
+
+        public ISet<EstadoPanel> EstadosCompletados => _estadosCompletados;
 
         public string FechaHora
         {
@@ -152,6 +155,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             switch (c)
             {
+                case "I": return EstadoPanel.Pase;
                 case "H": return EstadoPanel.Huella;
                 case "R": return EstadoPanel.Tag;
                 case "P": return EstadoPanel.Ticket;
@@ -162,16 +166,24 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public void SetEstadoDesdeCodigo(string codigo)
         {
             var nuevo = MapEstadoToProceso(codigo);
-            if (nuevo == _estadoPanelActual) return;
+            if (nuevo == _estadoActual) return;
+
+            _estadosCompletados.Clear();
+            foreach (var estado in Enum.GetValues(typeof(EstadoPanel)).Cast<EstadoPanel>())
+            {
+                if (estado == nuevo) break;
+                _estadosCompletados.Add(estado);
+            }
+            OnPropertyChanged(nameof(EstadosCompletados));
 
             var disp = System.Windows.Application.Current?.Dispatcher;
             if (disp != null && !disp.CheckAccess())
             {
-                disp.Invoke(new Action(() => EstadoPanelActual = nuevo));
+                disp.Invoke(new Action(() => EstadoActual = nuevo));
             }
             else
             {
-                EstadoPanelActual = nuevo;
+                EstadoActual = nuevo;
             }
         }
 

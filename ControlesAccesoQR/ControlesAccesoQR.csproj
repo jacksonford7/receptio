@@ -145,6 +145,7 @@
     <Compile Include="ViewModels\ControlesAccesoQR\HuellaViewModel.cs" />
     <Compile Include="Estados\EstadoProceso.cs" />
     <Compile Include="Converters\EqualityConverter.cs" />
+    <Compile Include="Converters\SetContainsConverter.cs" />
     <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
       <DependentUpon>VistaEntradaSalida.xaml</DependentUpon>
     </Compile>
