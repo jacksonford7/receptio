@@ -29,7 +29,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private EstadoProcesoEnum _ultimoEstadoVisible = EstadoProcesoEnum.EnEspera;
         private PaseProcesoModel _paseActual;
         private string _numeroKiosco;
-        private EstadoPanel _estadoActual = EstadoPanel.Huella;
+        private EstadoPanel _estadoProcesoActual = EstadoPanel.Pase;
         private string _fechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
         private readonly DispatcherTimer _reloj = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
 
@@ -46,10 +46,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
         }
 
-        public EstadoPanel EstadoActual
+        public EstadoPanel EstadoProcesoActual
         {
-            get => _estadoActual;
-            set { _estadoActual = value; OnPropertyChanged(nameof(EstadoActual)); }
+            get => _estadoProcesoActual;
+            set { _estadoProcesoActual = value; OnPropertyChanged(nameof(EstadoProcesoActual)); }
         }
 
         public string FechaHora
@@ -133,6 +133,17 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
                 NumeroKiosco = kiosco.NAME?.Split(' ').ElementAtOrDefault(1);
             }
+        }
+
+        public EstadoPanel MapEstadoToProceso(string codigo)
+        {
+            return codigo switch
+            {
+                "H" => EstadoPanel.Huella,
+                "R" => EstadoPanel.Tag,
+                "P" => EstadoPanel.Ticket,
+                _ => EstadoPanel.Pase
+            };
         }
     }
 }

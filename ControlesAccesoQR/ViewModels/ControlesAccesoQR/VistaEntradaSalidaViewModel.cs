@@ -87,7 +87,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             _mainViewModel = mainViewModel;
             EscanearQrCommand = new RelayCommand(EscanearQr);
-            IngresarCommand = new RelayCommand(Ingresar);
+            IngresarCommand = new AsyncRelayCommand(IngresarAsync);
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
         }
 
@@ -106,7 +106,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             }
         }
 
-        private async void Ingresar()
+        private async Task IngresarAsync()
         {
             if (string.IsNullOrWhiteSpace(CodigoQR))
                 return;
@@ -117,7 +117,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             HoraLlegada = resultado.FechaHoraLlegada;
 
-            await ActualizarEstadoAsync("I");
+            if (!await ActualizarEstadoAsync("I"))
+                return;
 
             var qrText = $"{CodigoQR}|{resultado.FechaHoraLlegada:yyyy-MM-dd HH:mm:ss}";
             using (var generator = new QRCodeGenerator())
@@ -146,20 +147,28 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             };
         }
 
-        public async Task ActualizarEstadoAsync(string estado, CancellationToken ct = default)
+        public async Task<bool> ActualizarEstadoAsync(string estado, CancellationToken ct = default)
         {
             if (string.IsNullOrWhiteSpace(CodigoQR))
-                return;
+                return false;
 
             try
             {
                 var result = await _estadoService.ActualizarAsync(CodigoQR, estado, ct);
-                if (result != null)
+                if (result == null)
                 {
-                    EstadoActual = result.Estado;
-                    CodigoQR = result.NumeroPase;
-                    UltimaActualizacion = result.FechaActualizacion;
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show("El pase no existe o el SP no devolvió filas");
+                    else
+                        Console.WriteLine("ActualizarEstadoAsync retornó null");
+                    return false;
                 }
+
+                EstadoActual = result.Estado;
+                CodigoQR = result.NumeroPase;
+                UltimaActualizacion = result.FechaActualizacion;
+                _mainViewModel.EstadoProcesoActual = _mainViewModel.MapEstadoToProceso(result.Estado);
+                return true;
             }
             catch (SqlException ex)
             {
@@ -175,6 +184,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 else
                     Console.WriteLine(ex);
             }
+            return false;
         }
 
         private void ImprimirQr()
@@ -262,6 +272,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 catch (Exception ex)
                 {
                     RfidMensaje = ex.Message;
+                    System.Diagnostics.Debug.WriteLine(ex);
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show(ex.Message);
                 }
                 finally
                 {
