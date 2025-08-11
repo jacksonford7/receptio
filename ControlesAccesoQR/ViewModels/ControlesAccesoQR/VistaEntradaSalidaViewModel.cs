@@ -33,6 +33,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private bool _ingresoRealizado;
         private string _qrImagePath;
         private string _codigoQR;
+        private string _numeroPaseEscaneado;
         private string _rfidMensaje;
         private string _estadoActual;
         private DateTime? _ultimaActualizacion;
@@ -60,6 +61,20 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 OnPropertyChanged(nameof(CodigoQR));
             }
         }
+
+        public string NumeroPaseEscaneado
+        {
+            get => _numeroPaseEscaneado;
+            private set
+            {
+                if (_numeroPaseEscaneado == value)
+                    return;
+                _numeroPaseEscaneado = value;
+                OnPropertyChanged(nameof(NumeroPaseEscaneado));
+            }
+        }
+
+        public string IdentificadorDeTrabajo => CodigoQR;
 
         public string RfidMensaje
         {
@@ -116,6 +131,18 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 return;
 
             HoraLlegada = resultado.FechaHoraLlegada;
+
+            // Guardar el QR original por referencia
+            if (string.IsNullOrWhiteSpace(NumeroPaseEscaneado))
+                NumeroPaseEscaneado = CodigoQR;
+
+            // A partir de aquí trabajamos con el ID devuelto por el SP
+            var idPase = resultado.PasePuertaID.ToString();
+            if (!string.Equals(CodigoQR, idPase, StringComparison.Ordinal))
+            {
+                CodigoQR = idPase;                 // <- ahora CodigoQR lleva el PasePuertaID
+                OnPropertyChanged(nameof(CodigoQR));
+            }
 
             if (!await ActualizarEstadoAsync("I"))
                 return;
