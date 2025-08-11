@@ -11,6 +11,7 @@ using ControlesAccesoQR.Servicios;
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;
+using System;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
