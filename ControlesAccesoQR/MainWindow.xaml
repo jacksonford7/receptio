@@ -40,14 +40,35 @@
         </DockPanel>
 
         <!-- Panel derecho de estados -->
-        <Border Grid.Column="1" BorderBrush="#E65100" BorderThickness="5">
-            <DockPanel>
-                <StackPanel DockPanel.Dock="Top">
-                    <StackPanel Orientation="Horizontal" Height="70" Background="#EF6C00" HorizontalAlignment="Left" Width="350">
-                        <TextBlock Text="Datos" FontSize="36" Foreground="White" VerticalAlignment="Center" Margin="20,0,0,0"/>
-                    </StackPanel>
+        <Border Grid.Column="1"
+                BorderBrush="#E65100"
+                BorderThickness="5"
+                CornerRadius="8"
+                Background="White"
+                SnapsToDevicePixels="True">
+            <Grid ClipToBounds="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                    <ItemsControl ItemsSource="{Binding Estados}" Width="350">
+                <Border Background="#EF6C00"
+                        CornerRadius="8,8,0,0"
+                        Height="70"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        SnapsToDevicePixels="True"
+                        ClipToBounds="True"
+                        Panel.ZIndex="1">
+                    <TextBlock Text="Datos"
+                               FontSize="36"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="20,0,0,0" />
+                </Border>
+
+                <ScrollViewer Grid.Row="1" Margin="0">
+                    <ItemsControl ItemsSource="{Binding Estados}">
                         <ItemsControl.ItemContainerStyle>
                             <Style TargetType="ContentPresenter">
                                 <Setter Property="Margin" Value="0,0,0,5"/>
@@ -113,8 +134,8 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </StackPanel>
-            </DockPanel>
+                </ScrollViewer>
+            </Grid>
         </Border>
     </Grid>
 </Window>

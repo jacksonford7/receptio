@@ -36,7 +36,25 @@
                            TextWrapping="Wrap"
                            TextAlignment="Center"
                            Margin="0,0,0,20" />
-                <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}" ComandoOk="{Binding EscanearQrCommand}" Margin="0,0,0,10" />
+                <Grid HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <uc:TecladoNumerico x:Name="Teclado"
+                                        Grid.Column="0"
+                                        Text="{Binding CodigoQR, Mode=TwoWay}"
+                                        ComandoOk="{Binding EscanearQrCommand}"/>
+
+                    <Button Grid.Column="2"
+                            Content="OK"
+                            Width="140"
+                            Height="{Binding ElementName=Teclado, Path=ActualHeight, FallbackValue=300}"
+                            VerticalAlignment="Stretch"
+                            Command="{Binding EscanearQrCommand}"/>
+                </Grid>
                 <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
                 <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
 
