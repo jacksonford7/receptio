@@ -2,10 +2,9 @@ namespace ControlesAccesoQR.Estados
 {
     public enum EstadoProceso
     {
+        Pase,
         Huella,
         Tag,
-        Procesos,
-        Ticket,
-        Barrera
+        Ticket
     }
 }
