@@ -135,6 +135,7 @@
     <Compile Include="Models\EstadoProceso.cs" />
     <Compile Include="Models\PaseProcesoModel.cs" />
     <Compile Include="Models\Proceso.cs" />
+    <Compile Include="Models\ActualizarEstadoResult.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\EstadoProceso.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\EstadoEnEspera.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\EstadoIngresoRegistrado.cs" />
@@ -161,6 +162,8 @@
     </Compile>
     <Compile Include="Impresion\ImprimirTicketQr.cs" />
     <Compile Include="accesoDatos\PasePuertaDataAccess.cs" />
+    <Compile Include="Servicios\IEstadoService.cs" />
+    <Compile Include="Servicios\EstadoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

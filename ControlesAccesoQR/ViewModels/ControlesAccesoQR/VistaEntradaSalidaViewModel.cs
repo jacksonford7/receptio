@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using ControlesAccesoQR;
@@ -15,6 +17,7 @@ using Spring.Context.Support;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Impresion;
+using ControlesAccesoQR.Servicios;
 
 using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
 
@@ -31,8 +34,11 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _qrImagePath;
         private string _codigoQR;
         private string _rfidMensaje;
+        private string _estadoActual;
+        private DateTime? _ultimaActualizacion;
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
+        private readonly IEstadoService _estadoService = new EstadoService();
         private readonly MainWindowViewModel _mainViewModel;
 
         public MainWindowViewModel MainViewModel => _mainViewModel;
@@ -59,6 +65,18 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             get => _rfidMensaje;
             private set { _rfidMensaje = value; OnPropertyChanged(nameof(RfidMensaje)); }
+        }
+
+        public string EstadoActual
+        {
+            get => _estadoActual;
+            private set { _estadoActual = value; OnPropertyChanged(nameof(EstadoActual)); }
+        }
+
+        public DateTime? UltimaActualizacion
+        {
+            get => _ultimaActualizacion;
+            private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
         }
 
         public ICommand EscanearQrCommand { get; }
@@ -88,7 +106,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             }
         }
 
-        private void Ingresar()
+        private async void Ingresar()
         {
             if (string.IsNullOrWhiteSpace(CodigoQR))
                 return;
@@ -99,7 +117,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             HoraLlegada = resultado.FechaHoraLlegada;
 
-            ActualizarEstado("I");
+            await ActualizarEstadoAsync("I");
 
             var qrText = $"{CodigoQR}|{resultado.FechaHoraLlegada:yyyy-MM-dd HH:mm:ss}";
             using (var generator = new QRCodeGenerator())
@@ -128,12 +146,35 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             };
         }
 
-        public void ActualizarEstado(string estado)
+        public async Task ActualizarEstadoAsync(string estado, CancellationToken ct = default)
         {
             if (string.IsNullOrWhiteSpace(CodigoQR))
                 return;
 
-            _ = _dataAccess.ActualizarEstado(CodigoQR, estado);
+            try
+            {
+                var result = await _estadoService.ActualizarAsync(CodigoQR, estado, ct);
+                if (result != null)
+                {
+                    EstadoActual = result.Estado;
+                    CodigoQR = result.NumeroPase;
+                    UltimaActualizacion = result.FechaActualizacion;
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (DevBypass.IsDevKiosk)
+                    MessageBox.Show(ex.Message);
+                else
+                    Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                if (DevBypass.IsDevKiosk)
+                    MessageBox.Show(ex.Message);
+                else
+                    Console.WriteLine(ex);
+            }
         }
 
         private void ImprimirQr()

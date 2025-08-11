@@ -28,11 +28,11 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                     {
                         await CompletarValidacionHuellaAsync(vm, "BYPASS CGDE041", 1);
                         MessageBox.Show("Huella validada");
-                        vm.ActualizarEstado("H");
+                        await vm.ActualizarEstadoAsync("H");
 
                         await CompletarLecturaRfidAsync(vm, "TAG_SIMULADO");
                         MessageBox.Show("RFID detectado");
-                        vm.ActualizarEstado("R");
+                        await vm.ActualizarEstadoAsync("R");
                         return;
                     }
 
@@ -43,9 +43,9 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 
                         if (hv.HuellaValida)
                         {
-                            vm.ActualizarEstado("H");
+                            await vm.ActualizarEstadoAsync("H");
                             await CompletarLecturaRfidAsync(vm, null);
-                            vm.ActualizarEstado("R");
+                            await vm.ActualizarEstadoAsync("R");
                         }
                     }
                 }
@@ -60,12 +60,12 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                 {
                     await CompletarImpresionAsync(vm);
                     MessageBox.Show("Impresión simulada (CGDE041)");
-                    vm.ActualizarEstado("P");
+                    await vm.ActualizarEstadoAsync("P");
                     return;
                 }
 
                 await CompletarImpresionAsync(vm);
-                vm.ActualizarEstado("P");
+                await vm.ActualizarEstadoAsync("P");
                 LimpiarFormularioPostProceso();
             }
         }

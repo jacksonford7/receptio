@@ -1,7 +1,13 @@
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using ControlesAccesoQR;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
+using ControlesAccesoQR.Servicios;
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;
@@ -18,6 +24,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _numeroPaseSalida;
         private string _mensajeError;
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
+        private readonly IEstadoService _estadoService = new EstadoService();
         private readonly MainWindowViewModel _mainViewModel;
 
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
@@ -43,7 +50,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             Contenedores.Add("CONT-002");
         }
 
-        private void ProcesarSalida()
+        private async void ProcesarSalida()
         {
             MensajeError = string.Empty;
             SalidaRegistrada = false;
@@ -60,7 +67,26 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Empresa = resultado.EmpresaNombre;
                 Patente = resultado.Patente;
 
-                _dataAccess.ActualizarEstado(NumeroPaseSalida, "S");
+                try
+                {
+                    var estado = await _estadoService.ActualizarAsync(NumeroPaseSalida, "S");
+                    if (estado != null)
+                        NumeroPaseSalida = estado.NumeroPase;
+                }
+                catch (SqlException ex)
+                {
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show(ex.Message);
+                    else
+                        Console.WriteLine(ex);
+                }
+                catch (TimeoutException ex)
+                {
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show(ex.Message);
+                    else
+                        Console.WriteLine(ex);
+                }
 
                 _mainViewModel.PaseActual = new PaseProcesoModel
                 {
