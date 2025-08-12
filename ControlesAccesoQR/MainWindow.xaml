@@ -33,8 +33,6 @@
         <DockPanel Grid.Column="0">
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
                 <TextBlock Text="{Binding NumeroKiosco}" FontSize="20" Margin="0,0,20,0" VerticalAlignment="Center" />
-                <Button Content="Entrada" Command="{Binding MostrarEntradaSalidaCommand}" Margin="0,0,10,0" />
-                <Button Content="Salida Final" Command="{Binding MostrarSalidaFinalCommand}" />
                 <Button Content="Abrir pantalla de test RFID" Click="AbrirRfIdTest_Click" Margin="10,0,0,0" />
             </StackPanel>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
@@ -62,71 +60,91 @@
                               HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto"
                               Margin="0" Padding="0">
-                    <ItemsControl ItemsSource="{Binding Estados}"
-                                  HorizontalAlignment="Stretch"
-                                  HorizontalContentAlignment="Stretch"
-                                  BorderThickness="0"
-                                  Background="Transparent"
-                                  Margin="0"
-                                  Padding="0">
-                        <ItemsControl.ItemContainerStyle>
-                            <Style TargetType="ContentPresenter">
-                                <Setter Property="Margin" Value="0,0,0,5" />
-                                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border x:Name="Root"
-                                        Background="Transparent"
-                                        Margin="0"
-                                        Padding="16,12"
-                                        HorizontalAlignment="Stretch"
-                                        TextElement.Foreground="#9E9E9E">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Text" Value="" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Pase}">
-                                                            <Setter Property="Text" Value="🔢" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Huella}">
-                                                            <Setter Property="Text" Value="🖐" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Tag}">
-                                                            <Setter Property="Text" Value="🏷" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Ticket}">
-                                                            <Setter Property="Text" Value="🎫" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                        <TextBlock Grid.Column="1" FontSize="36" VerticalAlignment="Center" Margin="20,0,0,0" Text="{Binding}" />
-                                    </Grid>
-                                </Border>
-                                <DataTemplate.Triggers>
-                                    <DataTrigger Value="True">
-                                        <DataTrigger.Binding>
-                                            <MultiBinding Converter="{StaticResource EqualityConverter}">
-                                                <Binding />
-                                                <Binding Path="DataContext.EstadoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                            </MultiBinding>
-                                        </DataTrigger.Binding>
-                                        <Setter TargetName="Root" Property="Background" Value="#EF6C00" />
-                                        <Setter TargetName="Root" Property="TextElement.Foreground" Value="White" />
-                                    </DataTrigger>
-                                </DataTemplate.Triggers>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Estados}"
+                                      HorizontalAlignment="Stretch"
+                                      HorizontalContentAlignment="Stretch"
+                                      BorderThickness="0"
+                                      Background="Transparent"
+                                      Margin="0"
+                                      Padding="0">
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Margin" Value="0,0,0,5" />
+                                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="Root"
+                                            Background="Transparent"
+                                            Margin="0"
+                                            Padding="16,12"
+                                            HorizontalAlignment="Stretch"
+                                            TextElement.Foreground="#9E9E9E">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text" Value="" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Pase}">
+                                                                <Setter Property="Text" Value="🔢" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Huella}">
+                                                                <Setter Property="Text" Value="🖐" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Tag}">
+                                                                <Setter Property="Text" Value="🏷" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Ticket}">
+                                                                <Setter Property="Text" Value="🎫" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <TextBlock Grid.Column="1" FontSize="36" VerticalAlignment="Center" Margin="20,0,0,0" Text="{Binding}" />
+                                        </Grid>
+                                    </Border>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource EqualityConverter}">
+                                                    <Binding />
+                                                    <Binding Path="DataContext.EstadoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter TargetName="Root" Property="Background" Value="#EF6C00" />
+                                            <Setter TargetName="Root" Property="TextElement.Foreground" Value="White" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Border Background="Transparent"
+                                Margin="0"
+                                Padding="16,12"
+                                HorizontalAlignment="Stretch"
+                                TextElement.Foreground="#9E9E9E">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="Assets/Logo.png" Height="36" Width="36" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
+                                    <TextBlock Text="Kiosco" FontSize="36" />
+                                    <TextBlock Text="{Binding TipoKioscoTexto}" FontSize="20" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
         </Border>

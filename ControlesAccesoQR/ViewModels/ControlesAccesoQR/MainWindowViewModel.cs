@@ -7,7 +7,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Threading;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Views.ControlesAccesoQR;
@@ -45,14 +44,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             EstadoPanel.Ticket
         };
 
-        public ICommand MostrarEntradaSalidaCommand { get; }
-        public ICommand MostrarSalidaFinalCommand { get; }
-
         public string NumeroKiosco
         {
             get => _numeroKiosco;
             private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
         }
+
+        public bool IsKioskEntrada { get; private set; }
+
+        public string TipoKioscoTexto => IsKioskEntrada ? "Entrada" : "Salida";
 
         public EstadoPanel EstadoActual
         {
@@ -100,8 +100,6 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public MainWindowViewModel(Frame frame)
         {
             _frame = frame;
-            MostrarEntradaSalidaCommand = new RelayCommand(MostrarEntradaSalida);
-            MostrarSalidaFinalCommand = new RelayCommand(MostrarSalidaFinal);
 
             _reloj.Tick += (s, e) => FechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             _reloj.Start();
@@ -111,12 +109,12 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             ObtenerQuiosco();
         }
 
-        private void MostrarEntradaSalida()
+        public void MostrarEntradaSalida()
         {
             _frame.Navigate(new VistaEntradaSalida { DataContext = new VistaEntradaSalidaViewModel(this) });
         }
 
-        private void MostrarSalidaFinal()
+        public void MostrarSalidaFinal()
         {
             _frame.Navigate(new VistaSalidaFinal { DataContext = new VistaSalidaFinalViewModel(this) });
         }
@@ -149,6 +147,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 }
 
                 NumeroKiosco = kiosco.NAME?.Split(' ').ElementAtOrDefault(1);
+                IsKioskEntrada = kiosco.IS_IN;
+                OnPropertyChanged(nameof(IsKioskEntrada));
+                OnPropertyChanged(nameof(TipoKioscoTexto));
+                if (IsKioskEntrada)
+                    MostrarEntradaSalida();
+                else
+                    MostrarSalidaFinal();
             }
         }
 
