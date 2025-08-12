@@ -74,7 +74,7 @@
                 Content="Ingresar"
                 Command="{Binding IngresarCommand}"
                 Width="100"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 Margin="0,0,0,10"
                 Click="IngresarButton_Click" />
 
