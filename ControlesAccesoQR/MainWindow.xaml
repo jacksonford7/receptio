@@ -4,9 +4,9 @@
         xmlns:estados="clr-namespace:ControlesAccesoQR.Estados"
         xmlns:conv="clr-namespace:ControlesAccesoQR.Converters"
         Title="ControlesAccesoQR"
-        Height="450"
-        Width="800"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
+        SizeToContent="Manual"
         FontFamily="Microsoft Sans Serif">
     <Window.Resources>
         <LinearGradientBrush x:Key="StandardBackground" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
