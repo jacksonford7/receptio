@@ -6,72 +6,45 @@
              FontFamily="Microsoft Sans Serif">
     <UserControl.Resources>
         <conv:BooleanToVisibilityConverter x:Key="BoolToVis" />
-        <LinearGradientBrush x:Key="StandardBackground" EndPoint="0.504,1.5" StartPoint="0.504,0.03">
-            <GradientStop Color="#FFFFFF" Offset="0" />
-            <GradientStop Color="#FFFFFF" Offset="0.567" />
-        </LinearGradientBrush>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#EF6C00" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontSize" Value="20" />
-        </Style>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20" />
-        </Style>
     </UserControl.Resources>
-    <Grid Background="{StaticResource StandardBackground}">
+    <Grid UseLayoutRounding="True" SnapsToDevicePixels="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="420" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="420"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Centro (formulario y teclado) -->
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <!-- Título e instrucciones -->
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="INGRESO DE NÚMERO DE PASE DE SALIDA" Style="{StaticResource Tx.Title}" Margin="0,0,0,16"/>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource Tx.InstructionBox}" Margin="0,0,0,16">
+            <TextBlock Text="Digite el número de pase del conductor y luego presione el botón verde OK." Style="{StaticResource Tx.Subtitle}" TextWrapping="Wrap"/>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" Background="{StaticResource TxB.Orange}" Height="28" Margin="0,0,0,16"/>
 
-            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
-                <TextBlock Text="INGRESO DE NÚMERO DE PASE DE SALIDA"
-                           FontSize="36"
-                           FontWeight="Bold"
-                           TextAlignment="Center"
-                           Margin="0,0,0,10" />
-                <TextBlock Text="Digite el número de pase del conductor y luego presione el botón verde OK."
-                           TextWrapping="Wrap"
-                           TextAlignment="Center"
-                           Margin="0,0,0,20" />
-            </StackPanel>
+        <!-- Teclado -->
+        <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+            <Viewbox Stretch="Uniform" StretchDirection="DownOnly" MaxWidth="480" Margin="0,0,0,16">
+                <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}" ComandoOk="{Binding ProcesarSalidaCommand}" Width="420" />
+            </Viewbox>
+            <TextBlock Text="{Binding MensajeError}" Foreground="Red" TextAlignment="Center" Margin="0,0,0,5" />
+        </StackPanel>
 
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                <Viewbox Stretch="Uniform"
-                         StretchDirection="DownOnly"
-                         MaxWidth="480"
-                         Margin="0,0,0,10">
-                    <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
-                                        ComandoOk="{Binding ProcesarSalidaCommand}"
-                                        Width="420" />
-                </Viewbox>
-                <TextBlock Text="{Binding MensajeError}"
-                           Foreground="Red"
-                           TextAlignment="Center"
-                           Margin="0,0,0,5" />
-            </StackPanel>
-        </Grid>
-
-        <!-- Panel derecho Datos -->
-        <StackPanel Grid.Column="3" Margin="20,0,0,0">
+        <!-- Datos derecha -->
+        <StackPanel Grid.Column="3" Grid.Row="0" Grid.RowSpan="5" Margin="20,0,0,0">
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
-
             <StackPanel Visibility="{Binding SalidaRegistrada, Converter={StaticResource BoolToVis}}">
                 <TextBlock Text="{Binding HoraSalida, StringFormat=Hora de salida: {0}}" Margin="0,0,0,5" />
-                <Button Content="Imprimir Salida" Command="{Binding ImprimirSalidaCommand}" Width="150" />
+                <Button Content="Imprimir Salida" Command="{Binding ImprimirSalidaCommand}" Width="150" Style="{StaticResource Tx.ButtonOk}" />
             </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
-

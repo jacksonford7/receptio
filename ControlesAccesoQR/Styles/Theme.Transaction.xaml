@@ -1,0 +1,106 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- Colores -->
+    <Color x:Key="Tx.Orange">#EF6C00</Color>
+    <Color x:Key="Tx.OrangeDark">#E65100</Color>
+    <Color x:Key="Tx.GreenOk">#9AE4A3</Color>
+    <Color x:Key="Tx.Red">#E53935</Color>
+    <Color x:Key="Tx.Cream">#FFF6E5</Color>
+    <Color x:Key="Tx.GrayText">#555555</Color>
+    <Color x:Key="Tx.Border">#DDDDDD</Color>
+    <SolidColorBrush x:Key="TxB.Orange" Color="{StaticResource Tx.Orange}"/>
+    <SolidColorBrush x:Key="TxB.OrangeDark" Color="{StaticResource Tx.OrangeDark}"/>
+    <SolidColorBrush x:Key="TxB.GreenOk" Color="{StaticResource Tx.GreenOk}"/>
+    <SolidColorBrush x:Key="TxB.Red" Color="{StaticResource Tx.Red}"/>
+    <SolidColorBrush x:Key="TxB.Cream" Color="{StaticResource Tx.Cream}"/>
+    <SolidColorBrush x:Key="TxB.GrayText" Color="{StaticResource Tx.GrayText}"/>
+    <SolidColorBrush x:Key="TxB.Border" Color="{StaticResource Tx.Border}"/>
+
+    <!-- Tipografía / medidas -->
+    <sys:Double x:Key="Tx.TitleSize">48</sys:Double>
+    <sys:Double x:Key="Tx.SubtitleSize">22</sys:Double>
+    <sys:Double x:Key="Tx.StateSize">28</sys:Double>
+    <sys:Double x:Key="Tx.KeySize">96</sys:Double>
+    <sys:Thickness x:Key="Tx.Padding">16</sys:Thickness>
+    <sys:CornerRadius x:Key="Tx.Radius">8</sys:CornerRadius>
+
+    <!-- Estilos -->
+    <Style x:Key="Tx.Title" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource Tx.TitleSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="Tx.Subtitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource Tx.SubtitleSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource TxB.GrayText}"/>
+    </Style>
+
+    <Style x:Key="Tx.InstructionBox" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource TxB.Cream}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource Tx.Radius}"/>
+        <Setter Property="Padding" Value="24"/>
+    </Style>
+
+    <Style x:Key="Tx.ButtonNumber" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource TxB.Orange}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Width" Value="{StaticResource Tx.KeySize}"/>
+        <Setter Property="Height" Value="{StaticResource Tx.KeySize}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="{StaticResource Tx.Radius}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource TxB.OrangeDark}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Tx.ButtonOk" TargetType="Button" BasedOn="{StaticResource Tx.ButtonNumber}">
+        <Setter Property="Background" Value="{StaticResource TxB.GreenOk}"/>
+    </Style>
+
+    <Style x:Key="Tx.ButtonRed" TargetType="Button" BasedOn="{StaticResource Tx.ButtonNumber}">
+        <Setter Property="Background" Value="{StaticResource TxB.Red}"/>
+    </Style>
+
+    <Style x:Key="Tx.TextBoxLarge" TargetType="TextBox">
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TxB.Border}"/>
+    </Style>
+
+    <Style x:Key="Tx.PanelHeader" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource TxB.Orange}"/>
+        <Setter Property="CornerRadius" Value="8,8,0,0"/>
+        <Setter Property="Padding" Value="16,12"/>
+    </Style>
+
+    <Style x:Key="Tx.PanelHeaderText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="{StaticResource Tx.StateSize}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="Tx.StateItem" TargetType="Border">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="16,12"/>
+        <Setter Property="Opacity" Value="0.6"/>
+    </Style>
+
+    <Style x:Key="Tx.StateItemText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource Tx.StateSize}"/>
+    </Style>
+</ResourceDictionary>
