@@ -37,7 +37,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public ObservableCollection<Proceso> Procesos { get; } = new ObservableCollection<Proceso>();
 
-        public IEnumerable<EstadoPanel> Estados { get; } = Enum.GetValues(typeof(EstadoPanel)).Cast<EstadoPanel>();
+        public IEnumerable<EstadoPanel> Estados { get; } = new[]
+        {
+            EstadoPanel.Pase,
+            EstadoPanel.Huella,
+            EstadoPanel.Tag,
+            EstadoPanel.Ticket
+        };
 
         public ICommand MostrarEntradaSalidaCommand { get; }
         public ICommand MostrarSalidaFinalCommand { get; }

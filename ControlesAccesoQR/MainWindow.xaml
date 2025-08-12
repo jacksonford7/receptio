@@ -109,14 +109,14 @@
                                                 <Style TargetType="TextBlock">
                                                     <Setter Property="Text" Value="" />
                                                     <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Pase}">
+                                                            <Setter Property="Text" Value="🔢" />
+                                                        </DataTrigger>
                                                         <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Huella}">
                                                             <Setter Property="Text" Value="🖐" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Tag}">
                                                             <Setter Property="Text" Value="🏷" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Pase}">
-                                                            <Setter Property="Text" Value="🔢" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding}" Value="{x:Static estados:EstadoProceso.Ticket}">
                                                             <Setter Property="Text" Value="🎫" />
