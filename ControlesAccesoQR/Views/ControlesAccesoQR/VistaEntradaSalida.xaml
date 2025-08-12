@@ -48,11 +48,13 @@
                      Stretch="Uniform"
                      StretchDirection="DownOnly"
                      MaxWidth="480">
-                <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}"
-                                    ComandoOk="{Binding EscanearQrCommand}"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Top"
-                                    Width="420" />
+                <Grid HorizontalAlignment="Center">
+                    <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}"
+                                        ComandoOk="{Binding EscanearQrCommand}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Width="420" />
+                </Grid>
             </Viewbox>
         </Grid>
 
