@@ -50,6 +50,9 @@
     <Setter Property="Padding" Value="24"/>
   </Style>
 
+  <!-- Caja de instrucciones - alias -->
+  <Style x:Key="Tx.InstructionBox" TargetType="Border" BasedOn="{StaticResource Tx.InfoBox}" />
+
   <!-- Botón número (naranja) -->
   <Style x:Key="Tx.ButtonNumber" TargetType="Button">
     <Setter Property="Background" Value="{StaticResource TxB.Orange}"/>
@@ -69,6 +72,9 @@
     <Setter Property="Background" Value="{StaticResource TxB.Red}"/>
   </Style>
 
+  <!-- Botón rojo - alias -->
+  <Style x:Key="Tx.ButtonRed" TargetType="Button" BasedOn="{StaticResource Tx.ButtonDanger}" />
+
   <!-- TextBox grande centrado -->
   <Style x:Key="Tx.InputLarge" TargetType="TextBox">
     <Setter Property="FontSize" Value="{StaticResource Tx.InputFontSize}"/>
@@ -77,11 +83,30 @@
     <Setter Property="BorderBrush" Value="{StaticResource TxB.Border}"/>
   </Style>
 
+  <!-- TextBox grande centrado - alias -->
+  <Style x:Key="Tx.TextBoxLarge" TargetType="TextBox" BasedOn="{StaticResource Tx.InputLarge}" />
+
   <!-- Header naranja de panel -->
   <Style x:Key="Tx.PanelHeader" TargetType="Border">
     <Setter Property="Background" Value="{StaticResource TxB.Orange}"/>
     <Setter Property="CornerRadius" Value="8,8,0,0"/>
     <Setter Property="Padding" Value="16,12"/>
+  </Style>
+
+  <!-- Texto dentro del header naranja del panel -->
+  <Style x:Key="Tx.PanelHeaderText" TargetType="TextBlock">
+    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="FontSize" Value="24"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+  </Style>
+
+  <!-- Ítem de la lista de estados -->
+  <Style x:Key="Tx.StateItem" TargetType="Border">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="CornerRadius" Value="{StaticResource Tx.Radius}"/>
+    <Setter Property="Padding" Value="12,8"/>
+    <Setter Property="Opacity" Value="0.6"/>
+    <Setter Property="TextElement.Foreground" Value="{StaticResource TxB.GrayText}"/>
   </Style>
 
 </ResourceDictionary>
