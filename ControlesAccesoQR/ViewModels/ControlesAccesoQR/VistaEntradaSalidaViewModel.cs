@@ -319,7 +319,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             });
 
             if (resultado)
-                _mainViewModel.MostrarSalidaFinalCommand.Execute(null);
+                _mainViewModel.MostrarSalidaFinal();
             else
                 _mainViewModel.EstadoProceso = EstadoProcesoTipo.EnEspera;
 
