@@ -20,19 +20,44 @@
         </Style>
     </UserControl.Resources>
     <Grid Background="{StaticResource StandardBackground}">
-        <StackPanel Margin="20" HorizontalAlignment="Center">
-            <TextBlock Text="INGRESO DE NÚMERO DE PASE DE SALIDA"
-                       FontSize="36"
-                       FontWeight="Bold"
-                       TextAlignment="Center"
-                       Margin="0,0,0,10" />
-            <TextBlock Text="Digite el número de pase del conductor y luego presione el botón verde OK."
-                       TextWrapping="Wrap"
-                       TextAlignment="Center"
-                       Margin="0,0,0,20" />
-            <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
-                                ComandoOk="{Binding ProcesarSalidaCommand}"
-                                Margin="0,0,0,10" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="420" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Centro (formulario y teclado) -->
+        <Grid Grid.Column="0" Margin="40,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock Text="INGRESO DE NÚMERO DE PASE DE SALIDA"
+                           FontSize="36"
+                           FontWeight="Bold"
+                           TextAlignment="Center"
+                           Margin="0,0,0,10" />
+                <TextBlock Text="Digite el número de pase del conductor y luego presione el botón verde OK."
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Margin="0,0,0,20" />
+            </StackPanel>
+
+            <Viewbox Grid.Row="1"
+                     Stretch="Uniform"
+                     StretchDirection="DownOnly"
+                     MaxWidth="480">
+                <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
+                                    ComandoOk="{Binding ProcesarSalidaCommand}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Width="420" />
+            </Viewbox>
+        </Grid>
+
+        <!-- Panel derecho Datos -->
+        <StackPanel Grid.Column="1" Margin="20,0,0,0">
             <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
@@ -44,3 +69,4 @@
         </StackPanel>
     </Grid>
 </UserControl>
+

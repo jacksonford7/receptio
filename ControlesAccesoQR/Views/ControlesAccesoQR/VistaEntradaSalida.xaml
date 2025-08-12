@@ -20,13 +20,19 @@
         </Style>
     </UserControl.Resources>
     <Grid Background="{StaticResource StandardBackground}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Disabled"
-                      CanContentScroll="True"
-                      PanningMode="VerticalOnly">
-            <StackPanel Margin="20"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="420" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Centro (formulario y teclado) -->
+        <Grid Grid.Column="0" Margin="40,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
                 <TextBlock Text="INGRESO DE NÚMERO DE PASE"
                            FontSize="36"
                            FontWeight="Bold"
@@ -36,18 +42,32 @@
                            TextWrapping="Wrap"
                            TextAlignment="Center"
                            Margin="0,0,0,20" />
-                <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}" ComandoOk="{Binding EscanearQrCommand}" Margin="0,0,0,10" />
-                <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
-                <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
-
-                <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10" Click="IngresarButton_Click" />
-                <StackPanel Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}">
-                    <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
-                    <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />
-                    <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" />
-                </StackPanel>
             </StackPanel>
-        </ScrollViewer>
+
+            <Viewbox Grid.Row="1"
+                     Stretch="Uniform"
+                     StretchDirection="DownOnly"
+                     MaxWidth="480">
+                <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}"
+                                    ComandoOk="{Binding EscanearQrCommand}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Width="420" />
+            </Viewbox>
+        </Grid>
+
+        <!-- Panel derecho Datos -->
+        <StackPanel Grid.Column="1" Margin="20,0,0,0">
+            <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
+            <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
+
+            <Button Content="Ingresar" Command="{Binding IngresarCommand}" Width="100" Margin="0,0,0,10" Click="IngresarButton_Click" />
+            <StackPanel Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
+                <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />
+                <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
 
