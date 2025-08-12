@@ -31,7 +31,7 @@
 
         <!-- Panel principal -->
         <DockPanel Grid.Column="0">
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10" Visibility="Collapsed">
                 <TextBlock Text="{Binding NumeroKiosco}" FontSize="20" Margin="0,0,20,0" VerticalAlignment="Center" />
                 <Button Content="Abrir pantalla de test RFID" Click="AbrirRfIdTest_Click" Margin="10,0,0,0" />
             </StackPanel>
