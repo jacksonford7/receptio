@@ -27,12 +27,13 @@
 
         <!-- Centro (formulario y teclado) -->
         <Grid Grid.Column="0" Margin="40,0,20,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                 <TextBlock Text="INGRESO DE NÚMERO DE PASE DE SALIDA"
                            FontSize="36"
                            FontWeight="Bold"
@@ -42,23 +43,23 @@
                            TextWrapping="Wrap"
                            TextAlignment="Center"
                            Margin="0,0,0,20" />
+                <Viewbox Stretch="Uniform"
+                         StretchDirection="DownOnly"
+                         MaxWidth="480"
+                         Margin="0,0,0,10">
+                    <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
+                                        ComandoOk="{Binding ProcesarSalidaCommand}"
+                                        Width="420" />
+                </Viewbox>
+                <TextBlock Text="{Binding MensajeError}"
+                           Foreground="Red"
+                           TextAlignment="Center"
+                           Margin="0,0,0,5" />
             </StackPanel>
-
-            <Viewbox Grid.Row="1"
-                     Stretch="Uniform"
-                     StretchDirection="DownOnly"
-                     MaxWidth="480">
-                <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
-                                    ComandoOk="{Binding ProcesarSalidaCommand}"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Top"
-                                    Width="420" />
-            </Viewbox>
         </Grid>
 
         <!-- Panel derecho Datos -->
         <StackPanel Grid.Column="1" Margin="20,0,0,0">
-            <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
 
