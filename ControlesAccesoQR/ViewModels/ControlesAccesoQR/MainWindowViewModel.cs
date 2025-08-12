@@ -7,6 +7,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Views.ControlesAccesoQR;
@@ -53,6 +55,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public bool IsKioskEntrada { get; private set; }
 
         public string TipoKioscoTexto => IsKioskEntrada ? "Entrada" : "Salida";
+
+        public string KioscoTitulo => "Kiosco";
+
+        public ImageSource KioscoLogo { get; } = new BitmapImage(new Uri("pack://application:,,,/ControlesAccesoQR;component/Assets/Logo.png"));
 
         public EstadoPanel EstadoActual
         {
