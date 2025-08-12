@@ -21,7 +21,6 @@
             <Setter Property="FontSize" Value="20" />
         </Style>
         <conv:EqualityConverter x:Key="EqualityConverter" />
-        <conv:SetContainsConverter x:Key="SetContainsConverter" />
     </Window.Resources>
 
     <Grid Background="{StaticResource StandardBackground}">
@@ -63,7 +62,13 @@
                               HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto"
                               Margin="0" Padding="0">
-                    <ItemsControl ItemsSource="{Binding Estados}" HorizontalAlignment="Stretch">
+                    <ItemsControl ItemsSource="{Binding Estados}"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Stretch"
+                                  BorderThickness="0"
+                                  Background="Transparent"
+                                  Margin="0"
+                                  Padding="0">
                         <ItemsControl.ItemContainerStyle>
                             <Style TargetType="ContentPresenter">
                                 <Setter Property="Margin" Value="0,0,0,5" />
@@ -72,33 +77,12 @@
                         </ItemsControl.ItemContainerStyle>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Height="70" Tag="{Binding}" Background="Transparent" Margin="0" HorizontalAlignment="Stretch">
-                                    <Border.Style>
-                                        <Style TargetType="Border">
-                                            <Setter Property="TextElement.Foreground" Value="#9E9E9E" />
-                                            <Style.Triggers>
-                                                <DataTrigger Value="True">
-                                                    <DataTrigger.Binding>
-                                                        <MultiBinding Converter="{StaticResource EqualityConverter}">
-                                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
-                                                            <Binding Path="DataContext.EstadoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                                        </MultiBinding>
-                                                    </DataTrigger.Binding>
-                                                    <Setter Property="Background" Value="#EF6C00" />
-                                                    <Setter Property="TextElement.Foreground" Value="White" />
-                                                </DataTrigger>
-                                                <DataTrigger Value="True">
-                                                    <DataTrigger.Binding>
-                                                        <MultiBinding Converter="{StaticResource SetContainsConverter}">
-                                                            <Binding Path="DataContext.EstadosCompletados" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
-                                                            <Binding RelativeSource="{RelativeSource Self}" Path="Tag" />
-                                                        </MultiBinding>
-                                                    </DataTrigger.Binding>
-                                                    <Setter Property="TextElement.Foreground" Value="#2E7D32" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
+                                <Border x:Name="Root"
+                                        Background="Transparent"
+                                        Margin="0"
+                                        Padding="16,12"
+                                        HorizontalAlignment="Stretch"
+                                        TextElement.Foreground="#9E9E9E">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="80" />
@@ -128,6 +112,18 @@
                                         <TextBlock Grid.Column="1" FontSize="36" VerticalAlignment="Center" Margin="20,0,0,0" Text="{Binding}" />
                                     </Grid>
                                 </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Value="True">
+                                        <DataTrigger.Binding>
+                                            <MultiBinding Converter="{StaticResource EqualityConverter}">
+                                                <Binding />
+                                                <Binding Path="DataContext.EstadoActual" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                            </MultiBinding>
+                                        </DataTrigger.Binding>
+                                        <Setter TargetName="Root" Property="Background" Value="#EF6C00" />
+                                        <Setter TargetName="Root" Property="TextElement.Foreground" Value="White" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
