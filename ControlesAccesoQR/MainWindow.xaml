@@ -127,23 +127,34 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <Border Background="Transparent"
-                                Margin="0"
-                                Padding="16,12"
-                                HorizontalAlignment="Stretch"
-                                TextElement.Foreground="#9E9E9E">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="80" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="Assets/Logo.png" Height="36" Width="36" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0">
-                                    <TextBlock Text="Kiosco" FontSize="36" />
-                                    <TextBlock Text="{Binding TipoKioscoTexto}" FontSize="20" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
+                        <!-- Sección Kiosco (no es estado) -->
+                        <StackPanel Margin="16,24,16,0">
+                            <TextBlock Text="{Binding KioscoTitulo}"
+                                       FontSize="24" FontWeight="Bold" />
+
+                            <!-- Tarjeta del número -->
+                            <Border Background="#EF6C00" CornerRadius="8"
+                                    Margin="0,8,0,8" Padding="24"
+                                    HorizontalAlignment="Stretch">
+                                <TextBlock Text="{Binding NumeroKiosco}"
+                                           Foreground="White"
+                                           FontSize="64"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <!-- Fecha/Hora -->
+                            <TextBlock Text="{Binding FechaHora}"
+                                       FontSize="16"
+                                       Foreground="#444"
+                                       HorizontalAlignment="Center" />
+
+                            <!-- Logo (si hay recurso); si no, placeholder -->
+                            <Border Background="#BDBDBD" CornerRadius="6"
+                                    Margin="0,12,0,0" Height="80">
+                                <Image Source="{Binding KioscoLogo}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
