@@ -22,11 +22,13 @@
     <Grid Background="{StaticResource StandardBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="420" />
         </Grid.ColumnDefinitions>
 
         <!-- Centro (formulario y teclado) -->
-        <Grid Grid.Column="0" Margin="40,0,20,0">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -44,26 +46,18 @@
                            Margin="0,0,0,20" />
             </StackPanel>
 
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Viewbox Grid.Column="1"
-                         Stretch="Uniform"
-                         StretchDirection="DownOnly"
-                         MaxWidth="480">
-                    <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}"
-                                        ComandoOk="{Binding EscanearQrCommand}"
-                                        Width="420" />
-                </Viewbox>
-            </Grid>
+            <Viewbox Grid.Row="1"
+                     Stretch="Uniform"
+                     StretchDirection="DownOnly"
+                     MaxWidth="480">
+                <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}"
+                                    ComandoOk="{Binding EscanearQrCommand}"
+                                    Width="420" />
+            </Viewbox>
         </Grid>
 
         <!-- Panel derecho Datos -->
-        <StackPanel Grid.Column="1" Margin="20,0,0,0">
+        <StackPanel Grid.Column="3" Margin="20,0,0,0">
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
 
