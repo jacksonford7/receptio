@@ -28,9 +28,14 @@
             <RowDefinition Height="Auto" /> <!-- Botón -->
             <RowDefinition Height="Auto" /> <!-- Información adicional -->
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
         <!-- Título -->
-        <TextBlock Grid.Row="0"
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3"
                    Text="INGRESO DE NÚMERO DE PASE"
                    FontSize="36"
                    FontWeight="Bold"
@@ -38,15 +43,13 @@
                    Margin="0,0,0,10" />
 
         <!-- Subtítulo -->
-        <TextBlock Grid.Row="1"
+        <TextBlock Grid.Row="1" Grid.Column="1"
                    Text="Digite el número de pase del conductor y luego presione el botón verde OK."
                    TextWrapping="Wrap"
-                   TextAlignment="Center"
-                   HorizontalAlignment="Center"
                    Margin="0,0,0,20" />
 
         <!-- Teclado -->
-        <Viewbox Grid.Row="2"
+        <Viewbox Grid.Row="2" Grid.Column="1"
                  HorizontalAlignment="Center"
                  Stretch="Uniform"
                  StretchDirection="DownOnly"
@@ -58,30 +61,31 @@
         </Viewbox>
 
         <!-- Campos -->
-        <StackPanel Grid.Row="3"
+        <StackPanel Grid.Row="3" Grid.Column="1"
                     Orientation="Vertical"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     Margin="0,0,0,10">
             <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
         </StackPanel>
 
         <!-- Botón -->
-        <Button Grid.Row="4"
+        <Button Grid.Row="4" Grid.Column="1"
                 Content="Ingresar"
                 Command="{Binding IngresarCommand}"
                 Width="100"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 Margin="0,0,0,10"
                 Click="IngresarButton_Click" />
 
         <!-- Información adicional -->
-        <StackPanel Grid.Row="5"
+        <StackPanel Grid.Row="5" Grid.Column="1"
                     Visibility="{Binding IngresoRealizado, Converter={StaticResource BoolToVis}}"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,0">
             <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
             <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />
-            <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" />
+            <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" HorizontalAlignment="Left" />
         </StackPanel>
     </Grid>
 </UserControl>
