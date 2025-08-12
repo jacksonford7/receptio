@@ -27,13 +27,12 @@
 
         <!-- Centro (formulario y teclado) -->
         <Grid Grid.Column="0" Margin="40,0,20,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
                 <TextBlock Text="INGRESO DE NÚMERO DE PASE DE SALIDA"
                            FontSize="36"
                            FontWeight="Bold"
@@ -43,19 +42,30 @@
                            TextWrapping="Wrap"
                            TextAlignment="Center"
                            Margin="0,0,0,20" />
-                <Viewbox Stretch="Uniform"
-                         StretchDirection="DownOnly"
-                         MaxWidth="480"
-                         Margin="0,0,0,10">
-                    <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
-                                        ComandoOk="{Binding ProcesarSalidaCommand}"
-                                        Width="420" />
-                </Viewbox>
-                <TextBlock Text="{Binding MensajeError}"
-                           Foreground="Red"
-                           TextAlignment="Center"
-                           Margin="0,0,0,5" />
             </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                    <Viewbox Stretch="Uniform"
+                             StretchDirection="DownOnly"
+                             MaxWidth="480"
+                             Margin="0,0,0,10">
+                        <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
+                                            ComandoOk="{Binding ProcesarSalidaCommand}"
+                                            Width="420" />
+                    </Viewbox>
+                    <TextBlock Text="{Binding MensajeError}"
+                               Foreground="Red"
+                               TextAlignment="Center"
+                               Margin="0,0,0,5" />
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <!-- Panel derecho Datos -->

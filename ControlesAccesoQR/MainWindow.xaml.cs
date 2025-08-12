@@ -8,6 +8,11 @@ namespace ControlesAccesoQR
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += (_, __) =>
+            {
+                WindowState = WindowState.Maximized;
+                Activate();
+            };
             DataContext = new MainWindowViewModel(MainFrame);
         }
 
