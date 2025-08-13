@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace ControlesAccesoQR.Views.ControlesAccesoQR
+namespace ControlesAccesoQR.Views.EntradaSalida
 {
     public partial class EstadoProcesoPanel : UserControl
     {

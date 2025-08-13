@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace ControlesAccesoQR.Views.ControlesAccesoQR
+namespace ControlesAccesoQR.Views.EntradaSalida
 {
     public partial class DialogoQr : Window
     {

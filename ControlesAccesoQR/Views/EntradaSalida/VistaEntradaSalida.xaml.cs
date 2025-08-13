@@ -10,7 +10,7 @@ using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
 using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
 
-namespace ControlesAccesoQR.Views.ControlesAccesoQR
+namespace ControlesAccesoQR.Views.EntradaSalida
 {
     public partial class VistaEntradaSalida : UserControl
     {

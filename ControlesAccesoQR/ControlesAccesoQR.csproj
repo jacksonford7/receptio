@@ -93,23 +93,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml">
+    <Page Include="Views\EntradaSalida\VistaEntradaSalida.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ControlesAccesoQR\DialogoQr.xaml">
+    <Page Include="Views\EntradaSalida\DialogoQr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ControlesAccesoQR\VistaSalidaFinal.xaml">
+    <Page Include="Views\EntradaSalida\VistaSalidaFinal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ControlesAccesoQR\DialogoHuella.xaml">
+    <Page Include="Views\EntradaSalida\DialogoHuella.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ControlesAccesoQR\EstadoProcesoPanel.xaml">
+    <Page Include="Views\EntradaSalida\EstadoProcesoPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,19 +146,19 @@
     <Compile Include="Estados\EstadoProceso.cs" />
     <Compile Include="Converters\EqualityConverter.cs" />
     <Compile Include="Converters\SetContainsConverter.cs" />
-    <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
+    <Compile Include="Views\EntradaSalida\VistaEntradaSalida.xaml.cs">
       <DependentUpon>VistaEntradaSalida.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ControlesAccesoQR\DialogoHuella.xaml.cs">
+    <Compile Include="Views\EntradaSalida\DialogoHuella.xaml.cs">
       <DependentUpon>DialogoHuella.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ControlesAccesoQR\DialogoQr.xaml.cs">
+    <Compile Include="Views\EntradaSalida\DialogoQr.xaml.cs">
       <DependentUpon>DialogoQr.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ControlesAccesoQR\VistaSalidaFinal.xaml.cs">
+    <Compile Include="Views\EntradaSalida\VistaSalidaFinal.xaml.cs">
       <DependentUpon>VistaSalidaFinal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ControlesAccesoQR\EstadoProcesoPanel.xaml.cs">
+    <Compile Include="Views\EntradaSalida\EstadoProcesoPanel.xaml.cs">
       <DependentUpon>EstadoProcesoPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="AsyncRelayCommand.cs" />

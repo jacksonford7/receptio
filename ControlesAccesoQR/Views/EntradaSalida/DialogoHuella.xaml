@@ -1,4 +1,4 @@
-<Window x:Class="ControlesAccesoQR.Views.ControlesAccesoQR.DialogoHuella"
+<Window x:Class="ControlesAccesoQR.Views.EntradaSalida.DialogoHuella"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Validar Huella" Height="180" Width="300" WindowStartupLocation="CenterOwner"
