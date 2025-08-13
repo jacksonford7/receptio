@@ -6,8 +6,9 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using ControlesAccesoQR;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
+using ControlesAccesoQR;
 using QRCoder;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
@@ -94,16 +95,62 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
         }
 
-        public ICommand EscanearQrCommand { get; }
+        public ICommand SubmitPassCommand { get; }
         public ICommand IngresarCommand { get; }
         public ICommand ImprimirQrCommand { get; }
+
+        public enum InputMethod { Keyboard, QrScanner }
 
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            EscanearQrCommand = new RelayCommand(EscanearQr);
+            SubmitPassCommand = new AsyncRelayCommand(() => SubmitPassAsync(CodigoQR, InputMethod.Keyboard));
             IngresarCommand = new AsyncRelayCommand(IngresarAsync);
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
+        }
+
+        public async Task SubmitPassAsync(string input, InputMethod inputMethod)
+        {
+            try
+            {
+                var normalized = NormalizeInput(input);
+                if (string.IsNullOrWhiteSpace(normalized))
+                    return;
+
+                if (!Regex.IsMatch(normalized, @"^\d+$"))
+                {
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show("Formato de pase inválido");
+                    return;
+                }
+
+                CodigoQR = normalized;
+                EscanearQr();
+                await IngresarAsync();
+            }
+            catch (Exception ex)
+            {
+                if (DevBypass.IsDevKiosk)
+                    MessageBox.Show(ex.Message);
+                else
+                    Console.WriteLine(ex);
+            }
+        }
+
+        private string NormalizeInput(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            var cleaned = input.Trim().Replace("\r", string.Empty).Replace("\n", string.Empty);
+
+            if (Uri.TryCreate(cleaned, UriKind.Absolute, out var uri))
+            {
+                cleaned = uri.Segments.LastOrDefault()?.Trim('/') ?? cleaned;
+            }
+
+            var match = Regex.Match(cleaned, @"\d+");
+            return match.Success ? match.Value : cleaned;
         }
 
         private void EscanearQr()

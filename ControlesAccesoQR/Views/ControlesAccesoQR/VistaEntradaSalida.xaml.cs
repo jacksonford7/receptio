@@ -1,6 +1,10 @@
+using System;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Threading;
 using ControlesAccesoQR;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
@@ -10,9 +14,72 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 {
     public partial class VistaEntradaSalida : UserControl
     {
+        private readonly StringBuilder _scannerBuffer = new StringBuilder();
+        private readonly DispatcherTimer _scannerTimer;
+        private DateTime _lastKeystroke;
+        private DateTime _lastSubmission;
+        private string _lastScan = string.Empty;
+
         public VistaEntradaSalida()
         {
             InitializeComponent();
+            _scannerTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(200) };
+            _scannerTimer.Tick += ScannerTimer_Tick;
+        }
+
+        private void UserControl_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var now = DateTime.Now;
+            if ((now - _lastKeystroke).TotalMilliseconds > 50)
+                _scannerBuffer.Clear();
+
+            _lastKeystroke = now;
+            _scannerBuffer.Append(e.Text);
+            _scannerTimer.Stop();
+            _scannerTimer.Start();
+        }
+
+        private async void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+                return;
+
+            e.Handled = true;
+
+            if (_scannerTimer.IsEnabled)
+            {
+                _scannerTimer.Stop();
+                var scanned = _scannerBuffer.ToString();
+                _scannerBuffer.Clear();
+                await SubmitScannerAsync(scanned);
+            }
+            else if (DataContext is VistaEntradaSalidaViewModel vm)
+            {
+                await vm.SubmitPassAsync(vm.CodigoQR, VistaEntradaSalidaViewModel.InputMethod.Keyboard);
+            }
+        }
+
+        private async void ScannerTimer_Tick(object sender, EventArgs e)
+        {
+            _scannerTimer.Stop();
+            var scanned = _scannerBuffer.ToString();
+            _scannerBuffer.Clear();
+            await SubmitScannerAsync(scanned);
+        }
+
+        private async Task SubmitScannerAsync(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text) || text.Length < 4)
+                return;
+
+            if ((DateTime.Now - _lastSubmission).TotalMilliseconds < 200 && text == _lastScan)
+                return;
+
+            _lastSubmission = DateTime.Now;
+            _lastScan = text;
+
+            if (DataContext is VistaEntradaSalidaViewModel vm)
+                await vm.SubmitPassAsync(text, VistaEntradaSalidaViewModel.InputMethod.QrScanner);
         }
 
         private async void IngresarButton_Click(object sender, RoutedEventArgs e)
