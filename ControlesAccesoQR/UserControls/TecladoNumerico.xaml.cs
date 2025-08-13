@@ -59,6 +59,16 @@ namespace ControlesAccesoQR.UserControls
             InputTextBox.Focus();
         }
 
+        private void InputTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (ComandoOk?.CanExecute(null) == true)
+                    ComandoOk.Execute(null);
+                e.Handled = true;
+            }
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             InputTextBox.Focus();

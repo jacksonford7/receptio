@@ -19,8 +19,8 @@
                  Width="380"
                  Height="70"
                  Margin="0,0,0,20"
-                 IsReadOnly="True"
                  Style="{StaticResource Tx.TextBoxLarge}"
+                 KeyDown="InputTextBox_KeyDown"
                  Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <UniformGrid x:Name="NumbersGrid" Grid.Row="1" Columns="3" Rows="4" Margin="0,0,10,0">

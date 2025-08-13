@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:conv="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
              xmlns:uc="clr-namespace:ControlesAccesoQR.UserControls"
-             FontFamily="Microsoft Sans Serif">
+             FontFamily="Microsoft Sans Serif"
+             PreviewTextInput="UserControl_PreviewTextInput"
+             PreviewKeyDown="UserControl_PreviewKeyDown">
     <UserControl.Resources>
         <conv:BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
@@ -34,7 +36,7 @@
 
         <!-- Teclado -->
         <Viewbox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Stretch="Uniform" StretchDirection="DownOnly" MaxWidth="480" Margin="0,0,0,16">
-            <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}" ComandoOk="{Binding EscanearQrCommand}" Width="420" />
+            <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}" ComandoOk="{Binding SubmitPassCommand}" Width="420" />
         </Viewbox>
 
         <!-- Campos -->
