@@ -55,27 +55,29 @@
                  StretchDirection="DownOnly"
                  MaxWidth="480"
                  Margin="0,0,0,10">
-            <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}"
+            <uc:TecladoNumerico Text="{Binding QrValue, Mode=TwoWay}"
                                 ComandoOk="{Binding SubmitPassCommand}"
                                 Width="420" />
         </Viewbox>
 
-        <!-- Campos -->
-        <StackPanel Grid.Row="3" Grid.Column="1"
-                    Orientation="Vertical"
-                    HorizontalAlignment="Left"
-                    Margin="0,0,0,10">
-            <TextBlock Text="{Binding Nombre, StringFormat=Nombre: {0}}" Margin="0,0,0,5" />
-            <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
-        </StackPanel>
+        <!-- Entrada QR -->
+        <TextBox x:Name="QrInput"
+                 Grid.Row="3" Grid.ColumnSpan="2"
+                 Text="{Binding QrValue, UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalAlignment="Stretch"
+                 Margin="0,0,0,8"
+                 ToolTip="Escanee el QR o digite el número" />
 
         <!-- Botón -->
-        <Button Grid.Row="4" Grid.Column="1"
+        <Button x:Name="IngresarButton"
+                Grid.Row="4" Grid.Column="1"
                 Content="Ingresar"
-                Command="{Binding IngresarCommand}"
                 Width="100"
                 HorizontalAlignment="Center"
                 Margin="0,0,0,10"
+                IsDefault="True"
+                Command="{Binding IngresarCommand}"
+                CommandParameter="{Binding QrValue}"
                 Click="IngresarButton_Click" />
 
         <!-- Información adicional -->
