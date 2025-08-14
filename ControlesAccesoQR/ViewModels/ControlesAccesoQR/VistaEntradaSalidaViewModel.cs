@@ -34,6 +34,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private bool _ingresoRealizado;
         private string _qrImagePath;
         private string _codigoQR;
+        private bool _isBusy;
         private string _numeroPaseEscaneado;
         private string _rfidMensaje;
         private string _estadoActual;
@@ -60,6 +61,25 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             {
                 _codigoQR = value;
                 OnPropertyChanged(nameof(CodigoQR));
+                OnPropertyChanged(nameof(QrValue));
+                IngresarCommand?.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string QrValue
+        {
+            get => CodigoQR;
+            set => CodigoQR = value;
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged(nameof(IsBusy));
+                IngresarCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -96,14 +116,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         }
 
         public ICommand SubmitPassCommand { get; }
-        public ICommand IngresarCommand { get; }
+        public AsyncRelayCommand IngresarCommand { get; }
         public ICommand ImprimirQrCommand { get; }
 
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
             SubmitPassCommand = new RelayCommand(() => SubmitPass(CodigoQR, "manual"));
-            IngresarCommand = new AsyncRelayCommand(IngresarAsync);
+            IngresarCommand = new AsyncRelayCommand(IngresarAsync, () => !IsBusy && !string.IsNullOrWhiteSpace(QrValue));
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
         }
 
@@ -166,12 +186,17 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         private async Task IngresarAsync()
         {
-            if (string.IsNullOrWhiteSpace(CodigoQR))
+            var pass = CodigoQR;
+            if (string.IsNullOrWhiteSpace(pass))
                 return;
 
-            var resultado = _dataAccess.ActualizarFechaLlegada(CodigoQR);
-            if (resultado == null)
-                return;
+            try
+            {
+                IsBusy = true;
+
+                var resultado = _dataAccess.ActualizarFechaLlegada(pass);
+                if (resultado == null)
+                    return;
 
             HoraLlegada = resultado.FechaHoraLlegada;
             NumeroPaseEscaneado = CodigoQR;
@@ -216,6 +241,11 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             };
         }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
 
         public async Task<bool> ActualizarEstadoAsync(string estado, CancellationToken ct = default)
         {

@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +20,8 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
         private readonly DispatcherTimer _qrTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1000) };
         private string _lastScan = string.Empty;
         private DateTime _lastScanTime = DateTime.MinValue;
+        private CancellationTokenSource _qrCts;
+        private bool _autoSubmitting;
 
         public VistaEntradaSalida()
         {
@@ -25,6 +29,66 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
             _qrTimer.Tick += QrTimer_Tick;
             Loaded += VistaEntradaSalida_Loaded;
             Unloaded += VistaEntradaSalida_Unloaded;
+
+            Loaded += (_, __) => { QrInput?.Focus(); };
+            DataContextChanged += (_, __) =>
+            {
+                if (DataContext is INotifyPropertyChanged npc)
+                {
+                    npc.PropertyChanged -= OnVmPropertyChanged;
+                    npc.PropertyChanged += OnVmPropertyChanged;
+                }
+            };
+        }
+
+        private void OnVmPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(VistaEntradaSalidaViewModel.QrValue) || e.PropertyName == "QrValue")
+            {
+                DebouncedAutoIngresar(200); // evita dobles envíos (Enter + cambio texto)
+            }
+        }
+
+        private void DebouncedAutoIngresar(int delayMs)
+        {
+            _qrCts?.Cancel();
+            _qrCts = new CancellationTokenSource();
+            var token = _qrCts.Token;
+
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await Task.Delay(delayMs, token);
+                    if (token.IsCancellationRequested) return;
+
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        if (_autoSubmitting) return;
+                        _autoSubmitting = true;
+                        try
+                        {
+                            var vm = DataContext;
+                            var cmd = (vm?.GetType().GetProperty("IngresarCommand")?.GetValue(vm)) as ICommand;
+                            var param = vm?.GetType().GetProperty("QrValue")?.GetValue(vm);
+
+                            if (cmd != null && cmd.CanExecute(param))
+                            {
+                                cmd.Execute(param);
+                            }
+                            else
+                            {
+                                IngresarButton?.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                            }
+                        }
+                        finally
+                        {
+                            _autoSubmitting = false;
+                        }
+                    });
+                }
+                catch (TaskCanceledException) { /* no-op */ }
+            }, token);
         }
 
         private void VistaEntradaSalida_Loaded(object sender, RoutedEventArgs e)
@@ -96,10 +160,11 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 
         private async void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
+            _qrCts?.Cancel();
             if (DataContext is VistaEntradaSalidaViewModel vm)
             {
-                if (vm.IngresarCommand is AsyncRelayCommand arc && arc.CanExecute(null))
-                    await arc.ExecuteAsync();
+                if (vm.IngresarCommand.CanExecute(null))
+                    await vm.IngresarCommand.ExecuteAsync();
 
                 if (!vm.IngresoRealizado)
                     return;
