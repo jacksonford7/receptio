@@ -56,7 +56,7 @@
                  MaxWidth="480"
                  Margin="0,0,0,10">
             <uc:TecladoNumerico Text="{Binding CodigoQR, Mode=TwoWay}"
-                                ComandoOk="{Binding EscanearQrCommand}"
+                                ComandoOk="{Binding SubmitPassCommand}"
                                 Width="420" />
         </Viewbox>
 

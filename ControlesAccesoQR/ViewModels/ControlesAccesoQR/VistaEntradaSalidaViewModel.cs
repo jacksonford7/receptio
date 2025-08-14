@@ -9,6 +9,7 @@ using System.Windows;
 using ControlesAccesoQR;
 using System.Windows.Input;
 using QRCoder;
+using System.Text.RegularExpressions;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.Impresora;
@@ -94,22 +95,43 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
         }
 
-        public ICommand EscanearQrCommand { get; }
+        public ICommand SubmitPassCommand { get; }
         public ICommand IngresarCommand { get; }
         public ICommand ImprimirQrCommand { get; }
 
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            EscanearQrCommand = new RelayCommand(EscanearQr);
+            SubmitPassCommand = new RelayCommand(() => SubmitPass(CodigoQR, "manual"));
             IngresarCommand = new AsyncRelayCommand(IngresarAsync);
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
         }
 
-        private void EscanearQr()
+        private DateTime _lastSubmitTime = DateTime.MinValue;
+        private string _lastInput = string.Empty;
+
+        public void SubmitPass(string input, string inputMethod)
         {
-            if (string.IsNullOrWhiteSpace(CodigoQR))
+            var now = DateTime.UtcNow;
+            if (input == _lastInput && (now - _lastSubmitTime).TotalMilliseconds < 200)
                 return;
+            _lastInput = input;
+            _lastSubmitTime = now;
+
+            var normalized = NormalizeInput(input);
+            if (string.IsNullOrWhiteSpace(normalized))
+            {
+                MessageBox.Show("Número de pase inválido");
+                return;
+            }
+
+            if (!Regex.IsMatch(normalized, "^[A-Za-z0-9]+$"))
+            {
+                MessageBox.Show("Formato de número de pase inválido");
+                return;
+            }
+
+            CodigoQR = normalized;
 
             var datos = _dataAccess.ObtenerChoferEmpresaPorPase(CodigoQR);
             if (datos != null)
@@ -119,6 +141,27 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Patente = datos.Patente;
                 ChoferID = datos.ChoferID;
             }
+            else
+            {
+                MessageBox.Show("No se encontraron datos para el pase");
+            }
+        }
+
+        private string NormalizeInput(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            var cleaned = input.Trim().Replace("\r", string.Empty).Replace("\n", string.Empty);
+
+            if (cleaned.StartsWith("URI:", StringComparison.OrdinalIgnoreCase))
+                cleaned = cleaned.Substring(4);
+
+            var match = Regex.Match(cleaned, @"passNumber[""':=]+([A-Za-z0-9-]+)");
+            if (match.Success)
+                return match.Groups[1].Value;
+
+            return cleaned;
         }
 
         private async Task IngresarAsync()

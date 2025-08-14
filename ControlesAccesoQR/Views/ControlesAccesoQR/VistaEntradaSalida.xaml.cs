@@ -1,6 +1,10 @@
+using System;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Threading;
 using ControlesAccesoQR;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
@@ -10,9 +14,84 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 {
     public partial class VistaEntradaSalida : UserControl
     {
+        private readonly StringBuilder _qrBuffer = new StringBuilder();
+        private readonly DispatcherTimer _qrTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1000) };
+        private string _lastScan = string.Empty;
+        private DateTime _lastScanTime = DateTime.MinValue;
+
         public VistaEntradaSalida()
         {
             InitializeComponent();
+            _qrTimer.Tick += QrTimer_Tick;
+            Loaded += VistaEntradaSalida_Loaded;
+            Unloaded += VistaEntradaSalida_Unloaded;
+        }
+
+        private void VistaEntradaSalida_Loaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            if (window != null)
+                window.PreviewKeyDown += Window_PreviewKeyDown;
+        }
+
+        private void VistaEntradaSalida_Unloaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            if (window != null)
+                window.PreviewKeyDown -= Window_PreviewKeyDown;
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.FocusedElement is TextBox)
+                return;
+
+            if (e.Key == Key.Enter)
+            {
+                _qrTimer.Stop();
+                var text = _qrBuffer.ToString();
+                _qrBuffer.Clear();
+                if (string.IsNullOrWhiteSpace(text))
+                    return;
+
+                var now = DateTime.UtcNow;
+                if (text == _lastScan && (now - _lastScanTime).TotalMilliseconds < 200)
+                    return;
+
+                _lastScan = text;
+                _lastScanTime = now;
+
+                if (DataContext is VistaEntradaSalidaViewModel vm)
+                    vm.SubmitPass(text, "qr");
+                e.Handled = true;
+            }
+            else
+            {
+                char c = KeyToChar(e.Key);
+                if (c != '\0')
+                {
+                    _qrBuffer.Append(c);
+                    _qrTimer.Stop();
+                    _qrTimer.Start();
+                }
+            }
+        }
+
+        private void QrTimer_Tick(object sender, EventArgs e)
+        {
+            _qrTimer.Stop();
+            _qrBuffer.Clear();
+        }
+
+        private static char KeyToChar(Key key)
+        {
+            if (key >= Key.D0 && key <= Key.D9)
+                return (char)('0' + (key - Key.D0));
+            if (key >= Key.NumPad0 && key <= Key.NumPad9)
+                return (char)('0' + (key - Key.NumPad0));
+            if (key >= Key.A && key <= Key.Z)
+                return (char)('A' + (key - Key.A));
+            return '\0';
         }
 
         private async void IngresarButton_Click(object sender, RoutedEventArgs e)
