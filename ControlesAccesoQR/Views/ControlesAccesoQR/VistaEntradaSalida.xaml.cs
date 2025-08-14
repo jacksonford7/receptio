@@ -187,20 +187,13 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                         return;
                     }
 
-                    var dialogo = new DialogoHuella { Owner = Window.GetWindow(this), DataContext = new HuellaViewModel(vm.ChoferID) };
-                    if (dialogo.ShowDialog() == true && dialogo.DataContext is HuellaViewModel hv)
-                    {
-                        await CompletarValidacionHuellaAsync(vm, hv.Resultado, hv.HuellaValida ? 1 : 0);
+                    await CompletarValidacionHuellaAsync(vm, "VALIDACION AUTOMATICA", 1);
 
-                        if (hv.HuellaValida)
-                        {
-                            if (!await vm.ActualizarEstadoAsync("H"))
-                                return;
-                            await CompletarLecturaRfidAsync(vm, null);
-                            if (!await vm.ActualizarEstadoAsync("R"))
-                                return;
-                        }
-                    }
+                    if (!await vm.ActualizarEstadoAsync("H"))
+                        return;
+                    await CompletarLecturaRfidAsync(vm, null);
+                    if (!await vm.ActualizarEstadoAsync("R"))
+                        return;
                 }
             }
         }
