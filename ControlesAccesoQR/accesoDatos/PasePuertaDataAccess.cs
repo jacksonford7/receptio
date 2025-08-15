@@ -28,11 +28,13 @@ namespace ControlesAccesoQR.accesoDatos
             _extendedConnectionString = ConfigurationManager.ConnectionStrings["bill"].ConnectionString;
         }
 
+        // Obtiene datos del chofer y empresa desde el SP de salida
         public PasePuertaInfo ObtenerChoferEmpresaPorPaseSalida(string numeroPase)
         {
             PasePuertaInfo info = null;
             string choferId = null;
             string empresaId = null;
+            string patente = null;
 
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand("[vhs].[obtener_chofer_empresa_por_pase_salida]", connection))
@@ -47,12 +49,13 @@ namespace ControlesAccesoQR.accesoDatos
                     {
                         choferId = reader["ChoferID"].ToString();
                         empresaId = reader["EmpresaTransporteID"].ToString();
+                        patente = reader["Patente"].ToString();
 
                         info = new PasePuertaInfo
                         {
                             ChoferID = choferId,
                             EmpresaTransporteID = empresaId,
-                           
+                            Patente = patente,
                         };
                     }
                 }
@@ -165,17 +168,6 @@ namespace ControlesAccesoQR.accesoDatos
                         };
 
                     }
-                }
-            }
-
-            if (result != null)
-            {
-                var info = ObtenerChoferEmpresaPorPaseSalida(result.NumeroPase);
-                if (info != null)
-                {
-                    result.ChoferNombre = info.ChoferNombre;
-                    result.EmpresaNombre = info.EmpresaNombre;
-                    result.Patente = info.Patente;
                 }
             }
 
