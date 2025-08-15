@@ -184,6 +184,8 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                         if (!await vm.ActualizarEstadoAsync("R"))
                             return;
                         MessageBox.Show("RFID detectado");
+
+                        await EjecutarImpresionAsync(vm);
                         return;
                     }
 
@@ -194,6 +196,8 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                     await CompletarLecturaRfidAsync(vm, null);
                     if (!await vm.ActualizarEstadoAsync("R"))
                         return;
+
+                    await EjecutarImpresionAsync(vm);
                 }
             }
         }
@@ -201,16 +205,20 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
         private async void ImprimirButton_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is VistaEntradaSalidaViewModel vm)
-            {
-                if (DevBypass.IsDevKiosk)
-                {
-                    await CompletarImpresionAsync(vm);
-                    if (!await vm.ActualizarEstadoAsync("P"))
-                        return;
-                    MessageBox.Show("Impresión simulada (CGDE041)");
-                    return;
-                }
+                await EjecutarImpresionAsync(vm);
+        }
 
+        private async Task EjecutarImpresionAsync(VistaEntradaSalidaViewModel vm)
+        {
+            if (DevBypass.IsDevKiosk)
+            {
+                await CompletarImpresionAsync(vm);
+                if (!await vm.ActualizarEstadoAsync("P"))
+                    return;
+                MessageBox.Show("Impresión simulada (CGDE041)");
+            }
+            else
+            {
                 await CompletarImpresionAsync(vm);
                 if (!await vm.ActualizarEstadoAsync("P"))
                     return;
