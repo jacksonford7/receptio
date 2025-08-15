@@ -38,13 +38,25 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public ObservableCollection<Proceso> Procesos { get; } = new ObservableCollection<Proceso>();
 
-        public IEnumerable<EstadoPanel> Estados { get; } = new[]
+        private static readonly EstadoPanel[] _todosLosEstados = new[]
         {
             EstadoPanel.Pase,
             EstadoPanel.Huella,
             EstadoPanel.Tag,
             EstadoPanel.Ticket
         };
+
+        private IEnumerable<EstadoPanel> _estados = _todosLosEstados;
+
+        public IEnumerable<EstadoPanel> Estados
+        {
+            get => _estados;
+            private set
+            {
+                _estados = value;
+                OnPropertyChanged(nameof(Estados));
+            }
+        }
 
         public string NumeroKiosco
         {
@@ -117,12 +129,20 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public void MostrarEntradaSalida()
         {
+            Estados = FiltrarEstadosPorCodigos(new[] { "Pase", "Tictek" });
             _frame.Navigate(new VistaEntradaSalida { DataContext = new VistaEntradaSalidaViewModel(this) });
         }
 
         public void MostrarSalidaFinal()
         {
+            Estados = _todosLosEstados;
             _frame.Navigate(new VistaSalidaFinal { DataContext = new VistaSalidaFinalViewModel(this) });
+        }
+
+        private IEnumerable<EstadoPanel> FiltrarEstadosPorCodigos(IEnumerable<string> codigos)
+        {
+            var permitidos = new HashSet<string>(codigos, StringComparer.OrdinalIgnoreCase);
+            return _todosLosEstados.Where(e => permitidos.Contains(e.ToString()));
         }
 
         public async Task ReiniciarDespuesDeSalidaAsync()
