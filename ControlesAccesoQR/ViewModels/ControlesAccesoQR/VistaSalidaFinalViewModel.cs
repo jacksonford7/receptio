@@ -60,62 +60,70 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             if (string.IsNullOrWhiteSpace(NumeroPaseSalida))
                 return;
 
-            var resultado = _dataAccess.ActualizarFechaSalida(NumeroPaseSalida);
-            if (resultado != null)
-            {
-                HoraSalida = resultado.FechaHoraSalida.ToString("HH:mm");
-                SalidaRegistrada = true;
-                Nombre = resultado.ChoferNombre;
-                Empresa = resultado.EmpresaNombre;
-                Patente = resultado.Patente;
-
-                try
-                {
-                    var estado = await _estadoService.ActualizarAsync(NumeroPaseSalida, "S");
-                    if (estado == null)
-                    {
-                        if (DevBypass.IsDevKiosk)
-                            MessageBox.Show("El pase no existe o el SP no devolvió filas");
-                        else
-                            Console.WriteLine("ActualizarEstadoAsync retornó null");
-                        return;
-                    }
-                    NumeroPaseSalida = estado.NumeroPase;
-                }
-                catch (SqlException ex)
-                {
-                    if (DevBypass.IsDevKiosk)
-                        MessageBox.Show(ex.Message);
-                    else
-                        Console.WriteLine(ex);
-                    return;
-                }
-                catch (TimeoutException ex)
-                {
-                    if (DevBypass.IsDevKiosk)
-                        MessageBox.Show(ex.Message);
-                    else
-                        Console.WriteLine(ex);
-                    return;
-                }
-
-                _mainViewModel.PaseActual = new PaseProcesoModel
-                {
-                    NombreChofer = Nombre,
-                    Placa = Patente,
-                    FechaHoraSalida = resultado.FechaHoraSalida,
-                    NumeroPase = resultado.NumeroPase,
-
-                    Estado = EstadoProcesoEnum.SalidaRegistrada,
-
-                };
-                _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
-                _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
-            }
-            else
+            // Obtener datos de chofer y empresa antes de registrar la salida
+            var info = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(NumeroPaseSalida);
+            if (info == null)
             {
                 MensajeError = "Número de pase inválido";
+                return;
             }
+
+            Nombre = info.ChoferNombre;
+            Empresa = info.EmpresaNombre;
+            Patente = info.Patente;
+
+            var resultado = _dataAccess.ActualizarFechaSalida(NumeroPaseSalida);
+            if (resultado == null)
+            {
+                MensajeError = "Número de pase inválido";
+                return;
+            }
+
+            HoraSalida = resultado.FechaHoraSalida.ToString("HH:mm");
+            SalidaRegistrada = true;
+
+            try
+            {
+                var estado = await _estadoService.ActualizarAsync(NumeroPaseSalida, "S");
+                if (estado == null)
+                {
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show("El pase no existe o el SP no devolvió filas");
+                    else
+                        Console.WriteLine("ActualizarEstadoAsync retornó null");
+                    return;
+                }
+                NumeroPaseSalida = estado.NumeroPase;
+            }
+            catch (SqlException ex)
+            {
+                if (DevBypass.IsDevKiosk)
+                    MessageBox.Show(ex.Message);
+                else
+                    Console.WriteLine(ex);
+                return;
+            }
+            catch (TimeoutException ex)
+            {
+                if (DevBypass.IsDevKiosk)
+                    MessageBox.Show(ex.Message);
+                else
+                    Console.WriteLine(ex);
+                return;
+            }
+
+            _mainViewModel.PaseActual = new PaseProcesoModel
+            {
+                NombreChofer = Nombre,
+                Placa = Patente,
+                FechaHoraSalida = resultado.FechaHoraSalida,
+                NumeroPase = resultado.NumeroPase,
+
+                Estado = EstadoProcesoEnum.SalidaRegistrada,
+
+            };
+            _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
+            _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
         }
 
         private void ImprimirSalida()
