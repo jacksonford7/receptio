@@ -294,8 +294,6 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             var datos = new DatosTicketQr
             {
-                Contenedor = "CONT-001",
-                Booking = "BOOK-001",
                 Cliente = Empresa,
                 Chofer = Nombre
             };

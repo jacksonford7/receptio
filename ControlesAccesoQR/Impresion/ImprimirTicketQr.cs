@@ -47,8 +47,6 @@ namespace ControlesAccesoQR.Impresion
 
     internal class DatosTicketQr
     {
-        public string Contenedor { get; set; }
-        public string Booking { get; set; }
         public string Cliente { get; set; }
         public string Chofer { get; set; }
     }
@@ -62,7 +60,7 @@ namespace ControlesAccesoQR.Impresion
         protected override void EventoImprimir(object sender, PrintPageEventArgs ev)
         {
             var datos = (DatosTicketQr)DatosExtras;
-            ev.Graphics.DrawString("TICKET DE SALIDA", Negrita12, Brushes.Black, 20, 20);
+            ev.Graphics.DrawString("TICKET", Negrita12, Brushes.Black, 20, 20);
 
             using (var generator = new QRCodeGenerator())
             using (var data = generator.CreateQrCode(Codigo, QRCodeGenerator.ECCLevel.Q))
@@ -72,10 +70,9 @@ namespace ControlesAccesoQR.Impresion
                 ev.Graphics.DrawImage(qrImage, 20, 50, 100, 100);
             }
 
-            ev.Graphics.DrawString($"Contenedor: {datos.Contenedor}", Negrita8, Brushes.Black, 130, 60);
-            ev.Graphics.DrawString($"Booking: {datos.Booking}", Negrita8, Brushes.Black, 130, 80);
-            ev.Graphics.DrawString($"Cliente: {datos.Cliente}", Negrita8, Brushes.Black, 130, 100);
-            ev.Graphics.DrawString($"Chofer: {datos.Chofer}", Negrita8, Brushes.Black, 130, 120);
+            ev.Graphics.DrawString($"CodigoQR: {Codigo}", Negrita8, Brushes.Black, 130, 60);
+            ev.Graphics.DrawString($"Cliente: {datos.Cliente}", Negrita8, Brushes.Black, 130, 80);
+            ev.Graphics.DrawString($"Chofer: {datos.Chofer}", Negrita8, Brushes.Black, 130, 100);
 
             ev.HasMorePages = false;
         }
