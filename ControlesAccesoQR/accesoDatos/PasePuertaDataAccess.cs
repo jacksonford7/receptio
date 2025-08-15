@@ -28,14 +28,14 @@ namespace ControlesAccesoQR.accesoDatos
             _extendedConnectionString = ConfigurationManager.ConnectionStrings["bill"].ConnectionString;
         }
 
-        public PasePuertaInfo ObtenerChoferEmpresaPorPase(string numeroPase)
+        public PasePuertaInfo ObtenerChoferEmpresaPorPaseSalida(string numeroPase)
         {
             PasePuertaInfo info = null;
             string choferId = null;
             string empresaId = null;
 
             using (var connection = new SqlConnection(_connectionString))
-            using (var command = new SqlCommand("[vhs].[obtener_chofer_empresa_por_pase]", connection))
+            using (var command = new SqlCommand("[vhs].[obtener_chofer_empresa_por_pase_salida]", connection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@NumeroPase", numeroPase);
@@ -170,7 +170,7 @@ namespace ControlesAccesoQR.accesoDatos
 
             if (result != null)
             {
-                var info = ObtenerChoferEmpresaPorPase(result.NumeroPase);
+                var info = ObtenerChoferEmpresaPorPaseSalida(result.NumeroPase);
                 if (info != null)
                 {
                     result.ChoferNombre = info.ChoferNombre;

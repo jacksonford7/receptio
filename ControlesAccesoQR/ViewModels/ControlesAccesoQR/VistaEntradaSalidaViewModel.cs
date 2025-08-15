@@ -153,7 +153,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             CodigoQR = normalized;
 
-            var datos = _dataAccess.ObtenerChoferEmpresaPorPase(CodigoQR);
+            var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(CodigoQR);
             if (datos != null)
             {
                 Nombre = datos.ChoferNombre;
