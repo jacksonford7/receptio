@@ -129,13 +129,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public void MostrarEntradaSalida()
         {
-            Estados = FiltrarEstadosPorCodigos(new[] { "Pase", "Ticket" });
+            Estados = _todosLosEstados;
             _frame.Navigate(new VistaEntradaSalida { DataContext = new VistaEntradaSalidaViewModel(this) });
         }
 
         public void MostrarSalidaFinal()
         {
-            Estados = _todosLosEstados;
+            Estados = FiltrarEstadosPorCodigos(new[] { "Pase", "Ticket" });
             _frame.Navigate(new VistaSalidaFinal { DataContext = new VistaSalidaFinalViewModel(this) });
         }
 
@@ -177,9 +177,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 OnPropertyChanged(nameof(IsKioskEntrada));
                 OnPropertyChanged(nameof(TipoKioscoTexto));
                 if (IsKioskEntrada)
+                {
+                    // Entrada: mostrar todos los estados
                     MostrarEntradaSalida();
+                }
                 else
+                {
+                    // Salida: mostrar solo Pase y Ticket
                     MostrarSalidaFinal();
+                }
             }
         }
 
