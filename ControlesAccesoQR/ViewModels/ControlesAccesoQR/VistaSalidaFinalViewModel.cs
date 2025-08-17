@@ -12,7 +12,6 @@ using ControlesAccesoQR.Servicios;
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;
-using System;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
@@ -24,9 +23,11 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _horaSalida;
         private bool _salidaRegistrada;
         private string _numeroPaseSalida;
+        private DateTime? _fechaSalida;
         private string _mensajeError;
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly IEstadoService _estadoService = new EstadoService();
+        private readonly PrintService _printService = new PrintService();
         private readonly MainWindowViewModel _mainViewModel;
 
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
@@ -35,18 +36,19 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public string HoraSalida { get => _horaSalida; set { _horaSalida = value; OnPropertyChanged(nameof(HoraSalida)); } }
         public bool SalidaRegistrada { get => _salidaRegistrada; set { _salidaRegistrada = value; OnPropertyChanged(nameof(SalidaRegistrada)); } }
         public string NumeroPaseSalida { get => _numeroPaseSalida; set { _numeroPaseSalida = value; OnPropertyChanged(nameof(NumeroPaseSalida)); } }
+        public DateTime? FechaSalida { get => _fechaSalida; set { _fechaSalida = value; OnPropertyChanged(nameof(FechaSalida)); } }
         public string MensajeError { get => _mensajeError; set { _mensajeError = value; OnPropertyChanged(nameof(MensajeError)); } }
 
         public ObservableCollection<string> Contenedores { get; } = new ObservableCollection<string>();
 
         public ICommand ProcesarSalidaCommand { get; }
-        public ICommand ImprimirSalidaCommand { get; }
+        public ICommand ImprimirCommand { get; }
 
         public VistaSalidaFinalViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
             ProcesarSalidaCommand = new AsyncRelayCommand(ProcesarSalidaAsync);
-            ImprimirSalidaCommand = new RelayCommand(ImprimirSalida);
+            ImprimirCommand = new RelayCommand(Imprimir, PuedeImprimir);
 
             Contenedores.Add("CONT-001");
             Contenedores.Add("CONT-002");
@@ -80,6 +82,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             }
 
             HoraSalida = resultado.FechaHoraSalida.ToString("HH:mm");
+            FechaSalida = resultado.FechaHoraSalida;
             SalidaRegistrada = true;
 
             try
@@ -126,9 +129,22 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
         }
 
-        private void ImprimirSalida()
+        private bool PuedeImprimir() => FechaSalida.HasValue;
+
+        private void Imprimir()
         {
-            // Lógica de impresión pendiente
+            MensajeError = string.Empty;
+            if (!FechaSalida.HasValue)
+            {
+                MensajeError = "No hay fecha de salida para imprimir.";
+                return;
+            }
+
+            var contenido =
+                "SALIDA" + Environment.NewLine +
+                $"Fecha Salida: {FechaSalida.Value:yyyy-MM-dd HH:mm}";
+
+            _printService.Print(contenido);
         }
     }
 }

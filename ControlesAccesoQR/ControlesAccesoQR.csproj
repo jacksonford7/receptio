@@ -167,6 +167,7 @@
     <Compile Include="Servicios\IEstadoService.cs" />
     <Compile Include="Servicios\EstadoService.cs" />
     <Compile Include="Servicios\EstadoPanelEvents.cs" />
+    <Compile Include="Servicios\PrintService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -69,7 +69,7 @@
 
             <StackPanel Visibility="{Binding SalidaRegistrada, Converter={StaticResource BoolToVis}}">
                 <TextBlock Text="{Binding HoraSalida, StringFormat=Hora de salida: {0}}" Margin="0,0,0,5" />
-                <Button Content="Imprimir Salida" Command="{Binding ImprimirSalidaCommand}" Width="150" />
+                <Button Content="Imprimir Salida" Command="{Binding ImprimirCommand}" Width="150" />
             </StackPanel>
         </StackPanel>
     </Grid>
