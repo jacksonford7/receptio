@@ -102,8 +102,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ControlesAccesoQR\VistaSalidaFinal.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ControlesAccesoQR\DialogoHuella.xaml">
       <SubType>Designer</SubType>
@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="Views\ControlesAccesoQR\VistaSalidaFinal.xaml.cs">
       <DependentUpon>VistaSalidaFinal.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Views\ControlesAccesoQR\EstadoProcesoPanel.xaml.cs">
       <DependentUpon>EstadoProcesoPanel.xaml</DependentUpon>

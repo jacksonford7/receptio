@@ -10,3 +10,4 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
         }
     }
 }
+

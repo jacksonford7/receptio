@@ -129,14 +129,17 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public void MostrarEntradaSalida()
         {
-            Estados = FiltrarEstadosPorCodigos(new[] { "Pase", "Tictek" });
+            Estados = FiltrarEstadosPorCodigos(new[] { "Pase", "Ticket" });
             _frame.Navigate(new VistaEntradaSalida { DataContext = new VistaEntradaSalidaViewModel(this) });
         }
 
         public void MostrarSalidaFinal()
         {
             Estados = _todosLosEstados;
-            _frame.Navigate(new VistaSalidaFinal { DataContext = new VistaSalidaFinalViewModel(this) });
+            _frame.Navigate(new ControlesAccesoQR.Views.ControlesAccesoQR.VistaSalidaFinal
+            {
+                DataContext = new VistaSalidaFinalViewModel(this)
+            });
         }
 
         private IEnumerable<EstadoPanel> FiltrarEstadosPorCodigos(IEnumerable<string> codigos)
