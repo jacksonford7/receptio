@@ -135,8 +135,23 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public void MostrarSalidaFinal()
         {
+            // La salida final sólo requiere visualizar los pasos "Pase" y "Ticket"
+            // por lo que filtramos el panel de estados para mostrar únicamente
+            // dichos elementos en la interfaz del kiosco.
             Estados = FiltrarEstadosPorCodigos(new[] { "Pase", "Ticket" });
-            _frame.Navigate(new VistaSalidaFinal { DataContext = new VistaSalidaFinalViewModel(this) });
+
+            // VistaSalidaFinalViewModel contiene toda la lógica específica de
+            // salida, incluyendo las llamadas a los procedimientos almacenados
+            // [vhs].[obtener_chofer_empresa_por_pase_salida] y
+            // [vhs].[actualizar_fecha_salida].  De esta manera la vista ofrece
+            // la misma experiencia que la entrada: ingreso de pase, teclado y
+            // opción de impresión.
+            var view = new VistaSalidaFinal
+            {
+                DataContext = new VistaSalidaFinalViewModel(this)
+            };
+
+            _frame.Navigate(view);
         }
 
         private IEnumerable<EstadoPanel> FiltrarEstadosPorCodigos(IEnumerable<string> codigos)
