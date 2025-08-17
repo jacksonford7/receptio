@@ -136,10 +136,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public void MostrarSalidaFinal()
         {
             Estados = _todosLosEstados;
-            _frame.Navigate(new ControlesAccesoQR.Views.ControlesAccesoQR.VistaSalidaFinal
-            {
-                DataContext = new VistaSalidaFinalViewModel(this)
-            });
+            _frame.Navigate(new VistaSalidaFinal { DataContext = new VistaSalidaFinalViewModel(this) });
         }
 
         private IEnumerable<EstadoPanel> FiltrarEstadosPorCodigos(IEnumerable<string> codigos)
