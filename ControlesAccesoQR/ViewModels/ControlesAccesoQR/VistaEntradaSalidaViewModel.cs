@@ -39,9 +39,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _rfidMensaje;
         private string _estadoActual;
         private DateTime? _ultimaActualizacion;
+        private DateTime? _fecha;
+        private string _salida;
+        private string _chofer;
+        private string _mensajeError;
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly IEstadoService _estadoService = new EstadoService();
+        private readonly PrintService _printService = new PrintService();
         private readonly MainWindowViewModel _mainViewModel;
 
         public MainWindowViewModel MainViewModel => _mainViewModel;
@@ -49,9 +54,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _choferId;
 
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
-        public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); } }
+        public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); CommandManager.InvalidateRequerySuggested(); } }
         public string Patente { get => _patente; set { _patente = value; OnPropertyChanged(nameof(Patente)); } }
         public DateTime HoraLlegada { get => _horaLlegada; set { _horaLlegada = value; OnPropertyChanged(nameof(HoraLlegada)); } }
+        public DateTime? Fecha { get => _fecha; set { _fecha = value; OnPropertyChanged(nameof(Fecha)); CommandManager.InvalidateRequerySuggested(); } }
+        public string Salida { get => _salida; set { _salida = value; OnPropertyChanged(nameof(Salida)); CommandManager.InvalidateRequerySuggested(); } }
+        public string Chofer { get => _chofer; set { _chofer = value; OnPropertyChanged(nameof(Chofer)); CommandManager.InvalidateRequerySuggested(); } }
+        public string MensajeError { get => _mensajeError; set { _mensajeError = value; OnPropertyChanged(nameof(MensajeError)); } }
         public bool IngresoRealizado { get => _ingresoRealizado; set { _ingresoRealizado = value; OnPropertyChanged(nameof(IngresoRealizado)); } }
         public string QrImagePath { get => _qrImagePath; set { _qrImagePath = value; OnPropertyChanged(nameof(QrImagePath)); } }
         public string CodigoQR
@@ -118,6 +127,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public ICommand SubmitPassCommand { get; }
         public AsyncRelayCommand IngresarCommand { get; }
         public ICommand ImprimirQrCommand { get; }
+        public ICommand ImprimirCommand { get; }
 
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
@@ -125,6 +135,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             SubmitPassCommand = new RelayCommand(() => SubmitPass(CodigoQR, "manual"));
             IngresarCommand = new AsyncRelayCommand(IngresarAsync, () => !IsBusy && !string.IsNullOrWhiteSpace(QrValue));
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
+            ImprimirCommand = new RelayCommand(Imprimir, PuedeImprimir);
         }
 
         private DateTime _lastSubmitTime = DateTime.MinValue;
@@ -160,6 +171,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 Empresa = datos.EmpresaNombre;
                 Patente = datos.Patente;
                 ChoferID = datos.ChoferID;
+                Chofer = datos.ChoferNombre;
             }
             else
             {
@@ -199,6 +211,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     return;
 
             HoraLlegada = resultado.FechaHoraLlegada;
+            Fecha = resultado.FechaHoraLlegada;
             NumeroPaseEscaneado = CodigoQR;
             // Guardar el QR original por referencia
             if (string.IsNullOrWhiteSpace(NumeroPaseEscaneado))
@@ -313,6 +326,34 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             {
                 ticket.Imprimir();
             }
+        }
+
+        private bool PuedeImprimir()
+        {
+            return Fecha.HasValue &&
+                   !string.IsNullOrWhiteSpace(Salida) &&
+                   !string.IsNullOrWhiteSpace(Empresa) &&
+                   !string.IsNullOrWhiteSpace(Chofer);
+        }
+
+        private void Imprimir()
+        {
+            MensajeError = string.Empty;
+
+            if (!PuedeImprimir())
+            {
+                MensajeError = "Faltan datos para imprimir (Fecha/Salida/Empresa/Chofer).";
+                return;
+            }
+
+            var contenido =
+                "CONTROL ENTRADA/SALIDA" + Environment.NewLine +
+                $"Fecha: {Fecha.Value:yyyy-MM-dd HH:mm}" + Environment.NewLine +
+                $"Salida: {Salida}" + Environment.NewLine +
+                $"Empresa: {Empresa}" + Environment.NewLine +
+                $"Chofer: {Chofer}";
+
+            _printService.Print(contenido);
         }
 
         /// <summary>

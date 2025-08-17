@@ -88,6 +88,8 @@
             <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
             <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />
             <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" HorizontalAlignment="Left" />
+            <Button Content="Imprimir Datos" Command="{Binding ImprimirCommand}" Width="150" HorizontalAlignment="Left" Margin="0,5,0,0" />
+            <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,5,0,0" />
         </StackPanel>
     </Grid>
 </UserControl>
