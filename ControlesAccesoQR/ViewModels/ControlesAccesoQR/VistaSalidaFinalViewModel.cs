@@ -129,6 +129,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             };
             _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
+
+            // Al registrar la salida, el panel de estados de la ventana principal
+            // debe reflejar que se ha alcanzado el paso "Ticket". En modo salida
+            // no existe un código propio para este paso, por lo que notificamos
+            // explícitamente al MainWindowViewModel utilizando el mismo mecanismo
+            // que en la vista de entrada/salida.
+            EstadoPanelEvents.RaiseEstadoCodigoCambiado("P");
+
             Imprimir();
             _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
         }
