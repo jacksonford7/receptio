@@ -10,6 +10,7 @@ using ControlesAccesoQR;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Servicios;
+using ControlesAccesoQR.Impresion;
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;
@@ -28,7 +29,6 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _mensajeError;
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly IEstadoService _estadoService = new EstadoService();
-        private readonly PrintService _printService = new PrintService();
         private readonly MainWindowViewModel _mainViewModel;
 
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
@@ -191,11 +191,23 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 return;
             }
 
-            var contenido =
-                "SALIDA" + Environment.NewLine +
-                $"Fecha Salida: {FechaSalida.Value:yyyy-MM-dd HH:mm}";
+            if (DevBypass.IsDevKiosk)
+            {
+                MessageBox.Show("Impresión simulada (CGDE042)"); // BYPASS CGDE042
+                return;
+            }
 
-            _printService.Print(contenido);
+            var datos = new DatosTicketSalida
+            {
+                FechaSalida = FechaSalida.Value,
+                Transportista = Nombre,
+                Compania = Empresa
+            };
+
+            using (var ticket = new ImprimirTicketSalida(datos))
+            {
+                ticket.Imprimir();
+            }
         }
     }
 }
