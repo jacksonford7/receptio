@@ -31,12 +31,44 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private readonly IEstadoService _estadoService = new EstadoService();
         private readonly MainWindowViewModel _mainViewModel;
 
+        private int _isProcessing; // 0 = libre, 1 = procesando
+        private DateTime _lastScanUtc;
+        private CancellationTokenSource _debounceCts;
+
         public string Nombre { get => _nombre; set { _nombre = value; OnPropertyChanged(nameof(Nombre)); } }
         public string Empresa { get => _empresa; set { _empresa = value; OnPropertyChanged(nameof(Empresa)); } }
         public string Patente { get => _patente; set { _patente = value; OnPropertyChanged(nameof(Patente)); } }
         public string HoraSalida { get => _horaSalida; set { _horaSalida = value; OnPropertyChanged(nameof(HoraSalida)); } }
         public bool SalidaRegistrada { get => _salidaRegistrada; set { _salidaRegistrada = value; OnPropertyChanged(nameof(SalidaRegistrada)); } }
-        public string NumeroPaseSalida { get => _numeroPaseSalida; set { _numeroPaseSalida = value; OnPropertyChanged(nameof(NumeroPaseSalida)); } }
+        public string NumeroPaseSalida
+        {
+            get { return _numeroPaseSalida; }
+            set
+            {
+                if (string.Equals(_numeroPaseSalida, value)) return;
+                _numeroPaseSalida = value;
+                OnPropertyChanged(nameof(NumeroPaseSalida));
+
+                if (_debounceCts != null) _debounceCts.Cancel();
+                _debounceCts = new CancellationTokenSource();
+                var ct = _debounceCts.Token;
+
+                if (string.IsNullOrWhiteSpace(_numeroPaseSalida)) return;
+
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await DebounceAsync(200, ct);
+                        if (!ct.IsCancellationRequested)
+                        {
+                            await ProcesarSalidaAsync();
+                        }
+                    }
+                    catch (TaskCanceledException) { }
+                });
+            }
+        }
         public DateTime? FechaSalida { get => _fechaSalida; set { _fechaSalida = value; OnPropertyChanged(nameof(FechaSalida)); } }
         public string MensajeError { get => _mensajeError; set { _mensajeError = value; OnPropertyChanged(nameof(MensajeError)); } }
 
@@ -57,80 +89,118 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             Contenedores.Add("CONT-002");
         }
 
+        private async Task DebounceAsync(int milliseconds, CancellationToken ct)
+        {
+            await Task.Delay(milliseconds, ct);
+        }
+
+        private void DetenerLectorQr()
+        {
+            // TODO: desuscribir eventos del lector o deshabilitar timer/polling
+        }
+
+        private void IniciarLectorQr()
+        {
+            // TODO: volver a suscribir eventos / reactivar lector
+        }
+
         private async Task ProcesarSalidaAsync()
         {
-            MensajeError = string.Empty;
-            SalidaRegistrada = false;
-
-            if (string.IsNullOrWhiteSpace(NumeroPaseSalida))
-                return;
-
-            // Obtener datos de chofer y empresa antes de registrar la salida
-            var info = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(NumeroPaseSalida);
-            if (info == null)
-            {
-                MensajeError = "Número de pase inválido";
-                return;
-            }
-
-            Nombre = info.ChoferNombre;
-            Empresa = info.EmpresaNombre;
-            Patente = info.Patente;
-
-            var resultado = _dataAccess.ActualizarFechaSalida(NumeroPaseSalida);
-            if (resultado == null)
-            {
-                MensajeError = "Número de pase inválido";
-                return;
-            }
-
-            HoraSalida = resultado.FechaHoraSalida.ToString("HH:mm");
-            FechaSalida = resultado.FechaHoraSalida;
-            SalidaRegistrada = true;
+            if (Interlocked.Exchange(ref _isProcessing, 1) == 1) return;
 
             try
             {
-                var estado = await _estadoService.ActualizarAsync(NumeroPaseSalida, "S");
-                if (estado == null)
+                DetenerLectorQr();
+
+                var now = DateTime.UtcNow;
+                if (_lastScanUtc != DateTime.MinValue && (now - _lastScanUtc).TotalMilliseconds < 800)
+                    return;
+                _lastScanUtc = now;
+
+                MensajeError = string.Empty;
+                SalidaRegistrada = false;
+
+                if (string.IsNullOrWhiteSpace(NumeroPaseSalida))
                 {
-                    if (DevBypass.IsDevKiosk)
-                        MessageBox.Show("El pase no existe o el SP no devolvió filas");
-                    else
-                        Console.WriteLine("ActualizarEstadoAsync retornó null");
+                    MensajeError = "Número de pase inválido";
                     return;
                 }
-                NumeroPaseSalida = estado.NumeroPase;
-            }
-            catch (SqlException ex)
-            {
-                if (DevBypass.IsDevKiosk)
-                    MessageBox.Show(ex.Message);
-                else
-                    Console.WriteLine(ex);
-                return;
-            }
-            catch (TimeoutException ex)
-            {
-                if (DevBypass.IsDevKiosk)
-                    MessageBox.Show(ex.Message);
-                else
-                    Console.WriteLine(ex);
-                return;
-            }
 
-            _mainViewModel.PaseActual = new PaseProcesoModel
+                var info = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(NumeroPaseSalida);
+                if (info == null)
+                {
+                    MensajeError = "Número de pase inválido";
+                    return;
+                }
+
+                Nombre = info.ChoferNombre;
+                Empresa = info.EmpresaNombre;
+                Patente = info.Patente;
+
+                var resultado = _dataAccess.ActualizarFechaSalida(NumeroPaseSalida);
+                if (resultado == null)
+                {
+                    MensajeError = "Número de pase inválido";
+                    return;
+                }
+
+                HoraSalida = resultado.FechaHoraSalida.ToString("HH:mm");
+                FechaSalida = resultado.FechaHoraSalida;
+                SalidaRegistrada = true;
+
+                try
+                {
+                    var estado = await _estadoService.ActualizarAsync(NumeroPaseSalida, "S");
+                    if (estado == null)
+                    {
+                        if (DevBypass.IsDevKiosk)
+                            MessageBox.Show("El pase no existe o el SP no devolvió filas");
+                        else
+                            Console.WriteLine("ActualizarEstadoAsync retornó null");
+                        return;
+                    }
+                    NumeroPaseSalida = estado.NumeroPase;
+                }
+                catch (SqlException ex)
+                {
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show(ex.Message);
+                    else
+                        Console.WriteLine(ex);
+                    return;
+                }
+                catch (TimeoutException ex)
+                {
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show(ex.Message);
+                    else
+                        Console.WriteLine(ex);
+                    return;
+                }
+
+                _mainViewModel.PaseActual = new PaseProcesoModel
+                {
+                    NombreChofer = Nombre,
+                    Placa = Patente,
+                    FechaHoraSalida = resultado.FechaHoraSalida,
+                    NumeroPase = resultado.NumeroPase,
+
+                    Estado = EstadoProcesoEnum.SalidaRegistrada,
+
+                };
+                _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
+                await ImprimirAsync();
+                _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
+            }
+            catch (Exception ex)
             {
-                NombreChofer = Nombre,
-                Placa = Patente,
-                FechaHoraSalida = resultado.FechaHoraSalida,
-                NumeroPase = resultado.NumeroPase,
-
-                Estado = EstadoProcesoEnum.SalidaRegistrada,
-
-            };
-            _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
-            Imprimir();
-            _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
+                MensajeError = ex.Message;
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _isProcessing, 0);
+                IniciarLectorQr();
+            }
         }
 
         public void SubmitPass(string input, string inputMethod)
@@ -182,6 +252,18 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         private bool PuedeImprimir() => FechaSalida.HasValue;
 
+        private async Task ImprimirAsync()
+        {
+            try
+            {
+                await Task.Run(() => Imprimir());
+            }
+            catch (Exception ex)
+            {
+                MensajeError = ex.Message;
+            }
+        }
+
         private void Imprimir()
         {
             MensajeError = string.Empty;
@@ -211,4 +293,3 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         }
     }
 }
-
