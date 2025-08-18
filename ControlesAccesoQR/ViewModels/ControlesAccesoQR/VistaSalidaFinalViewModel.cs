@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 using ControlesAccesoQR;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
@@ -41,12 +42,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public ObservableCollection<string> Contenedores { get; } = new ObservableCollection<string>();
 
+        public ICommand SubmitPassCommand { get; }
         public ICommand ProcesarSalidaCommand { get; }
         public ICommand ImprimirCommand { get; }
 
         public VistaSalidaFinalViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
+            SubmitPassCommand = new RelayCommand(() => SubmitPass(NumeroPaseSalida, "manual"));
             ProcesarSalidaCommand = new AsyncRelayCommand(ProcesarSalidaAsync);
             ImprimirCommand = new RelayCommand(Imprimir, PuedeImprimir);
 
@@ -126,7 +129,55 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             };
             _mainViewModel.EstadoProceso = EstadoProcesoEnum.SalidaRegistrada;
+            Imprimir();
             _ = _mainViewModel.ReiniciarDespuesDeSalidaAsync();
+        }
+
+        public void SubmitPass(string input, string inputMethod)
+        {
+            var normalized = NormalizeInput(input);
+            if (string.IsNullOrWhiteSpace(normalized))
+            {
+                MessageBox.Show("Número de pase inválido");
+                return;
+            }
+
+            if (!Regex.IsMatch(normalized, "^[A-Za-z0-9]+$"))
+            {
+                MessageBox.Show("Formato de número de pase inválido");
+                return;
+            }
+
+            NumeroPaseSalida = normalized;
+
+            var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(NumeroPaseSalida);
+            if (datos != null)
+            {
+                Nombre = datos.ChoferNombre;
+                Empresa = datos.EmpresaNombre;
+                Patente = datos.Patente;
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron datos para el pase");
+            }
+        }
+
+        private string NormalizeInput(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            var cleaned = input.Trim().Replace("\r", string.Empty).Replace("\n", string.Empty);
+
+            if (cleaned.StartsWith("URI:", StringComparison.OrdinalIgnoreCase))
+                cleaned = cleaned.Substring(4);
+
+            var match = Regex.Match(cleaned, @"passNumber[""':=]+([A-Za-z0-9-]+)");
+            if (match.Success)
+                return match.Groups[1].Value;
+
+            return cleaned;
         }
 
         private bool PuedeImprimir() => FechaSalida.HasValue;
