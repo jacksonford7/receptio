@@ -164,6 +164,12 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             await Task.Delay(5000);
             EstadoProceso = EstadoProcesoEnum.EnEspera;
+
+            // Reiniciamos el panel de estados para que el próximo proceso
+            // comience desde "Pase".  Al utilizar el mismo método que procesa
+            // los cambios de estado (SetEstadoDesdeCodigo) garantizamos que la
+            // propiedad de notificación se dispare y la interfaz se actualice.
+            SetEstadoDesdeCodigo("I");
         }
 
         private void ObtenerQuiosco()
