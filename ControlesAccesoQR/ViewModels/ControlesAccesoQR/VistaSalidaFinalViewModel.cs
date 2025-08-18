@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 using ControlesAccesoQR;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
@@ -49,12 +50,35 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public VistaSalidaFinalViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
+            _mainViewModel.PropertyChanged += MainViewModelOnPropertyChanged;
+
             SubmitPassCommand = new RelayCommand(() => SubmitPass(NumeroPaseSalida, "manual"));
             ProcesarSalidaCommand = new AsyncRelayCommand(ProcesarSalidaAsync);
             ImprimirCommand = new RelayCommand(Imprimir, PuedeImprimir);
 
             Contenedores.Add("CONT-001");
             Contenedores.Add("CONT-002");
+        }
+
+        private void MainViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MainWindowViewModel.EstadoProceso) &&
+                _mainViewModel.EstadoProceso == EstadoProcesoEnum.EnEspera)
+            {
+                LimpiarCampos();
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            Nombre = string.Empty;
+            Empresa = string.Empty;
+            Patente = string.Empty;
+            HoraSalida = string.Empty;
+            NumeroPaseSalida = string.Empty;
+            FechaSalida = null;
+            SalidaRegistrada = false;
+            MensajeError = string.Empty;
         }
 
         private async Task ProcesarSalidaAsync()
