@@ -9,7 +9,6 @@ using System.Windows;
 using ControlesAccesoQR;
 using System.Windows.Input;
 using QRCoder;
-using System.Text.RegularExpressions;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.Impresora;
@@ -43,10 +42,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _salida;
         private string _chofer;
         private string _mensajeError;
+        private int _isProcessing;
+        private string _ultimoCodigoProcesado;
+        private CancellationTokenSource _debounceCts;
+        private bool _lectorSuscrito;
+        private string _numeroPase;
+        public bool HabilitarAutoPorLectorQR { get; set; }
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly IEstadoService _estadoService = new EstadoService();
-        private readonly PrintService _printService = new PrintService();
         private readonly MainWindowViewModel _mainViewModel;
 
         public MainWindowViewModel MainViewModel => _mainViewModel;
@@ -65,30 +69,58 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public string QrImagePath { get => _qrImagePath; set { _qrImagePath = value; OnPropertyChanged(nameof(QrImagePath)); } }
         public string CodigoQR
         {
-            get => _codigoQR;
+            get { return _codigoQR; }
             set
             {
+                if (_codigoQR == value) return;
                 _codigoQR = value;
                 OnPropertyChanged(nameof(CodigoQR));
-                OnPropertyChanged(nameof(QrValue));
-                IngresarCommand?.RaiseCanExecuteChanged();
+
+                if (!HabilitarAutoPorLectorQR)
+                {
+                    CommandManager.InvalidateRequerySuggested();
+                    return;
+                }
+
+                if (_debounceCts != null) _debounceCts.Cancel();
+                _debounceCts = new CancellationTokenSource();
+                var ct = _debounceCts.Token;
+
+                if (string.IsNullOrWhiteSpace(_codigoQR)) return;
+
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await Task.Delay(200, ct);
+                        if (!ct.IsCancellationRequested)
+                            await ProcesarEntradaSalidaAsync();
+                    }
+                    catch (TaskCanceledException) { }
+                });
             }
         }
 
-        public string QrValue
+        public string NumeroPase
         {
-            get => CodigoQR;
-            set => CodigoQR = value;
+            get { return _numeroPase; }
+            set
+            {
+                if (_numeroPase == value) return;
+                _numeroPase = value;
+                OnPropertyChanged(nameof(NumeroPase));
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
 
         public bool IsBusy
         {
-            get => _isBusy;
+            get { return _isBusy; }
             set
             {
                 _isBusy = value;
                 OnPropertyChanged(nameof(IsBusy));
-                IngresarCommand?.RaiseCanExecuteChanged();
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -124,143 +156,99 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
         }
 
-        public ICommand SubmitPassCommand { get; }
-        public AsyncRelayCommand IngresarCommand { get; }
-        public ICommand ImprimirQrCommand { get; }
-        public ICommand ImprimirCommand { get; }
+        public ICommand ProcesarCommand { get; }
 
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
+        {
             _mainViewModel = mainViewModel;
-            SubmitPassCommand = new RelayCommand(() => SubmitPass(CodigoQR, "manual"));
-            IngresarCommand = new AsyncRelayCommand(IngresarAsync, () => !IsBusy && !string.IsNullOrWhiteSpace(QrValue));
-            ImprimirQrCommand = new RelayCommand(ImprimirQr);
-            ImprimirCommand = new RelayCommand(Imprimir, PuedeImprimir);
+            HabilitarAutoPorLectorQR = false;
+
+            if (!_lectorSuscrito && HabilitarAutoPorLectorQR)
+            {
+                // lector.OnLeido -= OnQrLeido;
+                // lector.OnLeido += OnQrLeido;
+                _lectorSuscrito = true;
+            }
+
+            ProcesarCommand = new RelayCommand(
+                async () => await ProcesarEntradaSalidaAsync(),
+                () => _isProcessing == 0 && (!string.IsNullOrWhiteSpace(NumeroPase) || !string.IsNullOrWhiteSpace(CodigoQR)));
         }
 
-        private DateTime _lastSubmitTime = DateTime.MinValue;
-        private string _lastInput = string.Empty;
 
-        public void SubmitPass(string input, string inputMethod)
+        private async Task ProcesarEntradaSalidaAsync()
         {
-            var now = DateTime.UtcNow;
-            if (input == _lastInput && (now - _lastSubmitTime).TotalMilliseconds < 200)
-                return;
-            _lastInput = input;
-            _lastSubmitTime = now;
-
-            var normalized = NormalizeInput(input);
-            if (string.IsNullOrWhiteSpace(normalized))
+            if (Interlocked.Exchange(ref _isProcessing, 1) == 1) return;
+            try
             {
-                MessageBox.Show("Número de pase inválido");
-                return;
-            }
+                MensajeError = string.Empty;
 
-            if (!Regex.IsMatch(normalized, "^[A-Za-z0-9]+$"))
-            {
-                MessageBox.Show("Formato de número de pase inválido");
-                return;
-            }
+                var codigo = !string.IsNullOrWhiteSpace(CodigoQR) ? CodigoQR.Trim()
+                            : !string.IsNullOrWhiteSpace(NumeroPase) ? NumeroPase.Trim()
+                            : null;
 
-            CodigoQR = normalized;
+                if (string.IsNullOrWhiteSpace(codigo))
+                {
+                    MensajeError = "Ingrese el código o número de pase.";
+                    return;
+                }
 
-            var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(CodigoQR);
-            if (datos != null)
-            {
+                if (string.Equals(_ultimoCodigoProcesado, codigo, StringComparison.Ordinal))
+                    return;
+
+                var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(codigo);
+                if (datos == null)
+                {
+                    MensajeError = "Código inválido.";
+                    return;
+                }
+
                 Nombre = datos.ChoferNombre;
                 Empresa = datos.EmpresaNombre;
                 Patente = datos.Patente;
                 ChoferID = datos.ChoferID;
                 Chofer = datos.ChoferNombre;
-            }
-            else
-            {
-                MessageBox.Show("No se encontraron datos para el pase");
-            }
-        }
 
-        private string NormalizeInput(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-                return string.Empty;
-
-            var cleaned = input.Trim().Replace("\r", string.Empty).Replace("\n", string.Empty);
-
-            if (cleaned.StartsWith("URI:", StringComparison.OrdinalIgnoreCase))
-                cleaned = cleaned.Substring(4);
-
-            var match = Regex.Match(cleaned, @"passNumber[""':=]+([A-Za-z0-9-]+)");
-            if (match.Success)
-                return match.Groups[1].Value;
-
-            return cleaned;
-        }
-
-        private async Task IngresarAsync()
-        {
-            var pass = CodigoQR;
-            if (string.IsNullOrWhiteSpace(pass))
-                return;
-
-            try
-            {
-                IsBusy = true;
-
-                var resultado = _dataAccess.ActualizarFechaLlegada(pass);
+                var resultado = _dataAccess.ActualizarFechaLlegada(codigo);
                 if (resultado == null)
+                {
+                    MensajeError = "No se pudo registrar.";
+                    return;
+                }
+
+                HoraLlegada = resultado.FechaHoraLlegada;
+                Fecha = resultado.FechaHoraLlegada;
+                NumeroPaseEscaneado = codigo;
+
+                CodigoQR = resultado.PasePuertaID.ToString();
+
+                if (!await ActualizarEstadoAsync("I", default(CancellationToken)))
                     return;
 
-            HoraLlegada = resultado.FechaHoraLlegada;
-            Fecha = resultado.FechaHoraLlegada;
-            NumeroPaseEscaneado = CodigoQR;
-            // Guardar el QR original por referencia
-            if (string.IsNullOrWhiteSpace(NumeroPaseEscaneado))
-                NumeroPaseEscaneado = CodigoQR;
+                IngresoRealizado = true;
 
-            // A partir de aquí trabajamos con el ID devuelto por el SP
-            var idPase = resultado.PasePuertaID.ToString();
-            if (!string.Equals(CodigoQR, idPase, StringComparison.Ordinal))
-            {
-                CodigoQR = idPase;                 // <- ahora CodigoQR lleva el PasePuertaID
-                OnPropertyChanged(nameof(CodigoQR));
-            }
-
-            if (!await ActualizarEstadoAsync("I"))
-                return;
-
-            var qrText = $"{CodigoQR}|{resultado.FechaHoraLlegada:yyyy-MM-dd HH:mm:ss}";
-            using (var generator = new QRCodeGenerator())
-            {
-                var data = generator.CreateQrCode(qrText, QRCodeGenerator.ECCLevel.Q);
-                using (var qrCode = new PngByteQRCode(data))
+                _mainViewModel.PaseActual = new PaseProcesoModel
                 {
-                    var bytes = qrCode.GetGraphic(20);
-                    var path = Path.Combine(Path.GetTempPath(), $"qr_{Guid.NewGuid()}.png");
-                    File.WriteAllBytes(path, bytes);
-                    QrImagePath = path;
-                }
+                    NombreChofer = Nombre,
+                    Placa = Patente,
+                    FechaHoraLlegada = HoraLlegada,
+                    NumeroPase = CodigoQR,
+                    Estado = EstadoProcesoTipo.EnEspera,
+                };
+
+                await ImprimirAsync(codigo);
+
+                _ultimoCodigoProcesado = codigo;
             }
-
-            IngresoRealizado = true;
-
-            _mainViewModel.PaseActual = new PaseProcesoModel
+            finally
             {
-                NombreChofer = Nombre,
-                Placa = Patente,
-                FechaHoraLlegada = HoraLlegada,
-                NumeroPase = CodigoQR,
-
-                Estado = EstadoProcesoTipo.EnEspera
-
-            };
+                Interlocked.Exchange(ref _isProcessing, 0);
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
-        finally
-        {
-            IsBusy = false;
-        }
-    }
 
-        public async Task<bool> ActualizarEstadoAsync(string estado, CancellationToken ct = default)
+        public async Task<bool> ActualizarEstadoAsync(string estado, CancellationToken ct = default(CancellationToken))
         {
             if (string.IsNullOrWhiteSpace(CodigoQR))
                 return false;
@@ -300,10 +288,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             return false;
         }
 
-        private void ImprimirQr()
+        private async Task ImprimirAsync(string codigo)
         {
-            if (string.IsNullOrWhiteSpace(CodigoQR))
+            if (string.IsNullOrWhiteSpace(codigo))
+            {
+                MensajeError = "No hay código para imprimir.";
                 return;
+            }
 
             var datos = new DatosTicketQr
             {
@@ -313,47 +304,22 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             if (DevBypass.IsDevKiosk)
             {
-                MessageBox.Show("Impresión simulada (CGDE041)"); // BYPASS CGDE041
+                MessageBox.Show("Impresión simulada (CGDE041)");
                 return;
             }
 
             IEstadoImpresora estadoImpresora = new EstadoImpresora();
             var mensajes = estadoImpresora.VerEstado();
             if (mensajes.Item1.Any())
+            {
+                MensajeError = string.Join(Environment.NewLine, mensajes.Item1);
                 return;
+            }
 
-            using (var ticket = new ImprimirTicketSalidaQr(CodigoQR, datos))
+            using (var ticket = new ImprimirTicketSalidaQr(codigo, datos))
             {
                 ticket.Imprimir();
             }
-        }
-
-        private bool PuedeImprimir()
-        {
-            return Fecha.HasValue &&
-                   !string.IsNullOrWhiteSpace(Salida) &&
-                   !string.IsNullOrWhiteSpace(Empresa) &&
-                   !string.IsNullOrWhiteSpace(Chofer);
-        }
-
-        private void Imprimir()
-        {
-            MensajeError = string.Empty;
-
-            if (!PuedeImprimir())
-            {
-                MensajeError = "Faltan datos para imprimir (Fecha/Salida/Empresa/Chofer).";
-                return;
-            }
-
-            var contenido =
-                "CONTROL ENTRADA/SALIDA" + Environment.NewLine +
-                $"Fecha: {Fecha.Value:yyyy-MM-dd HH:mm}" + Environment.NewLine +
-                $"Salida: {Salida}" + Environment.NewLine +
-                $"Empresa: {Empresa}" + Environment.NewLine +
-                $"Chofer: {Chofer}";
-
-            _printService.Print(contenido);
         }
 
         /// <summary>
