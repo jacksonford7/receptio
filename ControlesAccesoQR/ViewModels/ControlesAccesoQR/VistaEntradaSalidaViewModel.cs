@@ -9,7 +9,7 @@ using System.Windows;
 using ControlesAccesoQR;
 using System.Windows.Input;
 using QRCoder;
-using System.Text.RegularExpressions;
+using System.Windows.Threading;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.Impresora;
@@ -34,6 +34,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private bool _ingresoRealizado;
         private string _qrImagePath;
         private string _codigoQR;
+        private bool _isUpdatingCodigoQR;
+        private readonly DispatcherTimer _debouncePase;
+        private CancellationTokenSource _ctsConsultaPase;
         private bool _isBusy;
         private string _numeroPaseEscaneado;
         private string _rfidMensaje;
@@ -68,10 +71,27 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             get => _codigoQR;
             set
             {
-                _codigoQR = value;
-                OnPropertyChanged(nameof(CodigoQR));
-                OnPropertyChanged(nameof(QrValue));
-                IngresarCommand?.RaiseCanExecuteChanged();
+                if (_isUpdatingCodigoQR)
+                    return;
+                var nuevo = value ?? string.Empty;
+                var soloDigitos = new string(nuevo.Where(char.IsDigit).ToArray());
+                if (string.Equals(_codigoQR, soloDigitos, StringComparison.Ordinal))
+                    return;
+
+                _isUpdatingCodigoQR = true;
+                try
+                {
+                    _codigoQR = soloDigitos;
+                    OnPropertyChanged(nameof(CodigoQR));
+                    OnPropertyChanged(nameof(QrValue));
+                    IngresarCommand?.RaiseCanExecuteChanged();
+                    _debouncePase?.Stop();
+                    _debouncePase?.Start();
+                }
+                finally
+                {
+                    _isUpdatingCodigoQR = false;
+                }
             }
         }
 
@@ -132,68 +152,62 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            SubmitPassCommand = new RelayCommand(() => SubmitPass(CodigoQR, "manual"));
+            _debouncePase = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(350) };
+            _debouncePase.Tick += async (s, e) =>
+            {
+                _debouncePase.Stop();
+                await ConsultarPaseAsync();
+            };
+
+            SubmitPassCommand = new AsyncRelayCommand(ConsultarPaseAsync);
             IngresarCommand = new AsyncRelayCommand(IngresarAsync, () => !IsBusy && !string.IsNullOrWhiteSpace(QrValue));
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
             ImprimirCommand = new RelayCommand(Imprimir, PuedeImprimir);
         }
 
-        private DateTime _lastSubmitTime = DateTime.MinValue;
-        private string _lastInput = string.Empty;
-
-        public void SubmitPass(string input, string inputMethod)
+        private async Task ConsultarPaseAsync()
         {
-            var now = DateTime.UtcNow;
-            if (input == _lastInput && (now - _lastSubmitTime).TotalMilliseconds < 200)
+            _debouncePase.Stop();
+            if (string.IsNullOrWhiteSpace(CodigoQR) || CodigoQR.Length < 4)
                 return;
-            _lastInput = input;
-            _lastSubmitTime = now;
 
-            var normalized = NormalizeInput(input);
-            if (string.IsNullOrWhiteSpace(normalized))
+            _ctsConsultaPase?.Cancel();
+            _ctsConsultaPase = new CancellationTokenSource();
+            var ct = _ctsConsultaPase.Token;
+
+            try
             {
-                MessageBox.Show("Número de pase inválido");
-                return;
-            }
+                IsBusy = true;
 
-            if (!Regex.IsMatch(normalized, "^[A-Za-z0-9]+$"))
+                var datos = await Task.Run(() => _dataAccess.ObtenerChoferEmpresaPorPaseSalida(CodigoQR), ct);
+                if (ct.IsCancellationRequested)
+                    return;
+
+                if (datos != null)
+                {
+                    Nombre = datos.ChoferNombre;
+                    Empresa = datos.EmpresaNombre;
+                    Patente = datos.Patente;
+                    ChoferID = datos.ChoferID;
+                    Chofer = datos.ChoferNombre;
+                }
+                else
+                {
+                    MensajeError = "No se encontraron datos para el pase";
+                }
+            }
+            catch (OperationCanceledException)
             {
-                MessageBox.Show("Formato de número de pase inválido");
-                return;
             }
-
-            CodigoQR = normalized;
-
-            var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(CodigoQR);
-            if (datos != null)
+            catch (Exception ex)
             {
-                Nombre = datos.ChoferNombre;
-                Empresa = datos.EmpresaNombre;
-                Patente = datos.Patente;
-                ChoferID = datos.ChoferID;
-                Chofer = datos.ChoferNombre;
+                MensajeError = ex.Message;
             }
-            else
+            finally
             {
-                MessageBox.Show("No se encontraron datos para el pase");
+                if (!ct.IsCancellationRequested)
+                    IsBusy = false;
             }
-        }
-
-        private string NormalizeInput(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-                return string.Empty;
-
-            var cleaned = input.Trim().Replace("\r", string.Empty).Replace("\n", string.Empty);
-
-            if (cleaned.StartsWith("URI:", StringComparison.OrdinalIgnoreCase))
-                cleaned = cleaned.Substring(4);
-
-            var match = Regex.Match(cleaned, @"passNumber[""':=]+([A-Za-z0-9-]+)");
-            if (match.Success)
-                return match.Groups[1].Value;
-
-            return cleaned;
         }
 
         private async Task IngresarAsync()
