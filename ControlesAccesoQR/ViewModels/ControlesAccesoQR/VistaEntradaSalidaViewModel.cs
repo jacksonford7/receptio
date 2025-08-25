@@ -10,6 +10,7 @@ using ControlesAccesoQR;
 using System.Windows.Input;
 using QRCoder;
 using System.Windows.Threading;
+using System.Text.RegularExpressions;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.Impresora;
@@ -163,6 +164,37 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             IngresarCommand = new AsyncRelayCommand(IngresarAsync, () => !IsBusy && !string.IsNullOrWhiteSpace(QrValue));
             ImprimirQrCommand = new RelayCommand(ImprimirQr);
             ImprimirCommand = new RelayCommand(Imprimir, PuedeImprimir);
+        }
+
+        public void SubmitPass(string input, string inputMethod)
+        {
+            var normalized = NormalizeInput(input);
+            if (string.IsNullOrWhiteSpace(normalized))
+                return;
+
+            _debouncePase.Stop();
+            CodigoQR = normalized;
+            _debouncePase.Stop();
+
+            if (SubmitPassCommand?.CanExecute(null) == true)
+                SubmitPassCommand.Execute(null);
+        }
+
+        private static string NormalizeInput(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            var cleaned = input.Trim().Replace("\r", string.Empty).Replace("\n", string.Empty);
+
+            if (cleaned.StartsWith("URI:", StringComparison.OrdinalIgnoreCase))
+                cleaned = cleaned.Substring(4);
+
+            var match = Regex.Match(cleaned, @"passNumber[""':=]+([A-Za-z0-9-]+)");
+            if (match.Success)
+                cleaned = match.Groups[1].Value;
+
+            return new string(cleaned.Where(char.IsDigit).ToArray());
         }
 
         private async Task ConsultarPaseAsync()
