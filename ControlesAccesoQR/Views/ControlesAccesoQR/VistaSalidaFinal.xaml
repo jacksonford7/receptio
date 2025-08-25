@@ -57,7 +57,7 @@
                  MaxWidth="480"
                  Margin="0,0,0,10">
             <uc:TecladoNumerico Text="{Binding NumeroPaseSalida, Mode=TwoWay}"
-                                ComandoOk="{Binding SubmitPassCommand}"
+                                ComandoOk="{Binding ProcesarNumeroCommand}"
                                 Width="420" />
         </Viewbox>
 
@@ -76,7 +76,7 @@
                 HorizontalAlignment="Center"
                 Margin="0,0,0,10"
                 IsDefault="True"
-                Command="{Binding ProcesarSalidaCommand}" />
+                Command="{Binding ProcesarNumeroCommand}" />
 
         <!-- Información adicional -->
         <StackPanel Grid.Row="5" Grid.Column="1"
@@ -85,8 +85,10 @@
             <TextBlock Text="{Binding HoraSalida, StringFormat=Hora de salida: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Empresa, StringFormat=Empresa: {0}}" Margin="0,0,0,5" />
             <TextBlock Text="{Binding Nombre, StringFormat=Chofer: {0}}" Margin="0,0,0,5" />
-            <Button Content="Imprimir" Command="{Binding ImprimirCommand}" Width="150" HorizontalAlignment="Left" />
             <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,5,0,0" />
         </StackPanel>
     </Grid>
+    <Page.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding ProcesarNumeroCommand}" />
+    </Page.InputBindings>
 </Page>

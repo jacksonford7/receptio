@@ -55,15 +55,15 @@
                  StretchDirection="DownOnly"
                  MaxWidth="480"
                  Margin="0,0,0,10">
-            <uc:TecladoNumerico Text="{Binding QrValue, Mode=TwoWay}"
-                                ComandoOk="{Binding SubmitPassCommand}"
+            <uc:TecladoNumerico Text="{Binding NumeroPase, Mode=TwoWay}"
+                                ComandoOk="{Binding ProcesarCommand}"
                                 Width="420" />
         </Viewbox>
 
         <!-- Entrada QR -->
         <TextBox x:Name="QrInput"
                  Grid.Row="3" Grid.ColumnSpan="2"
-                 Text="{Binding QrValue, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding NumeroPase, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Stretch"
                  Margin="0,0,0,8"
                  ToolTip="Escanee el QR o digite el número" />
@@ -71,14 +71,12 @@
         <!-- Botón -->
         <Button x:Name="IngresarButton"
                 Grid.Row="4" Grid.Column="1"
-                Content="Ingresar"
+                Content="Procesar"
                 Width="100"
                 HorizontalAlignment="Center"
                 Margin="0,0,0,10"
                 IsDefault="True"
-                Command="{Binding IngresarCommand}"
-                CommandParameter="{Binding QrValue}"
-                Click="IngresarButton_Click" />
+                Command="{Binding ProcesarCommand}" />
 
         <!-- Información adicional -->
         <StackPanel Grid.Row="5" Grid.Column="1"
@@ -86,11 +84,11 @@
                     HorizontalAlignment="Left"
                     Margin="0,0,0,0">
             <TextBlock Text="{Binding HoraLlegada, StringFormat=Hora de llegada: {0:HH\\:mm}}" Margin="0,0,0,5" />
-            <Image Source="{Binding QrImagePath}" Height="100" Width="100" Margin="0,0,0,5" />
-            <Button Content="Imprimir QR de Salida" Command="{Binding ImprimirQrCommand}" Width="180" HorizontalAlignment="Left" />
-            <Button Content="Imprimir Datos" Command="{Binding ImprimirCommand}" Width="150" HorizontalAlignment="Left" Margin="0,5,0,0" />
             <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,5,0,0" />
         </StackPanel>
     </Grid>
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding ProcesarCommand}" />
+    </UserControl.InputBindings>
 </UserControl>
 
