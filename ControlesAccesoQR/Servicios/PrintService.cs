@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 namespace ControlesAccesoQR.Servicios
 {
-    public class PrintService
+    public class PrintService : IPrintService
     {
         public void Print(string contenido)
         {

@@ -5,6 +5,7 @@ namespace ControlesAccesoQR.Estados
         Pase,
         Huella,
         Tag,
-        Ticket
+        Ticket,
+        EnEspera
     }
 }

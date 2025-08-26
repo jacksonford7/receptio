@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
+using ControlesAccesoQR.Estados;
 
 namespace ControlesAccesoQR.Servicios
 {
@@ -17,6 +18,11 @@ namespace ControlesAccesoQR.Servicios
         public Task<ActualizarEstadoResult> ActualizarAsync(string numeroPase, string estado, CancellationToken ct = default)
         {
             return _dataAccess.ActualizarEstadoAsync(numeroPase, estado, ct);
+        }
+
+        public void Set(EstadoProceso estado)
+        {
+            EstadoPanelEvents.RaiseEstadoCodigoCambiado(estado.ToString());
         }
     }
 }

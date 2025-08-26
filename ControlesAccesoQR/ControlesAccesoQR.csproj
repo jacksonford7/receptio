@@ -170,6 +170,11 @@
     <Compile Include="Servicios\EstadoService.cs" />
     <Compile Include="Servicios\EstadoPanelEvents.cs" />
     <Compile Include="Servicios\PrintService.cs" />
+    <Compile Include="Servicios\IPrintService.cs" />
+    <Compile Include="Servicios\IHuellaService.cs" />
+    <Compile Include="Servicios\HuellaService.cs" />
+    <Compile Include="Servicios\IRfidReader.cs" />
+    <Compile Include="Servicios\RfidReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
