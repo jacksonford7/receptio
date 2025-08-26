@@ -28,7 +28,7 @@ namespace ControlesAccesoQR.accesoDatos
             _extendedConnectionString = ConfigurationManager.ConnectionStrings["bill"].ConnectionString;
         }
 
-        // Obtiene datos del chofer y empresa desde el SP de salida
+        // Obtiene ºs del chofer y empresa desde el SP de salida
         public PasePuertaInfo ObtenerChoferEmpresaPorPaseSalida(string numeroPase)
         {
             PasePuertaInfo info = null;
@@ -49,7 +49,7 @@ namespace ControlesAccesoQR.accesoDatos
                     {
                         choferId = reader["ChoferID"].ToString();
                         empresaId = reader["EmpresaTransporteID"].ToString();
-                        patente = reader["Patente"].ToString();
+                        //patente = reader["Patente"].ToString();
 
                         info = new PasePuertaInfo
                         {
