@@ -55,8 +55,9 @@
                  StretchDirection="DownOnly"
                  MaxWidth="480"
                  Margin="0,0,0,10">
-            <uc:TecladoNumerico Text="{Binding NumeroPase, Mode=TwoWay}"
-                                ComandoOk="{Binding ProcesarQRCommand}"
+            <uc:TecladoNumerico Text="{Binding NumeroPase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                ComandoOk="{Binding ProcesarCommand}"
+                                ComandoOkParameter="{Binding NumeroPase}"
                                 Width="420" />
         </Viewbox>
 
@@ -71,8 +72,8 @@
                  MaxLines="1"
                  SpellCheck.IsEnabled="False"
                  ToolTip="Escanee el QR o digite el número">
-            <TextBox.InputBindings>
-                <KeyBinding Key="Enter" Command="{Binding ProcesarQRCommand}" />
+                 <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding ProcesarCommand}" CommandParameter="{Binding Text, ElementName=txtQR}" />
             </TextBox.InputBindings>
         </TextBox>
 
@@ -84,7 +85,7 @@
                 HorizontalAlignment="Center"
                 Margin="0,0,0,10"
                 IsDefault="True"
-                Command="{Binding ProcesarQRCommand}" />
+                Command="{Binding ProcesarCommand}" CommandParameter="{Binding Text, ElementName=txtQR}" />
 
         <!-- Información adicional -->
         <StackPanel Grid.Row="5" Grid.Column="1"

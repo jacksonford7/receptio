@@ -30,6 +30,15 @@ namespace ControlesAccesoQR.UserControls
             set => SetValue(ComandoOkProperty, value);
         }
 
+        public static readonly DependencyProperty ComandoOkParameterProperty =
+            DependencyProperty.Register(nameof(ComandoOkParameter), typeof(object), typeof(TecladoNumerico), new PropertyMetadata(null));
+
+        public object ComandoOkParameter
+        {
+            get => GetValue(ComandoOkParameterProperty);
+            set => SetValue(ComandoOkParameterProperty, value);
+        }
+
         private void Numero_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn)
@@ -54,8 +63,9 @@ namespace ControlesAccesoQR.UserControls
 
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
-            if (ComandoOk?.CanExecute(null) == true)
-                ComandoOk.Execute(null);
+            var param = ComandoOkParameter ?? Text;
+            if (ComandoOk?.CanExecute(param) == true)
+                ComandoOk.Execute(param);
             InputTextBox.Focus();
         }
 
@@ -63,8 +73,9 @@ namespace ControlesAccesoQR.UserControls
         {
             if (e.Key == Key.Enter)
             {
-                if (ComandoOk?.CanExecute(null) == true)
-                    ComandoOk.Execute(null);
+                var param = ComandoOkParameter ?? Text;
+                if (ComandoOk?.CanExecute(param) == true)
+                    ComandoOk.Execute(param);
                 e.Handled = true;
             }
         }

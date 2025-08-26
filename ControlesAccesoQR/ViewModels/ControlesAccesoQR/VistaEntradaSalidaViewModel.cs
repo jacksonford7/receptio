@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using ControlesAccesoQR;
 using System.Windows.Input;
-using System.Text.RegularExpressions;
 using QRCoder;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
@@ -35,7 +34,6 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _qrImagePath;
         private string _codigoQR;
         private bool _isBusy;
-        private string _numeroPaseEscaneado;
         private string _rfidMensaje;
         private string _estadoActual;
         private DateTime? _ultimaActualizacion;
@@ -43,16 +41,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _salida;
         private string _chofer;
         private string _mensajeError;
-        private bool _isProcessing;
-        private string _ultimoQRProcesado;
+        private int _isProcessing;
+        private string _ultimoCodigoProcesado;
         private CancellationTokenSource _debounceCts;
         private readonly TimeSpan _debounceDelay = TimeSpan.FromMilliseconds(300);
-        private CancellationTokenSource _cts;
         private bool _lectorSuscrito;
         private string _numeroPase;
         public bool HabilitarAutoPorLectorQR { get; set; }
-
-        private static readonly Regex _rxQR = new Regex(@"^[A-Za-z0-9\-\:_/\.]{6,40}$", RegexOptions.Compiled);
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly IEstadoService _estadoService = new EstadoService();
@@ -88,7 +83,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
                 if (!HabilitarAutoPorLectorQR)
                 {
-                    ProcesarQRCommand?.RaiseCanExecuteChanged();
+                    ProcesarCommand?.RaiseCanExecuteChanged();
                     return;
                 }
 
@@ -101,11 +96,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             get => _numeroPase;
             set
             {
-                var cleaned = (value ?? string.Empty).Trim();
+                var cleaned = (value ?? string.Empty)
+                    .Replace("\r", string.Empty)
+                    .Replace("\n", string.Empty)
+                    .Trim();
                 if (_numeroPase == cleaned) return;
                 _numeroPase = cleaned;
                 OnPropertyChanged(nameof(NumeroPase));
-                ProcesarQRCommand?.RaiseCanExecuteChanged();
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -120,29 +118,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             }
         }
 
-        public bool IsProcessing
-        {
-            get => _isProcessing;
-            private set
-            {
-                if (_isProcessing == value) return;
-                _isProcessing = value;
-                OnPropertyChanged(nameof(IsProcessing));
-                ProcesarQRCommand?.RaiseCanExecuteChanged();
-            }
-        }
-
-        public string NumeroPaseEscaneado
-        {
-            get => _numeroPaseEscaneado;
-            private set
-            {
-                if (_numeroPaseEscaneado == value)
-                    return;
-                _numeroPaseEscaneado = value;
-                OnPropertyChanged(nameof(NumeroPaseEscaneado));
-            }
-        }
+        public bool IsProcessing => _isProcessing != 0;
 
         public string IdentificadorDeTrabajo => CodigoQR;
 
@@ -164,7 +140,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
         }
 
-        public AsyncRelayCommand ProcesarQRCommand { get; }
+        public AsyncRelayCommand ProcesarCommand { get; }
 
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
@@ -178,46 +154,37 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 _lectorSuscrito = true;
             }
 
-            ProcesarQRCommand = new AsyncRelayCommand(
-                () => ProcesarEntradaSalidaAsync(CodigoQR),
-                () => !IsProcessing && (!string.IsNullOrWhiteSpace(CodigoQR) || !string.IsNullOrWhiteSpace(NumeroPase)));
+            ProcesarCommand = new AsyncRelayCommand(
+                async param =>
+                {
+                    var texto = (param as string) ?? NumeroPase;
+                    await ProcesarEntradaSalidaAsync(texto);
+                },
+                param => !IsProcessing && !string.IsNullOrWhiteSpace((param as string) ?? NumeroPase));
         }
 
 
-        private async Task ProcesarEntradaSalidaAsync(string qrDesdeUI = null)
+        private async Task ProcesarEntradaSalidaAsync(string valor = null)
         {
-            if (IsProcessing) return;
-
-            var qr = (qrDesdeUI ?? CodigoQR ?? NumeroPase ?? string.Empty)
-                .Replace("\r", string.Empty)
-                .Replace("\n", string.Empty)
-                .Trim();
-
-            if (string.IsNullOrWhiteSpace(qr))
-            {
-                MensajeError = "Ingrese el código o número de pase.";
-                return;
-            }
-
-            if (!_rxQR.IsMatch(qr))
-            {
-                MensajeError = "El QR no tiene un formato válido.";
-                return;
-            }
-
-            if (string.Equals(_ultimoQRProcesado, qr, StringComparison.Ordinal))
-                return;
+            if (Interlocked.Exchange(ref _isProcessing, 1) == 1) return;
+            OnPropertyChanged(nameof(IsProcessing));
 
             try
             {
-                IsProcessing = true;
                 MensajeError = string.Empty;
 
-                _cts?.Cancel();
-                _cts = new CancellationTokenSource();
-                var ct = _cts.Token;
+                var codigo = (valor ?? NumeroPase ?? string.Empty).Trim();
 
-                var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(qr);
+                if (string.IsNullOrWhiteSpace(codigo))
+                {
+                    MensajeError = "Ingrese el código o número de pase.";
+                    return;
+                }
+
+                if (string.Equals(_ultimoCodigoProcesado, codigo, StringComparison.Ordinal))
+                    return;
+
+                var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(codigo);
                 if (datos == null)
                 {
                     MensajeError = "Código inválido.";
@@ -230,7 +197,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 ChoferID = datos.ChoferID;
                 Chofer = datos.ChoferNombre;
 
-                var resultado = _dataAccess.ActualizarFechaLlegada(qr);
+                var resultado = _dataAccess.ActualizarFechaLlegada(codigo);
                 if (resultado == null)
                 {
                     MensajeError = "No se pudo registrar.";
@@ -239,11 +206,14 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
                 HoraLlegada = resultado.FechaHoraLlegada;
                 Fecha = resultado.FechaHoraLlegada;
-                NumeroPaseEscaneado = qr;
 
-                CodigoQR = resultado.PasePuertaID.ToString();
+                NumeroPase = codigo;
 
-                if (!await ActualizarEstadoAsync("I", ct))
+                var idPase = resultado.PasePuertaID.ToString();
+                if (!string.Equals(CodigoQR, idPase, StringComparison.Ordinal))
+                    CodigoQR = idPase;
+
+                if (!await ActualizarEstadoAsync("I", default))
                     return;
 
                 IngresoRealizado = true;
@@ -253,23 +223,19 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     NombreChofer = Nombre,
                     Placa = Patente,
                     FechaHoraLlegada = HoraLlegada,
-                    NumeroPase = CodigoQR,
+                    NumeroPase = NumeroPase,
                     Estado = EstadoProcesoTipo.EnEspera,
                 };
 
-                await ImprimirAsync(qr);
+                await ImprimirAsync(codigo);
 
-                _ultimoQRProcesado = qr;
-            }
-            catch (OperationCanceledException) { }
-            catch (Exception ex)
-            {
-                MensajeError = $"Error al procesar el QR: {ex.Message}";
+                _ultimoCodigoProcesado = codigo;
             }
             finally
             {
-                IsProcessing = false;
-                ProcesarQRCommand?.RaiseCanExecuteChanged();
+                Interlocked.Exchange(ref _isProcessing, 0);
+                OnPropertyChanged(nameof(IsProcessing));
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
