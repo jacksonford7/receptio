@@ -6,11 +6,18 @@ namespace ControlesAccesoQR
 {
     public class AsyncRelayCommand : ICommand
     {
-        private readonly Func<Task> _execute;
-        private readonly Func<bool> _canExecute;
+        private readonly Func<object, Task> _execute;
+        private readonly Func<object, bool> _canExecute;
         private bool _isExecuting;
 
         public AsyncRelayCommand(Func<Task> execute, Func<bool> canExecute = null)
+        {
+            if (execute == null) throw new ArgumentNullException(nameof(execute));
+            _execute = _ => execute();
+            _canExecute = canExecute != null ? new Func<object, bool>(_ => canExecute()) : null;
+        }
+
+        public AsyncRelayCommand(Func<object, Task> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
@@ -18,7 +25,7 @@ namespace ControlesAccesoQR
 
         public bool CanExecute(object parameter)
         {
-            return !_isExecuting && (_canExecute?.Invoke() ?? true);
+            return !_isExecuting && (_canExecute?.Invoke(parameter) ?? true);
         }
 
         public event EventHandler CanExecuteChanged;
@@ -32,7 +39,7 @@ namespace ControlesAccesoQR
             {
                 _isExecuting = true;
                 RaiseCanExecuteChanged();
-                await _execute();
+                await _execute(parameter);
             }
             finally
             {
