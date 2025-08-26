@@ -83,7 +83,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
                 if (!HabilitarAutoPorLectorQR)
                 {
-                    ProcesarCommand?.RaiseCanExecuteChanged();
+                    CommandManager.InvalidateRequerySuggested();
                     return;
                 }
 
@@ -103,6 +103,23 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 if (_numeroPase == cleaned) return;
                 _numeroPase = cleaned;
                 OnPropertyChanged(nameof(NumeroPase));
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+        private string _numeroPaseEscaneado;
+        public string NumeroPaseEscaneado
+        {
+            get => _numeroPaseEscaneado;
+            set
+            {
+                var cleaned = (value ?? string.Empty)
+                    .Replace("\r", string.Empty)
+                    .Replace("\n", string.Empty)
+                    .Trim();
+                if (_numeroPaseEscaneado == cleaned) return;
+                _numeroPaseEscaneado = cleaned;
+                OnPropertyChanged(nameof(NumeroPaseEscaneado));
                 CommandManager.InvalidateRequerySuggested();
             }
         }
@@ -140,7 +157,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
         }
 
-        public AsyncRelayCommand ProcesarCommand { get; }
+        public ICommand ProcesarCommand { get; }
 
         public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
         {
@@ -154,17 +171,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 _lectorSuscrito = true;
             }
 
-            ProcesarCommand = new AsyncRelayCommand(
-                async param =>
-                {
-                    var texto = (param as string) ?? NumeroPase;
-                    await ProcesarEntradaSalidaAsync(texto);
-                },
-                param => !IsProcessing && !string.IsNullOrWhiteSpace((param as string) ?? NumeroPase));
+            ProcesarCommand = new RelayCommand(
+                async () => await ProcesarEntradaSalidaAsync(),
+                () => !IsProcessing && (!string.IsNullOrWhiteSpace(NumeroPase) || !string.IsNullOrWhiteSpace(CodigoQR) || !string.IsNullOrWhiteSpace(NumeroPaseEscaneado)));
         }
 
 
-        private async Task ProcesarEntradaSalidaAsync(string valor = null)
+        private async Task ProcesarEntradaSalidaAsync()
         {
             if (Interlocked.Exchange(ref _isProcessing, 1) == 1) return;
             OnPropertyChanged(nameof(IsProcessing));
@@ -173,7 +186,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             {
                 MensajeError = string.Empty;
 
-                var codigo = (valor ?? NumeroPase ?? string.Empty).Trim();
+                string codigo = null;
+                if (!string.IsNullOrWhiteSpace(CodigoQR))
+                    codigo = CodigoQR.Trim();
+                else if (!string.IsNullOrWhiteSpace(NumeroPaseEscaneado))
+                    codigo = NumeroPaseEscaneado.Trim();
+                else if (!string.IsNullOrWhiteSpace(NumeroPase))
+                    codigo = NumeroPase.Trim();
 
                 if (string.IsNullOrWhiteSpace(codigo))
                 {
@@ -250,7 +269,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 await Task.Delay(_debounceDelay, token);
                 if (!string.IsNullOrWhiteSpace(CodigoQR))
                 {
-                    await ProcesarEntradaSalidaAsync(CodigoQR);
+                    await ProcesarEntradaSalidaAsync();
                 }
             }
             catch (TaskCanceledException) { }
