@@ -1,5 +1,7 @@
 using System.Windows.Controls;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
+using ControlesAccesoQR.accesoDatos;
+using ControlesAccesoQR.Servicios;
 
 namespace ControlesAccesoQR.Views.ControlesAccesoQR
 {
@@ -8,7 +10,13 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
         public VistaEntradaSalida(MainWindowViewModel mainViewModel)
         {
             InitializeComponent();
-            DataContext = new VistaEntradaSalidaViewModel(mainViewModel);
+            DataContext = new VistaEntradaSalidaViewModel(
+                new PasePuertaDataAccess(),
+                new EstadoService(),
+                new HuellaService(),
+                new RfidReader(),
+                new PrintService(),
+                mainViewModel);
             Loaded += (_, __) => { QrInput?.Focus(); };
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Data.SqlClient;
@@ -18,8 +19,10 @@ using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Impresion;
 using ControlesAccesoQR.Servicios;
+using ControlesAccesoQR.Estados;
 
 using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
+using EstadoProcesoEnum = ControlesAccesoQR.Estados.EstadoProceso;
 
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
@@ -35,7 +38,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _codigoQR;
         private bool _isBusy;
         private string _rfidMensaje;
-        private string _estadoActual;
+        private string _estadoActualCodigo;
         private DateTime? _ultimaActualizacion;
         private DateTime? _fecha;
         private string _salida;
@@ -49,8 +52,11 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _numeroPase;
         public bool HabilitarAutoPorLectorQR { get; set; }
 
-        private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
-        private readonly IEstadoService _estadoService = new EstadoService();
+        private readonly PasePuertaDataAccess _dataAccess;
+        private readonly IEstadoService _estadoService;
+        private readonly IHuellaService _huellaService;
+        private readonly IRfidReader _rfidReader;
+        private readonly IPrintService _printService;
         private readonly MainWindowViewModel _mainViewModel;
 
         public MainWindowViewModel MainViewModel => _mainViewModel;
@@ -145,10 +151,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _rfidMensaje = value; OnPropertyChanged(nameof(RfidMensaje)); }
         }
 
-        public string EstadoActual
+        public string EstadoActualCodigo
         {
-            get => _estadoActual;
-            private set { _estadoActual = value; OnPropertyChanged(nameof(EstadoActual)); }
+            get => _estadoActualCodigo;
+            private set { _estadoActualCodigo = value; OnPropertyChanged(nameof(EstadoActualCodigo)); }
         }
 
         public DateTime? UltimaActualizacion
@@ -157,11 +163,41 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
         }
 
-        public ICommand ProcesarCommand { get; }
-
-        public VistaEntradaSalidaViewModel(MainWindowViewModel mainViewModel)
+        public ObservableCollection<EstadoProcesoEnum> Estados { get; } = new ObservableCollection<EstadoProcesoEnum>
         {
+            EstadoProcesoEnum.Pase,
+            EstadoProcesoEnum.Huella,
+            EstadoProcesoEnum.Tag,
+            EstadoProcesoEnum.Ticket
+        };
+
+        private EstadoProcesoEnum _estadoActual;
+        public EstadoProcesoEnum EstadoActual
+        {
+            get => _estadoActual;
+            set { _estadoActual = value; OnPropertyChanged(); _estadoService?.Set(value); }
+        }
+
+        public ICommand ProcesarCommand { get; }
+        public ICommand CapturarHuellaCommand { get; }
+        public ICommand LeerRfidCommand { get; }
+        public ICommand ImprimirCommand { get; }
+
+        public VistaEntradaSalidaViewModel(
+            PasePuertaDataAccess dataAccess,
+            IEstadoService estadoService,
+            IHuellaService huellaService,
+            IRfidReader rfidReader,
+            IPrintService printService,
+            MainWindowViewModel mainViewModel)
+        {
+            _dataAccess = dataAccess;
+            _estadoService = estadoService;
+            _huellaService = huellaService;
+            _rfidReader = rfidReader;
+            _printService = printService;
             _mainViewModel = mainViewModel;
+
             HabilitarAutoPorLectorQR = false;
 
             if (!_lectorSuscrito && HabilitarAutoPorLectorQR)
@@ -171,9 +207,12 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 _lectorSuscrito = true;
             }
 
-            ProcesarCommand = new RelayCommand(
-                OnProcesar,
-                CanProcesar);
+            ProcesarCommand = new RelayCommand(OnProcesar, CanProcesar);
+            CapturarHuellaCommand = new RelayCommand(async _ => await CapturarHuellaAsync(), _ => EstadoActual == EstadoProcesoEnum.Huella && _isProcessing == 0);
+            LeerRfidCommand = new RelayCommand(async _ => await LeerRfidAsync(), _ => EstadoActual == EstadoProcesoEnum.Tag && _isProcessing == 0);
+            ImprimirCommand = new RelayCommand(async _ => await ImprimirAsync(NumeroPase), _ => EstadoActual == EstadoProcesoEnum.Ticket && _isProcessing == 0);
+
+            EstadoActual = EstadoProcesoEnum.Pase;
         }
 
 
@@ -258,6 +297,62 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 if (!await ActualizarEstadoAsync("I", default))
                     return;
 
+                EstadoActual = EstadoProcesoEnum.Huella;
+
+                await CapturarHuellaAsync();
+
+                _ultimoCodigoProcesado = codigo;
+            }
+            finally
+            {
+                Interlocked.Exchange(ref _isProcessing, 0);
+                OnPropertyChanged(nameof(IsProcessing));
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+        private async Task CapturarHuellaAsync()
+        {
+            if (EstadoActual != EstadoProcesoEnum.Huella) return;
+
+            try
+            {
+                MensajeError = string.Empty;
+                var ok = await _huellaService.CapturarYValidarAsync(ChoferID);
+                if (!ok)
+                {
+                    MensajeError = "No se pudo validar la huella. Intente nuevamente.";
+                    return;
+                }
+
+                EstadoActual = EstadoProcesoEnum.Tag;
+                await LeerRfidAsync();
+            }
+            catch (Exception ex)
+            {
+                MensajeError = $"Error de huella: {ex.Message}";
+            }
+        }
+
+        private async Task LeerRfidAsync()
+        {
+            if (EstadoActual != EstadoProcesoEnum.Tag) return;
+
+            try
+            {
+                MensajeError = string.Empty;
+                var tag = await _rfidReader.LeerAsync(CancellationToken.None);
+                if (string.IsNullOrWhiteSpace(tag))
+                {
+                    MensajeError = "No se leyó el TAG RFID. Acerque la tarjeta.";
+                    return;
+                }
+
+                _dataAccess.AsociarTagAPase(NumeroPase, tag);
+
+                EstadoActual = EstadoProcesoEnum.Ticket;
+
+                await ImprimirAsync(NumeroPase);
                 IngresoRealizado = true;
 
                 _mainViewModel.PaseActual = new PaseProcesoModel
@@ -268,16 +363,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     NumeroPase = NumeroPase,
                     Estado = EstadoProcesoTipo.EnEspera,
                 };
-
-                await ImprimirAsync(codigo);
-
-                _ultimoCodigoProcesado = codigo;
             }
-            finally
+            catch (Exception ex)
             {
-                Interlocked.Exchange(ref _isProcessing, 0);
-                OnPropertyChanged(nameof(IsProcessing));
-                CommandManager.InvalidateRequerySuggested();
+                MensajeError = $"Error RFID: {ex.Message}";
             }
         }
 
@@ -315,7 +404,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     return false;
                 }
 
-                EstadoActual = result.Estado;
+                EstadoActualCodigo = result.Estado;
                 CodigoQR = result.PasePuertaID.ToString();
                 UltimaActualizacion = result.FechaActualizacion;
                 EstadoPanelEvents.RaiseEstadoCodigoCambiado(result.Estado);
@@ -354,6 +443,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
             if (DevBypass.IsDevKiosk)
             {
+                _printService.Print("Impresión simulada");
                 MessageBox.Show("Impresión simulada (CGDE041)");
                 return;
             }
@@ -369,6 +459,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             using (var ticket = new ImprimirTicketSalidaQr(codigo, datos))
             {
                 ticket.Imprimir();
+                _printService.Print(codigo);
             }
         }
 

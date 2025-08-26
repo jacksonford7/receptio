@@ -28,7 +28,7 @@ namespace ControlesAccesoQR.accesoDatos
             _extendedConnectionString = ConfigurationManager.ConnectionStrings["bill"].ConnectionString;
         }
 
-        // Obtiene ºs del chofer y empresa desde el SP de salida
+        // Obtiene Âºs del chofer y empresa desde el SP de salida
         public PasePuertaInfo ObtenerChoferEmpresaPorPaseSalida(string numeroPase)
         {
             PasePuertaInfo info = null;
@@ -320,6 +320,19 @@ namespace ControlesAccesoQR.accesoDatos
                 connection.Open();
                 var valor = command.ExecuteScalar();
                 return valor == null ? null : valor.ToString();
+            }
+        }
+
+        public void AsociarTagAPase(string numeroPase, string tag)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("[vhs].[asociar_tag_a_pase]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@NumeroPase", numeroPase);
+                command.Parameters.AddWithValue("@Tag", tag);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }
