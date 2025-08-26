@@ -10,7 +10,18 @@ namespace ControlesAccesoQR.Converters
         {
             if (values == null || values.Length < 2)
                 return false;
-            return Equals(values[0], values[1]);
+
+            var x = values[0];
+            var y = values[1];
+
+            if (x == null || y == null)
+                return x == y;
+
+            // Allow string comparison without casing sensitivity
+            if (x is string s1 && y is string s2)
+                return string.Equals(s1, s2, StringComparison.OrdinalIgnoreCase);
+
+            return Equals(x, y);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

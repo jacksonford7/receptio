@@ -23,6 +23,7 @@
         <conv:EqualityConverter x:Key="EqualityConverter" />
     </Window.Resources>
 
+    <!-- UI de Estados y Kiosco -->
     <Grid Background="{StaticResource StandardBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*" />
