@@ -172,10 +172,33 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             }
 
             ProcesarCommand = new RelayCommand(
-                async () => await ProcesarEntradaSalidaAsync(),
-                () => !IsProcessing && (!string.IsNullOrWhiteSpace(NumeroPase) || !string.IsNullOrWhiteSpace(CodigoQR) || !string.IsNullOrWhiteSpace(NumeroPaseEscaneado)));
+                OnProcesar,
+                CanProcesar);
         }
 
+
+        private bool CanProcesar()
+        {
+            return Interlocked.CompareExchange(ref _isProcessing, 0, 0) == 0 &&
+                   (!string.IsNullOrWhiteSpace(NumeroPase) ||
+                    !string.IsNullOrWhiteSpace(CodigoQR) ||
+                    !string.IsNullOrWhiteSpace(NumeroPaseEscaneado));
+        }
+
+        private async void OnProcesar()
+        {
+            try
+            {
+                var input = NumeroPase;
+                NumeroPase = input?.Trim();
+                await ProcesarEntradaSalidaAsync();
+            }
+            finally
+            {
+                NumeroPase = string.Empty;
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
 
         private async Task ProcesarEntradaSalidaAsync()
         {
