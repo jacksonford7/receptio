@@ -61,7 +61,7 @@
         </Viewbox>
 
         <!-- Entrada QR -->
-        <TextBox x:Name="txtQR"
+        <TextBox x:Name="QrInput"
                  Grid.Row="3" Grid.ColumnSpan="2"
                  Text="{Binding CodigoQR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  HorizontalAlignment="Stretch"
