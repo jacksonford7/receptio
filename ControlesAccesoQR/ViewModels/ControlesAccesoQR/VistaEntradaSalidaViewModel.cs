@@ -226,7 +226,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 if (string.Equals(_ultimoCodigoProcesado, codigo, StringComparison.Ordinal))
                     return;
 
-                var datos = _dataAccess.ObtenerChoferEmpresaPorPaseSalida(codigo);
+                var datos = _dataAccess.ObtenerChoferEmpresaPorPase(codigo);
                 if (datos == null)
                 {
                     MensajeError = "Código inválido.";

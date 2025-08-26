@@ -100,6 +100,77 @@ namespace ControlesAccesoQR.accesoDatos
             return info;
         }
 
+
+        public PasePuertaInfo ObtenerChoferEmpresaPorPase(string numeroPase)
+        {
+            PasePuertaInfo info = null;
+            string choferId = null;
+            string empresaId = null;
+            string patente = null;
+
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand("[vhs].[obtener_chofer_empresa_por_pase]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@NumeroPase", numeroPase);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        choferId = reader["ChoferID"].ToString();
+                        empresaId = reader["EmpresaTransporteID"].ToString();
+                        //patente = reader["Patente"].ToString();
+
+                        info = new PasePuertaInfo
+                        {
+                            ChoferID = choferId,
+                            EmpresaTransporteID = empresaId,
+                            Patente = patente,
+                        };
+                    }
+                }
+            }
+
+            if (info == null)
+                return null;
+
+            using (var connection = new SqlConnection(_extendedConnectionString))
+            using (var command = new SqlCommand("[Bill].[compania_lista]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@pista", empresaId);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        info.EmpresaNombre = reader["razon_social"].ToString();
+                    }
+                }
+            }
+
+            using (var connection = new SqlConnection(_extendedConnectionString))
+            using (var command = new SqlCommand("[Bill].[choferes_empresa_lista]", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@empresa_id", empresaId);
+                command.Parameters.AddWithValue("@pista", choferId);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        info.ChoferNombre = reader["nombres"].ToString();
+                    }
+                }
+            }
+
+            return info;
+        }
         public class ActualizarFechaLlegadaResult
         {
             public int PasePuertaID { get; set; }

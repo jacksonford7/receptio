@@ -130,7 +130,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         public void MostrarEntradaSalida()
         {
             Estados = _todosLosEstados;
-            _frame.Navigate(new VistaEntradaSalida { DataContext = new VistaEntradaSalidaViewModel(this) });
+            _frame.Navigate(new VistaEntradaSalida(this));
         }
 
         public void MostrarSalidaFinal()

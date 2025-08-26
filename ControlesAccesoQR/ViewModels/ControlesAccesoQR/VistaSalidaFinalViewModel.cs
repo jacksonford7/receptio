@@ -15,6 +15,8 @@ using ControlesAccesoQR.Impresion;
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;
+using RECEPTIO.CapaPresentacion.UI.Interfaces.Impresora;
+using RECEPTIO.CapaPresentacion.UI.ImpresoraZebra;
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 {
