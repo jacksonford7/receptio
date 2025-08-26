@@ -7,7 +7,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
         public VistaEntradaSalida()
         {
             InitializeComponent();
-            Loaded += (_, __) => { QrInput?.Focus(); };
+            Loaded += (_, __) => { txtQR?.Focus(); };
         }
     }
 }

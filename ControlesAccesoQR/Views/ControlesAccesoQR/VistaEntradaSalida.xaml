@@ -56,17 +56,25 @@
                  MaxWidth="480"
                  Margin="0,0,0,10">
             <uc:TecladoNumerico Text="{Binding NumeroPase, Mode=TwoWay}"
-                                ComandoOk="{Binding ProcesarCommand}"
+                                ComandoOk="{Binding ProcesarQRCommand}"
                                 Width="420" />
         </Viewbox>
 
         <!-- Entrada QR -->
-        <TextBox x:Name="QrInput"
+        <TextBox x:Name="txtQR"
                  Grid.Row="3" Grid.ColumnSpan="2"
-                 Text="{Binding NumeroPase, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding CodigoQR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  HorizontalAlignment="Stretch"
+                 VerticalAlignment="Center"
                  Margin="0,0,0,8"
-                 ToolTip="Escanee el QR o digite el número" />
+                 AcceptsReturn="False"
+                 MaxLines="1"
+                 SpellCheck.IsEnabled="False"
+                 ToolTip="Escanee el QR o digite el número">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding ProcesarQRCommand}" />
+            </TextBox.InputBindings>
+        </TextBox>
 
         <!-- Botón -->
         <Button x:Name="IngresarButton"
@@ -76,7 +84,7 @@
                 HorizontalAlignment="Center"
                 Margin="0,0,0,10"
                 IsDefault="True"
-                Command="{Binding ProcesarCommand}" />
+                Command="{Binding ProcesarQRCommand}" />
 
         <!-- Información adicional -->
         <StackPanel Grid.Row="5" Grid.Column="1"
@@ -87,8 +95,5 @@
             <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,5,0,0" />
         </StackPanel>
     </Grid>
-    <UserControl.InputBindings>
-        <KeyBinding Key="Enter" Command="{Binding ProcesarCommand}" />
-    </UserControl.InputBindings>
 </UserControl>
 
