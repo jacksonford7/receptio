@@ -46,31 +46,33 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             EstadoPanel.Ticket
         };
 
-        private IEnumerable<EstadoPanel> _estados = _todosLosEstados;
+        private readonly ObservableCollection<EstadoPanel> _estados = new ObservableCollection<EstadoPanel>(_todosLosEstados);
 
-        public IEnumerable<EstadoPanel> Estados
-        {
-            get => _estados;
-            private set
-            {
-                _estados = value;
-                OnPropertyChanged(nameof(Estados));
-            }
-        }
+        public ObservableCollection<EstadoPanel> Estados => _estados;
 
         public string NumeroKiosco
         {
             get => _numeroKiosco;
-            private set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
+            set { _numeroKiosco = value; OnPropertyChanged(nameof(NumeroKiosco)); }
         }
 
         public bool IsKioskEntrada { get; private set; }
 
         public string TipoKioscoTexto => IsKioskEntrada ? "Entrada" : "Salida";
 
-        public string KioscoTitulo => "Kiosco";
+        private string _kioscoTitulo;
+        public string KioscoTitulo
+        {
+            get => _kioscoTitulo;
+            set { _kioscoTitulo = value; OnPropertyChanged(nameof(KioscoTitulo)); }
+        }
 
-        public ImageSource KioscoLogo { get; } = new BitmapImage(new Uri("pack://application:,,,/ControlesAccesoQR;component/Assets/Logo.png"));
+        private ImageSource _kioscoLogo;
+        public ImageSource KioscoLogo
+        {
+            get => _kioscoLogo;
+            set { _kioscoLogo = value; OnPropertyChanged(nameof(KioscoLogo)); }
+        }
 
         public EstadoPanel EstadoActual
         {
@@ -119,6 +121,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             _frame = frame;
 
+            KioscoTitulo = "Kiosco";
+            KioscoLogo = new BitmapImage(new Uri("pack://application:,,,/ControlesAccesoQR;component/Assets/Logo.png"));
+
             _reloj.Tick += (s, e) => FechaHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             _reloj.Start();
 
@@ -129,7 +134,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public void MostrarEntradaSalida()
         {
-            Estados = _todosLosEstados;
+            SetEstados(_todosLosEstados);
             _frame.Navigate(new VistaEntradaSalida(this));
         }
 
@@ -138,7 +143,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             // La salida final sólo requiere visualizar los pasos "Pase" y "Ticket"
             // por lo que filtramos el panel de estados para mostrar únicamente
             // dichos elementos en la interfaz del kiosco.
-            Estados = FiltrarEstadosPorCodigos(new[] { "Pase", "Ticket" });
+            SetEstados(FiltrarEstadosPorCodigos(new[] { "Pase", "Ticket" }));
 
             // VistaSalidaFinalViewModel contiene toda la lógica específica de
             // salida, incluyendo las llamadas a los procedimientos almacenados
@@ -158,6 +163,13 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             var permitidos = new HashSet<string>(codigos, StringComparer.OrdinalIgnoreCase);
             return _todosLosEstados.Where(e => permitidos.Contains(e.ToString()));
+        }
+
+        private void SetEstados(IEnumerable<EstadoPanel> estados)
+        {
+            Estados.Clear();
+            foreach (var estado in estados)
+                Estados.Add(estado);
         }
 
         public async Task ReiniciarDespuesDeSalidaAsync()
