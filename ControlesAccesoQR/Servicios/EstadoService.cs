@@ -2,7 +2,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
-using ControlesAccesoQR.Estados;
+
+// Alias canónico
+using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 namespace ControlesAccesoQR.Servicios
 {
@@ -20,7 +22,7 @@ namespace ControlesAccesoQR.Servicios
             return _dataAccess.ActualizarEstadoAsync(numeroPase, estado, ct);
         }
 
-        public void Set(EstadoProceso estado)
+        public void Set(EstadoProcesoEnum estado)
         {
             EstadoPanelEvents.RaiseEstadoCodigoCambiado(estado.ToString());
         }

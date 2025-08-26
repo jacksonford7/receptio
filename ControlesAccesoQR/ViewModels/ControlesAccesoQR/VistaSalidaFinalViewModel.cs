@@ -12,6 +12,7 @@ using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Servicios;
 using ControlesAccesoQR.Impresion;
+// Alias canónico
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;

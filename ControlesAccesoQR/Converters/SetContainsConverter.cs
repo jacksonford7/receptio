@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
-using ControlesAccesoQR.Estados;
+
+// Alias canónico
+using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 namespace ControlesAccesoQR.Converters
 {
@@ -13,7 +15,7 @@ namespace ControlesAccesoQR.Converters
             if (values == null || values.Length < 2)
                 return false;
 
-            if (values[0] is ISet<EstadoProceso> set && values[1] is EstadoProceso estado)
+            if (values[0] is ISet<EstadoProcesoEnum> set && values[1] is EstadoProcesoEnum estado)
                 return set.Contains(estado);
 
             return false;

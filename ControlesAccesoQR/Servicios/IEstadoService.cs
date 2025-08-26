@@ -1,13 +1,15 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ControlesAccesoQR.Models;
-using ControlesAccesoQR.Estados;
+
+// Alias canónico
+using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 namespace ControlesAccesoQR.Servicios
 {
     public interface IEstadoService
     {
         Task<ActualizarEstadoResult> ActualizarAsync(string numeroPase, string estado, CancellationToken ct = default);
-        void Set(EstadoProceso estado);
+        void Set(EstadoProcesoEnum estado);
     }
 }

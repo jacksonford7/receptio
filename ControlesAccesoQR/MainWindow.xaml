@@ -1,7 +1,7 @@
 <Window x:Class="ControlesAccesoQR.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:estados="clr-namespace:ControlesAccesoQR.Estados"
+        xmlns:estados="clr-namespace:ControlesAccesoQR.Models"
         xmlns:conv="clr-namespace:ControlesAccesoQR.Converters"
         Title="ControlesAccesoQR"
         WindowState="Maximized"

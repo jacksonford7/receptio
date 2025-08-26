@@ -15,6 +15,7 @@ using ControlesAccesoQR.Views.ControlesAccesoQR;
 using ControlesAccesoQR.Servicios;
 
 using EstadoPanel = ControlesAccesoQR.Estados.EstadoProceso;
+// Alias canónico
 using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 using RECEPTIO.CapaPresentacion.UI.MVVM;

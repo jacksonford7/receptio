@@ -19,10 +19,8 @@ using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
 using ControlesAccesoQR.Impresion;
 using ControlesAccesoQR.Servicios;
-using ControlesAccesoQR.Estados;
-
-using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
-using EstadoProcesoEnum = ControlesAccesoQR.Estados.EstadoProceso;
+// Alias canónico
+using EstadoProcesoEnum = ControlesAccesoQR.Models.EstadoProceso;
 
 
 namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
@@ -361,7 +359,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     Placa = Patente,
                     FechaHoraLlegada = HoraLlegada,
                     NumeroPase = NumeroPase,
-                    Estado = EstadoProcesoTipo.EnEspera,
+                    Estado = EstadoProcesoEnum.EnEspera,
                 };
             }
             catch (Exception ex)
@@ -540,7 +538,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             if (resultado)
                 _mainViewModel.MostrarSalidaFinal();
             else
-                _mainViewModel.EstadoProceso = EstadoProcesoTipo.EnEspera;
+                _mainViewModel.EstadoProceso = EstadoProcesoEnum.EnEspera;
 
             return resultado;
         }
