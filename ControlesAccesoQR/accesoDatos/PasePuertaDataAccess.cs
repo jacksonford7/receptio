@@ -228,6 +228,7 @@ namespace ControlesAccesoQR.accesoDatos
                             //NumeroPase = Convert.ToString(reader["NumeroPase"]),
                             Estado = Convert.ToString(reader["Estado"]),
                             FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]),
+                            PlacaCamion = Convert.ToString(reader["PlacaCamion"]),
                             //FechaActualizacion = reader["FechaActualizacion"] == DBNull.Value
                             //    ? (DateTime?)null
                             //    : Convert.ToDateTime(reader["FechaActualizacion"])

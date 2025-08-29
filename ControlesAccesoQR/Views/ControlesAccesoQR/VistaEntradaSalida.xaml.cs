@@ -169,7 +169,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                 if (!vm.IngresoRealizado)
                     return;
 
-                vm.ChoferID = "1";
+                vm.ChoferID = "1308816543";
 
                 if (!string.IsNullOrWhiteSpace(vm.ChoferID))
                 {

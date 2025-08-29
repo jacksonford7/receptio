@@ -9,5 +9,6 @@ namespace ControlesAccesoQR.Models
         public string Estado { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime? FechaActualizacion { get; set; }
+        public string PlacaCamion { get; set; }
     }
 }
