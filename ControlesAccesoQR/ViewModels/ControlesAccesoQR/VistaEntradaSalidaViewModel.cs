@@ -225,7 +225,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 OnPropertyChanged(nameof(CodigoQR));
             }
 
-            if (!await ActualizarEstadoAsync("I"))
+            if (await ActualizarEstadoAsync("I") == null)
                 return;
 
             var qrText = $"{CodigoQR}|{resultado.FechaHoraLlegada:yyyy-MM-dd HH:mm:ss}";
@@ -260,10 +260,10 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         }
     }
 
-        public async Task<bool> ActualizarEstadoAsync(string estado, CancellationToken ct = default)
+        public async Task<ActualizarEstadoResult> ActualizarEstadoAsync(string estado, CancellationToken ct = default)
         {
             if (string.IsNullOrWhiteSpace(CodigoQR))
-                return false;
+                return null;
 
             try
             {
@@ -274,14 +274,15 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                         MessageBox.Show("El pase no existe o el SP no devolvió filas");
                     else
                         Console.WriteLine("ActualizarEstadoAsync retornó null");
-                    return false;
+                    return null;
                 }
 
                 EstadoActual = result.Estado;
                 CodigoQR = result.PasePuertaID.ToString();
                 UltimaActualizacion = result.FechaActualizacion;
+                Patente = result.PlacaCamion;
                 EstadoPanelEvents.RaiseEstadoCodigoCambiado(result.Estado);
-                return true;
+                return result;
             }
             catch (SqlException ex)
             {
@@ -297,7 +298,7 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 else
                     Console.WriteLine(ex);
             }
-            return false;
+            return null;
         }
 
         private void ImprimirQr()
@@ -359,8 +360,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         /// <summary>
         /// Ejecuta la validación del tag RFID de manera asíncrona.
         /// </summary>
+        /// <param name="tagEsperado">Tag obtenido desde el servicio para comparar.</param>
         /// <returns>true si el tag leído es válido.</returns>
-        public async Task<bool> ValidarRfidAsync()
+        public async Task<bool> ValidarRfidAsync(string tagEsperado)
         {
             bool resultado = false;
             IAntena antena = null;
@@ -375,7 +377,6 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             {
                 try
                 {
-                    var tagEsperado = _dataAccess.ObtenerTagRfidPorPlaca(Patente);
                     if (string.IsNullOrWhiteSpace(tagEsperado))
                     {
                         RfidMensaje = "No existe tag en BD";
