@@ -11,6 +11,7 @@ using ControlesAccesoQR;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
 using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
+using Transaction.ServicioTransaction;
 
 namespace ControlesAccesoQR.Views.ControlesAccesoQR
 {
@@ -176,12 +177,13 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                     if (DevBypass.IsDevKiosk)
                     {
                         await CompletarValidacionHuellaAsync(vm, "BYPASS CGDE041", 1);
-                        if (!await vm.ActualizarEstadoAsync("H"))
+                        var estadoH = await vm.ActualizarEstadoAsync("H");
+                        if (estadoH == null)
                             return;
                         MessageBox.Show("Huella validada");
 
                         await CompletarLecturaRfidAsync(vm, "TAG_SIMULADO");
-                        if (!await vm.ActualizarEstadoAsync("R"))
+                        if (await vm.ActualizarEstadoAsync("R") == null)
                             return;
                         MessageBox.Show("RFID detectado");
 
@@ -191,10 +193,18 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 
                     await CompletarValidacionHuellaAsync(vm, "VALIDACION AUTOMATICA", 1);
 
-                    if (!await vm.ActualizarEstadoAsync("H"))
+                    var resultadoH = await vm.ActualizarEstadoAsync("H");
+                    if (resultadoH == null)
                         return;
-                    await CompletarLecturaRfidAsync(vm, null);
-                    if (!await vm.ActualizarEstadoAsync("R"))
+
+                    string tagBaseDatos = null;
+                    using (var servicio = new ServicioTransactionClient())
+                    {
+                        tagBaseDatos = await servicio.ObtenerTagAsync(resultadoH.PlacaCamion);
+                    }
+
+                    await CompletarLecturaRfidAsync(vm, tagBaseDatos);
+                    if (await vm.ActualizarEstadoAsync("R") == null)
                         return;
 
                     await EjecutarImpresionAsync(vm);
@@ -213,14 +223,14 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
             if (DevBypass.IsDevKiosk)
             {
                 await CompletarImpresionAsync(vm);
-                if (!await vm.ActualizarEstadoAsync("P"))
+                if (await vm.ActualizarEstadoAsync("P") == null)
                     return;
                 MessageBox.Show("Impresión simulada (CGDE041)");
             }
             else
             {
                 await CompletarImpresionAsync(vm);
-                if (!await vm.ActualizarEstadoAsync("P"))
+                if (await vm.ActualizarEstadoAsync("P") == null)
                     return;
                 LimpiarFormularioPostProceso();
             }
@@ -239,11 +249,11 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
             return Task.CompletedTask;
         }
 
-        private async Task CompletarLecturaRfidAsync(VistaEntradaSalidaViewModel vm, string tag)
+        private async Task CompletarLecturaRfidAsync(VistaEntradaSalidaViewModel vm, string tagEsperado)
         {
             if (!DevBypass.IsDevKiosk)
             {
-                var rfidOk = await vm.ValidarRfidAsync();
+                var rfidOk = await vm.ValidarRfidAsync(tagEsperado);
                 if (!rfidOk)
                     MessageBox.Show(vm.RfidMensaje, "RFID", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -252,7 +262,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
             vm.MainViewModel.Procesos.Add(new Proceso
             {
                 STEP = "RFID",
-                RESPONSE = tag ?? string.Empty,
+                RESPONSE = tagEsperado ?? string.Empty,
                 MESSAGE_ID = 1
             });
         }
