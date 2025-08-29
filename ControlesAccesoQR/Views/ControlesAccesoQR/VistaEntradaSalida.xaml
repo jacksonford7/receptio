@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:conv="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
              xmlns:uc="clr-namespace:ControlesAccesoQR.UserControls"
+             xmlns:shared="clr-namespace:ControlesAccesoQR.Views.Shared"
              FontFamily="Microsoft Sans Serif">
     <UserControl.Resources>
         <conv:BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -91,6 +92,12 @@
             <Button Content="Imprimir Datos" Command="{Binding ImprimirCommand}" Width="150" HorizontalAlignment="Left" Margin="0,5,0,0" />
             <TextBlock Text="{Binding MensajeError}" Foreground="Red" Margin="0,5,0,0" />
         </StackPanel>
+
+        <shared:FingerprintPanel x:Name="FingerprintPanel"
+                                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                                 Visibility="Collapsed"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center" />
     </Grid>
 </UserControl>
 

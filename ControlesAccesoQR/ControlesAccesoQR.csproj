@@ -105,11 +105,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ControlesAccesoQR\DialogoHuella.xaml">
+    <Page Include="Views\ControlesAccesoQR\EstadoProcesoPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ControlesAccesoQR\EstadoProcesoPanel.xaml">
+    <Page Include="Views\Shared\FingerprintPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,14 +143,18 @@
     <Compile Include="ViewModels\ControlesAccesoQR\EstadoProceso.Estaticos.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\PaginaRfidViewModel.cs" />
     <Compile Include="ViewModels\ControlesAccesoQR\HuellaViewModel.cs" />
+    <Compile Include="Models\FingerprintDecision.cs" />
+    <Compile Include="ViewModels\FingerprintPanelViewModel.cs" />
+    <Compile Include="Services\IFingerprintWorkflow.cs" />
+    <Compile Include="Services\FingerprintWorkflow.cs" />
     <Compile Include="Estados\EstadoProceso.cs" />
     <Compile Include="Converters\EqualityConverter.cs" />
     <Compile Include="Converters\SetContainsConverter.cs" />
     <Compile Include="Views\ControlesAccesoQR\VistaEntradaSalida.xaml.cs">
       <DependentUpon>VistaEntradaSalida.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ControlesAccesoQR\DialogoHuella.xaml.cs">
-      <DependentUpon>DialogoHuella.xaml</DependentUpon>
+    <Compile Include="Views\Shared\FingerprintPanel.xaml.cs">
+      <DependentUpon>FingerprintPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ControlesAccesoQR\DialogoQr.xaml.cs">
       <DependentUpon>DialogoQr.xaml</DependentUpon>
