@@ -14,6 +14,7 @@ using RECEPTIO.CapaPresentacion.UI.Interfaces.RFID;
 using RECEPTIO.CapaPresentacion.UI.MVVM;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.Impresora;
 using RECEPTIO.CapaPresentacion.UI.ImpresoraZebra;
+using RECEPTIO.CapaPresentacion.UI.Biometrico;
 using Spring.Context.Support;
 using ControlesAccesoQR.accesoDatos;
 using ControlesAccesoQR.Models;
@@ -43,6 +44,9 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         private string _salida;
         private string _chofer;
         private string _mensajeError;
+        private string _resultado;
+        private bool _huellaValida;
+        private bool _procesandoHuella;
 
         private readonly PasePuertaDataAccess _dataAccess = new PasePuertaDataAccess();
         private readonly IEstadoService _estadoService = new EstadoService();
@@ -122,6 +126,24 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
         {
             get => _ultimaActualizacion;
             private set { _ultimaActualizacion = value; OnPropertyChanged(nameof(UltimaActualizacion)); }
+        }
+
+        public string Resultado
+        {
+            get => _resultado;
+            private set { _resultado = value; OnPropertyChanged(nameof(Resultado)); }
+        }
+
+        public bool HuellaValida
+        {
+            get => _huellaValida;
+            private set { _huellaValida = value; OnPropertyChanged(nameof(HuellaValida)); }
+        }
+
+        public bool ProcesandoHuella
+        {
+            get => _procesandoHuella;
+            private set { _procesandoHuella = value; OnPropertyChanged(nameof(ProcesandoHuella)); }
         }
 
         public ICommand SubmitPassCommand { get; }
@@ -355,6 +377,45 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                 $"Chofer: {Chofer}";
 
             _printService.Print(contenido);
+        }
+
+        /// <summary>
+        /// Ejecuta la validación de huella de manera asíncrona.
+        /// </summary>
+        /// <returns>true si la huella es válida.</returns>
+        public async Task<bool> ValidarHuellaAsync()
+        {
+            if (string.IsNullOrWhiteSpace(ChoferID))
+            {
+                Resultado = "Chofer no identificado";
+                HuellaValida = false;
+                return false;
+            }
+
+            if (DevBypass.IsDevKiosk)
+            {
+                Resultado = "BYPASS CGDE041";
+                HuellaValida = true;
+                MainViewModel.EstadoProceso = EstadoProcesoTipo.IngresoRegistrado;
+                return true;
+            }
+
+            ProcesandoHuella = true;
+            Resultado = "Validando huella...";
+            try
+            {
+                var biometrico = new Biometrico();
+                var respuesta = await Task.Run(() => biometrico.ProcesoHuella(ChoferID));
+                Resultado = respuesta;
+                HuellaValida = !string.IsNullOrEmpty(respuesta) && respuesta.Contains(ChoferID);
+                if (HuellaValida)
+                    MainViewModel.EstadoProceso = EstadoProcesoTipo.IngresoRegistrado;
+                return HuellaValida;
+            }
+            finally
+            {
+                ProcesandoHuella = false;
+            }
         }
 
         /// <summary>
