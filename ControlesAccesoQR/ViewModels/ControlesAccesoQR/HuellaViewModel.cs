@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using RECEPTIO.CapaPresentacion.UI.Biometrico;
 using RECEPTIO.CapaPresentacion.UI.Interfaces.Biometrico;
@@ -33,6 +35,8 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
 
         public ICommand ValidarCommand { get; }
 
+        public event Func<Task> ValidacionCompletada;
+
         public HuellaViewModel(string choferId)
         {
             _choferId = choferId;
@@ -47,6 +51,11 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
             HuellaValida = !string.IsNullOrEmpty(Resultado) && Resultado.Contains(_choferId);
             HuellaValida = true;
             Procesando = false;
+        }
+
+        public Task OnValidacionCompletadaAsync()
+        {
+            return ValidacionCompletada?.Invoke() ?? Task.CompletedTask;
         }
     }
 }

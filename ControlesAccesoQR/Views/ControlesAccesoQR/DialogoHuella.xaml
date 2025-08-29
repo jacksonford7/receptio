@@ -1,8 +1,9 @@
-<Window x:Class="ControlesAccesoQR.Views.ControlesAccesoQR.DialogoHuella"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Validar Huella" Height="180" Width="300" WindowStartupLocation="CenterOwner"
-        FontFamily="Microsoft Sans Serif">
+<Page x:Class="ControlesAccesoQR.Views.ControlesAccesoQR.DialogoHuella"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Validar Huella"
+      Height="180" Width="300"
+      FontFamily="Microsoft Sans Serif">
     <StackPanel Margin="10">
         <TextBlock Text="Coloque su dedo en el lector" Margin="0,0,0,10" />
         <TextBlock Text="{Binding Resultado}" TextWrapping="Wrap" Margin="0,0,0,10" />
@@ -11,4 +12,4 @@
             <Button Content="Aceptar" Width="75" Click="Aceptar_Click" IsEnabled="{Binding HuellaValida}" />
         </StackPanel>
     </StackPanel>
-</Window>
+</Page>
