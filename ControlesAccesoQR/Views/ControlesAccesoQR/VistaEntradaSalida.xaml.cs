@@ -170,7 +170,7 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                 if (!vm.IngresoRealizado)
                     return;
 
-                vm.ChoferID = "1308816543";
+                vm.ChoferID = "0920316932";
 
                 if (!string.IsNullOrWhiteSpace(vm.ChoferID))
                 {
@@ -190,24 +190,43 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                         await EjecutarImpresionAsync(vm);
                         return;
                     }
-
-                    await CompletarValidacionHuellaAsync(vm, "VALIDACION AUTOMATICA", 1);
-
-                    var resultadoH = await vm.ActualizarEstadoAsync("H");
-                    if (resultadoH == null)
-                        return;
-
-                    string tagBaseDatos = null;
-                    using (var servicio = new ServicioTransactionClient())
+                    var dialogo = new DialogoHuella
                     {
-                        tagBaseDatos = await servicio.ObtenerTagAsync(resultadoH.PlacaCamion);
+                        Owner = Window.GetWindow(this),
+                        DataContext = new HuellaViewModel(vm.ChoferID)
+                    };
+
+                    if (dialogo.ShowDialog() == true && dialogo.DataContext is HuellaViewModel hv)
+                    {
+                        // 1) Validación por huella (usa el resultado real del diálogo)
+                        await CompletarValidacionHuellaAsync(vm, hv.Resultado, hv.HuellaValida ? 1 : 0);
+
+                        if (!hv.HuellaValida)
+                            return;
+
+                        // 2) Estado = H (se espera objeto con PlacaCamion, igual a tu flujo actual)
+                        var resultadoH = await vm.ActualizarEstadoAsync("H");
+                        if (resultadoH == null)
+                            return;
+
+                        // 3) Obtener tag desde Transaction (usando la placa del resultado H)
+                        string tagBaseDatos = null;
+                        using (var servicio = new ServicioTransactionClient())
+                        {
+                            tagBaseDatos = await servicio.ObtenerTagAsync(resultadoH.PlacaCamion);
+                        }
+
+                        // 4) Lectura RFID con tag obtenido
+                        await CompletarLecturaRfidAsync(vm, tagBaseDatos);
+
+                        // 5) Estado = R
+                        if (await vm.ActualizarEstadoAsync("R") == null)
+                            return;
+
+                        // 6) Impresión
+                        await EjecutarImpresionAsync(vm);
                     }
 
-                    await CompletarLecturaRfidAsync(vm, tagBaseDatos);
-                    if (await vm.ActualizarEstadoAsync("R") == null)
-                        return;
-
-                    await EjecutarImpresionAsync(vm);
                 }
             }
         }
