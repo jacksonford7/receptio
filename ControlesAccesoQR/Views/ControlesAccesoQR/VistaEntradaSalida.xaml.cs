@@ -10,7 +10,6 @@ using System.Windows.Threading;
 using ControlesAccesoQR;
 using ControlesAccesoQR.ViewModels.ControlesAccesoQR;
 using ControlesAccesoQR.Models;
-using EstadoProcesoTipo = ControlesAccesoQR.Models.EstadoProceso;
 using Transaction.ServicioTransaction;
 
 namespace ControlesAccesoQR.Views.ControlesAccesoQR
@@ -174,24 +173,17 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
 
                 if (!string.IsNullOrWhiteSpace(vm.ChoferID))
                 {
-                    if (DevBypass.IsDevKiosk)
+                    var huellaOk = await vm.ValidarHuellaAsync();
+                    await CompletarValidacionHuellaAsync(vm, vm.Resultado, huellaOk ? 1 : 0);
+
+                    if (!huellaOk)
                     {
-                        await CompletarValidacionHuellaAsync(vm, "BYPASS CGDE041", 1);
-                        var estadoH = await vm.ActualizarEstadoAsync("H");
-                        if (estadoH == null)
-                            return;
-                        MessageBox.Show("Huella validada");
-
-                        await CompletarLecturaRfidAsync(vm, "TAG_SIMULADO");
-                        if (await vm.ActualizarEstadoAsync("R") == null)
-                            return;
-                        MessageBox.Show("RFID detectado");
-
-                        await EjecutarImpresionAsync(vm);
+                        MessageBox.Show(vm.Resultado, "Huella", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
-                    await CompletarValidacionHuellaAsync(vm, "VALIDACION AUTOMATICA", 1);
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show("Huella validada");
 
                     var resultadoH = await vm.ActualizarEstadoAsync("H");
                     if (resultadoH == null)
@@ -203,9 +195,12 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                         tagBaseDatos = await servicio.ObtenerTagAsync(resultadoH.PlacaCamion);
                     }
 
-                    await CompletarLecturaRfidAsync(vm, tagBaseDatos);
+                    await CompletarLecturaRfidAsync(vm, DevBypass.IsDevKiosk ? "TAG_SIMULADO" : tagBaseDatos);
                     if (await vm.ActualizarEstadoAsync("R") == null)
                         return;
+
+                    if (DevBypass.IsDevKiosk)
+                        MessageBox.Show("RFID detectado");
 
                     await EjecutarImpresionAsync(vm);
                 }
@@ -244,8 +239,6 @@ namespace ControlesAccesoQR.Views.ControlesAccesoQR
                 RESPONSE = respuesta,
                 MESSAGE_ID = messageId
             });
-
-            vm.MainViewModel.EstadoProceso = EstadoProcesoTipo.IngresoRegistrado;
             return Task.CompletedTask;
         }
 
