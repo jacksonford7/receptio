@@ -391,22 +391,27 @@ namespace ControlesAccesoQR.ViewModels.ControlesAccesoQR
                     }
 
                     antena.IniciarLectura();
-                    await Task.Delay(1000);
-                    List<string> tags = antena.ObtenerTagsLeidos();
 
-                    if (tags == null || !tags.Any())
+                    var inicio = DateTime.UtcNow;
+                    var hayTags = false;
+                    while (DateTime.UtcNow - inicio < TimeSpan.FromSeconds(5) && !resultado)
                     {
-                        RfidMensaje = "No se leyó ningún tag";
+                        var tags = antena.ObtenerTagsLeidos();
+                        if (tags != null && tags.Any())
+                        {
+                            hayTags = true;
+                            if (tags.Contains(tagEsperado))
+                            {
+                                RfidMensaje = "Tag leído válido";
+                                resultado = true;
+                                break;
+                            }
+                        }
+                        await Task.Delay(500);
                     }
-                    else if (tags.Contains(tagEsperado))
-                    {
-                        RfidMensaje = "Tag leído válido";
-                        resultado = true;
-                    }
-                    else
-                    {
-                        RfidMensaje = "Tag leído no coincide";
-                    }
+
+                    if (!resultado)
+                        RfidMensaje = hayTags ? "Tag leído no coincide" : "No se leyó ningún tag";
                 }
                 catch (Exception ex)
                 {
